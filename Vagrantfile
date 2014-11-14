@@ -23,7 +23,7 @@ exit unless REQUIRED_PLUGINS.all? do |plugin|
   )
 end
 
-
+# provisioning script
 $script = <<SCRIPT
 echo "Install packages..."
 wget -q -O - https://get.docker.io/gpg | apt-key add -
@@ -53,7 +53,17 @@ pip install -r requirements.txt
 
 SCRIPT
 
+# get hosts
+hosts = []
+config_files = Dir.glob('projects/*/fabfile.yaml')
+config_files.each do |path|
+  yamlConfig = YAML.load_file(path)
+  if yamlConfig['hosts'] && yamlConfig['hosts']['local'] && yamlConfig['hosts']['local']['host']
+    hosts.push(yamlConfig['hosts']['local']['host'])
+  end
+end
 
+print hosts
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "phusion-open-ubuntu-14.04-amd64"
@@ -80,7 +90,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.hostmanager.enabled = true
   config.hostmanager.manage_host = true
   config.vm.hostname = sitename
-  config.hostmanager.aliases = [ "www." + sitename ]
+  config.hostmanager.aliases = hosts
   config.vm.provision :hostmanager
 
   config.ssh.forward_agent = true
