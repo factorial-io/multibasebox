@@ -57,13 +57,17 @@ SCRIPT
 hosts = []
 config_files = Dir.glob('projects/*/fabfile.yaml')
 config_files.each do |path|
+
   yamlConfig = YAML.load_file(path)
-  if yamlConfig['hosts'] && yamlConfig['hosts']['local'] && yamlConfig['hosts']['local']['host']
-    hosts.push(yamlConfig['hosts']['local']['host'])
+  if yamlConfig['hosts']
+    if yamlConfig['hosts']['mbb'] && yamlConfig['hosts']['mbb']['host']
+      hosts.push(yamlConfig['hosts']['mbb']['host'])
+    elsif yamlConfig['hosts']['local'] && yamlConfig['hosts']['local']['host']
+      hosts.push(yamlConfig['hosts']['local']['host'])
+    end
   end
 end
 
-print hosts
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "phusion-open-ubuntu-14.04-amd64"
