@@ -23,7 +23,9 @@ If you add a new project, do not forget to provision your vagrantbox again, as t
     ``vagrant up``
 2. if you are using fabalicious as a deployment-helper, cd into your project and run
     
-``fab config:mbb docker:run``
+   ``fab config:mbb docker:run``
+
+    (this will work only if your have a suitable configuration in your fabfile.yaml)
 ## Status
 
 You can see the status of haproxy at http://multibasebox.dev:1936/
