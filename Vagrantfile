@@ -23,13 +23,14 @@ exit unless REQUIRED_PLUGINS.all? do |plugin|
   )
 end
 
-
+# provisioning script
 $script = <<SCRIPT
 echo "Install packages..."
 wget -q -O - https://get.docker.io/gpg | apt-key add -
-
-
-apt-get update -qq; apt-get install -q -y --force-yes lxc-docker python-setuptools software-properties-common python-software-properties
+rm -f /etc/apt/sources.list.d/docker.list
+echo deb http://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list
+apt-get update -qq
+apt-get install -q -y --force-yes lxc-docker python-setuptools software-properties-common python-software-properties
 usermod -a -G docker vagrant
 
 echo "Installing haproxy 1.5"
@@ -52,6 +53,20 @@ pip install -r requirements.txt
 
 SCRIPT
 
+# get hosts
+hosts = []
+config_files = Dir.glob('projects/*/fabfile.yaml')
+config_files.each do |path|
+
+  yamlConfig = YAML.load_file(path)
+  if yamlConfig['hosts']
+    if yamlConfig['hosts']['mbb'] && yamlConfig['hosts']['mbb']['host']
+      hosts.push(yamlConfig['hosts']['mbb']['host'])
+    elsif yamlConfig['hosts']['local'] && yamlConfig['hosts']['local']['host']
+      hosts.push(yamlConfig['hosts']['local']['host'])
+    end
+  end
+end
 
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
@@ -79,7 +94,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.hostmanager.enabled = true
   config.hostmanager.manage_host = true
   config.vm.hostname = sitename
-  config.hostmanager.aliases = [ "www." + sitename ]
+  config.hostmanager.aliases = hosts
   config.vm.provision :hostmanager
 
   config.ssh.forward_agent = true
