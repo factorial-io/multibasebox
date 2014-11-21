@@ -20,15 +20,15 @@ dockerHosts:
     port: 22
     user: vagrant
     password: vagrant
-    rootFolder: /vagrant/kirby-starterkit
+    rootFolder: /vagrant
     tasks:
       reload_haproxy:
         - touch /tmp/haproxy
       rebuild:
-        - cd %rootFolder%/_tools/docker && ./run.sh %name% %rootFolder% --webRoot %guest.rootFolder% --rebuild --ssh 222  --no-install --vhost %guest.host%
+        - cd %rootFolder%/%projectFolder%/_tools/docker && ./run.sh %name% %rootFolder%/%projectFolder% --webRoot %guest.rootFolder% --rebuild --ssh %guest.port%  --no-install --vhost %guest.host%
         - run_task(reload_haproxy)
       run:
-        - cd %rootFolder%/_tools/docker && ./run.sh %name% %rootFolder% --webRoot %guest.rootFolder%  --ssh 222  --no-install --vhost %guest.host%
+        - cd %rootFolder%/%projectFolder%/_tools/docker && ./run.sh %name% %rootFolder%/%projectFolder% --webRoot %guest.rootFolder%  --ssh %guest.port%  --no-install --vhost %guest.host%
         - run_task(reload_haproxy)
 
 
@@ -58,3 +58,4 @@ hosts:
     docker:
       name: MY_DOCKER_NAME
       configuration: mbb
+      projectFolder: MY_PROJECT_FOLDER_INSIDE_PROJECTS
