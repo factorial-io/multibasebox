@@ -19,13 +19,13 @@ If you add a new project, do not forget to provision your vagrantbox again, as t
 ## Usage
 
 1. start your vagrant-box with
-
+    ```
     vagrant up
-   
+    ```
 2. if you are using fabalicious as a deployment-helper, cd into your project and run
-
+    ```
     fab config:mbb docker:run
-
+    ```
 ## Status
 
 You can see the status of haproxy at http://multibasebox.dev:1936/
