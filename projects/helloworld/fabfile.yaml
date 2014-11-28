@@ -28,7 +28,7 @@ dockerHosts:
       run:
         - run_task(stop)
         - docker rm %name%
-        - cd %rootFolder%/%projectFolder% && docker run -d  --name %name% -e VHOST=%guest.host% -v %rootFolder%/%projectFolder%/%sitesFolder%:/etc/nginx/sites-enabled dockerfile/nginx
+        - cd %rootFolder%/%projectFolder% && docker run -d  --name %name% -e VHOST=%guest.host% -v %rootFolder%/%projectFolder%/%sitesFolder%:/site -v %rootFolder%/%projectFolder%/%configFolder%:/etc/nginx/sites-enabled dockerfile/nginx
         - run_task(reload_haproxy)
 
 
@@ -37,7 +37,7 @@ hosts:
     host: helloworld.dev
     user: root
     password: root
-    port: 2232
+    port: 22
     rootFolder: /var/www
     # path to the site's folder
     siteFolder: ''
@@ -51,3 +51,4 @@ hosts:
       configuration: mbb
       projectFolder: helloworld
       sitesFolder: site
+      configFolder: sites-enabled
