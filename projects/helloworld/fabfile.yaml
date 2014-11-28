@@ -35,16 +35,8 @@ dockerHosts:
 hosts:
   local:
     host: helloworld.dev
-    user: root
-    password: root
-    port: 22
     rootFolder: /var/www
-    # path to the site's folder
-    siteFolder: ''
-    filesFolder: ''
-    backupFolder: /var/www/backups
-    branch: master
-    hasDrush: false
+    supportsSSH: False
 
     docker:
       name: helloworld
@@ -52,3 +44,6 @@ hosts:
       projectFolder: helloworld
       sitesFolder: site
       configFolder: sites-enabled
+
+    deploy:
+      - run_docker_task(run)
