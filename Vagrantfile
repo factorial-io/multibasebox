@@ -49,7 +49,8 @@ cp /tmp/provisioning/haproxy_config.conf /etc/init/
 
 echo "Provisioning haproxy_config..."
 cd /home/vagrant/bin/haproxy_config
-pip install -r requirements.txt
+virtualenv env
+env/bin/pip install -r requirements.txt
 
 SCRIPT
 

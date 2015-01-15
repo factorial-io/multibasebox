@@ -1,0 +1,49 @@
+name: Helloworld example
+
+dockerHosts:
+  default:
+    tasks:
+      start:
+        - docker start %name%
+      stop:
+        - docker stop %name%
+      logs:
+        - docker logs %name%
+      ps:
+        - docker ps
+      images:
+        - docker images
+
+  mbb:
+    inheritsFrom: default
+    host: multibasebox.dev
+    port: 22
+    user: vagrant
+    password: vagrant
+    rootFolder: /vagrant
+    tasks:
+      reload_haproxy:
+        - touch /tmp/haproxy
+
+      run:
+        - run_task(stop)
+        - docker rm %name%
+        - cd %rootFolder%/%projectFolder% && docker run -d  --name %name% -e VHOST=%guest.host% -v %rootFolder%/%projectFolder%/%sitesFolder%:/site -v %rootFolder%/%projectFolder%/%configFolder%:/etc/nginx/sites-enabled dockerfile/nginx
+        - run_task(reload_haproxy)
+
+
+hosts:
+  local:
+    host: helloworld.dev
+    rootFolder: /var/www
+    supportsSSH: False
+
+    docker:
+      name: helloworld
+      configuration: mbb
+      projectFolder: helloworld
+      sitesFolder: site
+      configFolder: sites-enabled
+
+    deploy:
+      - run_docker_task(run)
