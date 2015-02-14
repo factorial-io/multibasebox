@@ -1,0 +1,21 @@
+dockerHosts:
+  multibasebox:
+    user: vagrant
+    user: vagrant
+    password: vagrant
+    port: 22
+    rootFolder: /vagrant
+    tasks:
+      start:
+        - docker start %name%
+      stop:
+        - docker stop %name%
+      logs:
+        - docker logs %name%
+      ps:
+        - docker ps
+      run:
+        - cd %rootFolder%/%projectFolder%/_tools/docker && ./run.sh %name% %rootFolder%/%projectFolder% --webRoot %guest.rootFolder%  --ssh %guest.port%  --no-install --vhost %guest.host%
+        - run_task(reload_haproxy)
+      reload_haproxy:
+        - touch /tmp/haproxy
