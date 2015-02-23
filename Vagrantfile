@@ -55,17 +55,33 @@ env/bin/pip install -r requirements.txt
 SCRIPT
 
 # get hosts
-hosts = []
-config_files = Dir.glob('projects/*/fabfile.yaml')
+hosts = {}
+config_files = Dir.glob('projects/*/fabfile.yaml') + Dir.glob('projects/*/fabfile.yaml.inc')
 config_files.each do |path|
-
+  key = File.dirname(path)
   yamlConfig = YAML.load_file(path)
   if yamlConfig['hosts']
+    host = false
     if yamlConfig['hosts']['mbb'] && yamlConfig['hosts']['mbb']['host']
-      hosts.push(yamlConfig['hosts']['mbb']['host'])
+      host = yamlConfig['hosts']['mbb']['host']
     elsif yamlConfig['hosts']['local'] && yamlConfig['hosts']['local']['host']
-      hosts.push(yamlConfig['hosts']['local']['host'])
+      host = yamlConfig['hosts']['local']['host']
     end
+    if host
+      hosts[key] = host
+      hosts["www" + key] = "www." + host
+    end
+  end
+end
+
+# new fabalicious folder-structure
+config_files = Dir.glob('projects/*/fabalicious/hosts/local.yaml') + Dir.glob('projects/*/fabalicious/hosts/mbb.yaml')
+config_files.each do |path|
+  key = File.dirname(path)
+  yamlConfig = YAML.load_file(path)
+  if yamlConfig['host']
+    hosts[key] = yamlConfig['host']
+    hosts["www" + key] = "www." + yamlConfig['host']
   end
 end
 
@@ -95,7 +111,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.hostmanager.enabled = true
   config.hostmanager.manage_host = true
   config.vm.hostname = sitename
-  config.hostmanager.aliases = hosts
+  config.hostmanager.aliases = hosts.values
   config.vm.provision :hostmanager
 
   config.ssh.forward_agent = true
