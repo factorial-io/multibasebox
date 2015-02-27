@@ -30,7 +30,7 @@ wget -q -O - https://get.docker.io/gpg | apt-key add -
 rm -f /etc/apt/sources.list.d/docker.list
 echo deb http://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list
 apt-get update -qq
-apt-get install -q -y --force-yes lxc-docker python-setuptools software-properties-common python-software-properties
+apt-get install -q -y --force-yes lxc-docker python-setuptools software-properties-common python-software-properties apt-cacher-ng
 usermod -a -G docker vagrant
 
 echo "Installing haproxy 1.5"
