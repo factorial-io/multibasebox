@@ -33,7 +33,7 @@ dockerHosts:
 
 
 hosts:
-  local:
+  mbb:
     host: helloworld.dev
     rootFolder: /var/www
     supportsSSH: False
