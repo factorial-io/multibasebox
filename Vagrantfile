@@ -23,13 +23,14 @@ exit unless REQUIRED_PLUGINS.all? do |plugin|
   )
 end
 
-
+# provisioning script
 $script = <<SCRIPT
 echo "Install packages..."
 wget -q -O - https://get.docker.io/gpg | apt-key add -
-
-
-apt-get update -qq; apt-get install -q -y --force-yes lxc-docker python-setuptools software-properties-common python-software-properties
+rm -f /etc/apt/sources.list.d/docker.list
+echo deb http://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list
+apt-get update -qq
+apt-get install -q -y --force-yes lxc-docker python-setuptools software-properties-common python-software-properties apt-cacher-ng
 usermod -a -G docker vagrant
 
 echo "Installing haproxy 1.5"
@@ -48,10 +49,41 @@ cp /tmp/provisioning/haproxy_config.conf /etc/init/
 
 echo "Provisioning haproxy_config..."
 cd /home/vagrant/bin/haproxy_config
-pip install -r requirements.txt
+virtualenv env
+env/bin/pip install -r requirements.txt
 
 SCRIPT
 
+# get hosts
+hosts = {}
+config_files = Dir.glob('projects/*/fabfile.yaml') + Dir.glob('projects/*/fabfile.yaml.inc')
+config_files.each do |path|
+  key = File.dirname(path)
+  yamlConfig = YAML.load_file(path)
+  if yamlConfig['hosts']
+    host = false
+    if yamlConfig['hosts']['mbb'] && yamlConfig['hosts']['mbb']['host']
+      host = yamlConfig['hosts']['mbb']['host']
+    elsif yamlConfig['hosts']['local'] && yamlConfig['hosts']['local']['host']
+      host = yamlConfig['hosts']['local']['host']
+    end
+    if host
+      hosts[key] = host
+      hosts["www" + key] = "www." + host
+    end
+  end
+end
+
+# new fabalicious folder-structure
+config_files = Dir.glob('projects/*/fabalicious/hosts/local.yaml') + Dir.glob('projects/*/fabalicious/hosts/mbb.yaml')
+config_files.each do |path|
+  key = File.dirname(path)
+  yamlConfig = YAML.load_file(path)
+  if yamlConfig['host']
+    hosts[key] = yamlConfig['host']
+    hosts["www" + key] = "www." + yamlConfig['host']
+  end
+end
 
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
@@ -79,7 +111,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.hostmanager.enabled = true
   config.hostmanager.manage_host = true
   config.vm.hostname = sitename
-  config.hostmanager.aliases = [ "www." + sitename ]
+  config.hostmanager.aliases = hosts.values
   config.vm.provision :hostmanager
 
   config.ssh.forward_agent = true

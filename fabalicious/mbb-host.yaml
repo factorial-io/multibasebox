@@ -1,0 +1,8 @@
+inheritsFrom: local
+docker:
+  configuration: ../../fabalicious/mbb-docker.yaml
+  tag: latest
+reset:
+  - "drush vset -y file_public_path 'sites/default/files'"
+  - "mkdir -p sites/default/files/private ; drush vset -y file_private_path 'sites/default/files/private'"
+  - "mkdir -p sites/default/files/private/tmp ; drush vset -y file_temporary_path 'sites/default/files/private/tmp'"

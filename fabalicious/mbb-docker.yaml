@@ -1,0 +1,28 @@
+host: multibasebox.dev
+port: 22
+user: vagrant
+password: vagrant
+rootFolder: /vagrant
+tasks:
+  start:
+    - docker start %name%
+  stop:
+    - if docker ps | grep -qw %name% ; then docker stop %name%; fi
+  rm:
+    - if docker ps -a | grep -qw %name% ; then docker rm %name%; fi
+  rmi:
+    - if docker images | grep -qw %name%/%tag% ; then docker rmi %name%/%tag%; fi
+  logs:
+    - docker logs %name%
+  ps:
+    - docker ps
+  images:
+    - docker images
+  reload_haproxy:
+    - touch /tmp/haproxy
+  rebuild:
+    - cd %rootFolder%/%projectFolder%/_tools/docker && ./run.sh %name% %rootFolder%/%projectFolder% --webRoot %guest.rootFolder% --rebuild --ssh %guest.port%  --no-install --vhost %guest.host%
+    - run_task(reload_haproxy)
+  run:
+    - cd %rootFolder%/%projectFolder%/_tools/docker && ./run.sh %name% %rootFolder%/%projectFolder% --webRoot %guest.rootFolder%  --ssh %guest.port%  --no-install --vhost %guest.host%
+    - run_task(reload_haproxy)

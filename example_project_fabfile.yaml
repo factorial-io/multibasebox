@@ -1,0 +1,61 @@
+# example project fabfile which works with multibasebox:
+# hosts needs an entry mbb, if not found local is used.
+name: Kirby Test
+
+dockerHosts:
+  default:
+    tasks:
+      start:
+        - docker start %name%
+      stop:
+        - docker stop %name%
+      logs:
+        - docker logs %name%
+      ps:
+        - docker ps
+
+  mbb:
+    inheritsFrom: default
+    host: multibasebox.dev
+    port: 22
+    user: vagrant
+    password: vagrant
+    rootFolder: /vagrant
+    tasks:
+      reload_haproxy:
+        - touch /tmp/haproxy
+      rebuild:
+        - cd %rootFolder%/%projectFolder%/_tools/docker && ./run.sh %name% %rootFolder%/%projectFolder% --webRoot %guest.rootFolder% --rebuild --ssh %guest.port%  --no-install --vhost %guest.host%
+        - run_task(reload_haproxy)
+      run:
+        - cd %rootFolder%/%projectFolder%/_tools/docker && ./run.sh %name% %rootFolder%/%projectFolder% --webRoot %guest.rootFolder%  --ssh %guest.port%  --no-install --vhost %guest.host%
+        - run_task(reload_haproxy)
+
+
+hosts:
+  local:
+    host: MY_HOST_NAME.dev
+    user: root
+    password: root
+    port: 222
+    rootFolder: /var/www
+    siteFolder: ''
+    filesFolder: /content
+    backupFolder: /var/www/backups
+    useForDevelopment: true
+    # branch to pull
+    branch: develop
+    hasDrush: false
+    docker:
+      name: MY_DOCKER_NAME
+      configuration: local
+    vagrant:
+      ip: 33.33.33.22
+
+  mbb:
+    inheritsFrom: local
+    host: MY_HOST_NAME.dev
+    docker:
+      name: MY_DOCKER_NAME
+      configuration: mbb
+      projectFolder: MY_PROJECT_FOLDER_INSIDE_PROJECTS
