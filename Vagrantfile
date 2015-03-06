@@ -133,9 +133,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # shell provisioner
   config.vm.provision "shell", inline: $script
+end
 
-
-  if File.file?('vagrant.local')
-    load "./vagrant.local"
-  end
+if File.file?('vagrant.local')
+  load "./vagrant.local"
 end
