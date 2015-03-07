@@ -1,4 +1,5 @@
 host: multibasebox.dev
+requires: 0.18
 port: 22
 user: vagrant
 password: vagrant
@@ -33,7 +34,10 @@ tasks:
   rebuild:
     - cd %rootFolder%/%projectFolder%/_tools/docker && ./run.sh %name% %rootFolder%/%projectFolder% --webRoot %guest.rootFolder% --rebuild --ssh %guest.port%  --no-install --vhost %guest.host%
     - run_task(reload_haproxy)
+    - execute(waitForServices)
+    - execute(copySSHKeyToDocker)
 
   run:
     - cd %rootFolder%/%projectFolder%/_tools/docker && ./run.sh %name% %rootFolder%/%projectFolder% --webRoot %guest.rootFolder%  --ssh %guest.port%  --no-install --vhost %guest.host%
     - run_task(reload_haproxy)
+    - execute(waitForServices)
