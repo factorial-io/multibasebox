@@ -1,4 +1,5 @@
 inheritsFrom: local
+disableKnownHosts: True
 docker:
   configuration: ../../fabalicious/mbb-docker.yaml
   tag: latest
