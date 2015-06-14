@@ -56,7 +56,7 @@ SCRIPT
 
 # get hosts
 hosts = {}
-config_files = Dir.glob('projects/*/fabfile.yaml') + Dir.glob('projects/*/fabfile.yaml.inc')
+config_files = Dir.glob(path + '/projects/*/fabfile.yaml') + Dir.glob(path + '/projects/*/fabfile.yaml.inc')
 config_files.each do |path|
   key = File.dirname(path)
   yamlConfig = YAML.load_file(path)
