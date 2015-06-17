@@ -30,7 +30,8 @@ wget -q -O - https://get.docker.io/gpg | apt-key add -
 rm -f /etc/apt/sources.list.d/docker.list
 echo deb http://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list
 apt-get update -qq
-apt-get install -q -y --force-yes lxc-docker python-setuptools software-properties-common python-software-properties
+apt-get install -q -y --force-yes lxc-docker python-setuptools software-properties-common python-software-properties cachefilesd
+echo "RUN=yes" > /etc/default/cachefilesd
 usermod -a -G docker vagrant
 
 echo "Installing haproxy 1.5"
@@ -116,7 +117,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.ssh.forward_agent = true
 
-  config.vm.synced_folder "./projects", "/vagrant", nfs: true, mount_options: ["nolock", "vers=3", "tcp"]
+  config.vm.synced_folder "./projects", "/vagrant", nfs: true, mount_options: ["nolock", "vers=3", "tcp", "fsc"]
   config.vm.synced_folder "./bin", "/tmp/provisioning", nfs: true
 
   #increase memory
