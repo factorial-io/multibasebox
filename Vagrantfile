@@ -86,6 +86,7 @@ config_files.each do |path|
   end
 end
 
+system('./vagrant dns --start')
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "phusion-open-ubuntu-14.04-amd64"
@@ -104,6 +105,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   if local_http_port
     config.vm.network "forwarded_port", guest: 80, host: local_http_port
   end
+
+  config.dns.tld = "dev"
+  config.vm.hostname = "multibasebox"
+  config.dns.patterns = [/^.*.dev$/]
+
 
 
   # Use hostonly network with a static IP Address and enable
