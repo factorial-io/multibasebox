@@ -6,7 +6,6 @@ group :development do
 end
 
 group :plugins do
-  gem "vagrant-hostmanager"
   gem "vagrant-fabric"
   gem "vagrant-dns"
 end

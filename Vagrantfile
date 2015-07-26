@@ -1,5 +1,6 @@
 # this vagrant-file needs the following plugins:
-# * vagrant-hostmaster
+# * vagrant-dns
+# * vagrant-fabric
 
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
@@ -14,7 +15,7 @@ sitename = "multibasebox.dev"
 
 
 # Check hostmanager required plugin
-REQUIRED_PLUGINS = %w(vagrant-hostmanager vagrant-fabric)
+REQUIRED_PLUGINS = %w(vagrant-dns vagrant-fabric)
 exit unless REQUIRED_PLUGINS.all? do |plugin|
   Vagrant.has_plugin?(plugin) || (
     puts "The #{plugin} plugin is required. Please install it with:"
@@ -115,10 +116,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Use hostonly network with a static IP Address and enable
   # hostmanager so we can have a custom domain for the server
   # by modifying the host machines hosts file
-  config.hostmanager.enabled = true
-  config.hostmanager.manage_host = true
   config.vm.hostname = sitename
-  config.hostmanager.aliases = hosts.values
   config.vm.provision :hostmanager
 
   config.ssh.forward_agent = true
