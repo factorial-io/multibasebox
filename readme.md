@@ -12,9 +12,10 @@ Your docker-container should use the environment-variables ``VHOST`` and ``VPORT
 
 The Vagrantfile parses all fabfile.yaml-files for hostnames of the configuration ``local`` and ``mbb`` and use them as alias for the domain-name.
 
-For more info see [fabalicious](https://github.com/stmh/fabalicious)
+For more info see [fabalicious](https://github.com/factorial-io/fabalicious)
 
-If you add a new project, do not forget to provision your vagrantbox again, as this will setup the hostnames. (or edit your /etc/hosts manually)
+If you add a new project, do not forget to provision your vagrantbox again, as this will setup the hostnames. (or edit your /etc/hosts manually). For scaffolding new projects have a look at our generator [jaMann](https://github.com/factorial-io/generator-jaMann)
+
 
 ## Usage
 
