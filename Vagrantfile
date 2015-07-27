@@ -111,13 +111,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.hostname = "multibasebox"
   config.dns.patterns = [/^.*.dev$/]
 
-
-
-  # Use hostonly network with a static IP Address and enable
-  # hostmanager so we can have a custom domain for the server
-  # by modifying the host machines hosts file
   config.vm.hostname = sitename
-  config.vm.provision :hostmanager
 
   config.ssh.forward_agent = true
 
