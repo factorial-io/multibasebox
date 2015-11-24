@@ -27,11 +27,13 @@ end
 # provisioning script
 $script = <<SCRIPT
 echo "Install packages..."
-wget -q -O - https://get.docker.io/gpg | apt-key add -
+apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 rm -f /etc/apt/sources.list.d/docker.list
-echo deb http://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list
-apt-get update -qq
-apt-get install -q -y --force-yes lxc-docker python-setuptools software-properties-common python-software-properties cachefilesd
+echo deb https://apt.dockerproject.org/repo ubuntu-trusty main > /etc/apt/sources.list.d/docker.list
+apt-get purge -y lxc-docker*
+apt-get update -qq 
+apt-get install -q -y --force-yes linux-image-extra-$(uname -r)
+apt-get install -q -y --force-yes docker-engine python-setuptools software-properties-common python-software-properties cachefilesd
 echo "RUN=yes" > /etc/default/cachefilesd
 usermod -a -G docker vagrant
 
