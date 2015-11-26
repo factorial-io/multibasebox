@@ -37,6 +37,11 @@ apt-get install -q -y --force-yes docker-engine python-setuptools software-prope
 echo "RUN=yes" > /etc/default/cachefilesd
 usermod -a -G docker vagrant
 
+echo "Installing docker-compose"
+curl -L https://github.com/docker/compose/releases/download/1.5.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+
+
 echo "Installing haproxy 1.5"
 apt-add-repository  ppa:vbernat/haproxy-1.5
 apt-get update -qq; apt-get install -q -y --force-yes haproxy
