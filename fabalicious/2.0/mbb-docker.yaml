@@ -34,12 +34,12 @@ tasks:
   reload_haproxy:
     - touch /tmp/haproxy
   rebuild:
-    - cd $ROOT_FOLDER/_tools/docker && ./run.sh %host.docker.name% $ROOT_FOLDER --webRoot %dockerHost.rootFolder% --rebuild --ssh %host.port%  --no-install --vhost %host.host%
+    - cd $ROOT_FOLDER/_tools/docker && ./run.sh %host.docker.name% $ROOT_FOLDER --webRoot %host.rootFolder% --rebuild --ssh %host.port%  --no-install --vhost %host.host%
     - execute(docker, reload_haproxy)
     - execute(docker, waitForServices)
     - execute(docker, copySSHKeyToDocker)
 
   run:
-    - cd $ROOT_FOLDER/_tools/docker && ./run.sh %host.docker.name% $ROOT_FOLDER --webRoot %dockerHost.rootFolder%  --ssh %host.port%  --no-install --vhost %host.host%
+    - cd $ROOT_FOLDER/_tools/docker && ./run.sh %host.docker.name% $ROOT_FOLDER --webRoot %host.rootFolder%  --ssh %host.port%  --no-install --vhost %host.host%
     - execute(docker, reload_haproxy)
     - execute(docker, waitForServices)
