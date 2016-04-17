@@ -1,0 +1,32 @@
+requires: 2.0
+environment:
+  SSH_PORT: "%host.port%"
+  WEB_ROOT: "%host.rootFolder%"
+  VHOST: "%host.host%"
+  ROOT_FOLDER: "%dockerHost.rootFolder%/%host.docker.projectFolder%"
+  MYSQL_ROOT: "%dockerHost.rootFolder%/%host.docker.projectFolder%/mysql"
+
+tasks:
+  stop:
+    - cd $ROOT_FOLDER; docker-compose stop
+  rm:
+    - execute(docker, stop)
+    - cd $ROOT_FOLDER; docker-compose rm -f 
+
+  rebuild:
+    - mkdir -p $MYSQL_ROOT 
+    - execute(docker, rm)
+    - cd $ROOT_FOLDER; docker-compose pull
+    
+  run:
+    - mkdir -p $MYSQL_ROOT 
+    - cd $ROOT_FOLDER; docker-compose up -d
+    - execute(docker, reload_haproxy)
+    - execute(docker, waitForServices)
+    - execute(docker, copySSHKeys)
+  
+  create:
+    - git clone %host.docker.repository% %host.docker.projectFolder%
+    - if [ "$COMPOSER_AVAILABLE" = "1" ] ; then cd %host.docker.projectFolder% && composer install; fi
+    - cd %host.docker.projectFolder% && git checkout %host.branch% && git submodule update --init
+    - execute(docker, rebuild)
