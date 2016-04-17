@@ -1,49 +1,51 @@
 name: Helloworld example
 
+requires: 2.0.0
+
+needs:
+  - docker
+  - ssh
+
 dockerHosts:
-  default:
-    tasks:
-      start:
-        - docker start %name%
-      stop:
-        - docker stop %name%
-      logs:
-        - docker logs %name%
-      ps:
-        - docker ps
-      images:
-        - docker images
-
   mbb:
-    inheritsFrom: default
-    host: multibasebox.dev
-    port: 22
-    user: vagrant
-    password: vagrant
-    rootFolder: /vagrant
+    inheritsFrom: 
+      - ../../fabalicious/2.0/mbb-docker.yaml 
+    environment:
+      VHOST: "%host.host%"
+      ROOT_FOLDER: "%dockerHost.rootFolder%/%host.docker.projectFolder%"
+
     tasks:
-      reload_haproxy:
-        - touch /tmp/haproxy
+      logs:
+        - cd $ROOT_FOLDER; docker-compose logs
 
+      stop:
+        - cd $ROOT_FOLDER; docker-compose stop
+      rm:
+        - execute(docker, stop)
+        - cd $ROOT_FOLDER; docker-compose rm -f 
+
+      rebuild:
+        - cd $ROOT_FOLDER; docker-compose pull
+        
       run:
-        - run_task(stop)
-        - docker rm %name%
-        - cd %rootFolder%/%projectFolder% && docker run -d  --name %name% -e VHOST=%guest.host% -v %rootFolder%/%projectFolder%/%sitesFolder%:/site -v %rootFolder%/%projectFolder%/%configFolder%:/etc/nginx/sites-enabled dockerfile/nginx
-        - run_task(reload_haproxy)
-
+        - cd $ROOT_FOLDER; docker-compose up -d
+        - execute(docker, reload_haproxy)
 
 hosts:
   mbb:
     host: helloworld.dev
+    user: vagrant
+    password: vagrant
     rootFolder: /var/www
-    supportsSSH: False
+    filesFolder: ""
+    backupFolder: ""
+    siteFolder: ""
 
     docker:
       name: helloworld
       configuration: mbb
       projectFolder: helloworld
-      sitesFolder: site
-      configFolder: sites-enabled
 
     deploy:
-      - run_docker_task(run)
+      - echo "hier"
+      - execute(docker, run)
