@@ -7,6 +7,8 @@ environment:
   MYSQL_ROOT: "%dockerHost.rootFolder%/%host.docker.projectFolder%/mysql"
 
 tasks:
+  logs:
+    - cd $ROOT_FOLDER; docker-compose logs
   stop:
     - cd $ROOT_FOLDER; docker-compose stop
   rm:
@@ -15,7 +17,6 @@ tasks:
 
   rebuild:
     - mkdir -p $MYSQL_ROOT 
-    - execute(docker, rm)
     - cd $ROOT_FOLDER; docker-compose pull
     
   run:
