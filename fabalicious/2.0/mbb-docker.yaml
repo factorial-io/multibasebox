@@ -14,7 +14,7 @@ tasks:
 
   stop:
     - if docker ps | grep -qw %host.docker.name% ; then docker stop %host.docker.name%; fi
-    - run_task(reload_haproxy)
+    - execute(docker, reload_haproxy)
 
   rm:
     - if docker ps -a | grep -qw %host.docker.name% ; then docker rm %host.docker.name%; fi
