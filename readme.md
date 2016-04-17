@@ -17,10 +17,12 @@ If you want to recreate the haproxy-configuraion just touch `/tmp/haproxy`, the 
 
 1. Clone this repository
 2. Install needed plugins:
-   ```
-   vagrant plugin install vagrant-dns
-   vagrant plugin install vagrant-fabric
-   ```
+
+    ```
+    vagrant plugin install vagrant-dns
+    vagrant plugin install vagrant-fabric
+    ```
+   
 3. If you want to use vmware, make sure you have installed the corresponding plugin and applied a valid license (More info [here](https://www.vagrantup.com/vmware/))
 4. Start your terminal, cd into the multibasebox-folder
 5. Run `vagrant up` (if you are using vmware, append `--provider=vmware_fusion`)
@@ -56,14 +58,17 @@ For scaffolding new projects have a look at our generator [jaMann](https://githu
 ## Usage
 
 1. start your vagrant-box with
-   ```
-   vagrant up
-   ```
+
+    ```
+    vagrant up
+    ```
+
 2. if you are using fabalicious as a deployment-helper, cd into your project and run
-   ```
-   fab config:mbb docker:run
-   ```
-   (this will work only if your have a suitable configuration in your fabfile.yaml)
+
+    ```
+    fab config:mbb docker:run
+    ```
+    (this will work only if your have a suitable configuration in your fabfile.yaml)
 
 ## Status
 
