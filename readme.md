@@ -2,34 +2,72 @@
 
 Serve multiple docker container with the help of haproxy from one vagrant-host.
 
+## How it works
 
-## Setup
+Multibasebox will provision a vagrant based virtual machine and install haproxy, docker, docker-compose and a custom python-based script to rewrite the haproxy configuration on request.
 
-Move your project-folder into projects. Every project-folder may contain a fabfile.yaml,
-which get parsed by the vagrantfile to setup /etc/hosts etc.
+haproxy is listening on port 80 of the virtual machine and will forward all requests to a specific docker-image running inside the vm. It uses the hostname to distinguish the containers.
 
-Your docker-container should use the environment-variables ``VHOST`` and ``VPORT`` (defaults to 80) to signalize haproxy which domain-name should be used and on which port the http-service is listening inside the container. There's no need to expose the ports to the host.
+How does haproxy know about the running docker-containers? There's a python script based on work of Bastian Hoyer which rewrites the haproxy-configuration on request. It will scan all running docker-containers and get the hostname and port from all running containers via environment-variables. The container set the environment-variable `VHOST` and (optionally) `VPORT` to their needs, the configuration utility parses this information and the internal IP of the docker-container and constructs a suitable haproxy-configuration file and restarts haproxy.
 
-The Vagrantfile parses all fabfile.yaml-files for hostnames of the configuration ``local`` and ``mbb`` and use them as alias for the domain-name.
+If you want to recreate the haproxy-configuraion just touch `/tmp/haproxy`, the script will rewrite the configuration and restart haproxy.
 
-For more info see [fabalicious](https://github.com/factorial-io/fabalicious)
 
-If you add a new project, do not forget to provision your vagrantbox again, as this will setup the hostnames. (or edit your /etc/hosts manually). For scaffolding new projects have a look at our generator [jaMann](https://github.com/factorial-io/generator-jaMann)
+## Installation
+
+1. Clone this repository
+2. Install needed plugins:
+   ```
+   vagrant plugin install vagrant-dns
+   vagrant plugin install vagrant-fabric
+   ```
+3. If you want to use vmware, make sure you have installed the corresponding plugin and applied a valid license (More info [here](https://www.vagrantup.com/vmware/))
+4. Start your terminal, cd into the multibasebox-folder
+5. Run `vagrant up` (if you are using vmware, append `--provider=vmware_fusion`)
+6. Wait
+7. Visit `http://multibasebox.dev:1936` This will show you the haproxy status page.
+
+## Local modifications
+
+The `Vagrantfile` includes `Vagrant.local` if the file exists. This is suitable to change the configuration to your needs without committing the changes back to a repository.
+
+Here`s an example:
+```
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.provider "vmware_fusion" do |v|
+    v.vmx["memsize"] = "4096"
+    v.vmx["numvcpus"] = "4"
+  end
+end
+```
+
+
+## Setup a new project
+
+Move your project-folder into `projects` or clone a repository into that folder. The `projects`-folder get mapped to `/vagrant` inside your vm.
+
+Your docker-container should use the environment-variables ``VHOST`` and ``VPORT`` (defaults to 80) to signalize haproxy which hostname should be used and on which port the http-service is listening inside the container. There's no need to expose the ports to the host.
+
+Fabalicious may help you to administrate your project and docker-setup. For more info visit [fabalicious](https://github.com/factorial-io/fabalicious)
+
+For scaffolding new projects have a look at our generator [jaMann](https://github.com/factorial-io/generator-jaMann)
 
 
 ## Usage
 
 1. start your vagrant-box with
- 
-    ``vagrant up``
+   ```
+   vagrant up
+   ```
 2. if you are using fabalicious as a deployment-helper, cd into your project and run
-    
-   ``fab config:mbb docker:run``
+   ```
+   fab config:mbb docker:run
+   ```
+   (this will work only if your have a suitable configuration in your fabfile.yaml)
 
-    (this will work only if your have a suitable configuration in your fabfile.yaml)
 ## Status
 
-You can see the status of haproxy at http://multibasebox.dev:1936/
+You can see the status of haproxy at [http://multibasebox.dev:1936/](http://multibasebox.dev:1936/)
 
-## TODO
-- better readme
+
+

@@ -5,16 +5,12 @@
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
 Vagrant.require_version ">= 1.6"
-require 'yaml'
 
 path = "#{File.dirname(__FILE__)}"
 ip_address = "33.33.33.33"
-local_http_port = 8080
 sitename = "multibasebox.dev"
 
-
-
-# Check hostmanager required plugin
+# Check required plugins
 REQUIRED_PLUGINS = %w(vagrant-dns vagrant-fabric)
 exit unless REQUIRED_PLUGINS.all? do |plugin|
   Vagrant.has_plugin?(plugin) || (
@@ -63,37 +59,7 @@ env/bin/pip install -r requirements.txt
 
 SCRIPT
 
-# get hosts
-hosts = {}
-config_files = Dir.glob(path + '/projects/*/fabfile.yaml') + Dir.glob(path + '/projects/*/fabfile.yaml.inc')
-config_files.each do |path|
-  key = File.dirname(path)
-  yamlConfig = YAML.load_file(path)
-  if yamlConfig['hosts']
-    host = false
-    if yamlConfig['hosts']['mbb'] && yamlConfig['hosts']['mbb']['host']
-      host = yamlConfig['hosts']['mbb']['host']
-    elsif yamlConfig['hosts']['local'] && yamlConfig['hosts']['local']['host']
-      host = yamlConfig['hosts']['local']['host']
-    end
-    if host
-      hosts[key] = host
-      hosts["www" + key] = "www." + host
-    end
-  end
-end
-
-# new fabalicious folder-structure
-config_files = Dir.glob('projects/*/fabalicious/hosts/local.yaml') + Dir.glob('projects/*/fabalicious/hosts/mbb.yaml')
-config_files.each do |path|
-  key = File.dirname(path)
-  yamlConfig = YAML.load_file(path)
-  if yamlConfig['host']
-    hosts[key] = yamlConfig['host']
-    hosts["www" + key] = "www." + yamlConfig['host']
-  end
-end
-
+# Run dns.
 system('./vagrant dns --start')
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
@@ -109,16 +75,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.network :private_network, ip: ip_address
-
-  if local_http_port
-    config.vm.network "forwarded_port", guest: 80, host: local_http_port
-  end
+  config.vm.hostname = sitename
 
   config.dns.tld = "dev"
-  config.vm.hostname = "multibasebox"
   config.dns.patterns = [/^.*.dev$/]
-
-  config.vm.hostname = sitename
 
   config.ssh.forward_agent = true
 
