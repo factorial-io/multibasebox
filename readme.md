@@ -76,7 +76,7 @@ You can see the status of haproxy at [http://multibasebox.dev:1936/](http://mult
 
 ## Troubleshooting
 
-### I can't connect to `http://mutibasebox.dev`
+#### I can't connect to `http://mutibasebox.dev`
 
 Check if vagrant-dns is running. On a mac try `dscacheutil -q host -a name multibasebox.dev`. If the result is not `33.33.33.33`try reinstalling vagrant-dns via `vagrant dns --install`.
 
