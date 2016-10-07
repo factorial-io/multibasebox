@@ -25,9 +25,10 @@ If you want to recreate the haproxy-configuraion just touch `/tmp/haproxy`, the 
    
 3. If you want to use vmware, make sure you have installed the corresponding plugin and applied a valid license (More info [here](https://www.vagrantup.com/vmware/))
 4. Start your terminal, cd into the multibasebox-folder
-5. Run `vagrant up` (if you are using vmware, append `--provider=vmware_fusion`)
-6. Wait
-7. Visit `http://multibasebox.dev:1936` This will show you the haproxy status page.
+5. Install vagrant-dns with `vagrant dns --install`
+6. Run `vagrant up` (if you are using vmware, append `--provider=vmware_fusion`)
+7. Wait
+8. Visit `http://multibasebox.dev:1936` This will show you the haproxy status page.
 
 ## Local modifications
 
@@ -73,6 +74,12 @@ For scaffolding new projects have a look at our generator [jaMann](https://githu
 ## Status
 
 You can see the status of haproxy at [http://multibasebox.dev:1936/](http://multibasebox.dev:1936/)
+
+## Troubleshooting
+
+#### I can't connect to `http://mutibasebox.dev`
+
+Check if vagrant-dns is running. On a mac try `dscacheutil -q host -a name multibasebox.dev`. If the result is not `33.33.33.33`try reinstalling vagrant-dns via `vagrant dns --install`.
 
 
 
