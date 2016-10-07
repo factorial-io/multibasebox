@@ -1,0 +1,49 @@
+host: multibasebox.dev
+requires: 2.0.1
+port: 22
+user: vagrant
+password: vagrant
+rootFolder: /vagrant
+environment:
+  ROOT_FOLDER: "%dockerHost.rootFolder%/%host.docker.projectFolder%"
+
+tasks:
+  start:
+    - docker start %host.docker.name%
+    - run_task(reload_haproxy)
+
+  stop:
+    - if docker ps | grep -qw %host.docker.name% ; then docker stop %host.docker.name%; fi
+    - execute(docker, reload_haproxy)
+
+  rm:
+    - if docker ps -a | grep -qw %host.docker.name% ; then docker rm %host.docker.name%; fi
+
+  rmi:
+    - if docker images | grep -qw %host.docker.name%/%host.docker.tag% ; then docker rmi %host.docker.name%/%host.docker.tag%; fi
+
+  logs:
+    - docker logs %host.docker.name%
+
+  ps:
+    - docker ps
+
+  images:
+    - docker images
+
+  reload_haproxy:
+    - touch /tmp/haproxy
+  check_project_folder:
+    - fail_on_missing_directory($ROOT_FOLDER, Could not find projectFolder '%host.docker.projectFolder%' -- please check your configuration 'docker.projectFolder' in '%host.config_name%'!)
+  rebuild:
+    - execute(docker, check_project_folder)
+    - cd $ROOT_FOLDER/_tools/docker && ./run.sh %host.docker.name% $ROOT_FOLDER --webRoot %host.rootFolder% --rebuild --ssh %host.port%  --no-install --vhost %host.host%
+    - execute(docker, reload_haproxy)
+    - execute(docker, waitForServices)
+    - execute(docker, copySSHKeyToDocker)
+
+  run:
+    - execute(docker, check_project_folder)
+    - cd $ROOT_FOLDER/_tools/docker && ./run.sh %host.docker.name% $ROOT_FOLDER --webRoot %host.rootFolder%  --ssh %host.port%  --no-install --vhost %host.host%
+    - execute(docker, reload_haproxy)
+    - execute(docker, waitForServices)
