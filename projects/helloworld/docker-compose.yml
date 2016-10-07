@@ -1,0 +1,7 @@
+web:
+  image: nginx
+  volumes:
+    - ./sites-enabled:/etc/nginx/sites-enabled
+    - ./site:/site
+  environment:
+    VHOST: $VHOST
