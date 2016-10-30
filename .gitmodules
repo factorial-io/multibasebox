@@ -1,3 +1,9 @@
 [submodule "projects/helloworld/_tools/fabalicious"]
 	path = projects/helloworld/_tools/fabalicious
 	url = https://github.com/factorial-io/fabalicious.git
+[submodule "provision/roles/franklinkim.docker"]
+	path = provision/roles/franklinkim.docker
+	url = https://github.com/weareinteractive/ansible-docker.git
+[submodule "provision/roles/franklinkim.docker-compose"]
+	path = provision/roles/franklinkim.docker-compose
+	url = https://github.com/weareinteractive/ansible-docker-compose.git
