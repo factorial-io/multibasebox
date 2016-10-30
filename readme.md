@@ -4,7 +4,9 @@ Serve multiple docker container with the help of haproxy from one vagrant-host.
 
 ## How it works
 
-Multibasebox will provision a vagrant based virtual machine and install haproxy, docker, docker-compose and a custom python-based script to rewrite the haproxy configuration on request.
+Multibasebox will provision a vagrant based virtual machine and install docker and docker-compose.
+
+For serving the different containers a separate docker-container named [haproxy-config](https://github.com/factorial-io/haproxy-config) will be pulled and started.
 
 haproxy is listening on port 80 of the virtual machine and will forward all requests to a specific docker-image running inside the vm. It uses the hostname to distinguish the containers.
 
@@ -16,13 +18,14 @@ If you want to recreate the haproxy-configuraion just touch `/tmp/haproxy`, the 
 ## Installation
 
 1. Clone this repository
+2. Make sure you have ansible installed.
 2. Install needed plugins:
 
     ```
     vagrant plugin install vagrant-dns
     vagrant plugin install vagrant-fabric
     ```
-   
+
 3. If you want to use vmware, make sure you have installed the corresponding plugin and applied a valid license (More info [here](https://www.vagrantup.com/vmware/))
 4. Start your terminal, cd into the multibasebox-folder
 5. Install vagrant-dns with `vagrant dns --install`
