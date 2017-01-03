@@ -14,3 +14,8 @@
       # docker integration seems broken with current ansible version
       # docker_image:
       #   name: factorial/haproxy-config
+    - name: Increase vm.max_map_count for elasticsearch
+      sysctl:
+        name: vm.max_map_count
+        value: 262144
+        state: present
