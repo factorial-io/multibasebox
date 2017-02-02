@@ -1,0 +1,7 @@
+name: The Circle
+type: theme
+description: 'A Drupal theme for The Circle'
+core: 8.x
+
+libraries:
+  - circle/global

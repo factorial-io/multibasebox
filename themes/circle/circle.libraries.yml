@@ -1,0 +1,7 @@
+global:
+  version: 1.0
+  css:
+    base:
+      css/styles.css: {}
+  js:
+    js_dist/build.js: {}
