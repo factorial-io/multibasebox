@@ -1,371 +1,139 @@
 <form name="newsletter-register-form" action="https://www.xcampaign.ch/dispatcher/service" method="post" class="newsletter-form">
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title">Newsletter Anmeldung</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
 
-	<input type="hidden" name="ac" value="reg">
-	<input type="hidden" name="clientCode" value="111111084953510161">
-	<input type="hidden" name="doubleOptin" value="1">
-	
-	<!--
-	Wenn das Bestätigungs-E-Mail nach einer Double Opt-in Registrierung unterdrückt werden soll, muss der folgende Parameter gesendet werden
-	<input type="hidden" name="doubleOptin" value="2">
-	-->
+    	<input type="hidden" name="ac" value="reg">
+    	<input type="hidden" name="clientCode" value="111111084953510161">
+    	<input type="hidden" name="doubleOptin" value="1">
 
-	<!--
-	Falls ein bereits vorhandener Profil ohne Statusänderungen geändert werden soll, muss der folgende Parameter gesendet werden
-	<input type="hidden" name="doubleOptin" value="-1">
-	-->
+    	<!--
+    	Wenn das Bestätigungs-E-Mail nach einer Double Opt-in Registrierung unterdrückt werden soll, muss der folgende Parameter gesendet werden
+    	<input type="hidden" name="doubleOptin" value="2">
+    	-->
 
-	<input type="hidden" name="trackId" value="null">
-	<!--
-	Die Definition einer Folgeseite kann durch einen speziellen Parameter geändert werden
-	<input type="hidden" name="gotoUrl" value="http://www.thecircle.ch/newsletter-confirmationmail.html">
-	<input type="hidden" name="gotoErrorUrl" value="null">
-	
-	Falls der Empfänger bereits Double Opt-in registriert ist, die Applikation überspringt den ganzen Double Opt-in Prozess und präsentiert als Folgeseite die Bestätigungsseite. Diese Seite kann über diesen Parameter umspezifiziert werden.
-	<input type="hidden" name="gotoConfirmationUrl" value="">
-	
-	-->
-	<input type="hidden" name="xp_sendBackParams" value="0">
-	<!-- Werte von xp_sendBackParams
-	value = 0   does not return registration parameters to client's Url
-	value = 1   returns registration parameters to client's Url if success
-	value = 2   returns registration parameters to client's Url if error
-	value = 3   always returns registration parameters to client's Url
-	-->
-	<!--
-	Mit diesem Parameter kann das Redirekt zur Folgeseite unterdrückt werden
-	HTTP Response Code 200, wenn die Registrierung erfolgreich durchgeführt wurde
-	HTTP Response Code 400, wenn das Profil bereits existiert und kein Update ist erlaubt
-	HTTP Response Code 500, wenn die Registrierung aufgrund eines Fehlers nicht beendet wurde
-	<input type="hidden" name="xp_redirectLP" value="0">
-	-->
-	
-	<div class="ui-form-field g-6 push-2 g-tablet-6 push-tablet-2 g-mobile-14 push-mobile-1">
-		<div class="ui-textfield">
-			<label for="Firma">Firma</label>
-			<input name="Firma" placeholder="" id="Firma" type="text">
-		</div>
-	</div>
-	
+    	<!--
+    	Falls ein bereits vorhandener Profil ohne Statusänderungen geändert werden soll, muss der folgende Parameter gesendet werden
+    	<input type="hidden" name="doubleOptin" value="-1">
+    	-->
 
-	<div class="ui-form-field g-6 g-tablet-6 g-mobile-14 push-mobile-1">
-		<div class="ui-textfield">
-			<label for="Funktion">Funktion</label>
-			<input name="Funktion" placeholder="" id="Funktion" type="text">
-		</div>
-	</div>
+    	<input type="hidden" name="trackId" value="null">
+    	<!--
+    	Die Definition einer Folgeseite kann durch einen speziellen Parameter geändert werden
+    	<input type="hidden" name="gotoUrl" value="http://www.thecircle.ch/newsletter-confirmationmail.html">
+    	<input type="hidden" name="gotoErrorUrl" value="null">
 
-	<div class="ui-form-field g-6 push-2 g-tablet-6 push-tablet-2 g-mobile-14 push-mobile-1">
-		<label for="Anrede">Anrede *</label>
-    <select name="Anrede" class="ui-select" required="" tabindex="0" style="">
-			<option value="#DEL#">nicht ausgewählt</option>
-			<option value="Frau">Frau</option>
-			<option value="Herr">Herr</option>
-		</select>
-	</div>
+    	Falls der Empfänger bereits Double Opt-in registriert ist, die Applikation überspringt den ganzen Double Opt-in Prozess und präsentiert als Folgeseite die Bestätigungsseite. Diese Seite kann über diesen Parameter umspezifiziert werden.
+    	<input type="hidden" name="gotoConfirmationUrl" value="">
 
-	<div class="ui-form-field g-6 g-tablet-6 g-mobile-14 push-mobile-1">
-		<div class="ui-textfield">
-			<label for="Vorname">Vorname*</label>
-			<input name="firstname" placeholder="" id="Vorname" type="text" required="">
-		</div>
-	</div>
+    	-->
+    	<input type="hidden" name="xp_sendBackParams" value="0">
+    	<!-- Werte von xp_sendBackParams
+    	value = 0   does not return registration parameters to client's Url
+    	value = 1   returns registration parameters to client's Url if success
+    	value = 2   returns registration parameters to client's Url if error
+    	value = 3   always returns registration parameters to client's Url
+    	-->
+    	<!--
+    	Mit diesem Parameter kann das Redirekt zur Folgeseite unterdrückt werden
+    	HTTP Response Code 200, wenn die Registrierung erfolgreich durchgeführt wurde
+    	HTTP Response Code 400, wenn das Profil bereits existiert und kein Update ist erlaubt
+    	HTTP Response Code 500, wenn die Registrierung aufgrund eines Fehlers nicht beendet wurde
+    	<input type="hidden" name="xp_redirectLP" value="0">
+    	-->
 
-	<div class="ui-form-field g-6 push-2 g-tablet-6 push-tablet-2 g-mobile-14 push-mobile-1">
-		<div class="ui-textfield">
-			<label for="Name">Nachname*</label>
-			<input name="Name" placeholder="" id="lastname" type="text" required="">
-		</div>
-	</div>
+    	<div class="ui-form-field g-6 push-2 g-tablet-6 push-tablet-2 g-mobile-14 push-mobile-1">
+    		<div class="ui-textfield">
+    			<label for="Firma">Firma</label>
+    			<input name="Firma" placeholder="" id="Firma" type="text">
+    		</div>
+    	</div>
 
-	<div class="ui-form-field g-6 g-tablet-6 g-mobile-14 push-mobile-1">
-		<div class="ui-textfield">
-			<label for="Adresse">Adresse</label>
-			<input name="Adresse" placeholder="" id="Adresse" type="text">
-		</div>
-	</div>
 
-	<div class="ui-form-field g-6 push-2 g-tablet-6 push-tablet-2 g-mobile-14 push-mobile-1">
-		<div class="ui-textfield">
-			<label for="PLZ">PLZ</label>
-			<input name="PLZ" placeholder="" id="PLZ" type="text">
-		</div>
-	</div>
+    	<div class="ui-form-field g-6 g-tablet-6 g-mobile-14 push-mobile-1">
+    		<div class="ui-textfield">
+    			<label for="Funktion">Funktion</label>
+    			<input name="Funktion" placeholder="" id="Funktion" type="text">
+    		</div>
+    	</div>
 
-	<div class="ui-form-field g-6 g-tablet-6 g-mobile-14 push-mobile-1">
-		<div class="ui-textfield">
-			<label for="Ort">Ort</label>
-			<input name="Ort" placeholder="" id="Ort" type="text">
-		</div>
-	</div>
+    	<div class="ui-form-field g-6 push-2 g-tablet-6 push-tablet-2 g-mobile-14 push-mobile-1">
+    		<label for="Anrede">Anrede *</label>
+        <select name="Anrede" class="ui-select" required="" tabindex="0" style="">
+    			<option value="#DEL#">nicht ausgewählt</option>
+    			<option value="Frau">Frau</option>
+    			<option value="Herr">Herr</option>
+    		</select>
+    	</div>
 
-	<div class="ui-form-field g-6 push-2 g-tablet-6 push-tablet-2 g-mobile-14 push-mobile-1">
-		<label for="Land">Land</label>
-		<select id="Land" class="ui-select" tabindex="0" style="">
-			<option value="#DEL#">nicht ausgewählt</option>
-			<option value="AF">Afghanistan</option>
-			<option value="EG">Ägypten</option>
-			<option value="AL">Albanien</option>
-			<option value="DZ">Algerien</option>
-			<option value="VI">Amerikanische Jungferninseln</option>
-			<option value="AS">Amerikanisch-Samoa</option>
-			<option value="AD">Andorra</option>
-			<option value="AO">Angola</option>
-			<option value="AI">Anguilla</option>
-			<option value="AQ">Antarktis</option>
-			<option value="AG">Antigua und Barbuda</option>
-			<option value="GQ">Äquatorialguinea</option>
-			<option value="AR">Argentinien</option>
-			<option value="AM">Armenien</option>
-			<option value="AW">Aruba</option>
-			<option value="AZ">Aserbaidschan</option>
-			<option value="ET">Äthiopien</option>
-			<option value="AU">Australien</option>
-			<option value="BS">Bahamas</option>
-			<option value="BH">Bahrain</option>
-			<option value="BD">Bangladesch</option>
-			<option value="BB">Barbados</option>
-			<option value="BE">Belgien</option>
-			<option value="BZ">Belize</option>
-			<option value="BJ">Benin</option>
-			<option value="BM">Bermuda</option>
-			<option value="BT">Bhutan</option>
-			<option value="BO">Bolivien</option>
-			<option value="BA">Bosnien und Herzegowina</option>
-			<option value="BW">Botswana</option>
-			<option value="BV">Bouvetinsel</option>
-			<option value="BR">Brasilien</option>
-			<option value="VG">Britische Jungferninseln</option>
-			<option value="IO">Britisches Territorium im Indischen Ozean</option>
-			<option value="BN">Brunei Darussalam</option>
-			<option value="BG">Bulgarien</option>
-			<option value="BF">Burkina Faso</option>
-			<option value="BI">Burundi</option>
-			<option value="KY">Cayman-Inseln B.W.I.</option>
-			<option value="CL">Chile</option>
-			<option value="CN">China, Volksrepublik</option>
-			<option value="CK">Cookinseln</option>
-			<option value="CR">Costa Rica</option>
-			<option value="DK">Dänemark</option>
-			<option value="DE">Deutschland</option>
-			<option value="DO">Dominican Republic</option>
-			<option value="DJ">Dschibuti</option>
-			<option value="EC">Ecuador</option>
-			<option value="SV">El Salvador</option>
-			<option value="CI">Elfenbeinküste (Côte d'Ivoire)</option>
-			<option value="ER">Eritrea</option>
-			<option value="EE">Estland</option>
-			<option value="FK">Falklandinseln</option>
-			<option value="FO">Färöer</option>
-			<option value="FJ">Fidschi</option>
-			<option value="FI">Finnland</option>
-			<option value="FR">Frankreich</option>
-			<option value="TF">Französische Süd- und Antarktisgebiete</option>
-			<option value="GF">Französisch-Guayana</option>
-			<option value="PF">Französisch-Polynesien</option>
-			<option value="GA">Gabun</option>
-			<option value="GM">Gambia</option>
-			<option value="GE">Georgien</option>
-			<option value="GH">Ghana</option>
-			<option value="GI">Gibraltar</option>
-			<option value="GD">Grenada</option>
-			<option value="GR">Griechenland</option>
-			<option value="GL">Grönland</option>
-			<option value="GB">Grossbritannien</option>
-			<option value="GP">Guadeloupe</option>
-			<option value="GU">Guam</option>
-			<option value="GT">Guatemala</option>
-			<option value="GG">Guernsey (Kanalinsel)</option>
-			<option value="GN">Guinea</option>
-			<option value="GW">Guinea-Bissau</option>
-			<option value="GY">Guyana</option>
-			<option value="HT">Haiti</option>
-			<option value="HM">Heard- und McDonald-Inseln</option>
-			<option value="HN">Honduras</option>
-			<option value="HK">Hongkong</option>
-			<option value="IN">Indien</option>
-			<option value="ID">Indonesien</option>
-			<option value="IM">Insel Man</option>
-			<option value="IQ">Irak</option>
-			<option value="IR">Iran, Islamische Republik</option>
-			<option value="IE">Irland</option>
-			<option value="IS">Island</option>
-			<option value="IL">Israel</option>
-			<option value="IT">Italien</option>
-			<option value="JM">Jamaika</option>
-			<option value="JP">Japan</option>
-			<option value="YE">Jemen</option>
-			<option value="JE">Jersey</option>
-			<option value="JO">Jordanien</option>
-			<option value="YU">Jugoslawien</option>
-			<option value="KH">Kambodscha</option>
-			<option value="CM">Kamerun</option>
-			<option value="CA">Kanada</option>
-			<option value="CV">Kap Verde</option>
-			<option value="KZ">Kasachstan</option>
-			<option value="QA">Katar</option>
-			<option value="KE">Kenia</option>
-			<option value="KG">Kirgisistan</option>
-			<option value="KI">Kiribati</option>
-			<option value="CC">Kokosinseln</option>
-			<option value="CO">Kolumbien</option>
-			<option value="KM">Komoren</option>
-			<option value="CG">Kongo Republik</option>
-			<option value="CD">Kongo, Demokratische Republik</option>
-			<option value="KP">Korea Nord (Demokratische Volksrepublik Korea)</option>
-			<option value="KR">Korea Süd (Republik Korea)</option>
-			<option value="HR">Kroatien</option>
-			<option value="CU">Kuba</option>
-			<option value="KW">Kuwait</option>
-			<option value="LA">Laos</option>
-			<option value="LS">Lesotho</option>
-			<option value="LV">Lettland</option>
-			<option value="LB">Libanon</option>
-			<option value="LR">Liberia</option>
-			<option value="LY">Libyen (Libysch-Arabische Dschamahirija)</option>
-			<option value="LI">Liechtenstein</option>
-			<option value="LT">Litauen</option>
-			<option value="LU">Luxemburg</option>
-			<option value="MO">Macau SAR</option>
-			<option value="MG">Madagaskar</option>
-			<option value="MW">Malawi</option>
-			<option value="MY">Malaysia</option>
-			<option value="MV">Malediven</option>
-			<option value="ML">Mali</option>
-			<option value="MT">Malta</option>
-			<option value="MA">Marokko</option>
-			<option value="MH">Marshallinseln</option>
-			<option value="MQ">Martinique</option>
-			<option value="MR">Mauretanien</option>
-			<option value="MU">Mauritius</option>
-			<option value="YT">Mayotte</option>
-			<option value="MK">Mazedonien</option>
-			<option value="MX">Mexiko</option>
-			<option value="FM">Mikronesien</option>
-			<option value="MD">Moldawien</option>
-			<option value="MC">Monaco</option>
-			<option value="MN">Mongolei</option>
-			<option value="ME">Montenegro</option>
-			<option value="MS">Montserrat</option>
-			<option value="MZ">Mosambik</option>
-			<option value="MM">Myanmar (Burma)</option>
-			<option value="NA">Namibia</option>
-			<option value="NR">Nauru</option>
-			<option value="NP">Nepal</option>
-			<option value="NC">Neukaledonien</option>
-			<option value="NZ">Neuseeland</option>
-			<option value="NI">Nicaragua</option>
-			<option value="NL">Niederlande</option>
-			<option value="AN">Niederländische Antillen</option>
-			<option value="NE">Niger</option>
-			<option value="NG">Nigeria</option>
-			<option value="NU">Niue</option>
-			<option value="MP">Nördliche Marianen</option>
-			<option value="NF">Norfolkinsel</option>
-			<option value="NO">Norwegen</option>
-			<option value="OM">Oman</option>
-			<option value="AT">Österreich</option>
-			<option value="TL">Osttimor (Timor-Leste)</option>
-			<option value="PK">Pakistan</option>
-			<option value="PS">Palästina</option>
-			<option value="PW">Palau</option>
-			<option value="PA">Panama</option>
-			<option value="PG">Papua-Neuguinea</option>
-			<option value="PY">Paraguay</option>
-			<option value="PE">Peru</option>
-			<option value="PH">Philippinen</option>
-			<option value="PN">Pitcairninseln</option>
-			<option value="PL">Polen</option>
-			<option value="PT">Portugal</option>
-			<option value="PR">Puerto Rico</option>
-			<option value="RE">Réunion</option>
-			<option value="RW">Ruanda</option>
-			<option value="RO">Rumänien</option>
-			<option value="RU">Russland</option>
-			<option value="PM">Saint-Pierre und Miquelon</option>
-			<option value="SB">Salomonen</option>
-			<option value="ZM">Sambia</option>
-			<option value="WS">Samoa</option>
-			<option value="SM">San Marino</option>
-			<option value="ST">São Tomé und Príncipe</option>
-			<option value="SA">Saudi-Arabien</option>
-			<option value="SE">Schweden</option>
-			<option selected="" value="CH">Schweiz</option>
-			<option value="SN">Senegal</option>
-			<option value="RS">Serbien</option>
-			<option value="SC">Seychellen</option>
-			<option value="SL">Sierra Leone</option>
-			<option value="ZW">Simbabwe</option>
-			<option value="SG">Singapur</option>
-			<option value="SK">Slowakische Republik</option>
-			<option value="SI">Slowenien</option>
-			<option value="SO">Somalia</option>
-			<option value="ES">Spanien</option>
-			<option value="LK">Sri Lanka</option>
-			<option value="SH">St.Helena</option>
-			<option value="KN">St.Kitts und Nevis</option>
-			<option value="LC">St.Lucia</option>
-			<option value="VC">St.Vincent und die Grenadinen</option>
-			<option value="ZA">Südafrika</option>
-			<option value="SD">Sudan</option>
-			<option value="GS">Südgeorgien und die Südlichen Sandwichinseln</option>
-			<option value="SR">Suriname</option>
-			<option value="SJ">Svalbard und Jan Mayen</option>
-			<option value="SZ">Swasiland</option>
-			<option value="SY">Syrien, Arabische Republik</option>
-			<option value="TJ">Tadschikistan</option>
-			<option value="TW">Taiwan</option>
-			<option value="TZ">Tansania, Vereinigte Republik</option>
-			<option value="TH">Thailand</option>
-			<option value="TG">Togo</option>
-			<option value="TK">Tokelau</option>
-			<option value="TO">Tonga</option>
-			<option value="TT">Trinidad und Tobago</option>
-			<option value="TD">Tschad</option>
-			<option value="CZ">Tschechische Republik</option>
-			<option value="TN">Tunesien</option>
-			<option value="TR">Türkei</option>
-			<option value="TM">Turkmenistan</option>
-			<option value="TC">Turks- und Caicosinseln</option>
-			<option value="TV">Tuvalu</option>
-			<option value="REST">übriges Ausland</option>
-			<option value="UG">Uganda</option>
-			<option value="UA">Ukraine</option>
-			<option value="HU">Ungarn</option>
-			<option value="UM">United States Minor Outlying Islands</option>
-			<option value="UY">Uruguay</option>
-			<option value="US">USA</option>
-			<option value="UZ">Usbekistan</option>
-			<option value="VU">Vanuatu</option>
-			<option value="VA">Vatican City</option>
-			<option value="VE">Venezuela</option>
-			<option value="AE">Vereinigte Arabische Emirate</option>
-			<option value="VN">Vietnam</option>
-			<option value="WF">Wallis und Futuna</option>
-			<option value="CX">Weihnachtsinsel</option>
-			<option value="BY">Weissrussland (Belarus)</option>
-			<option value="ZR">Zaire</option>
-			<option value="CF">Zentralafrikanische Republik</option>
-			<option value="CY">Zypern</option>
-		</select>
-	</div>
+    	<div class="ui-form-field g-6 g-tablet-6 g-mobile-14 push-mobile-1">
+    		<div class="ui-textfield">
+    			<label for="Vorname">Vorname*</label>
+    			<input name="firstname" placeholder="" id="Vorname" type="text" required="">
+    		</div>
+    	</div>
 
-	<div class="ui-form-field g-6 g-tablet-6 g-mobile-14 push-mobile-1">
-		<div class="ui-textfield">
-			<label for="Email">E-mail*</label>
-			<input name="Email" value="{{email}}" placeholder="" id="Email" type="email" required>
-		</div>
-	</div>
+    	<div class="ui-form-field g-6 push-2 g-tablet-6 push-tablet-2 g-mobile-14 push-mobile-1">
+    		<div class="ui-textfield">
+    			<label for="Name">Nachname*</label>
+    			<input name="Name" placeholder="" id="lastname" type="text" required="">
+    		</div>
+    	</div>
 
-	<div class="ui-form-field g-6 push-2 g-tablet-6 push-tablet-2 g-mobile-14 push-mobile-1">
-		<label for="Sprache">Sprache des Newsletters</label>
-		<select id="Sprache" class="ui-select" tabindex="0" style="">
-			<option value="DE">deutsch</option>
-			<option value="EN">englisch</option>
-		</select>
-	</div>
+    	<div class="ui-form-field g-6 g-tablet-6 g-mobile-14 push-mobile-1">
+    		<div class="ui-textfield">
+    			<label for="Adresse">Adresse</label>
+    			<input name="Adresse" placeholder="" id="Adresse" type="text">
+    		</div>
+    	</div>
 
-	<div class="g-14 g-tablet-14 g-mobile-14 push-mobile-1">
-		<input class="ui-btn primary no-shadow fr" type="submit" value="Registrieren">
-	</div>
+    	<div class="ui-form-field g-6 push-2 g-tablet-6 push-tablet-2 g-mobile-14 push-mobile-1">
+    		<div class="ui-textfield">
+    			<label for="PLZ">PLZ</label>
+    			<input name="PLZ" placeholder="" id="PLZ" type="text">
+    		</div>
+    	</div>
 
+    	<div class="ui-form-field g-6 g-tablet-6 g-mobile-14 push-mobile-1">
+    		<div class="ui-textfield">
+    			<label for="Ort">Ort</label>
+    			<input name="Ort" placeholder="" id="Ort" type="text">
+    		</div>
+    	</div>
+
+    	<div class="ui-form-field g-6 push-2 g-tablet-6 push-tablet-2 g-mobile-14 push-mobile-1">
+    		<label for="Land">Land</label>
+    		<select id="Land" class="ui-select" tabindex="0" style="">
+    			<option value="#DEL#">nicht ausgewählt</option>
+          {% for iso,country in countries %}
+            <option {{ iso == 'CH' ? 'selected' : ''}} value="{{iso}}">{{country}}</option>
+          {% endfor %}
+    		</select>
+    	</div>
+
+    	<div class="ui-form-field g-6 g-tablet-6 g-mobile-14 push-mobile-1">
+    		<div class="ui-textfield">
+    			<label for="Email">E-mail*</label>
+    			<input name="Email" value="{{email}}" placeholder="" id="Email" type="email" required>
+    		</div>
+    	</div>
+
+    	<div class="ui-form-field g-6 push-2 g-tablet-6 push-tablet-2 g-mobile-14 push-mobile-1">
+    		<label for="Sprache">Sprache des Newsletters</label>
+    		<select id="Sprache" class="ui-select" tabindex="0" style="">
+    			<option value="DE">deutsch</option>
+    			<option value="EN">englisch</option>
+    		</select>
+    	</div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" type="submit">Registrieren</button>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+  </div>
+</div>
 </form>

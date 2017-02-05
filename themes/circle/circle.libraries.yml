@@ -7,3 +7,4 @@ global:
     js_dist/build.js: {}
   dependencies:
       - core/jquery
+      - core/drupalSettings

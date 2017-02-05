@@ -8,6 +8,7 @@ function circle_newsletter_theme()
       'variables' => array
       (
         'email' => FALSE,
+        'countries' => array()
       ),
       'template' => 'circle_newsletter-register',
     ),
