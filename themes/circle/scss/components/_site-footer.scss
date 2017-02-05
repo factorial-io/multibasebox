@@ -1,0 +1,13 @@
+.site-footer {
+  background-color: $black;
+  a {
+    color: $white;
+  }
+  ul {
+    @extend .list-inline;
+    margin: 0;
+  }
+  li {
+    @extend .list-inline-item;
+  }
+}

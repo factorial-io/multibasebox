@@ -1,0 +1,18 @@
+.grid {
+  @extend .row;
+  &__element {
+    @extend .col-md-4;
+    @extend .col-sm-6;
+  }
+  .article-teaser {
+    @extend .card;
+    img {
+      @extend .card-img;
+      @extend .card-img-top;
+      @extend .img-fluid;
+    }
+    &__content {
+      @extend .card-block;
+    }
+  }
+}

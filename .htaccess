@@ -37,6 +37,12 @@ AddEncoding gzip svgz
   # PHP 5.6 has deprecated $HTTP_RAW_POST_DATA and produces warnings if this is
   # not set.
   php_value always_populate_raw_post_data   -1
+  
+  php_value memory_limit 512M
+  php_flag display_startup_errors on
+  php_flag display_errors on
+  php_flag html_errors on
+  php_flag  log_errors on
 </IfModule>
 
 # Requires mod_expires to be enabled.

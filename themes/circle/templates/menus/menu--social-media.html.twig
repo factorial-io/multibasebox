@@ -1,0 +1,10 @@
+{% import _self as menus %}
+{% if items %}
+  <ul{{ attributes }}>
+  {% for item in items %}
+    <li{{ item.attributes }}>
+      {{ link("", item.url) }}
+    </li>
+  {% endfor %}
+  </ul>
+{% endif %}

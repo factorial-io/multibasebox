@@ -1,0 +1,20 @@
+<div class="front-page">
+  {{content.field_stage_content}}
+  <section class="hero">
+    <h2 class="hero__title">{{content.field_hero_title}}</h2>
+    {{content.body}}
+    {{content.field_hero_link}}
+  </section>
+  
+  {% for item in items %}
+  {{ item }}
+  {% if loop.index == 3 %}
+    <div id="more-items" class="more-items collapse">
+  {% endif%}
+  
+  {% if loop.last %}
+    </div>
+  {% endif%}
+  {% endfor %}
+  <a data-toggle="collapse" data-target="#more-items" href="#">Show More</a>
+</div>

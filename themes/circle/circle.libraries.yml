@@ -5,3 +5,5 @@ global:
       css/styles.css: {}
   js:
     js_dist/build.js: {}
+  dependencies:
+      - core/jquery

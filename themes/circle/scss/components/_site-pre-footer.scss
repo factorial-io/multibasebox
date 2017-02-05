@@ -1,0 +1,19 @@
+.pre-footer {
+  @extend .row;
+  .newsletter-teaser {
+    @extend .col-md-3;
+  }
+  .social-nav {
+    @extend .col-md;
+    text-align: right;
+    ul {
+      @extend .list-inline;
+    }
+    li {
+      @extend .list-inline-item;
+      &::before {
+        content: "Icon";
+      }
+    }
+  }
+}

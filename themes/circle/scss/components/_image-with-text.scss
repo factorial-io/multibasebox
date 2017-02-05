@@ -1,0 +1,25 @@
+.image-with-text {
+  @extend .row;
+  &__image {
+    @extend .col-md-7;
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+  &__text {
+    @extend .col-sm;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  &.right {
+    .image-with-text__image {
+      order: 2;
+    }
+  }
+  &.egg {
+    background-color: lighten($circle-brown, 40);
+  }
+}

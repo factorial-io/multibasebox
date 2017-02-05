@@ -1,0 +1,16 @@
+<article class="article-teaser">
+  {{ content.field_image }}
+  <div class="article-teaser__content">
+  
+    <footer>
+        {{ date }}
+        {{ metadata }}
+    </footer>
+  
+    <h2>
+      <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+    </h2>
+  
+    {{ content|without('field_image')|without('links') }}
+  </div>
+</article>

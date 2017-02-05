@@ -1,3 +1,7 @@
-body {
-  background: pink;
-}
+@import 'bs-vars';
+@import 'bs-imports';
+
+@import 'vars';
+
+@import 'mixins/imports';
+@import 'components/imports';

@@ -1,0 +1,107 @@
+<?php 
+/**
+* Implements hook_preprocess_HOOK() for menu.html.twig.
+*/
+function circle_preprocess_menu__social_media(&$variables) {
+  foreach ($variables['items'] as $key => $item) {
+    $url = $item['url']->toString();
+    $socialClass = "";
+    if(strpos($url, 'instagram') != false) {
+      $socialClass = 'instagram';
+    } else if (strpos($url, 'youtube') != false){
+      $socialClass = 'youtube'; 
+    } else if (strpos($url, 'facebook') != false){
+      $socialClass = 'facebook'; 
+    } else if (strpos($url, 'twitter') != false){
+      $socialClass = 'twitter'; 
+    } else if (strpos($url, 'pinterest') != false){
+      $socialClass = 'pinterest'; 
+    } else if (strpos($url, 'vimeo') != false){
+      $socialClass = 'vimeo'; 
+    }
+    if (!empty($socialClass)) {
+      $item['attributes']['class'] = array($socialClass);
+    }
+  }
+}
+
+/**
+ * Add Theme settings for the circle
+ */
+function circle_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormStateInterface &$form_state, $form_id = NULL) {
+  // Work-around for a core bug affecting admin themes. See issue #943212.
+  if (isset($form_id)) {
+    return;
+  }
+  
+
+  $form['target_time'] = array(
+    '#type'          => 'textfield',
+    '#title'         => t('Target Time'),
+    '#default_value' => theme_get_setting('target_time'),
+    '#description'   => t("Timestamp when The Circle launches.. Convert at http://www.unixtimestamp.com"),
+    '#default_value' => time()
+  );
+}
+
+/**
+ * Preprocess fields
+ */
+function circle_preprocess_field(&$variables) {
+  $element = $variables['element'];
+  
+  if($element['#field_name'] == 'field_stage_content') {
+    $variables['time_left'] = round((theme_get_setting('target_time') - time()) / 60 / 60 / 24); 
+  }
+  
+  if($element['#field_name'] == 'field_button_link' || $element['#field_name'] == 'field_hero_link') {
+    $variables['items'][0]['content']['#attributes']['class'] = ['button'];
+  }
+}
+
+
+/**
+ * Preprocess regions
+ */
+function circle_preprocess_region(&$variables) {
+  $variables['attributes']['class'] = array('region');
+}
+function circle_preprocess_node(&$vars) {
+  $node = $vars['node'];
+  
+  if ($node->type->entity->id() == 'front_page') {
+    $items = [];
+    $textBl = $vars['content']['field_text_blocks'];
+    $delta = 0;
+    while(!empty($textBl[$delta])) {
+      $items[] = $textBl[$delta];
+      $delta++;
+    }
+    
+    $vars['items'] = $items;
+  }
+}
+
+function circle_preprocess_paragraph(&$vars) {
+  if (isset($vars['content']['field_image'][0])) {
+    $element = $vars['content']['field_image'];
+    $delta = 0;
+    while (!empty($element[$delta])) {
+      $element[$delta]['#item_attributes'] = array('data-lazy' => true);
+      $vars['content']['field_image'][$delta] = $element[$delta];
+      $delta++;
+    }
+  }
+  if (isset($vars['content']['field_action'][0]) && isset($vars['content']['field_button_link'][0])) {
+    $vars['content']['field_button_link'][0]['#attributes'] = array('data-action' => array($vars['content']['field_action'][0]['#markup']));
+  }
+}
+
+function circle_preprocess_image(&$vars) {
+  if(isset($vars['attributes']['data-lazy'])) {
+    $vars['attributes']['data-srcset'] = $vars['attributes']['srcset']->value();
+    $vars['attributes']['data-src'] = $vars['attributes']['src'];
+    unset($vars['attributes']['srcset']);
+    unset($vars['attributes']['src']);
+  }
+}

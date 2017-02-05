@@ -1,26 +1,20 @@
 <div class="layout-container">
-<h1 id="hello">Hello</h1>
-  <header role="banner">
+  <header class="site-header" role="banner">
     {{ page.header }}
   </header>
-
-  {{ page.primary_menu }}
-  {{ page.secondary_menu }}
-
-  {{ page.breadcrumb }}
-
-  {{ page.highlighted }}
-
 
   <main role="main">
     <div class="layout-content">
       {{ page.content }}
     </div>
-
   </main>
 
+    <section class="pre-footer">
+        {{ page.prefooter }}
+    </section>
+  
   {% if page.footer %}
-    <footer role="contentinfo">
+    <footer class="site-footer" role="contentinfo">
       {{ page.footer }}
     </footer>
   {% endif %}

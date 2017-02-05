@@ -1,0 +1,26 @@
+.stage {
+  position: relative;
+  h2 {
+    @include full-overlay;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $white;
+    margin: 0;
+  }
+  video {
+    width: 100%;
+    display: block;
+  }
+  &::before {
+    content: " ";
+    @include full-overlay;
+    @include gradient-radial(rgba(0,0,0,0), rgba(0,0,0, 0.8));
+  }
+  &__counter {
+    position: absolute;
+    bottom: 90px;
+    right: 0;
+    background: $white;
+  }
+}
