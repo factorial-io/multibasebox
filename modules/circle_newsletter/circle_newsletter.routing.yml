@@ -1,0 +1,8 @@
+circle_newsletter.register_form:
+  path: '/newsletter-register/{email}' 
+  defaults: 
+    _controller: '\Drupal\circle_newsletter\Controller\CircleNewsletterController::register' 
+    _title: 'Register for Newsletter'
+    email: ''
+  requirements: 
+    _permission: 'access content' 

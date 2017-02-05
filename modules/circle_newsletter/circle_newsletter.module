@@ -1,0 +1,15 @@
+<?php 
+function circle_newsletter_theme()
+{
+  return array
+  (
+    'circle_newsletter_register' => array
+    (
+      'variables' => array
+      (
+        'email' => FALSE,
+      ),
+      'template' => 'circle_newsletter-register',
+    ),
+  );
+}

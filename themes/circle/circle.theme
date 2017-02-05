@@ -80,6 +80,7 @@ function circle_preprocess_node(&$vars) {
     
     $vars['items'] = $items;
   }
+  $vars['base_path'] = base_path();
 }
 
 function circle_preprocess_paragraph(&$vars) {
@@ -99,7 +100,9 @@ function circle_preprocess_paragraph(&$vars) {
 
 function circle_preprocess_image(&$vars) {
   if(isset($vars['attributes']['data-lazy'])) {
-    $vars['attributes']['data-srcset'] = $vars['attributes']['srcset']->value();
+    if (isset($vars['attributes']['srcset'])) {
+      $vars['attributes']['data-srcset'] = $vars['attributes']['srcset']->value();
+    }
     $vars['attributes']['data-src'] = $vars['attributes']['src'];
     unset($vars['attributes']['srcset']);
     unset($vars['attributes']['src']);

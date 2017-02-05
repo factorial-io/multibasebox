@@ -1,0 +1,5 @@
+name: Circle Newsletter
+type: module
+description: Provides functions for newsletter registration
+core: 8.x
+package: The Circle
