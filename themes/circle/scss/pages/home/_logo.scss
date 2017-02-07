@@ -1,0 +1,7 @@
+.logo-row {
+  @extend .m-5;
+  .logo {
+    @extend .mx-auto;
+    width: 200px;
+  }
+}

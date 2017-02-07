@@ -1,0 +1,13 @@
+<section class="stage">
+{% for item in items %}
+    {{ item.content }}
+{% endfor %}
+<div class="stage__counter">
+  <div class="counter">
+  {% for char in time_left_chars %}
+    <span class="counter__char">{{char}}</span>
+  {% endfor %}
+    <div class="counter__message">{{ 'Days till take off' | trans}}<span class="icon-arrow-right"></span></div>
+  </div>
+</div>
+</section>

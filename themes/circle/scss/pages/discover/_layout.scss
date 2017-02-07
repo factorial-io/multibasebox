@@ -1,0 +1,31 @@
+.discover-slides {
+  position: relative;
+  height: 100%;
+  &__nav {
+    position: absolute;
+    right: $spacer;
+    top: $spacer;
+  }
+  
+  &__slide {
+    height: 100%;
+  }
+  &__fullwrap {
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+  }
+}
+
+.page-node-type-discover-page {
+  height: 100%;
+  body {
+    height: 100%;
+  }
+  main {
+    position: fixed;
+    height: calc(100% - #{$site-nav-height});
+    width: 100%;
+    background: $circle-green;
+  }
+}

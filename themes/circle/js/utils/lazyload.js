@@ -11,7 +11,7 @@ const lazyload = ($els, visible = true) => {
     
     $lazyEls.each((index, el) => {
         $(el).attr('src', $(el).attr('data-src')).attr('srcset', $(el).attr('data-srcset')).attr('sizes', $(el).attr('data-sizes'))
-        $(el).attr('data-src', null).attr('srcset', null).attr('sizes', null)
+        $(el).attr('data-src', null).attr('data-srcset', null).attr('data-sizes', null)
     })
 }
 

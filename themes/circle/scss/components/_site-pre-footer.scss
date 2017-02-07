@@ -1,5 +1,6 @@
 .pre-footer {
   @extend .row;
+  background-color: lighten($circle-brown, 40);
   .newsletter-teaser {
     @extend .col-md-3;
   }
@@ -11,8 +12,15 @@
     }
     li {
       @extend .list-inline-item;
-      &::before {
-        content: "Icon";
+    }
+    
+    $list: instagram facebook twitter vimeo youtube linkedin;
+    @each $social in $list {
+      li.#{$social} {
+        a {
+          @extend %icon;
+          @extend .icon-#{$social};  
+        }
       }
     }
   }

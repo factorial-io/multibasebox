@@ -1,6 +1,9 @@
-<?php 
+<?php
+use Drupal\image\Entity\ImageStyle;
+
 /**
-* Implements hook_preprocess_HOOK() for menu.html.twig.
+* Implements hook_preprocess_menu()
+* Adds a social media class depending on URL
 */
 function circle_preprocess_menu__social_media(&$variables) {
   foreach ($variables['items'] as $key => $item) {
@@ -18,6 +21,8 @@ function circle_preprocess_menu__social_media(&$variables) {
       $socialClass = 'pinterest'; 
     } else if (strpos($url, 'vimeo') != false){
       $socialClass = 'vimeo'; 
+    } else if (strpos($url, 'linkedin') != false){
+      $socialClass = 'linkedin'; 
     }
     if (!empty($socialClass)) {
       $item['attributes']['class'] = array($socialClass);
@@ -39,8 +44,35 @@ function circle_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormS
     '#type'          => 'textfield',
     '#title'         => t('Target Time'),
     '#default_value' => theme_get_setting('target_time'),
-    '#description'   => t("Timestamp when The Circle launches.. Convert at http://www.unixtimestamp.com"),
-    '#default_value' => time()
+    '#description'   => t("Timestamp when The Circle launches.. Convert at http://www.unixtimestamp.com")
+  );
+  
+  $form['total_space'] = array(
+    '#type'          => 'textfield',
+    '#title'         => t('Total Space'),
+    '#default_value' => theme_get_setting('total_space'),
+    '#description'   => t("Total space that can be sold, in m x m"),
+  );
+  
+  $form['sold_space'] = array(
+    '#type'          => 'textfield',
+    '#title'         => t('Sold Space'),
+    '#default_value' => theme_get_setting('sold_space'),
+    '#description'   => t("Space already sold, in m x m")
+  );
+  
+  $form['email'] = array(
+    '#type'          => 'textfield',
+    '#title'         => t('Contact Email'),
+    '#default_value' => theme_get_setting('email'),
+    '#description'   => t("Email appearing on the site")
+  );
+  
+  $form['phone'] = array(
+    '#type'          => 'textfield',
+    '#title'         => t('Contact Phone'),
+    '#default_value' => theme_get_setting('phone'),
+    '#description'   => t("Phone No appearing on the site")
   );
 }
 
@@ -49,9 +81,10 @@ function circle_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormS
  */
 function circle_preprocess_field(&$variables) {
   $element = $variables['element'];
-  
   if($element['#field_name'] == 'field_stage_content') {
-    $variables['time_left'] = round((theme_get_setting('target_time') - time()) / 60 / 60 / 24); 
+    $time_left = round((theme_get_setting('target_time') - time()) / 60 / 60 / 24);
+    $variables['time_left'] = $time_left;
+    $variables['time_left_chars'] = str_split($time_left); 
   }
   
   if($element['#field_name'] == 'field_button_link' || $element['#field_name'] == 'field_hero_link') {
@@ -66,6 +99,10 @@ function circle_preprocess_field(&$variables) {
 function circle_preprocess_region(&$variables) {
   $variables['attributes']['class'] = array('region');
 }
+
+/**
+ * Preprocess nodes
+ */
 function circle_preprocess_node(&$vars) {
   $node = $vars['node'];
   
@@ -80,10 +117,56 @@ function circle_preprocess_node(&$vars) {
     
     $vars['items'] = $items;
   }
+  
+  if ($node->type->entity->id() == 'discover_page') {
+    $items = [];
+    $titles = [];
+    $imageUrls = [];
+    $textBl = $vars['content']['field_page'];
+    $delta = 0;
+    
+    while(!empty($textBl[$delta])) {
+      $par = $textBl[$delta]['#paragraph'];
+      
+      if(!empty($par->field_headline) && !empty($par->field_headline->getValue())) {
+        $val = $par->field_headline->getValue();
+        $titles[] = $val[0]['value'];
+      } else {
+        $titles[] = '';
+      }
+      
+      if( !empty($par->field_image) ) {
+        $imageUrls[] = ImageStyle::load('max_2600x2600')->buildUrl( $par->field_image->entity->getFileUri() );
+      } else {
+        $imageUrls[] = '';
+      }
+      
+      $items[] = $textBl[$delta];
+      $delta++;
+    }
+    
+    $vars['items'] = $items;
+    $vars['titles'] = $titles;
+    $vars['imageUrls'] = $imageUrls;
+  }
+  
   $vars['base_path'] = base_path();
 }
 
+function circle_preprocess_page(&$vars) {
+  if(isset($vars['node'])) {
+    $node = $vars['node'];
+    $vars['show_footer'] = !!($node->type->entity->id() != 'discover_page');
+  }
+}
+
+/**
+ * Preprocess paragraphs
+ */
 function circle_preprocess_paragraph(&$vars) {
+  /**
+   * Mark images as lazy loading
+   */
   if (isset($vars['content']['field_image'][0])) {
     $element = $vars['content']['field_image'];
     $delta = 0;
@@ -93,11 +176,18 @@ function circle_preprocess_paragraph(&$vars) {
       $delta++;
     }
   }
+  /**
+   * Add data attributes if buttons should trigger an action
+   */
   if (isset($vars['content']['field_action'][0]) && isset($vars['content']['field_button_link'][0])) {
     $vars['content']['field_button_link'][0]['#attributes'] = array('data-action' => array($vars['content']['field_action'][0]['#markup']));
   }
 }
 
+/**
+ * Hook preprocess_image
+ * Prepare images for Lazy Loading if data-lazy attribute is set
+ */
 function circle_preprocess_image(&$vars) {
   if(isset($vars['attributes']['data-lazy'])) {
     if (isset($vars['attributes']['srcset'])) {

@@ -1,0 +1,20 @@
+.logo {
+  position: relative;
+  &__static {
+    @include full-overlay;
+    padding: 15%;
+  }
+  &__ani {
+  	.st0{fill:#008074;}
+  	.st1{fill:#747B0D;}
+  	.st2{fill:#006EAB;}
+  	.st3{fill:#C00A26;}
+  	.st4{fill:#DA9400;}
+  	.st5{fill:#A56A01;}
+  	.st6{fill:#E95A1A;}
+  }
+  img, svg {
+    width: 100%;
+    height: auto;
+  }
+}

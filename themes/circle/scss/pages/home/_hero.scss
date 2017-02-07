@@ -1,0 +1,12 @@
+.hero {
+  @extend .mb-6;
+  text-align: center;
+  &__row {
+    @extend .row;
+  }
+  &__col {
+    @extend .col;
+    @extend .col-md-8;
+    @extend .offset-md-2;
+  }
+}

@@ -2,11 +2,13 @@
   position: relative;
   h2 {
     @include full-overlay;
+    font-size: 3rem;
     display: flex;
     align-items: center;
     justify-content: center;
     color: $white;
     margin: 0;
+    text-align: center;
   }
   video {
     width: 100%;
@@ -22,5 +24,28 @@
     bottom: 90px;
     right: 0;
     background: $white;
+  }
+}
+
+.counter {
+  display: flex;
+  &__char {
+    font-family: $headings-font-family;
+    font-size: 5rem;
+    border-right: 1px solid $black;
+    padding: 5px;
+    background: $gray-lightest;
+  }
+  &__message {
+    position: relative;
+    padding: 15px 30px 15px 15px;
+    text-transform: uppercase;
+    
+    .icon-arrow-right {
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      font-size: 0.8rem;
+    }
   }
 }

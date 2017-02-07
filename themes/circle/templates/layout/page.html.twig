@@ -1,23 +1,22 @@
-<div class="layout-container">
-  <header class="site-header" role="banner">
-    {{ page.header }}
-  </header>
 
-  <main role="main">
-    <div class="layout-content">
-      {{ page.content }}
-    </div>
-  </main>
+<header class="site-header" role="banner">
+  {{ page.header }}
+</header>
 
-    <section class="pre-footer">
-        {{ page.prefooter }}
-    </section>
-  
-  {% if page.footer %}
-    <footer class="site-footer" role="contentinfo">
-      {{ page.footer }}
-    </footer>
-  {% endif %}
-  
-  {% include '@circle/partials/modal.html.twig' %}
-</div>
+<main role="main">
+    {{ page.content }}
+</main>
+
+{% if show_footer %}
+<section class="pre-footer">
+    {{ page.prefooter }}
+</section>
+
+{% if page.footer %}
+  <footer class="site-footer" role="contentinfo">
+    {{ page.footer }}
+  </footer>
+{% endif %}
+{% endif %}
+
+{% include '@circle/partials/modal.html.twig' %}

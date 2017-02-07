@@ -8,8 +8,8 @@ dependencies:
   - node
   - options
 
-# Information added by Drupal.org packaging script on 2017-01-04
-version: '8.2.5'
+# Information added by Drupal.org packaging script on 2017-02-01
+version: '8.2.6'
 core: '8.x'
 project: 'drupal'
-datestamp: 1483529982
+datestamp: 1485975642

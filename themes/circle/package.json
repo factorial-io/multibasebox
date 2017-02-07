@@ -24,10 +24,13 @@
   },
   "dependencies": {
     "jquery": "^3.1.1",
-    "pannellum": "^2.3.2"
+    "pannellum": "^2.3.2",
+    "snapsvg": "^0.5.1"
   },
   "browserify": {
-      "transform": [ "browserify-shim" ]
+    "transform": [
+      "browserify-shim"
+    ]
   },
   "browserify-shim": {
     "jquery": "global:jQuery"

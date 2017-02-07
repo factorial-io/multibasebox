@@ -1,0 +1,20 @@
+<div class="discover-slides">
+{% for item in items %}
+  
+  {% if loop.first %}
+  <nav class="discover-slides__nav">
+    <ul>
+    {% for title in titles %}
+      <li><a data-index={{loop.index}}>{{title}}</a></li>
+    {% endfor %}
+    </ul>
+  </nav>
+  {% endif %}
+  
+  <div class="discover-slides__slide">
+    <div class="discover-slides__fullwrap" style="background-image: url({{imageUrls[loop.index - 1]}})" data-bg-desk="{{imageUrls[loop.index - 1]}}">
+    {{item}}
+    </div>
+  </div>
+{% endfor %}
+</div>

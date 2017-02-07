@@ -1,4 +1,16 @@
 .button {
   @extend .btn;
   @extend .btn-secondary;
+  min-width: 240px;
+  @extend .mt-4;
+  &:hover {
+    background: $black;
+    color: $white;
+    border-color: $black;
+  }
+}
+
+.btn {
+  font-family: $headings-font-family;
+  text-transform: uppercase;
 }

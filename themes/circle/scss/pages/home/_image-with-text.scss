@@ -8,7 +8,8 @@
     }
   }
   &__text {
-    @extend .col-sm;
+    @extend .col;
+    padding: $spacer percentage(1 / $grid-columns);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -20,6 +21,6 @@
     }
   }
   &.egg {
-    background-color: lighten($circle-brown, 40);
+    background-color: $circle-egg;
   }
 }

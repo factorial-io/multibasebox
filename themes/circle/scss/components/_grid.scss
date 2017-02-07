@@ -7,8 +7,6 @@
   .article-teaser {
     @extend .card;
     img {
-      @extend .card-img;
-      @extend .card-img-top;
       @extend .img-fluid;
     }
     &__content {
