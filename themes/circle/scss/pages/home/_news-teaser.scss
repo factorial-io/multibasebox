@@ -1,0 +1,35 @@
+.news-teaser {
+  @extend .mt-6;
+  padding: 0 percentage(1/$grid-columns);
+  h3 {
+    text-align: center;
+    font-size: 2rem;
+  }
+  
+  .article-teaser {
+    @extend .card;
+    img {
+      @extend .img-fluid;
+      width: 100%;
+      height: auto;
+    }
+    &__content {
+      @extend .card-block;
+    }
+    h2 {
+      font-size: 1.5rem;
+      margin: 0.5rem 0;
+    }
+    footer {
+      font-size: $font-size-sm;
+    }
+  }
+  
+  .more-link {
+    text-align: center;
+    a {
+      @extend .button;
+      @extend .mt-0;
+    }
+  }
+}

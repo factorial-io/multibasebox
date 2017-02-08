@@ -2,7 +2,6 @@
   @extend .btn;
   @extend .btn-secondary;
   min-width: 240px;
-  @extend .mt-4;
   &:hover {
     background: $black;
     color: $white;

@@ -527,7 +527,7 @@ mark,
 .blockquote-reverse .blockquote-footer::after {
   content: "\00A0 \2014"; }
 
-.img-fluid, .grid .article-teaser img {
+.img-fluid, .news-teaser .article-teaser img {
   max-width: 100%;
   height: auto; }
 
@@ -689,26 +689,26 @@ pre {
     padding-right: 0;
     padding-left: 0; }
 
-.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col, .hero__col, .image-with-text__text, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .grid__element, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm, .col-md-1, .col-md-2, .col-md-3, .pre-footer .newsletter-teaser, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .image-with-text__image, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md, .pre-footer .social-nav, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl {
+.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col, .hero__col, .image-with-text__text, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .grid__element, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .pre-footer .newsletter-teaser, .col-md-5, .col-md-6, .col-md-7, .image-with-text__image, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md, .pre-footer .social-nav, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl {
   position: relative;
   width: 100%;
   min-height: 1px;
   padding-right: 15px;
   padding-left: 15px; }
   @media (min-width: 576px) {
-    .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col, .hero__col, .image-with-text__text, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .grid__element, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm, .col-md-1, .col-md-2, .col-md-3, .pre-footer .newsletter-teaser, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .image-with-text__image, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md, .pre-footer .social-nav, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl {
+    .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col, .hero__col, .image-with-text__text, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .grid__element, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .pre-footer .newsletter-teaser, .col-md-5, .col-md-6, .col-md-7, .image-with-text__image, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md, .pre-footer .social-nav, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl {
       padding-right: 15px;
       padding-left: 15px; } }
   @media (min-width: 768px) {
-    .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col, .hero__col, .image-with-text__text, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .grid__element, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm, .col-md-1, .col-md-2, .col-md-3, .pre-footer .newsletter-teaser, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .image-with-text__image, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md, .pre-footer .social-nav, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl {
+    .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col, .hero__col, .image-with-text__text, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .grid__element, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .pre-footer .newsletter-teaser, .col-md-5, .col-md-6, .col-md-7, .image-with-text__image, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md, .pre-footer .social-nav, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl {
       padding-right: 15px;
       padding-left: 15px; } }
   @media (min-width: 992px) {
-    .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col, .hero__col, .image-with-text__text, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .grid__element, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm, .col-md-1, .col-md-2, .col-md-3, .pre-footer .newsletter-teaser, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .image-with-text__image, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md, .pre-footer .social-nav, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl {
+    .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col, .hero__col, .image-with-text__text, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .grid__element, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .pre-footer .newsletter-teaser, .col-md-5, .col-md-6, .col-md-7, .image-with-text__image, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md, .pre-footer .social-nav, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl {
       padding-right: 15px;
       padding-left: 15px; } }
   @media (min-width: 1200px) {
-    .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col, .hero__col, .image-with-text__text, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .grid__element, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm, .col-md-1, .col-md-2, .col-md-3, .pre-footer .newsletter-teaser, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .image-with-text__image, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md, .pre-footer .social-nav, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl {
+    .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col, .hero__col, .image-with-text__text, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .grid__element, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .pre-footer .newsletter-teaser, .col-md-5, .col-md-6, .col-md-7, .image-with-text__image, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md, .pre-footer .social-nav, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl {
       padding-right: 15px;
       padding-left: 15px; } }
 
@@ -1082,12 +1082,12 @@ pre {
         -ms-flex: 0 0 16.66667%;
             flex: 0 0 16.66667%;
     max-width: 16.66667%; }
-  .col-md-3, .pre-footer .newsletter-teaser {
+  .col-md-3 {
     -webkit-box-flex: 0;
         -ms-flex: 0 0 25%;
             flex: 0 0 25%;
     max-width: 25%; }
-  .col-md-4, .grid__element {
+  .col-md-4, .pre-footer .newsletter-teaser, .grid__element {
     -webkit-box-flex: 0;
         -ms-flex: 0 0 33.33333%;
             flex: 0 0 33.33333%;
@@ -1708,17 +1708,20 @@ select.form-control:focus::-ms-value {
   .form-control-static.form-control-sm, .input-group-sm > .form-control-static.form-control,
   .input-group-sm > .form-control-static.input-group-addon,
   .input-group-sm > .input-group-btn > .form-control-static.btn,
-  .input-group-sm > .input-group-btn > .form-control-static.button, .form-control-static.form-control-lg, .input-group-lg > .form-control-static.form-control,
+  .input-group-sm > .input-group-btn > .form-control-static.button, .news-teaser .more-link
+  .input-group-sm > .input-group-btn > a.form-control-static, .form-control-static.form-control-lg, .input-group-lg > .form-control-static.form-control,
   .input-group-lg > .form-control-static.input-group-addon,
   .input-group-lg > .input-group-btn > .form-control-static.btn,
-  .input-group-lg > .input-group-btn > .form-control-static.button {
+  .input-group-lg > .input-group-btn > .form-control-static.button, .news-teaser .more-link
+  .input-group-lg > .input-group-btn > a.form-control-static {
     padding-right: 0;
     padding-left: 0; }
 
 .form-control-sm, .input-group-sm > .form-control,
 .input-group-sm > .input-group-addon,
 .input-group-sm > .input-group-btn > .btn,
-.input-group-sm > .input-group-btn > .button {
+.input-group-sm > .input-group-btn > .button, .news-teaser .more-link
+.input-group-sm > .input-group-btn > a {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem; }
 
@@ -1731,7 +1734,8 @@ select.form-control-sm:not([size]):not([multiple]), .input-group-sm > select.for
 .form-control-lg, .input-group-lg > .form-control,
 .input-group-lg > .input-group-addon,
 .input-group-lg > .input-group-btn > .btn,
-.input-group-lg > .input-group-btn > .button {
+.input-group-lg > .input-group-btn > .button, .news-teaser .more-link
+.input-group-lg > .input-group-btn > a {
   padding: 0.75rem 1.5rem;
   font-size: 1.25rem; }
 
@@ -1930,7 +1934,7 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
     .form-inline .has-feedback .form-control-feedback {
       top: 0; } }
 
-.btn, .button {
+.btn, .button, .news-teaser .more-link a {
   display: inline-block;
   font-weight: normal;
   line-height: 1.25;
@@ -1946,20 +1950,22 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
   font-size: 1rem;
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out; }
-  .btn:focus, .button:focus, .btn:hover, .button:hover {
+  .btn:focus, .button:focus, .news-teaser .more-link a:focus, .btn:hover, .button:hover, .news-teaser .more-link a:hover {
     text-decoration: none; }
-  .btn:focus, .button:focus, .btn.focus, .focus.button {
+  .btn:focus, .button:focus, .news-teaser .more-link a:focus, .btn.focus, .focus.button, .news-teaser .more-link a.focus {
     outline: 0;
     box-shadow: none; }
-  .btn.disabled, .disabled.button, .btn:disabled, .button:disabled {
+  .btn.disabled, .disabled.button, .news-teaser .more-link a.disabled, .btn:disabled, .button:disabled, .news-teaser .more-link a:disabled {
     cursor: not-allowed;
     opacity: .65; }
-  .btn:active, .button:active, .btn.active, .active.button {
+  .btn:active, .button:active, .news-teaser .more-link a:active, .btn.active, .active.button, .news-teaser .more-link a.active {
     background-image: none; }
 
-a.btn.disabled, a.disabled.button,
+a.btn.disabled, a.disabled.button, .news-teaser .more-link a.disabled,
 fieldset[disabled] a.btn,
-fieldset[disabled] a.button {
+fieldset[disabled] a.button,
+fieldset[disabled] .news-teaser .more-link a, .news-teaser .more-link
+fieldset[disabled] a {
   pointer-events: none; }
 
 .btn-primary {
@@ -1982,22 +1988,23 @@ fieldset[disabled] a.button {
     background-image: none;
     border-color: black; }
 
-.btn-secondary, .button {
+.btn-secondary, .button, .news-teaser .more-link a {
   color: #000;
   background-color: transparent;
   border-color: #ccc; }
-  .btn-secondary:hover, .button:hover {
+  .btn-secondary:hover, .button:hover, .news-teaser .more-link a:hover {
     color: #000;
     background-color: transparent;
     border-color: #adadad; }
-  .btn-secondary:focus, .button:focus, .btn-secondary.focus, .focus.button {
+  .btn-secondary:focus, .button:focus, .news-teaser .more-link a:focus, .btn-secondary.focus, .focus.button, .news-teaser .more-link a.focus {
     box-shadow: 0 0 0 2px rgba(204, 204, 204, 0.5); }
-  .btn-secondary.disabled, .disabled.button, .btn-secondary:disabled, .button:disabled {
+  .btn-secondary.disabled, .disabled.button, .news-teaser .more-link a.disabled, .btn-secondary:disabled, .button:disabled, .news-teaser .more-link a:disabled {
     background-color: transparent;
     border-color: #ccc; }
-  .btn-secondary:active, .button:active, .btn-secondary.active, .active.button,
+  .btn-secondary:active, .button:active, .news-teaser .more-link a:active, .btn-secondary.active, .active.button, .news-teaser .more-link a.active,
   .show > .btn-secondary.dropdown-toggle,
-  .show > .dropdown-toggle.button {
+  .show > .dropdown-toggle.button, .news-teaser .more-link
+  .show > a.dropdown-toggle {
     color: #000;
     background-color: transparent;
     background-image: none;
@@ -2222,11 +2229,11 @@ fieldset[disabled] a.button {
     .btn-link:disabled:focus, .btn-link:disabled:hover {
       text-decoration: none; }
 
-.btn-lg, .btn-group-lg > .btn, .btn-group-lg > .button {
+.btn-lg, .btn-group-lg > .btn, .btn-group-lg > .button, .news-teaser .more-link .btn-group-lg > a {
   padding: 0.75rem 1.5rem;
   font-size: 1.25rem; }
 
-.btn-sm, .btn-group-sm > .btn, .btn-group-sm > .button {
+.btn-sm, .btn-group-sm > .btn, .btn-group-sm > .button, .news-teaser .more-link .btn-group-sm > a {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem; }
 
@@ -2274,39 +2281,62 @@ tbody.collapse.show {
   display: -ms-inline-flexbox;
   display: inline-flex;
   vertical-align: middle; }
-  .btn-group > .btn, .btn-group > .button,
+  .btn-group > .btn, .btn-group > .button, .news-teaser .more-link .btn-group > a,
   .btn-group-vertical > .btn,
-  .btn-group-vertical > .button {
+  .btn-group-vertical > .button, .news-teaser .more-link
+  .btn-group-vertical > a {
     position: relative;
     -webkit-box-flex: 0;
         -ms-flex: 0 1 auto;
             flex: 0 1 auto; }
-    .btn-group > .btn:hover, .btn-group > .button:hover,
+    .btn-group > .btn:hover, .btn-group > .button:hover, .news-teaser .more-link .btn-group > a:hover,
     .btn-group-vertical > .btn:hover,
-    .btn-group-vertical > .button:hover {
+    .btn-group-vertical > .button:hover, .news-teaser .more-link
+    .btn-group-vertical > a:hover {
       z-index: 2; }
-    .btn-group > .btn:focus, .btn-group > .button:focus, .btn-group > .btn:active, .btn-group > .button:active, .btn-group > .btn.active, .btn-group > .active.button,
+    .btn-group > .btn:focus, .btn-group > .button:focus, .news-teaser .more-link .btn-group > a:focus, .btn-group > .btn:active, .btn-group > .button:active, .news-teaser .more-link .btn-group > a:active, .btn-group > .btn.active, .btn-group > .active.button, .news-teaser .more-link .btn-group > a.active,
     .btn-group-vertical > .btn:focus,
-    .btn-group-vertical > .button:focus,
+    .btn-group-vertical > .button:focus, .news-teaser .more-link
+    .btn-group-vertical > a:focus,
     .btn-group-vertical > .btn:active,
-    .btn-group-vertical > .button:active,
+    .btn-group-vertical > .button:active, .news-teaser .more-link
+    .btn-group-vertical > a:active,
     .btn-group-vertical > .btn.active,
-    .btn-group-vertical > .active.button {
+    .btn-group-vertical > .active.button, .news-teaser .more-link
+    .btn-group-vertical > a.active {
       z-index: 2; }
-  .btn-group .btn + .btn, .btn-group .button + .btn, .btn-group .btn + .button, .btn-group .button + .button,
+  .btn-group .btn + .btn, .btn-group .button + .btn, .btn-group .news-teaser .more-link a + .btn, .news-teaser .more-link .btn-group a + .btn, .btn-group .btn + .button, .btn-group .button + .button, .btn-group .news-teaser .more-link a + .button, .news-teaser .more-link .btn-group a + .button, .btn-group .news-teaser .more-link .btn + a, .news-teaser .more-link .btn-group .btn + a, .btn-group .news-teaser .more-link .button + a, .news-teaser .more-link .btn-group .button + a, .btn-group .news-teaser .more-link a + a, .news-teaser .more-link .btn-group a + a,
   .btn-group .btn + .btn-group,
   .btn-group .button + .btn-group,
+  .btn-group .news-teaser .more-link a + .btn-group, .news-teaser .more-link
+  .btn-group a + .btn-group,
   .btn-group .btn-group + .btn,
   .btn-group .btn-group + .button,
+  .btn-group .news-teaser .more-link .btn-group + a, .news-teaser .more-link
+  .btn-group .btn-group + a,
   .btn-group .btn-group + .btn-group,
   .btn-group-vertical .btn + .btn,
   .btn-group-vertical .button + .btn,
+  .btn-group-vertical .news-teaser .more-link a + .btn, .news-teaser .more-link
+  .btn-group-vertical a + .btn,
   .btn-group-vertical .btn + .button,
   .btn-group-vertical .button + .button,
+  .btn-group-vertical .news-teaser .more-link a + .button, .news-teaser .more-link
+  .btn-group-vertical a + .button,
+  .btn-group-vertical .news-teaser .more-link .btn + a, .news-teaser .more-link
+  .btn-group-vertical .btn + a,
+  .btn-group-vertical .news-teaser .more-link .button + a, .news-teaser .more-link
+  .btn-group-vertical .button + a,
+  .btn-group-vertical .news-teaser .more-link a + a, .news-teaser .more-link
+  .btn-group-vertical a + a,
   .btn-group-vertical .btn + .btn-group,
   .btn-group-vertical .button + .btn-group,
+  .btn-group-vertical .news-teaser .more-link a + .btn-group, .news-teaser .more-link
+  .btn-group-vertical a + .btn-group,
   .btn-group-vertical .btn-group + .btn,
   .btn-group-vertical .btn-group + .button,
+  .btn-group-vertical .news-teaser .more-link .btn-group + a, .news-teaser .more-link
+  .btn-group-vertical .btn-group + a,
   .btn-group-vertical .btn-group + .btn-group {
     margin-left: -1px; }
 
@@ -2320,33 +2350,33 @@ tbody.collapse.show {
   .btn-toolbar .input-group {
     width: auto; }
 
-.btn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle), .btn-group > .button:not(:first-child):not(:last-child):not(.dropdown-toggle) {
+.btn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle), .btn-group > .button:not(:first-child):not(:last-child):not(.dropdown-toggle), .news-teaser .more-link .btn-group > a:not(:first-child):not(:last-child):not(.dropdown-toggle) {
   border-radius: 0; }
 
-.btn-group > .btn:first-child, .btn-group > .button:first-child {
+.btn-group > .btn:first-child, .btn-group > .button:first-child, .news-teaser .more-link .btn-group > a:first-child {
   margin-left: 0; }
 
 .btn-group > .btn-group {
   float: left; }
 
-.btn-group > .btn-group:not(:first-child):not(:last-child) > .btn, .btn-group > .btn-group:not(:first-child):not(:last-child) > .button {
+.btn-group > .btn-group:not(:first-child):not(:last-child) > .btn, .btn-group > .btn-group:not(:first-child):not(:last-child) > .button, .news-teaser .more-link .btn-group > .btn-group:not(:first-child):not(:last-child) > a {
   border-radius: 0; }
 
 .btn-group .dropdown-toggle:active,
 .btn-group.open .dropdown-toggle {
   outline: 0; }
 
-.btn + .dropdown-toggle-split, .button + .dropdown-toggle-split {
+.btn + .dropdown-toggle-split, .button + .dropdown-toggle-split, .news-teaser .more-link a + .dropdown-toggle-split {
   padding-right: 1.125rem;
   padding-left: 1.125rem; }
-  .btn + .dropdown-toggle-split::after, .button + .dropdown-toggle-split::after {
+  .btn + .dropdown-toggle-split::after, .button + .dropdown-toggle-split::after, .news-teaser .more-link a + .dropdown-toggle-split::after {
     margin-left: 0; }
 
-.btn-sm + .dropdown-toggle-split, .btn-group-sm > .btn + .dropdown-toggle-split, .btn-group-sm > .button + .dropdown-toggle-split {
+.btn-sm + .dropdown-toggle-split, .btn-group-sm > .btn + .dropdown-toggle-split, .btn-group-sm > .button + .dropdown-toggle-split, .news-teaser .more-link .btn-group-sm > a + .dropdown-toggle-split {
   padding-right: 0.375rem;
   padding-left: 0.375rem; }
 
-.btn-lg + .dropdown-toggle-split, .btn-group-lg > .btn + .dropdown-toggle-split, .btn-group-lg > .button + .dropdown-toggle-split {
+.btn-lg + .dropdown-toggle-split, .btn-group-lg > .btn + .dropdown-toggle-split, .btn-group-lg > .button + .dropdown-toggle-split, .news-teaser .more-link .btn-group-lg > a + .dropdown-toggle-split {
   padding-right: 1.125rem;
   padding-left: 1.125rem; }
 
@@ -2364,31 +2394,36 @@ tbody.collapse.show {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center; }
-  .btn-group-vertical .btn, .btn-group-vertical .button,
+  .btn-group-vertical .btn, .btn-group-vertical .button, .btn-group-vertical .news-teaser .more-link a, .news-teaser .more-link .btn-group-vertical a,
   .btn-group-vertical .btn-group {
     width: 100%; }
-  .btn-group-vertical > .btn + .btn, .btn-group-vertical > .button + .btn, .btn-group-vertical > .btn + .button, .btn-group-vertical > .button + .button,
+  .btn-group-vertical > .btn + .btn, .btn-group-vertical > .button + .btn, .news-teaser .more-link .btn-group-vertical > a + .btn, .btn-group-vertical > .btn + .button, .btn-group-vertical > .button + .button, .news-teaser .more-link .btn-group-vertical > a + .button, .news-teaser .more-link .btn-group-vertical > .btn + a, .news-teaser .more-link .btn-group-vertical > .button + a, .news-teaser .more-link .btn-group-vertical > a + a,
   .btn-group-vertical > .btn + .btn-group,
-  .btn-group-vertical > .button + .btn-group,
+  .btn-group-vertical > .button + .btn-group, .news-teaser .more-link
+  .btn-group-vertical > a + .btn-group,
   .btn-group-vertical > .btn-group + .btn,
-  .btn-group-vertical > .btn-group + .button,
+  .btn-group-vertical > .btn-group + .button, .news-teaser .more-link
+  .btn-group-vertical > .btn-group + a,
   .btn-group-vertical > .btn-group + .btn-group {
     margin-top: -1px;
     margin-left: 0; }
 
-.btn-group-vertical > .btn:not(:first-child):not(:last-child), .btn-group-vertical > .button:not(:first-child):not(:last-child) {
+.btn-group-vertical > .btn:not(:first-child):not(:last-child), .btn-group-vertical > .button:not(:first-child):not(:last-child), .news-teaser .more-link .btn-group-vertical > a:not(:first-child):not(:last-child) {
   border-radius: 0; }
 
-.btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .btn, .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .button {
+.btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .btn, .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .button, .news-teaser .more-link .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > a {
   border-radius: 0; }
 
-[data-toggle="buttons"] > .btn input[type="radio"], [data-toggle="buttons"] > .button input[type="radio"],
+[data-toggle="buttons"] > .btn input[type="radio"], [data-toggle="buttons"] > .button input[type="radio"], .news-teaser .more-link [data-toggle="buttons"] > a input[type="radio"],
 [data-toggle="buttons"] > .btn input[type="checkbox"],
-[data-toggle="buttons"] > .button input[type="checkbox"],
+[data-toggle="buttons"] > .button input[type="checkbox"], .news-teaser .more-link
+[data-toggle="buttons"] > a input[type="checkbox"],
 [data-toggle="buttons"] > .btn-group > .btn input[type="radio"],
-[data-toggle="buttons"] > .btn-group > .button input[type="radio"],
+[data-toggle="buttons"] > .btn-group > .button input[type="radio"], .news-teaser .more-link
+[data-toggle="buttons"] > .btn-group > a input[type="radio"],
 [data-toggle="buttons"] > .btn-group > .btn input[type="checkbox"],
-[data-toggle="buttons"] > .btn-group > .button input[type="checkbox"] {
+[data-toggle="buttons"] > .btn-group > .button input[type="checkbox"], .news-teaser .more-link
+[data-toggle="buttons"] > .btn-group > a input[type="checkbox"] {
   position: absolute;
   clip: rect(0, 0, 0, 0);
   pointer-events: none; }
@@ -2442,13 +2477,15 @@ tbody.collapse.show {
   .input-group-addon.form-control-sm,
   .input-group-sm > .input-group-addon,
   .input-group-sm > .input-group-btn > .input-group-addon.btn,
-  .input-group-sm > .input-group-btn > .input-group-addon.button {
+  .input-group-sm > .input-group-btn > .input-group-addon.button, .news-teaser .more-link
+  .input-group-sm > .input-group-btn > a.input-group-addon {
     padding: 0.25rem 0.5rem;
     font-size: 0.875rem; }
   .input-group-addon.form-control-lg,
   .input-group-lg > .input-group-addon,
   .input-group-lg > .input-group-btn > .input-group-addon.btn,
-  .input-group-lg > .input-group-btn > .input-group-addon.button {
+  .input-group-lg > .input-group-btn > .input-group-addon.button, .news-teaser .more-link
+  .input-group-lg > .input-group-btn > a.input-group-addon {
     padding: 0.75rem 1.5rem;
     font-size: 1.25rem; }
   .input-group-addon input[type="radio"],
@@ -2465,23 +2502,23 @@ tbody.collapse.show {
   position: relative;
   font-size: 0;
   white-space: nowrap; }
-  .input-group-btn > .btn, .input-group-btn > .button {
+  .input-group-btn > .btn, .input-group-btn > .button, .news-teaser .more-link .input-group-btn > a {
     position: relative;
     -webkit-box-flex: 1;
         -ms-flex: 1;
             flex: 1; }
-    .input-group-btn > .btn + .btn, .input-group-btn > .button + .btn, .input-group-btn > .btn + .button, .input-group-btn > .button + .button {
+    .input-group-btn > .btn + .btn, .input-group-btn > .button + .btn, .news-teaser .more-link .input-group-btn > a + .btn, .input-group-btn > .btn + .button, .input-group-btn > .button + .button, .news-teaser .more-link .input-group-btn > a + .button, .news-teaser .more-link .input-group-btn > .btn + a, .news-teaser .more-link .input-group-btn > .button + a, .news-teaser .more-link .input-group-btn > a + a {
       margin-left: -1px; }
-    .input-group-btn > .btn:focus, .input-group-btn > .button:focus, .input-group-btn > .btn:active, .input-group-btn > .button:active, .input-group-btn > .btn:hover, .input-group-btn > .button:hover {
+    .input-group-btn > .btn:focus, .input-group-btn > .button:focus, .news-teaser .more-link .input-group-btn > a:focus, .input-group-btn > .btn:active, .input-group-btn > .button:active, .news-teaser .more-link .input-group-btn > a:active, .input-group-btn > .btn:hover, .input-group-btn > .button:hover, .news-teaser .more-link .input-group-btn > a:hover {
       z-index: 3; }
-  .input-group-btn:not(:last-child) > .btn, .input-group-btn:not(:last-child) > .button,
+  .input-group-btn:not(:last-child) > .btn, .input-group-btn:not(:last-child) > .button, .news-teaser .more-link .input-group-btn:not(:last-child) > a,
   .input-group-btn:not(:last-child) > .btn-group {
     margin-right: -1px; }
-  .input-group-btn:not(:first-child) > .btn, .input-group-btn:not(:first-child) > .button,
+  .input-group-btn:not(:first-child) > .btn, .input-group-btn:not(:first-child) > .button, .news-teaser .more-link .input-group-btn:not(:first-child) > a,
   .input-group-btn:not(:first-child) > .btn-group {
     z-index: 2;
     margin-left: -1px; }
-    .input-group-btn:not(:first-child) > .btn:focus, .input-group-btn:not(:first-child) > .button:focus, .input-group-btn:not(:first-child) > .btn:active, .input-group-btn:not(:first-child) > .button:active, .input-group-btn:not(:first-child) > .btn:hover, .input-group-btn:not(:first-child) > .button:hover,
+    .input-group-btn:not(:first-child) > .btn:focus, .input-group-btn:not(:first-child) > .button:focus, .news-teaser .more-link .input-group-btn:not(:first-child) > a:focus, .input-group-btn:not(:first-child) > .btn:active, .input-group-btn:not(:first-child) > .button:active, .news-teaser .more-link .input-group-btn:not(:first-child) > a:active, .input-group-btn:not(:first-child) > .btn:hover, .input-group-btn:not(:first-child) > .button:hover, .news-teaser .more-link .input-group-btn:not(:first-child) > a:hover,
     .input-group-btn:not(:first-child) > .btn-group:focus,
     .input-group-btn:not(:first-child) > .btn-group:active,
     .input-group-btn:not(:first-child) > .btn-group:hover {
@@ -2702,7 +2739,7 @@ tbody.collapse.show {
 .tab-content > .active {
   display: block; }
 
-.card, .grid .article-teaser {
+.card, .news-teaser .article-teaser {
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2714,7 +2751,7 @@ tbody.collapse.show {
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.125); }
 
-.card-block, .grid .article-teaser__content {
+.card-block, .news-teaser .article-teaser__content {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 auto;
           flex: 1 1 auto;
@@ -2857,7 +2894,7 @@ tbody.collapse.show {
     -webkit-box-direction: normal;
         -ms-flex-flow: row wrap;
             flex-flow: row wrap; }
-    .card-deck .card, .card-deck .grid .article-teaser, .grid .card-deck .article-teaser {
+    .card-deck .card, .card-deck .news-teaser .article-teaser, .news-teaser .card-deck .article-teaser {
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
@@ -2868,9 +2905,9 @@ tbody.collapse.show {
       -webkit-box-direction: normal;
           -ms-flex-direction: column;
               flex-direction: column; }
-      .card-deck .card:not(:first-child), .card-deck .grid .article-teaser:not(:first-child), .grid .card-deck .article-teaser:not(:first-child) {
+      .card-deck .card:not(:first-child), .card-deck .news-teaser .article-teaser:not(:first-child), .news-teaser .card-deck .article-teaser:not(:first-child) {
         margin-left: 15px; }
-      .card-deck .card:not(:last-child), .card-deck .grid .article-teaser:not(:last-child), .grid .card-deck .article-teaser:not(:last-child) {
+      .card-deck .card:not(:last-child), .card-deck .news-teaser .article-teaser:not(:last-child), .news-teaser .card-deck .article-teaser:not(:last-child) {
         margin-right: 15px; } }
 
 @media (min-width: 576px) {
@@ -2882,11 +2919,11 @@ tbody.collapse.show {
     -webkit-box-direction: normal;
         -ms-flex-flow: row wrap;
             flex-flow: row wrap; }
-    .card-group .card, .card-group .grid .article-teaser, .grid .card-group .article-teaser {
+    .card-group .card, .card-group .news-teaser .article-teaser, .news-teaser .card-group .article-teaser {
       -webkit-box-flex: 1;
           -ms-flex: 1 0 0px;
               flex: 1 0 0; }
-      .card-group .card + .card, .card-group .grid .article-teaser + .card, .grid .card-group .article-teaser + .card, .card-group .grid .card + .article-teaser, .grid .card-group .card + .article-teaser, .card-group .grid .article-teaser + .article-teaser, .grid .card-group .article-teaser + .article-teaser {
+      .card-group .card + .card, .card-group .news-teaser .article-teaser + .card, .news-teaser .card-group .article-teaser + .card, .card-group .news-teaser .card + .article-teaser, .news-teaser .card-group .card + .article-teaser, .card-group .news-teaser .article-teaser + .article-teaser, .news-teaser .card-group .article-teaser + .article-teaser {
         margin-left: 0;
         border-left: 0; } }
 
@@ -2898,7 +2935,7 @@ tbody.collapse.show {
     -webkit-column-gap: 1.25rem;
        -moz-column-gap: 1.25rem;
             column-gap: 1.25rem; }
-    .card-columns .card, .card-columns .grid .article-teaser, .grid .card-columns .article-teaser {
+    .card-columns .card, .card-columns .news-teaser .article-teaser, .news-teaser .card-columns .article-teaser {
       display: inline-block;
       width: 100%;
       margin-bottom: 0.75rem; } }
@@ -3629,7 +3666,7 @@ a.bg-inverse:focus, a.bg-inverse:hover {
       -ms-flex-align: start !important;
           align-items: flex-start !important; }
 
-.align-items-end {
+.align-items-end, .pre-footer {
   -webkit-box-align: end !important;
       -ms-flex-align: end !important;
           align-items: flex-end !important; }
@@ -4296,7 +4333,7 @@ a.bg-inverse:focus, a.bg-inverse:hover {
 .m-0 {
   margin: 0 0 !important; }
 
-.mt-0 {
+.mt-0, .news-teaser .more-link a {
   margin-top: 0 !important; }
 
 .mr-0 {
@@ -4388,7 +4425,7 @@ a.bg-inverse:focus, a.bg-inverse:hover {
 .m-4 {
   margin: 1.5rem 1.5rem !important; }
 
-.mt-4, .button {
+.mt-4, .hero .button, .hero .news-teaser .more-link a, .news-teaser .more-link .hero a, .image-with-text .button, .image-with-text .news-teaser .more-link a, .news-teaser .more-link .image-with-text a {
   margin-top: 1.5rem !important; }
 
 .mr-4 {
@@ -4411,7 +4448,7 @@ a.bg-inverse:focus, a.bg-inverse:hover {
 .m-5, .logo-row {
   margin: 3rem 3rem !important; }
 
-.mt-5 {
+.mt-5, .grid__element:nth-child(2) {
   margin-top: 3rem !important; }
 
 .mr-5 {
@@ -4427,20 +4464,20 @@ a.bg-inverse:focus, a.bg-inverse:hover {
   margin-right: 3rem !important;
   margin-left: 3rem !important; }
 
-.my-5 {
+.my-5, .load-more {
   margin-top: 3rem !important;
   margin-bottom: 3rem !important; }
 
 .m-6 {
   margin: 60px 60px !important; }
 
-.mt-6 {
+.mt-6, .pre-footer, .news-teaser {
   margin-top: 60px !important; }
 
 .mr-6 {
   margin-right: 60px !important; }
 
-.mb-6, .hero {
+.mb-6, .grid__element, .hero {
   margin-bottom: 60px !important; }
 
 .ml-6 {
@@ -5906,6 +5943,29 @@ h1, h2, h3, h4, h5, h6 {
 .icon-youtube:before, .pre-footer .social-nav li.youtube a:before {
   content: "\e917"; }
 
+.load-more {
+  text-align: center; }
+  .load-more p {
+    font-family: "FuturaBT-Book";
+    text-transform: uppercase; }
+  .load-more a {
+    display: inline-block;
+    border-radius: 100%;
+    background-color: #000;
+    color: #fff;
+    line-height: 49px;
+    width: 49px;
+    -webkit-transition: -webkit-transform 500ms;
+    transition: -webkit-transform 500ms;
+    transition: transform 500ms;
+    transition: transform 500ms, -webkit-transform 500ms; }
+    .load-more a span {
+      position: relative;
+      vertical-align: middle; }
+    .load-more a[aria-expanded="true"] {
+      -webkit-transform: rotate(45deg);
+              transform: rotate(45deg); }
+
 .logo {
   position: relative; }
   .logo__static {
@@ -5933,14 +5993,14 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
     height: auto; }
 
-.button {
+.button, .news-teaser .more-link a {
   min-width: 240px; }
-  .button:hover {
+  .button:hover, .news-teaser .more-link a:hover {
     background: #000;
     color: #fff;
     border-color: #000; }
 
-.btn, .button {
+.btn, .button, .news-teaser .more-link a {
   font-family: "FuturaBT-Book";
   text-transform: uppercase; }
 
@@ -5960,7 +6020,8 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0; }
 
 .pre-footer {
-  background-color: #efd38d; }
+  background-color: #f4f2e9;
+  padding: 2rem 8.33333%; }
   .pre-footer .social-nav {
     text-align: right; }
 
@@ -6029,6 +6090,22 @@ h1, h2, h3, h4, h5, h6 {
 
 .logo-row .logo {
   width: 200px; }
+
+.news-teaser {
+  padding: 0 8.33333%; }
+  .news-teaser h3 {
+    text-align: center;
+    font-size: 2rem; }
+  .news-teaser .article-teaser img {
+    width: 100%;
+    height: auto; }
+  .news-teaser .article-teaser h2 {
+    font-size: 1.5rem;
+    margin: 0.5rem 0; }
+  .news-teaser .article-teaser footer {
+    font-size: 0.875rem; }
+  .news-teaser .more-link {
+    text-align: center; }
 
 .image-with-text__image img {
   width: 100%;

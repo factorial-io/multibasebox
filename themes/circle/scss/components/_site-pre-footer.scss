@@ -1,8 +1,12 @@
 .pre-footer {
+  @extend .mt-6;
   @extend .row;
-  background-color: lighten($circle-brown, 40);
+  @extend .align-items-end;
+  
+  background-color: $circle-egg;
+  padding: 2*$spacer percentage(1/$grid-columns);
   .newsletter-teaser {
-    @extend .col-md-3;
+    @extend .col-md-4;
   }
   .social-nav {
     @extend .col-md;

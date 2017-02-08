@@ -1,0 +1,24 @@
+.load-more {
+  @extend .my-5;
+  text-align: center;
+  p {
+    font-family: $headings-font-family;
+    text-transform: uppercase;
+  }
+  a {
+    display: inline-block;
+    border-radius: 100%;
+    background-color: $black;
+    color: $white;
+    line-height: 49px;
+    width: 49px;
+    transition: transform 500ms;
+    span {
+      position: relative;
+      vertical-align: middle;
+    }
+    &[aria-expanded="true"] {
+      transform: rotate(45deg);
+    }
+  }
+}

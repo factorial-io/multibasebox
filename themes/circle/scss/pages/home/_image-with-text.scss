@@ -23,4 +23,7 @@
   &.egg {
     background-color: $circle-egg;
   }
+  .button {
+    @extend .mt-4;
+  }
 }

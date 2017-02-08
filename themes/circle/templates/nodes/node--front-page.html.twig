@@ -20,6 +20,13 @@
   {% for item in items %}
   {{ item }}
   {% if loop.index == 3 %}
+    <div class="load-more">
+      <p>{{'Show more specials'|trans}}</p>
+      <a data-toggle="collapse" data-target="#more-items" href="#">
+        <span class="icon-plus"></span>
+      </a>
+    </div>
+    
     <div id="more-items" class="more-items collapse">
   {% endif%}
   
@@ -27,11 +34,4 @@
     </div>
   {% endif%}
   {% endfor %}
-  
-  <div class="load-more">
-    <p>{{'Show more specials'|trans}}</p>
-    <a data-toggle="collapse" data-target="#more-items" href="#">
-      <span class="icon-plus"></span>
-    </a>
-  </div>
 </div>

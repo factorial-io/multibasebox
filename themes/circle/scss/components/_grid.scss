@@ -1,16 +1,11 @@
 .grid {
   @extend .row;
   &__element {
+    @extend .mb-6;
     @extend .col-md-4;
     @extend .col-sm-6;
-  }
-  .article-teaser {
-    @extend .card;
-    img {
-      @extend .img-fluid;
-    }
-    &__content {
-      @extend .card-block;
+    &:nth-child(2) {
+      @extend .mt-5;
     }
   }
 }
