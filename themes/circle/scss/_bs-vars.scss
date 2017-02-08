@@ -21,11 +21,11 @@ $pink:   #9b7415 !default;
 $purple: #613d7c !default;
 
 // Create grayscale
-$gray-dark:                 #292b2c !default;
-$gray:                      #464a4c !default;
-$gray-light:                #757575 !default;
-$gray-lighter:              #eceeef !default;
-$gray-lightest:             #f8f8f8 !default;
+$gray-dark:                 #292b2c;
+$gray:                      #464a4c;
+$gray-light:                #757575;
+$gray-lighter:              #cccccc;
+$gray-lightest:             #f8f8f8;
 
 // Reassign color vars to semantic color scheme
 $brand-primary:             $black !default;
@@ -161,8 +161,8 @@ $font-family-serif:      Georgia, "Times New Roman", Times, serif !default;
 $font-family-monospace:  Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
 $font-family-base:       $font-family-sans-serif !default;
 
-$font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
-$font-size-lg:   1.25rem !default;
+$font-size-base: 1rem; // Assumes the browser default, typically `16px`
+$font-size-lg:   1;
 $font-size-sm:   .875rem !default;
 $font-size-xs:   .75rem !default;
 
@@ -325,7 +325,7 @@ $btn-transition:                 all .2s ease-in-out !default;
 // Forms
 
 $input-padding-x:                .75rem !default;
-$input-padding-y:                .5rem !default;
+$input-padding-y:                1rem !default;
 $input-line-height:              1.25 !default;
 
 $input-bg:                       $white !default;
@@ -345,13 +345,13 @@ $input-border-focus:             lighten($brand-primary, 25%) !default;
 $input-box-shadow-focus:         $input-box-shadow, rgba($input-border-focus, .6) !default;
 $input-color-focus:              $input-color !default;
 
-$input-color-placeholder:        $gray-light !default;
+$input-color-placeholder:        $black;
 
 $input-padding-x-sm:             .5rem !default;
 $input-padding-y-sm:             .25rem !default;
 
-$input-padding-x-lg:             1.5rem !default;
-$input-padding-y-lg:             .75rem !default;
+$input-padding-x-lg:             2rem;
+$input-padding-y-lg:             1.2rem;
 
 $input-height:                   (($font-size-base * $input-line-height) + ($input-padding-y * 2)) !default;
 $input-height-lg:                (($font-size-lg * $line-height-lg) + ($input-padding-y-lg * 2)) !default;

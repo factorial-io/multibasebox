@@ -5,3 +5,12 @@
   right: 0;
   bottom: 0;
 }
+
+@mixin circle-inverted-hover() {
+  background: $black;
+  color: $white;
+  &:hover {
+   background: $white;
+   color: $black;
+  }
+}

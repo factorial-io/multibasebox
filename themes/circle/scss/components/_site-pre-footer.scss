@@ -6,25 +6,43 @@
   background-color: $circle-egg;
   padding: 2*$spacer percentage(1/$grid-columns);
   .newsletter-teaser {
-    @extend .col-md-4;
+    @extend .col-md-5;
+    .input-group-lg > .input-group-btn > .btn {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
   }
-  .social-nav {
-    @extend .col-md;
-    text-align: right;
-    ul {
-      @extend .list-inline;
-    }
-    li {
-      @extend .list-inline-item;
-    }
-    
-    $list: instagram facebook twitter vimeo youtube linkedin;
-    @each $social in $list {
-      li.#{$social} {
-        a {
-          @extend %icon;
-          @extend .icon-#{$social};  
-        }
+  ul {
+    margin-bottom: 0;
+  }
+  h6 {
+    margin-bottom: 2rem;
+  }
+}
+
+.social-nav {
+  @extend .col-md;
+  text-align: right;
+  ul {
+    @extend .list-inline;
+  }
+  li {
+    @extend .list-inline-item;
+  }
+  
+  $list: instagram facebook twitter vimeo youtube linkedin;
+  @each $social in $list {
+    li.#{$social} {
+      a {
+        @extend %icon;
+        @extend .icon-#{$social};
+        display: block;
+        vertical-align: middle;
+        line-height: 60px;
+        width: 69px;
+        text-align: center;
+        font-size: 1.8rem;
+        @include circle-inverted-hover();
       }
     }
   }
