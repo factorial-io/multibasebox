@@ -13,3 +13,9 @@
   font-family: $headings-font-family;
   text-transform: uppercase;
 }
+
+.btn-primary {
+  &:hover {
+     @include circle-inverted-hover();
+  }
+}

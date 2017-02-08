@@ -1,13 +1,52 @@
 .site-footer {
+  @extend .row;
+  @extend .align-items-center;
+  height: $site-nav-height;
   background-color: $black;
+  padding: 0 percentage(1/$grid-columns);
   a {
     color: $white;
+    &:hover {
+      color: $gray-lighter;
+    }
   }
   ul {
-    @extend .list-inline;
     margin: 0;
   }
-  li {
-    @extend .list-inline-item;
+  
+  .menu--footer {
+    @extend .col;
+    ul {
+      @extend .list-inline; 
+    }
+    
+    li {
+      @extend .list-inline-item;
+    }
+  }
+  
+  .language-switch {
+    @extend .col-2;
+    margin-left: auto;
+    text-align: right;
+    &__selectbox {
+      display: inline-block;
+    }
+    &__selectlabel {
+      @extend %selectlabel;
+      color: $white;
+    }
+    &__selectbodywrapper {
+      @extend %selectbodywrapper;
+    }
+    &__selectbody {
+      @extend %selectbody;
+      margin: 0 -15px;
+      bottom: 0;
+    }
+    
+    .links {
+      @extend %selectbox-list;
+    }
   }
 }

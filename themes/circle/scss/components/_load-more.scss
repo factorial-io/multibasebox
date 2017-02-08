@@ -8,8 +8,11 @@
   a {
     display: inline-block;
     border-radius: 100%;
-    background-color: $black;
-    color: $white;
+    border: 1px solid transparent;
+    @include circle-inverted-hover();
+    &:hover {
+      border-color: $black;
+    }
     line-height: 49px;
     width: 49px;
     transition: transform 500ms;

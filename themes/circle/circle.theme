@@ -92,12 +92,16 @@ function circle_preprocess_field(&$variables) {
   }
 }
 
+function circle_preprocess_block(&$variables) {
+  $variables['language'] = \Drupal::languageManager()->getCurrentLanguage()->getName();
+}
 
 /**
  * Preprocess regions
  */
 function circle_preprocess_region(&$variables) {
   $variables['attributes']['class'] = array('region');
+  $variables['base_path'] = base_path();
 }
 
 /**

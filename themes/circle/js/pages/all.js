@@ -1,1 +1,2 @@
-import '../components/grid';
+import '../components/grid'
+import '../components/scroll'

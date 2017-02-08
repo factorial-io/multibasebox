@@ -1,0 +1,50 @@
+%selectbodywrapper {
+  position: relative;
+}
+
+%selectbody {
+  position: absolute;
+  left: 0;
+  right: 0;
+  background: $black;
+  border: 1px solid $black;
+}
+
+%selectlabel {
+  text-transform: uppercase;
+  padding: 1rem;
+  padding-right: 0;
+  cursor: pointer;
+  .arrow {
+    @extend %icon;
+    @extend .icon-down;
+    margin-left: 1rem;
+    display: inline-block;
+    transition: transform 200ms;
+    font-size: 0.5rem;
+  }
+  &[aria-expanded="true"] {
+    .arrow {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+%selectbox-list {
+  @extend .list-unstyled;
+  text-align: left;
+  text-transform: uppercase;
+  li {
+    &.is-active, 
+    &:hover {
+      a {
+        background-color: $white;
+        color: $black;
+      }
+    }
+    a {
+      display: block;
+      padding: 20px 30px;
+    }
+  }
+}

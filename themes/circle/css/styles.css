@@ -484,17 +484,17 @@ mark,
   padding: 0.2em;
   background-color: #fcf8e3; }
 
-.list-unstyled {
+.list-unstyled, .site-footer .language-switch .links, .menu--main-menu ul {
   padding-left: 0;
   list-style: none; }
 
-.list-inline, .site-header ul, .site-footer ul, .social-nav ul {
+.list-inline, .menu--header-meta ul, .site-footer .menu--footer ul, .social-nav ul {
   padding-left: 0;
   list-style: none; }
 
-.list-inline-item, .site-header li, .site-footer li, .social-nav li {
+.list-inline-item, .menu--header-meta li, .site-footer .menu--footer li, .social-nav li {
   display: inline-block; }
-  .list-inline-item:not(:last-child), .site-header li:not(:last-child), .site-footer li:not(:last-child), .social-nav li:not(:last-child) {
+  .list-inline-item:not(:last-child), .menu--header-meta li:not(:last-child), .site-footer .menu--footer li:not(:last-child), .social-nav li:not(:last-child) {
     margin-right: 5px; }
 
 .initialism {
@@ -656,7 +656,7 @@ pre {
       padding-right: 15px;
       padding-left: 15px; } }
 
-.row, .pre-footer, .grid, .hero__row, .image-with-text {
+.row, .site-header, .site-footer, .pre-footer, .grid, .hero__row, .image-with-text {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -665,54 +665,54 @@ pre {
   margin-right: -15px;
   margin-left: -15px; }
   @media (min-width: 576px) {
-    .row, .pre-footer, .grid, .hero__row, .image-with-text {
+    .row, .site-header, .site-footer, .pre-footer, .grid, .hero__row, .image-with-text {
       margin-right: -15px;
       margin-left: -15px; } }
   @media (min-width: 768px) {
-    .row, .pre-footer, .grid, .hero__row, .image-with-text {
+    .row, .site-header, .site-footer, .pre-footer, .grid, .hero__row, .image-with-text {
       margin-right: -15px;
       margin-left: -15px; } }
   @media (min-width: 992px) {
-    .row, .pre-footer, .grid, .hero__row, .image-with-text {
+    .row, .site-header, .site-footer, .pre-footer, .grid, .hero__row, .image-with-text {
       margin-right: -15px;
       margin-left: -15px; } }
   @media (min-width: 1200px) {
-    .row, .pre-footer, .grid, .hero__row, .image-with-text {
+    .row, .site-header, .site-footer, .pre-footer, .grid, .hero__row, .image-with-text {
       margin-right: -15px;
       margin-left: -15px; } }
 
 .no-gutters {
   margin-right: 0;
   margin-left: 0; }
-  .no-gutters > .col, .no-gutters > .hero__col, .no-gutters > .image-with-text__text,
+  .no-gutters > .col, .no-gutters > .menu--header-meta, .site-footer .no-gutters > .menu--footer, .no-gutters > .hero__col, .no-gutters > .image-with-text__text,
   .no-gutters > [class*="col-"] {
     padding-right: 0;
     padding-left: 0; }
 
-.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col, .hero__col, .image-with-text__text, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .grid__element, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .pre-footer .newsletter-teaser, .col-md-6, .col-md-7, .image-with-text__image, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md, .social-nav, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl {
+.col-1, .col-2, .site-header .text-logo, .site-footer .language-switch, .col-3, .col-4, .col-5, .col-6, .menu--main-menu, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col, .menu--header-meta, .site-footer .menu--footer, .hero__col, .image-with-text__text, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .grid__element, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .pre-footer .newsletter-teaser, .col-md-6, .col-md-7, .image-with-text__image, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md, .social-nav, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl {
   position: relative;
   width: 100%;
   min-height: 1px;
   padding-right: 15px;
   padding-left: 15px; }
   @media (min-width: 576px) {
-    .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col, .hero__col, .image-with-text__text, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .grid__element, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .pre-footer .newsletter-teaser, .col-md-6, .col-md-7, .image-with-text__image, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md, .social-nav, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl {
+    .col-1, .col-2, .site-header .text-logo, .site-footer .language-switch, .col-3, .col-4, .col-5, .col-6, .menu--main-menu, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col, .menu--header-meta, .site-footer .menu--footer, .hero__col, .image-with-text__text, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .grid__element, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .pre-footer .newsletter-teaser, .col-md-6, .col-md-7, .image-with-text__image, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md, .social-nav, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl {
       padding-right: 15px;
       padding-left: 15px; } }
   @media (min-width: 768px) {
-    .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col, .hero__col, .image-with-text__text, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .grid__element, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .pre-footer .newsletter-teaser, .col-md-6, .col-md-7, .image-with-text__image, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md, .social-nav, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl {
+    .col-1, .col-2, .site-header .text-logo, .site-footer .language-switch, .col-3, .col-4, .col-5, .col-6, .menu--main-menu, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col, .menu--header-meta, .site-footer .menu--footer, .hero__col, .image-with-text__text, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .grid__element, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .pre-footer .newsletter-teaser, .col-md-6, .col-md-7, .image-with-text__image, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md, .social-nav, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl {
       padding-right: 15px;
       padding-left: 15px; } }
   @media (min-width: 992px) {
-    .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col, .hero__col, .image-with-text__text, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .grid__element, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .pre-footer .newsletter-teaser, .col-md-6, .col-md-7, .image-with-text__image, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md, .social-nav, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl {
+    .col-1, .col-2, .site-header .text-logo, .site-footer .language-switch, .col-3, .col-4, .col-5, .col-6, .menu--main-menu, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col, .menu--header-meta, .site-footer .menu--footer, .hero__col, .image-with-text__text, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .grid__element, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .pre-footer .newsletter-teaser, .col-md-6, .col-md-7, .image-with-text__image, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md, .social-nav, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl {
       padding-right: 15px;
       padding-left: 15px; } }
   @media (min-width: 1200px) {
-    .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col, .hero__col, .image-with-text__text, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .grid__element, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .pre-footer .newsletter-teaser, .col-md-6, .col-md-7, .image-with-text__image, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md, .social-nav, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl {
+    .col-1, .col-2, .site-header .text-logo, .site-footer .language-switch, .col-3, .col-4, .col-5, .col-6, .menu--main-menu, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col, .menu--header-meta, .site-footer .menu--footer, .hero__col, .image-with-text__text, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .grid__element, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .pre-footer .newsletter-teaser, .col-md-6, .col-md-7, .image-with-text__image, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md, .social-nav, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl {
       padding-right: 15px;
       padding-left: 15px; } }
 
-.col, .hero__col, .image-with-text__text {
+.col, .menu--header-meta, .site-footer .menu--footer, .hero__col, .image-with-text__text {
   -ms-flex-preferred-size: 0;
       flex-basis: 0;
   -webkit-box-flex: 1;
@@ -732,7 +732,7 @@ pre {
           flex: 0 0 8.33333%;
   max-width: 8.33333%; }
 
-.col-2 {
+.col-2, .site-header .text-logo, .site-footer .language-switch {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 16.66667%;
           flex: 0 0 16.66667%;
@@ -756,7 +756,7 @@ pre {
           flex: 0 0 41.66667%;
   max-width: 41.66667%; }
 
-.col-6 {
+.col-6, .menu--main-menu {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 50%;
           flex: 0 0 50%;
@@ -876,7 +876,7 @@ pre {
 .push-12 {
   left: 100%; }
 
-.offset-1 {
+.offset-1, .menu--main-menu, .menu--header-meta {
   margin-left: 8.33333%; }
 
 .offset-2 {
@@ -3671,7 +3671,7 @@ a.bg-inverse:focus, a.bg-inverse:hover {
       -ms-flex-align: end !important;
           align-items: flex-end !important; }
 
-.align-items-center {
+.align-items-center, .site-header, .site-footer {
   -webkit-box-align: center !important;
       -ms-flex-align: center !important;
           align-items: center !important; }
@@ -5854,7 +5854,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
   font-style: normal; }
 
-[class^="icon-"], [class*=" icon-"], .social-nav li.instagram a, .social-nav li.facebook a, .social-nav li.twitter a, .social-nav li.vimeo a, .social-nav li.youtube a, .social-nav li.linkedin a {
+[class^="icon-"], [class*=" icon-"], .site-footer .language-switch__selectlabel .arrow, .social-nav li.instagram a, .social-nav li.facebook a, .social-nav li.twitter a, .social-nav li.vimeo a, .social-nav li.youtube a, .social-nav li.linkedin a {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icon' !important;
   speak: none;
@@ -5868,13 +5868,11 @@ h1, h2, h3, h4, h5, h6 {
   -moz-osx-font-smoothing: grayscale; }
 
 .icon-arrow-down .path1:before {
-  content: "\e900";
-  color: black; }
+  content: "\e900"; }
 
 .icon-arrow-down .path2:before {
   content: "\e901";
   margin-left: -1em;
-  color: black;
   opacity: 0.5; }
 
 .icon-arrow-left:before {
@@ -5895,7 +5893,7 @@ h1, h2, h3, h4, h5, h6 {
 .icon-close:before {
   content: "\e907"; }
 
-.icon-down:before {
+.icon-down:before, .site-footer .language-switch__selectlabel .arrow:before {
   content: "\e908"; }
 
 .icon-download:before {
@@ -5946,6 +5944,43 @@ h1, h2, h3, h4, h5, h6 {
 .form-control {
   text-transform: uppercase; }
 
+.site-footer .language-switch__selectbodywrapper {
+  position: relative; }
+
+.site-footer .language-switch__selectbody {
+  position: absolute;
+  left: 0;
+  right: 0;
+  background: #000;
+  border: 1px solid #000; }
+
+.site-footer .language-switch__selectlabel {
+  text-transform: uppercase;
+  padding: 1rem;
+  padding-right: 0;
+  cursor: pointer; }
+  .site-footer .language-switch__selectlabel .arrow {
+    margin-left: 1rem;
+    display: inline-block;
+    -webkit-transition: -webkit-transform 200ms;
+    transition: -webkit-transform 200ms;
+    transition: transform 200ms;
+    transition: transform 200ms, -webkit-transform 200ms;
+    font-size: 0.5rem; }
+  .site-footer [aria-expanded="true"].language-switch__selectlabel .arrow {
+    -webkit-transform: rotate(180deg);
+            transform: rotate(180deg); }
+
+.site-footer .language-switch .links {
+  text-align: left;
+  text-transform: uppercase; }
+  .site-footer .language-switch .links li.is-active a, .site-footer .language-switch .links li:hover a {
+    background-color: #fff;
+    color: #000; }
+  .site-footer .language-switch .links li a {
+    display: block;
+    padding: 20px 30px; }
+
 .load-more {
   text-align: center; }
   .load-more p {
@@ -5954,7 +5989,10 @@ h1, h2, h3, h4, h5, h6 {
   .load-more a {
     display: inline-block;
     border-radius: 100%;
-    background-color: #000;
+    border: 1px solid transparent;
+    -webkit-transition: background 400ms, color 300ms;
+    transition: background 400ms, color 300ms;
+    background: #000;
     color: #fff;
     line-height: 49px;
     width: 49px;
@@ -5962,6 +6000,11 @@ h1, h2, h3, h4, h5, h6 {
     transition: -webkit-transform 500ms;
     transition: transform 500ms;
     transition: transform 500ms, -webkit-transform 500ms; }
+    .load-more a:hover {
+      background: #fff;
+      color: #000; }
+    .load-more a:hover {
+      border-color: #000; }
     .load-more a span {
       position: relative;
       vertical-align: middle; }
@@ -6007,20 +6050,81 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "FuturaBT-Book";
   text-transform: uppercase; }
 
+.btn-primary:hover {
+  -webkit-transition: background 400ms, color 300ms;
+  transition: background 400ms, color 300ms;
+  background: #000;
+  color: #fff; }
+  .btn-primary:hover:hover {
+    background: #fff;
+    color: #000; }
+
 .site-header {
   background-color: #000;
-  height: 40px; }
+  height: 66px; }
   .site-header a {
-    color: #fff; }
-  .site-header ul {
-    margin: 0; }
+    display: block;
+    color: #fff;
+    padding: 0 1rem;
+    line-height: 66px; }
+  .site-header .text-logo {
+    text-align: center; }
+    .site-header .text-logo img {
+      width: 95px;
+      height: auto; }
+
+.menu--main-menu ul {
+  margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-transform: uppercase; }
+  .menu--main-menu ul li {
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1; }
+
+.menu--main-menu .menu .menu {
+  position: absolute; }
+  .menu--main-menu .menu .menu a {
+    color: #000; }
+
+.menu--main-menu a {
+  text-align: center; }
+  .menu--main-menu a:hover {
+    background: #fff;
+    color: #000; }
+
+.menu--main-menu .menu-item--active-trail > a {
+  background: #fff;
+  color: #000; }
+
+.menu--header-meta ul {
+  margin: 0; }
+
+.menu--header-meta a:hover {
+  color: #cccccc; }
 
 .site-footer {
-  background-color: #000; }
+  height: 66px;
+  background-color: #000;
+  padding: 0 8.33333%; }
   .site-footer a {
     color: #fff; }
+    .site-footer a:hover {
+      color: #cccccc; }
   .site-footer ul {
     margin: 0; }
+  .site-footer .language-switch {
+    margin-left: auto;
+    text-align: right; }
+    .site-footer .language-switch__selectbox {
+      display: inline-block; }
+    .site-footer .language-switch__selectlabel {
+      color: #fff; }
+    .site-footer .language-switch__selectbody {
+      margin: 0 -15px;
+      bottom: 0; }
 
 .pre-footer {
   background-color: #f4f2e9;
@@ -6042,6 +6146,8 @@ h1, h2, h3, h4, h5, h6 {
     width: 69px;
     text-align: center;
     font-size: 1.8rem;
+    -webkit-transition: background 400ms, color 300ms;
+    transition: background 400ms, color 300ms;
     background: #000;
     color: #fff; }
     .social-nav li.instagram a:hover {
@@ -6054,6 +6160,8 @@ h1, h2, h3, h4, h5, h6 {
     width: 69px;
     text-align: center;
     font-size: 1.8rem;
+    -webkit-transition: background 400ms, color 300ms;
+    transition: background 400ms, color 300ms;
     background: #000;
     color: #fff; }
     .social-nav li.facebook a:hover {
@@ -6066,6 +6174,8 @@ h1, h2, h3, h4, h5, h6 {
     width: 69px;
     text-align: center;
     font-size: 1.8rem;
+    -webkit-transition: background 400ms, color 300ms;
+    transition: background 400ms, color 300ms;
     background: #000;
     color: #fff; }
     .social-nav li.twitter a:hover {
@@ -6078,6 +6188,8 @@ h1, h2, h3, h4, h5, h6 {
     width: 69px;
     text-align: center;
     font-size: 1.8rem;
+    -webkit-transition: background 400ms, color 300ms;
+    transition: background 400ms, color 300ms;
     background: #000;
     color: #fff; }
     .social-nav li.vimeo a:hover {
@@ -6090,6 +6202,8 @@ h1, h2, h3, h4, h5, h6 {
     width: 69px;
     text-align: center;
     font-size: 1.8rem;
+    -webkit-transition: background 400ms, color 300ms;
+    transition: background 400ms, color 300ms;
     background: #000;
     color: #fff; }
     .social-nav li.youtube a:hover {
@@ -6102,11 +6216,60 @@ h1, h2, h3, h4, h5, h6 {
     width: 69px;
     text-align: center;
     font-size: 1.8rem;
+    -webkit-transition: background 400ms, color 300ms;
+    transition: background 400ms, color 300ms;
     background: #000;
     color: #fff; }
     .social-nav li.linkedin a:hover {
       background: #fff;
       color: #000; }
+
+@-webkit-keyframes arrow-top-down {
+  0% {
+    top: 0px; }
+  50% {
+    top: 30px;
+    opacity: 1; }
+  51% {
+    opacity: 0;
+    top: -30px; }
+  52% {
+    opacity: 1; }
+  100% {
+    top: 0px; } }
+
+@keyframes arrow-top-down {
+  0% {
+    top: 0px; }
+  50% {
+    top: 30px;
+    opacity: 1; }
+  51% {
+    opacity: 0;
+    top: -30px; }
+  52% {
+    opacity: 1; }
+  100% {
+    top: 0px; } }
+
+.scroll-animator {
+  color: #fff;
+  font-size: 2rem; }
+  .scroll-animator:hover {
+    color: #fff; }
+
+@supports (-webkit-clip-path: circle(1rem at 1rem 1rem)) {
+  .scroll-animator .icon-arrow-down {
+    -webkit-clip-path: circle(1rem at 1rem 1rem);
+    clip-path: circle(1rem at 1rem 1rem); }
+  .scroll-animator:hover .arrow {
+    position: relative;
+    -webkit-animation-duration: 2.5s;
+            animation-duration: 2.5s;
+    -webkit-animation-name: arrow-top-down;
+            animation-name: arrow-top-down;
+    -webkit-animation-iteration-count: infinite;
+            animation-iteration-count: infinite; } }
 
 .stage {
   position: relative; }
@@ -6147,6 +6310,12 @@ h1, h2, h3, h4, h5, h6 {
     bottom: 90px;
     right: 0;
     background: #fff; }
+  .stage__scroll {
+    position: absolute;
+    bottom: 1rem;
+    left: 0;
+    right: 0;
+    text-align: center; }
 
 .counter {
   display: -webkit-box;
@@ -6238,7 +6407,7 @@ h1, h2, h3, h4, h5, h6 {
     height: 100%; }
   .page-node-type-discover-page main {
     position: fixed;
-    height: calc(100% - 40px);
+    height: calc(100% - 66px);
     width: 100%;
     background: #7c851a; }
 

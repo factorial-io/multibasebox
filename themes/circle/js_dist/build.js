@@ -49,7 +49,7 @@ if ($grid[0]) {
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"imagesloaded":18,"masonry-layout":19}],2:[function(require,module,exports){
+},{"imagesloaded":19,"masonry-layout":20}],2:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -150,7 +150,7 @@ var animate = exports.animate = function animate() {
     back = !back;
 };
 
-},{"snapsvg":22}],3:[function(require,module,exports){
+},{"snapsvg":23}],3:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -183,7 +183,7 @@ exports.default = siteModal;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"../vendor/bs/modal":11}],4:[function(require,module,exports){
+},{"../vendor/bs/modal":12}],4:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -204,7 +204,26 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"../utils/urls":9,"./modal":3}],5:[function(require,module,exports){
+},{"../utils/urls":10,"./modal":3}],5:[function(require,module,exports){
+(function (global){
+'use strict';
+
+var _jquery = (typeof window !== "undefined" ? window['jQuery'] : typeof global !== "undefined" ? global['jQuery'] : null);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(0, _jquery2.default)(document).on('click', '[data-scroll-target]', function (e) {
+  e.preventDefault();
+  var $clicked = (0, _jquery2.default)(e.currentTarget);
+  var $el = (0, _jquery2.default)($clicked.data('scroll-target'));
+  (0, _jquery2.default)('body, html').animate({ scrollTop: $el.offset().top }, 1000);
+});
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+
+},{}],6:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -229,12 +248,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"./components/newsletter":4,"./pages/all":6,"./pages/home":7,"./utils/lazyload":8}],6:[function(require,module,exports){
+},{"./components/newsletter":4,"./pages/all":7,"./pages/home":8,"./utils/lazyload":9}],7:[function(require,module,exports){
 'use strict';
 
 require('../components/grid');
 
-},{"../components/grid":1}],7:[function(require,module,exports){
+require('../components/scroll');
+
+},{"../components/grid":1,"../components/scroll":5}],8:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -260,7 +281,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"../components/logo":2,"../utils/lazyload":8,"../vendor/bs/collapse":10}],8:[function(require,module,exports){
+},{"../components/logo":2,"../utils/lazyload":9,"../vendor/bs/collapse":11}],9:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -295,7 +316,7 @@ exports.default = lazyload;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -308,7 +329,7 @@ var getUrl = exports.getUrl = function getUrl(path) {
   return "" + drupalSettings.path.baseUrl + drupalSettings.path.pathPrefix + path;
 };
 
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -696,7 +717,7 @@ var Collapse = function ($) {
 
 exports.default = Collapse;
 
-},{"./util":12}],11:[function(require,module,exports){
+},{"./util":13}],12:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1271,7 +1292,7 @@ var Modal = function ($) {
 
 exports.default = Modal;
 
-},{"./util":12}],12:[function(require,module,exports){
+},{"./util":13}],13:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1429,7 +1450,7 @@ var Util = function ($) {
 
 exports.default = Util;
 
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 /**
  * matchesSelector v2.0.1
  * matchesSelector( element, '.selector' )
@@ -1484,7 +1505,7 @@ exports.default = Util;
 
 }));
 
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 /**
  * EvEmitter v1.0.3
  * Lil' event emitter
@@ -1595,7 +1616,7 @@ return EvEmitter;
 
 }));
 
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 // Copyright (c) 2013 Adobe Systems Incorporated. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -2046,7 +2067,7 @@ return EvEmitter;
     (typeof module != "undefined" && module.exports) ? (module.exports = eve) : (typeof define === "function" && define.amd ? (define("eve", [], function() { return eve; })) : (glob.eve = eve));
 })(this);
 
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 /**
  * Fizzy UI utils v2.0.3
  * MIT license
@@ -2285,7 +2306,7 @@ return utils;
 
 }));
 
-},{"desandro-matches-selector":13}],17:[function(require,module,exports){
+},{"desandro-matches-selector":14}],18:[function(require,module,exports){
 /*!
  * getSize v2.0.2
  * measure size of elements
@@ -2496,7 +2517,7 @@ return getSize;
 
 });
 
-},{}],18:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 /*!
  * imagesLoaded v4.1.1
  * JavaScript is all like "You images are done yet or what?"
@@ -2868,7 +2889,7 @@ return ImagesLoaded;
 
 });
 
-},{"ev-emitter":14}],19:[function(require,module,exports){
+},{"ev-emitter":15}],20:[function(require,module,exports){
 /*!
  * Masonry v4.1.1
  * Cascading grid layout library
@@ -3075,7 +3096,7 @@ return ImagesLoaded;
 
 }));
 
-},{"get-size":17,"outlayer":21}],20:[function(require,module,exports){
+},{"get-size":18,"outlayer":22}],21:[function(require,module,exports){
 /**
  * Outlayer Item
  */
@@ -3630,7 +3651,7 @@ return Item;
 
 }));
 
-},{"ev-emitter":14,"get-size":17}],21:[function(require,module,exports){
+},{"ev-emitter":15,"get-size":18}],22:[function(require,module,exports){
 /*!
  * Outlayer v2.1.0
  * the brains and guts of a layout library
@@ -4571,7 +4592,7 @@ return Outlayer;
 
 }));
 
-},{"./item":20,"ev-emitter":14,"fizzy-ui-utils":16,"get-size":17}],22:[function(require,module,exports){
+},{"./item":21,"ev-emitter":15,"fizzy-ui-utils":17,"get-size":18}],23:[function(require,module,exports){
 // Snap.svg 0.5.0
 //
 // Copyright (c) 2013 – 2017 Adobe Systems Incorporated. All rights reserved.
@@ -13202,6 +13223,6 @@ Snap.plugin(function (Snap, Element, Paper, glob) {
 
 return Snap;
 }));
-},{"eve":15}]},{},[5])
+},{"eve":16}]},{},[6])
 
 //# sourceMappingURL=build.js.map

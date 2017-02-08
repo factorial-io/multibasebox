@@ -25,6 +25,14 @@
     right: 0;
     background: $white;
   }
+  &__scroll {
+    position: absolute;
+    bottom: $spacer;
+    left: 0;
+    right: 0;
+    text-align: center;
+  }
+
 }
 
 .counter {
