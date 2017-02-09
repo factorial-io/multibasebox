@@ -10,7 +10,14 @@ var watchify = require('watchify');
 var babel = require('babelify');
 
 function compile(watch) {
-  var bundler = watchify(browserify('./js/index.js', { debug: true }).transform(babel, { presets: ['es2015'] }));
+  var bundler = false
+  if (watch) {
+    bundler = watchify(browserify('./js/index.js', { debug: true }))
+  } else {
+    bundler = browserify('./js/index.js', { debug: false })
+  }
+  
+  bundler.transform(babel, { presets: ['es2015'] })
 
   function rebundle() {
     bundler.bundle()
@@ -53,3 +60,5 @@ gulp.task('default',function() {
   gulp.watch('scss/**/*.scss',['styles']);
 	watch()
 });
+
+gulp.task('dist', ['styles', 'build_js'])

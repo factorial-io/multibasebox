@@ -48,7 +48,6 @@ if ($grid[0]) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-
 },{"imagesloaded":19,"masonry-layout":20}],2:[function(require,module,exports){
 'use strict';
 
@@ -182,7 +181,6 @@ var loadUrl = exports.loadUrl = function loadUrl(url) {
 exports.default = siteModal;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-
 },{"../vendor/bs/modal":12}],4:[function(require,module,exports){
 (function (global){
 'use strict';
@@ -203,7 +201,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 });
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-
 },{"../utils/urls":10,"./modal":3}],5:[function(require,module,exports){
 (function (global){
 'use strict';
@@ -222,7 +219,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 });
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-
 },{}],6:[function(require,module,exports){
 (function (global){
 'use strict';
@@ -247,7 +243,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 (0, _lazyload2.default)((0, _jquery2.default)('body'));
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-
 },{"./components/newsletter":4,"./pages/all":7,"./pages/home":8,"./utils/lazyload":9}],7:[function(require,module,exports){
 'use strict';
 
@@ -280,7 +275,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 (0, _logo.animate)();
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-
 },{"../components/logo":2,"../utils/lazyload":9,"../vendor/bs/collapse":11}],9:[function(require,module,exports){
 (function (global){
 'use strict';
@@ -315,7 +309,6 @@ var lazyload = function lazyload($els) {
 exports.default = lazyload;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-
 },{}],10:[function(require,module,exports){
 "use strict";
 
@@ -13223,6 +13216,6 @@ Snap.plugin(function (Snap, Element, Paper, glob) {
 
 return Snap;
 }));
-},{"eve":16}]},{},[6])
+},{"eve":16}]},{},[6]);
 
 //# sourceMappingURL=build.js.map

@@ -43,3 +43,5 @@ core/phpcs.xml
 core/phpunit.xml
 
 themes/circle/node_modules
+themes/circle/css
+themes/circle/js_dist
