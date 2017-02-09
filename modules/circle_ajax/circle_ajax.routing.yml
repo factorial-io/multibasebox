@@ -1,0 +1,7 @@
+circle_ajax.livecam:
+  path: '/livecam' 
+  defaults: 
+    _controller: '\Drupal\circle_ajax\Controller\CircleAjaxController::livecam' 
+    _title: 'Livecam'
+  requirements: 
+    _permission: 'access content' 

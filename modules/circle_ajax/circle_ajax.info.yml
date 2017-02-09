@@ -1,0 +1,5 @@
+name: Circle Ajax
+type: module
+description: Provides needed ajax routes
+core: 8.x
+package: The Circle

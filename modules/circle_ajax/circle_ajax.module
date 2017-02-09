@@ -1,0 +1,15 @@
+<?php 
+function circle_ajax_theme()
+{
+  return array
+  (
+    'circle_ajax_livecam' => array
+    (
+      'variables' => array
+      (
+        'imageUrl' => FALSE
+      ),
+      'template' => 'circle_ajax-livecam',
+    ),
+  );
+}

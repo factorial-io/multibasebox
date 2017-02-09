@@ -8,6 +8,7 @@ var buffer = require('vinyl-buffer');
 var browserify = require('browserify');
 var watchify = require('watchify');
 var babel = require('babelify');
+var gutil = require('gulp-util');
 
 function compile(watch) {
   var bundler = false
@@ -21,7 +22,18 @@ function compile(watch) {
 
   function rebundle() {
     bundler.bundle()
-      .on('error', function(err) { console.error(err); this.emit('end'); })
+      .on('error', function(err) {
+        if (err && err.codeFrame) {
+            gutil.log(
+            gutil.colors.red("Browserify error: "),
+            gutil.colors.cyan(err.filename) + ` [${err.loc.line},${err.loc.column}]`, "\r\n" + err.message + "\r\n" + err.codeFrame)
+        }
+        else {
+            gutil.log(err);
+        }
+        // console.error(err); 
+        this.emit('end'); 
+      })
       .pipe(source('build.js'))
       .pipe(buffer())
       .pipe(sourcemaps.init({ loadMaps: true }))

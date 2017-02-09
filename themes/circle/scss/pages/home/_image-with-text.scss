@@ -26,4 +26,20 @@
   .button {
     @extend .mt-4;
   }
+  
+  // Animation
+  h2,
+  .para,
+  .button,
+  img {
+    &.animation {
+      transition: all 800ms;
+      position: relative;
+      top: 0;
+    }
+    &.is-in-prepared {
+      top: 100px;
+      opacity: 0;
+    }
+  }
 }
