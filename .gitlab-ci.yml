@@ -6,7 +6,7 @@ before_script:
 
 deploy develop:
   script:
-  - "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null www-data@207.154.218.133 \"/var/www/develop/html/deployment/deploy.sh develop\""
+  - "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p 122 www-data@207.154.218.133 \"/var/www/develop/html/deployment/deploy.sh develop\""
   tags:
   stage: deploy
   except:
@@ -17,7 +17,7 @@ deploy develop:
 
 deploy prod:
   script:
-  - "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null www-data@207.154.218.133 \"/var/www/develop/html/deployment/deploy.sh prod\""
+  - "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p 122 www-data@207.154.218.133 \"/var/www/develop/html/deployment/deploy.sh prod\""
   tags:
   stage: deploy
   except:
