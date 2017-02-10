@@ -1,0 +1,27 @@
+image: "randomknowledge/docker-pyenv-tox"
+
+before_script:
+  - eval $(ssh-agent -s)
+  - ssh-add <(echo "$SSH_PRIVATE_KEY")
+
+deploy develop:
+  script:
+  - "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p 122 www-data@207.154.218.133 \"/var/www/develop/html/deployment/deploy.sh develop\""
+  tags:
+  stage: deploy
+  except:
+  - tags
+  only:
+  - develop
+  environment: develop
+
+deploy prod:
+  script:
+  - "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p 122 www-data@207.154.218.133 \"/var/www/develop/html/deployment/deploy.sh prod\""
+  tags:
+  stage: deploy
+  except:
+  - tags
+  only:
+  - master
+  environment: prod
