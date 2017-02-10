@@ -177,6 +177,9 @@ function circle_preprocess_paragraph(&$vars) {
     while (!empty($element[$delta])) {
       $element[$delta]['#item_attributes'] = array('data-lazy' => true);
       $vars['content']['field_image'][$delta] = $element[$delta];
+      if ($delta === 0) {
+        $vars['large_image'] = ImageStyle::load('max_2600x2600')->buildUrl( $element[$delta]['#item']->entity->getFileUri() );
+      }
       $delta++;
     }
   }
