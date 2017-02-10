@@ -5,7 +5,7 @@
   <nav class="discover-slides__nav">
     <ul>
     {% for title in titles %}
-      <li><a data-index={{loop.index}}>{{title}}</a></li>
+      <li data-index={{loop.index - 1}}><a>{{title}}</a></li>
     {% endfor %}
     </ul>
   </nav>

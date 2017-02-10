@@ -5,10 +5,13 @@
     position: absolute;
     right: $spacer;
     top: $spacer;
+    z-index: 10;
   }
   
   &__slide {
     height: 100%;
+    width: 100%;
+    position: absolute;
   }
   &__fullwrap {
     background-size: cover;
@@ -21,11 +24,17 @@
   height: 100%;
   body {
     height: 100%;
+    overflow: hidden;
   }
   main {
     position: fixed;
+    top: $site-nav-height;
     height: calc(100% - #{$site-nav-height});
     width: 100%;
     background: $circle-green;
+  }
+  .fix-wrapper {
+    position: fixed;
+    width: 100%;
   }
 }
