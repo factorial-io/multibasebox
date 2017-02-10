@@ -37,6 +37,7 @@
     ]
   },
   "browserify-shim": {
-    "jquery": "global:jQuery"
+    "jquery": "global:jQuery",
+    "pannellum": "global:pannellum"
   }
 }

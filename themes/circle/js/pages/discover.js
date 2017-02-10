@@ -1,5 +1,6 @@
 import $ from 'jquery'
 import mousewheelFactory from 'jquery-mousewheel'
+import '../components/panorama'
 
 class Discover {
   constructor() {

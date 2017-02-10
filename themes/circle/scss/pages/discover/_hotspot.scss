@@ -1,7 +1,7 @@
 .hotspot-overlay {
   position: absolute;
   min-width: 100vw;      /*  for cover    */
-  min-height: 100vh - 66px;     /*  for cover    */
+  min-height: calc(100vh - 66px);     /*  for cover    */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

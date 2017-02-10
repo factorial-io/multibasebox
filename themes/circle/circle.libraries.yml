@@ -5,6 +5,7 @@ global:
       css/styles.css: {}
   js:
     js_dist/build.js: {}
+    node_modules/pannellum/build/pannellum.js: {}
   dependencies:
       - core/jquery
       - core/drupalSettings
