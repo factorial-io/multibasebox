@@ -7,6 +7,6 @@ $('[data-panorama-url]').each((index, el) => {
     panorama: $(el).data('panorama-url'),
     mouseZoom: false,
     showControls: false,
-    preview: decodeURI($(el).data('panorama-preview-url'))
+    preview: $(el).data('panorama-preview-url')
   })
 })
