@@ -4,6 +4,11 @@
   roles:
     - franklinkim.docker
     - franklinkim.docker-compose
+    - role: php-cli-ondrej
+      php_cli_ondrej_version: 7.0
+      php_cli_ondrej_mods_present: [{name: zip}, {name: json}, {name: xml}, {name: readline}, {name: mysql}, {name: memcache}, {name: memcached}, {name: msgpack}, {name: mstring}, {name: mcrypt}, {name: gd}, {name: curl}]
+    - php-composer
+    - kbrebanov.zip
   tasks:
     - name: Add vagrant user to docker-group
       user: name=vagrant
