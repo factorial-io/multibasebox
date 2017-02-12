@@ -1,0 +1,26 @@
+---
+- hosts: all
+  sudo: yes
+  roles:
+    - franklinkim.docker
+    - franklinkim.docker-compose
+    - role: php-cli-ondrej
+      php_cli_ondrej_version: 7.0
+      php_cli_ondrej_mods_present: [{name: zip}, {name: json}, {name: xml}, {name: readline}, {name: mysql}, {name: memcache}, {name: memcached}, {name: msgpack}, {name: mstring}, {name: mcrypt}, {name: gd}, {name: curl}]
+    - php-composer
+    - kbrebanov.zip
+  tasks:
+    - name: Add vagrant user to docker-group
+      user: name=vagrant
+        groups=docker
+        append=yes
+    - name: Pull haproxy-config
+      shell: docker pull factorial/haproxy-config
+      # docker integration seems broken with current ansible version
+      # docker_image:
+      #   name: factorial/haproxy-config
+    - name: Increase vm.max_map_count for elasticsearch
+      sysctl:
+        name: vm.max_map_count
+        value: 262144
+        state: present
