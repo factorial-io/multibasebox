@@ -10,6 +10,7 @@ blueprint:
   inheritsFrom: mbb
   configName: '%project-slug%-%slug.with-hyphens.without-feature%.dev'
   branch: '%identifier%'
+  host: '%project-slug%-%slug.with-hyphens.without-feature%.dev'
   database:
     name: '%slug.without-feature%_mysql'
   docker:
@@ -18,6 +19,12 @@ blueprint:
     name: '%project-slug%%slug.without-feature%_web_1'
 
 tasks:
+  spinUp:
+    - execute(docker,run)
+  spinDown:
+    - execute(docker,stop)
+  deleteContainer:
+    - execute(docker,rm)
   start:
     - docker start %host.docker.name%
     - run_task(reload_haproxy)
