@@ -6,6 +6,16 @@ password: vagrant
 rootFolder: /vagrant
 environment:
   ROOT_FOLDER: "%dockerHost.rootFolder%/%host.docker.projectFolder%"
+blueprint:
+  inheritsFrom: mbb
+  configName: '%project-slug%-%slug.with-hyphens.without-feature%.dev'
+  branch: '%identifier%'
+  database:
+    name: '%slug.without-feature%_mysql'
+  docker:
+    projectFolder: '%project-slug%--%slug.with-hyphens.without-feature%'
+    vhost: '%project-slug%-%slug.with-hyphens.without-feature%.dev'
+    name: '%project-slug%%slug.without-feature%_web_1'
 
 tasks:
   start:
@@ -47,3 +57,5 @@ tasks:
     - cd $ROOT_FOLDER/_tools/docker && ./run.sh %host.docker.name% $ROOT_FOLDER --webRoot %host.rootFolder%  --ssh %host.port%  --no-install --vhost %host.host%
     - execute(docker, reload_haproxy)
     - execute(docker, waitForServices)
+
+
