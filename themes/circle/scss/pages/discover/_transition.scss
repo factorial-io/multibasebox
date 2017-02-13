@@ -1,0 +1,13 @@
+.discover-slides {
+  &__slide {
+    transform: translateZ(0);
+    &.active {
+      z-index: 5;
+    }
+    &.transitioning {
+      .discover-slides__fullwrap {
+        clip-path: url(#svgPath); 
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+name: Filename Transliteration
+type: module
+description: Provide transliteration of german umlauts until it is in Drupal Core
+core: 8.x
+package: The Circle

@@ -205,3 +205,9 @@ function circle_preprocess_image(&$vars) {
     unset($vars['attributes']['src']);
   }
 }
+
+function circle_page_attachments_alter(&$build) {
+  $build['#attached']['drupalSettings']['circle'] = array(
+    'panorama-loadtext' => t('Load panorama')
+  );
+}

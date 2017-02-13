@@ -4,7 +4,9 @@ global:
     base:
       css/styles.css: {}
   js:
-    node_modules/pannellum/build/pannellum.js: {}
+    js/vendor/pannellum/RequestAnimationFrame.js: {}
+    js/vendor/pannellum/libpannellum.js: {}
+    js/vendor/pannellum/pannellum.js: {}
     js_dist/build.js: {}
   dependencies:
       - core/jquery

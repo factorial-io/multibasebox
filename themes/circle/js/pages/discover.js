@@ -1,6 +1,8 @@
 import $ from 'jquery'
 import mousewheelFactory from 'jquery-mousewheel'
 import '../components/panorama'
+import 'gsap/CSSPlugin'
+import TweenLite from 'gsap/TweenLite'
 
 class Discover {
   constructor() {
@@ -39,7 +41,27 @@ class Discover {
   }
   
   gotoPage(page) {
-    this.$slides.css('zIndex', 0).eq(page).css('zIndex', 5)
+    let $page = this.$slides.removeClass('active').eq(page).addClass('active')
+    $page.addClass('transitioning')
+    
+    const $mask = $('#circle-shape')
+    let tweenObj = {scale: 1}
+    const maskWidth = 175 // Cannot use getBBox() because of FF
+    const maskHeight = 184 // Cannot use getBBox() because of FF
+
+    const update = () => {
+      $mask[0].setAttribute('transform', `translate(${$page.width()/2 - (maskWidth * tweenObj.scale) / 2 }, ${$page.height()/2 - (maskHeight * tweenObj.scale) / 2}) scale(${tweenObj.scale})`)
+
+      const el = $page[0]
+      el.style.display = 'none'
+      el.offsetHeight
+      el.style.display = 'block'
+    }
+    let scale = ($page.width() / maskWidth) * 2
+    TweenLite.to(tweenObj, 2, {scale: scale, onUpdate: update, onComplete : () => {
+      $page.removeClass('transitioning')
+    }})
+
     $('.discover-slides__nav li').removeClass('active').eq(page).addClass('active')
   }
   
