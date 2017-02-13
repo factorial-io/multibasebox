@@ -41,6 +41,8 @@ class Discover {
   }
   
   gotoPage(page) {
+    let lastActive = page !== 0 ? this.page : page + 1
+    this.$slides.removeClass('was-active transitioning').eq(lastActive).addClass('was-active')
     let $page = this.$slides.removeClass('active').eq(page).addClass('active')
     $page.addClass('transitioning')
     
@@ -57,25 +59,30 @@ class Discover {
       el.offsetHeight
       el.style.display = 'block'
     }
+    
     let scale = ($page.width() / maskWidth) * 2
+
     TweenLite.to(tweenObj, 2, {scale: scale, onUpdate: update, onComplete : () => {
       $page.removeClass('transitioning')
+      tweenObj = {scale: 1}
+      update()
+      this.$slides.attr('style', null)
     }})
 
     $('.discover-slides__nav li').removeClass('active').eq(page).addClass('active')
+    
+    this.page = page
   }
   
   nextPage() {
     if (this.page < this.totalPages - 1) {
-      this.page += 1
-      this.gotoPage(this.page)
+      this.gotoPage(this.page + 1)
     }
   }
   
   previousPage() {
     if (this.page > 0) {
-      this.page -= 1
-      this.gotoPage(this.page)
+      this.gotoPage(this.page - 1)
     }
   }
 }

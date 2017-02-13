@@ -1,12 +1,20 @@
 .discover-slides {
-  &__slide {
+  &__nav {
     transform: translateZ(0);
+  }
+  &__slide {
+    display: none;
     &.active {
+      display: block;
       z-index: 5;
     }
+    &.was-active {
+      display: block;
+      z-index: 3;
+    }
     &.transitioning {
+      clip-path: url(#svgPath); 
       .discover-slides__fullwrap {
-        clip-path: url(#svgPath); 
       }
     }
   }
