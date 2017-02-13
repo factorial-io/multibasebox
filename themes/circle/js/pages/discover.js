@@ -74,7 +74,9 @@ class Discover {
       return
     }
     
-    this.$slides.removeClass('was-active transitioning').eq(this.page).addClass('was-active')
+    if (this.page > -1) { //special case preloader
+      this.$slides.removeClass('was-active transitioning').eq(this.page).addClass('was-active')
+    }
     $page.addClass('transitioning')
     
     const $mask = $('#circle-shape')
