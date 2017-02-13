@@ -19,6 +19,9 @@ class Discover {
   init() {
     mousewheelFactory($)
     $('body').on('mousewheel', this.scrollHandler.bind(this))
+    $(document).on('click', '.discover-slides__nav li', (e) => {
+      this.gotoPage($('.discover-slides__nav li').index(e.currentTarget))
+    })
     this.gotoPage(this.page)
   }
   
@@ -41,9 +44,14 @@ class Discover {
   }
   
   gotoPage(page) {
-    let lastActive = page !== 0 ? this.page : page + 1
-    this.$slides.removeClass('was-active transitioning').eq(lastActive).addClass('was-active')
     let $page = this.$slides.removeClass('active').eq(page).addClass('active')
+    $('.discover-slides__nav li').removeClass('active').eq(page).addClass('active')
+    
+    if (page === this.page || (page === 0 && this.page === 0)) {
+      return
+    }
+    
+    this.$slides.removeClass('was-active transitioning').eq(this.page).addClass('was-active')
     $page.addClass('transitioning')
     
     const $mask = $('#circle-shape')
@@ -62,14 +70,16 @@ class Discover {
     
     let scale = ($page.width() / maskWidth) * 2
 
-    TweenLite.to(tweenObj, 2, {scale: scale, onUpdate: update, onComplete : () => {
-      $page.removeClass('transitioning')
-      tweenObj = {scale: 1}
-      update()
-      this.$slides.attr('style', null)
-    }})
-
-    $('.discover-slides__nav li').removeClass('active').eq(page).addClass('active')
+    TweenLite.to(tweenObj, 2, {
+      scale: scale, 
+      onUpdate: update, 
+      onComplete : () => {
+        $page.removeClass('transitioning')
+        tweenObj = {scale: 1}
+        update()
+        this.$slides.attr('style', null)
+      }
+    })
     
     this.page = page
   }

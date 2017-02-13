@@ -1,0 +1,20 @@
+.discover-slides {
+  .intro {
+    @include full-overlay;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    h2 {
+      color: $white;
+    }
+    
+    .scroll-animator {
+      position: absolute;
+      bottom: $spacer;
+      left: 0;
+      right: 0;
+      text-align: center;
+    }
+  }
+}

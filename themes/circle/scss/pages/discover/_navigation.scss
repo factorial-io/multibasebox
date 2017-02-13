@@ -1,7 +1,11 @@
 .discover-slides {
   &__nav {
-    li.active {
-      text-decoration: underline;
+    color: $white;
+    li {
+      cursor: pointer;
+      &.active {
+        text-decoration: underline; 
+      }
     }
   }
 }

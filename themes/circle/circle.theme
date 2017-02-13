@@ -132,6 +132,10 @@ function circle_preprocess_node(&$vars) {
     while(!empty($textBl[$delta])) {
       $par = $textBl[$delta]['#paragraph'];
       
+      if ($delta == 0) {
+        $textBl[$delta]['#view_mode'] = 'special';
+      }
+      
       if(!empty($par->field_headline) && !empty($par->field_headline->getValue())) {
         $val = $par->field_headline->getValue();
         $titles[] = $val[0]['value'];
