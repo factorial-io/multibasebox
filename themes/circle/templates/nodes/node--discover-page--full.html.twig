@@ -9,10 +9,18 @@
     {% endfor %}
     </ul>
   </nav>
+  <div data-preloader class="discover-slides__slide preloader">
+    
+    {% include '@circle/partials/logo.html.twig' %}
+    
+    <div class="progress">
+      <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+  </div>
   {% endif %}
   
   <div class="discover-slides__slide">
-    <div class="discover-slides__fullwrap" style="background-image: url({{imageUrls[loop.index - 1]}})" data-bg-desk="{{imageUrls[loop.index - 1]}}">
+    <div class="discover-slides__fullwrap" data-bg-desk="{{imageUrls[loop.index - 1]}}">
     {{item}}
     </div>
   </div>

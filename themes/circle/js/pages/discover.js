@@ -3,26 +3,49 @@ import mousewheelFactory from 'jquery-mousewheel'
 import '../components/panorama'
 import 'gsap/CSSPlugin'
 import TweenLite from 'gsap/TweenLite'
+import {animate, stop} from '../components/logo'
 
 class Discover {
   constructor() {
-    this.$slides = $('.discover-slides__slide')
-    this.page = 0
+    this.$slides = $('.discover-slides__slide:not(.preloader)')
+    this.page = -1
     this.blocked = false
     this.totalPages = this.$slides.length
     
     if ($('.page-node-type-discover-page')[0]) {
-      this.init()
+      this.load()
     }
   }
-  
+  load() {
+    const $preloader = $('[data-preloader]')
+    if (animate) {
+      animate()
+    }
+    const sel = '[data-bg-desk]'
+    const total = $(sel).length
+    let loaded = 0
+    $(sel).each((index, el) => {
+      $('<img>').attr('src', $(el).data('bg-desk')).on('load', () => {
+        $(el).css('background-image', `url(${ $(el).data('bg-desk') })`)
+        loaded += 1
+        const percentage = loaded/total * 100
+        $('.progress-bar').css({width: `${percentage}%`}).attr('aria-valuenow', percentage)
+        if (loaded >= total) {
+          this.gotoPage(0, () => {
+            stop()
+            $preloader.remove()
+            this.init()
+          })
+        }
+      })
+    })
+  }
   init() {
     mousewheelFactory($)
     $('body').on('mousewheel', this.scrollHandler.bind(this))
     $(document).on('click', '.discover-slides__nav li', (e) => {
       this.gotoPage($('.discover-slides__nav li').index(e.currentTarget))
     })
-    this.gotoPage(this.page)
   }
   
   scrollHandler(e) {
@@ -43,7 +66,7 @@ class Discover {
     }
   }
   
-  gotoPage(page) {
+  gotoPage(page, cb) {
     let $page = this.$slides.removeClass('active').eq(page).addClass('active')
     $('.discover-slides__nav li').removeClass('active').eq(page).addClass('active')
     
@@ -63,7 +86,7 @@ class Discover {
       $mask[0].setAttribute('transform', `translate(${$page.width()/2 - (maskWidth * tweenObj.scale) / 2 }, ${$page.height()/2 - (maskHeight * tweenObj.scale) / 2}) scale(${tweenObj.scale})`)
 
       const el = $page[0]
-      el.style.display = 'none'
+      el.style.display = 'none' //Force rerendering in Safari
       el.offsetHeight
       el.style.display = 'block'
     }
@@ -78,6 +101,9 @@ class Discover {
         tweenObj = {scale: 1}
         update()
         this.$slides.attr('style', null)
+        if (cb) {
+          cb()
+        }
       }
     })
     

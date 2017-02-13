@@ -1,0 +1,10 @@
+.discover-slides__slide.preloader {
+  display: block;
+  background: $white;
+  .logo {
+    width: 10%;
+  }
+  .progress-bar {
+    height: 2px;
+  }
+}
