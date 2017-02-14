@@ -126,6 +126,7 @@ function circle_preprocess_node(&$vars) {
     $items = [];
     $titles = [];
     $imageUrls = [];
+    $labelPositions = [];
     $textBl = $vars['content']['field_page'];
     $delta = 0;
     
@@ -149,6 +150,13 @@ function circle_preprocess_node(&$vars) {
         $imageUrls[] = '';
       }
       
+      if(!empty($par->field_label_position) && !empty($par->field_label_position->getValue())) {
+        $val = $par->field_label_position->getValue();
+        $labelPositions[] = $val[0]['value'];
+      } else {
+        $labelPositions[] = '';
+      }
+      
       $items[] = $textBl[$delta];
       $delta++;
     }
@@ -156,6 +164,7 @@ function circle_preprocess_node(&$vars) {
     $vars['items'] = $items;
     $vars['titles'] = $titles;
     $vars['imageUrls'] = $imageUrls;
+    $vars['labelPositions'] = $labelPositions;
   }
   
   $vars['base_path'] = base_path();

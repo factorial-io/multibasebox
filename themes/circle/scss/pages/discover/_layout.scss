@@ -3,8 +3,9 @@
   height: 100%;
   &__nav {
     position: absolute;
-    right: $spacer;
+    right: 3*$spacer;
     top: $spacer;
+    bottom: $spacer;
     z-index: 10;
   }
   
@@ -17,6 +18,31 @@
     background-size: cover;
     background-position: center;
     height: 100%;
+    position: relative;
+  }
+}
+
+.white-label {
+  $distance: 10%;
+  position: absolute;
+  z-index: 5;
+  background: $white;
+  max-width: 360px;
+  left: $distance;
+  text-align: center;
+  
+  .top-right & {
+    left: auto;
+    right: $distance;
+  }
+  .bottom-left & {
+    bottom: 0;
+  }
+  
+  .bottom-right & {
+    bottom: 0;
+    left: auto;
+    right: $distance;
   }
 }
 

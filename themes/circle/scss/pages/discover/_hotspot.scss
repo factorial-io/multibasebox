@@ -12,5 +12,32 @@
   }
   &__spot {
     position: absolute;
+    .spot {
+      position: relative;
+      z-index: 10;
+      background: $white;
+      cursor: pointer;
+    }
+    .spot-wrapper {
+      position: relative;
+    }
+    
+    &.active {
+      .popover {
+        display: block;
+      }
+    }
   }
+}
+
+.page-node-type-discover-page {
+  .popover {
+    width: 360px;
+    display: none;
+    background: $white;
+    img {
+      width: 100%;
+      height: auto;
+    }
+  } 
 }

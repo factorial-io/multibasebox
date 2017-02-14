@@ -1,10 +1,47 @@
 .discover-slides {
   &__nav {
-    color: $white;
+    ul {
+      @extend .list-unstyled;
+      display: flex;
+      flex-direction: column;
+      color: $white;
+      justify-content: center;
+      margin: 0;
+      height: 100%;
+    }
     li {
       cursor: pointer;
+      position: relative;
+      $dot-size: 0.6rem;
+      margin-bottom: 0.5*$spacer;
+      
+      a {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+      } 
+      .dot {
+        display: inline-block;
+        border: 2px solid $white;
+        width: $dot-size;
+        height: $dot-size;
+        border-radius: 100%;
+      }
+      .title {
+        background: $white;
+        color: $black;
+        margin-right: -1010px;
+      }
+      &:hover {
+       .title {
+         margin-right: 10px;
+       } 
+      }
       &.active {
-        text-decoration: underline; 
+        text-decoration: underline;
+        .dot {
+          background-color: $white;
+        }
       }
     }
   }

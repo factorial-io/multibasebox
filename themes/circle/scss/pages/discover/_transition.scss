@@ -14,7 +14,21 @@
     }
     &.transitioning {
       clip-path: url(#svgPath); 
-      .discover-slides__fullwrap {
+    }
+  }
+  
+  .title-ani {
+    @include full-overlay;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $white;
+    h3 {
+      font-size: 3rem;
+      img {
+        min-width: 300px;
+        width: 100%;
+        height: auto;
       }
     }
   }

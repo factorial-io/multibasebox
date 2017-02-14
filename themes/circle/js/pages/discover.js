@@ -1,9 +1,15 @@
 import $ from 'jquery'
 import mousewheelFactory from 'jquery-mousewheel'
 import '../components/panorama'
-import 'gsap/CSSPlugin'
 import TweenLite from 'gsap/TweenLite'
+import 'gsap/CSSPlugin'
+import TimelineLite from 'gsap/TimelineLite'
 import {animate, stop} from '../components/logo'
+import lazyload from '../utils/lazyload'
+import {initHotspots} from '../components/hotspots'
+import Mustache from 'mustache'
+
+Mustache.tags = ["[[", "]]"] //Prevent mustache twig beard clash
 
 class Discover {
   constructor() {
@@ -77,6 +83,39 @@ class Discover {
     if (this.page > -1) { //special case preloader
       this.$slides.removeClass('was-active transitioning').eq(this.page).addClass('was-active')
     }
+    
+    /**
+    * Title Animation
+    **/
+    if (this.titleTimeline) {
+      this.titleTimeline.kill()
+      $('.title-ani').remove()
+    }
+    if (page > 0 || this.page > 1) {
+      let title = null
+      if (this.page !== 0) {
+        title = $page.find('.white-label h2').html()
+      }
+      $page.append(Mustache.render($('#title-ani').html(), {title: title}))
+    
+      const titleEl = $('.title-ani h3')[0]
+      this.titleTimeline = new TimelineLite({
+        onComplete: () => {
+          $('.title-ani').remove()
+        }
+      })
+      TweenLite.set(titleEl, {opacity: 0, scale: 0.5})
+      this.titleTimeline.to(titleEl, .5, {opacity: 1, scale: 1})
+      this.titleTimeline.to(titleEl, 1, {opacity: 0}, '+=1.5')
+      this.titleTimeline.play()
+    }
+    /**
+    * End Title Animation
+    **/
+    
+    /**
+    * Mask Animation
+    **/
     $page.addClass('transitioning')
     
     const $mask = $('#circle-shape')
@@ -102,12 +141,18 @@ class Discover {
         $page.removeClass('transitioning')
         tweenObj = {scale: 1}
         update()
+        lazyload($page, false)
+        initHotspots($page)
         this.$slides.attr('style', null)
         if (cb) {
           cb()
         }
       }
     })
+    /**
+    * End Mask Animation
+    **/
+
     
     this.page = page
   }

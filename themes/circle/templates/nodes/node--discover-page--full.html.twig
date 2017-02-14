@@ -5,7 +5,12 @@
   <nav class="discover-slides__nav">
     <ul>
     {% for title in titles %}
-      <li data-index={{loop.index - 1}}><a>{{title}}</a></li>
+      <li data-index={{loop.index - 1}}>
+        <a>
+          <span class="title">{{title}}</span>
+          <span class="dot"></span>
+        </a>
+      </li>
     {% endfor %}
     </ul>
   </nav>
@@ -30,12 +35,26 @@
   {% endif %}
   
   <div class="discover-slides__slide">
-    <div class="discover-slides__fullwrap" data-bg-desk="{{imageUrls[loop.index - 1]}}">
+    <div class="discover-slides__fullwrap {{labelPositions[loop.index - 1]}}" data-bg-desk="{{imageUrls[loop.index - 1]}}">
     {{item}}
     </div>
   </div>
 {% endfor %}
 </div>
+
+
+<script type="x-tmpl-mustache" id="title-ani">
+  <div class="title-ani">
+    <h3>
+    [[#title]]
+      [[title]]
+    [[/title]]
+    [[^title]]
+      <img src="{{ base_path ~ directory }}/assets/images/text-logo.svg" />
+    [[/title]]
+    </h3>
+  </div>
+</script>
 
 <svg viewbox="0 0 500 500" height="0" width="0">
     <defs>

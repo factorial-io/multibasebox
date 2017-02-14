@@ -1,6 +1,9 @@
 {% set properties = content.field_image[0]['#item'].getProperties() %}
-
-<div class="hotspot-overlay" style="width: calc(100vh * ({{properties.width.value}} / {{properties.height.value}})); height: calc(100vw * ({{properties.height.value}} / {{properties.width.value}}) - 66px)">
+<div class="white-label">
+  {{content.field_headline}}
+  {{content.field_text}}
+</div>
+<div data-hotspot-area class="hotspot-overlay" style="width: calc(100vh * ({{properties.width.value}} / {{properties.height.value}})); height: calc(100vw * ({{properties.height.value}} / {{properties.width.value}}) - 66px)">
   <div class="hotspot-overlay__container">
     {{content.field_hotspot}}
   </div>

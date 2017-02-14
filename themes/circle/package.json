@@ -29,8 +29,10 @@
     "jquery": "^3.1.1",
     "jquery-mousewheel": "^3.1.13",
     "masonry-layout": "^4.1.1",
+    "mustache": "^2.3.0",
     "pannellum": "https://github.com/mpetroff/pannellum/tarball/master",
-    "snapsvg": "^0.5.1"
+    "snapsvg": "^0.5.1",
+    "tether": "^1.4.0"
   },
   "browserify": {
     "transform": [
