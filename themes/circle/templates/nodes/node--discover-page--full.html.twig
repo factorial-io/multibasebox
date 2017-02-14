@@ -9,12 +9,22 @@
     {% endfor %}
     </ul>
   </nav>
-  <div data-preloader class="discover-slides__slide preloader was-active">
+  <div data-preloader class="discover-slides__slide discover-preloader was-active">
+    <div class="discover-preloader__content">
+      <div class="discover-preloader__text">
+        <h2>{{'Your invitation to a new'|trans}}</h2>
+        <div class="discover-preloader__wow">
+          <span class="big-letter">W</span>
+          {% include '@circle/partials/logo.html.twig' %}
+          <span class="big-letter">W</span>
+        </div>
+      </div>
     
-    {% include '@circle/partials/logo.html.twig' %}
-    
-    <div class="progress">
-      <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+      <div class="progress-wrapper">
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+      </div>
     </div>
   </div>
   {% endif %}

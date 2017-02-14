@@ -7,7 +7,7 @@ import {animate, stop} from '../components/logo'
 
 class Discover {
   constructor() {
-    this.$slides = $('.discover-slides__slide:not(.preloader)')
+    this.$slides = $('.discover-slides__slide:not([data-preloader])')
     this.page = -1
     this.blocked = false
     this.totalPages = this.$slides.length

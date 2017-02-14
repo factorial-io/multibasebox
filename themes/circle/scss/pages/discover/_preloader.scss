@@ -1,8 +1,28 @@
-.discover-slides__slide.preloader {
-  display: block;
-  background: $white;
-  .logo {
-    width: 10%;
+.discover-preloader {
+  background-image: url(../assets/images/preloadBG.jpg);
+  &__content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  &__wow {
+    display: flex;
+    align-items: center;
+    .big-letter {
+      font-size: 10rem;
+      font-family: $headings-font-family;
+    }
+  }
+  .progress-wrapper {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 4*$spacer;
+  }
+  .progress {
+    width: 200px;
+    margin: 0 auto;
   }
   .progress-bar {
     height: 2px;
