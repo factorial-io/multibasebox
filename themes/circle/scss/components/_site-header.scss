@@ -24,6 +24,7 @@
 .menu--main-menu {
   @extend .col-6;
   @extend .offset-1;
+  position: static;
   ul {
     @extend .list-unstyled;
     margin: 0;
@@ -35,8 +36,31 @@
   }
   .menu .menu {
     position: absolute;
+    left: 0;
+    right: 0;
+    li {
+      flex: none;
+    }
     a {
       color: $black;
+      &.is-active {
+        border-bottom: 3px solid $black;
+        
+        $list: (
+          yellow: $circle-yellow,
+          orange: $circle-orange,
+          red: $circle-red,
+          brown: $circle-brown,
+          green: $circle-green,
+          sea: $circle-sea,
+          blue: $circle-blue
+        );
+        @each $key, $color in $list {
+          .#{$key} & {
+            border-bottom-color: $color;
+          }
+        }
+      }
     }
   }
   

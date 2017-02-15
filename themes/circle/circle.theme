@@ -170,6 +170,9 @@ function circle_preprocess_node(&$vars) {
   $vars['base_path'] = base_path();
 }
 
+/**
+ * Preprocess page vars
+ */
 function circle_preprocess_page(&$vars) {
   if(isset($vars['node'])) {
     $node = $vars['node'];
@@ -219,8 +222,21 @@ function circle_preprocess_image(&$vars) {
   }
 }
 
+/**
+ * Add JS variables
+ */
 function circle_page_attachments_alter(&$build) {
   $build['#attached']['drupalSettings']['circle'] = array(
     'panorama-loadtext' => t('Load panorama')
   );
+}
+
+/**
+ * Add html vars
+ */
+function circle_preprocess_html(&$variables) {
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if ($node && $node->type->entity->id() == 'module') {
+    $variables['color'] = $node->field_color->getValue()[0]['value'];
+  }
 }
