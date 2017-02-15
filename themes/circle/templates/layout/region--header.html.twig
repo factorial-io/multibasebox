@@ -1,5 +1,10 @@
-<a class="text-logo" href="{{url('<front>')}}">
-  <img src="{{ base_path ~ directory }}/assets/images/text-logo.svg" />
-</a>
-{{elements.mainmenuen}}
-{{elements.headermeta}}
+<div class="fix-wrapper">
+  <header class="site-header" role="banner">
+    <a class="text-logo" href="{{url('<front>')}}">
+      <img src="{{ base_path ~ directory }}/assets/images/text-logo.svg" />
+    </a>
+    {{elements.mainmenuen}}
+    {{elements.headermeta}}
+  </header>
+</div>
+{{elements.mainmenu}}

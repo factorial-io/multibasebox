@@ -22,8 +22,9 @@
     {% if node_type != 'discover_page' %}
     {{ page_top }}
     {% endif %}
-    
-    {{ page }}
+    <div class="page-content-wrapper">
+      {{ page }}
+    </div>
     
     {{ page_bottom }}
     <js-bottom-placeholder token="{{ placeholder_token }}">
