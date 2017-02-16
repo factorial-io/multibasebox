@@ -104,6 +104,7 @@ function circle_preprocess_region(&$variables) {
   $variables['base_path'] = base_path();
 }
 
+
 /**
  * Preprocess nodes
  */
@@ -135,6 +136,7 @@ function circle_preprocess_node(&$vars) {
       
       if ($delta == 0) {
         $textBl[$delta]['#view_mode'] = 'special';
+        $textBl[$delta]['#cache']['keys'][] = 'special';
       }
       
       if(!empty($par->field_headline) && !empty($par->field_headline->getValue())) {
