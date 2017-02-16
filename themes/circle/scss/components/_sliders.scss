@@ -4,6 +4,9 @@
     @extend .slick-slide;
     position: relative;
   }
+  img[data-lazy] {
+    opacity: 0;
+  }
   .image-with-text-slide {
     img {
       width: 100%;

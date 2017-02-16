@@ -1,0 +1,12 @@
+.video-stage {
+  &__thumbs {
+    @extend .row;
+  }
+  .slide {
+    @extend .col-md-3;
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
