@@ -1,6 +1,11 @@
 .video-stage {
   &__thumbs {
     @extend .row;
+    .is-out {
+      opacity: 1;
+      position: relative;
+      top: 30px;
+    }
   }
   .slide {
     @extend .col-md-3;
