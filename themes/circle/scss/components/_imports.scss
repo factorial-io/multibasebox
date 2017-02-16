@@ -14,6 +14,10 @@
 @import 'grid';
 @import 'animation';
 @import 'panorama';
-@import 'text-module';
 @import 'sliders';
-@import 'video-stage';
+
+// Modules
+@import 'modules/video-stage';
+@import 'modules/image-with-text';
+@import 'modules/image-with-text-and-image';
+@import 'modules/text-module';

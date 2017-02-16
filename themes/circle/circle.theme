@@ -169,6 +169,18 @@ function circle_preprocess_node(&$vars) {
     $vars['labelPositions'] = $labelPositions;
   }
   
+  if ($node->type->entity->id() == 'module') {
+    $vars['email'] = theme_get_setting('email');
+    $vars['phone'] = theme_get_setting('phone');
+    $vars['percentage'] = theme_get_setting('sold_space') / theme_get_setting('total_space') * 100;
+    $vars['sold_space'] = theme_get_setting('sold_space');
+    $vars['total_space'] = theme_get_setting('total_space');
+    
+    
+    $node = \Drupal\node\Entity\Node::load(17);
+    $vars['brands'] = node_view($node);
+  }
+  
   $vars['base_path'] = base_path();
 }
 

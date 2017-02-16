@@ -1,0 +1,11 @@
+.module-teasers {
+  @extend .row;
+  article {
+    @extend .col-md-5;
+    @extend .offset-md-1;
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}

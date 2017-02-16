@@ -1,5 +1,6 @@
 import Player from '@vimeo/player'
 import {classanimateIn, classanimateOut} from './classanimate'
+import {scrollTo} from './scroll'
 import $ from 'jquery'
 
 $('[data-video-stage]').each((index, el) => {
@@ -38,5 +39,11 @@ $('[data-video-stage]').each((index, el) => {
     } else {
       player.play()
     }
+    scrollTo($('[data-video-player]', $(el)))
+  })
+  
+  $('[data-video-thumbs]', $(el)).slick({
+    slidesToShow: 4,
+    slidesToSlide: 1
   })
 })

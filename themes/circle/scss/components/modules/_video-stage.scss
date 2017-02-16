@@ -1,6 +1,9 @@
 .video-stage {
+  &__player {
+    @extend .embed-responsive;
+    @extend .embed-responsive-16by9;
+  }
   &__thumbs {
-    @extend .row;
     .is-out {
       opacity: 1;
       position: relative;
@@ -8,7 +11,7 @@
     }
   }
   .slide {
-    @extend .col-md-3;
+    padding: 0 30px;
     img {
       width: 100%;
       height: auto;
