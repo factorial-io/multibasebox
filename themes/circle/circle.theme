@@ -222,6 +222,21 @@ function circle_preprocess_paragraph(&$vars) {
 }
 
 /**
+ * Add theme suggestions for charts
+ */
+function circle_theme_suggestions_paragraph_alter(array &$suggestions, array $variables) {
+  $paragraph = $variables['elements']['#paragraph'];
+  if ($paragraph->type->entity->id() == 'chart_data') {
+    $viewmode = $paragraph->getParentEntity()->get('field_type')->value;
+    $suggestions[] = $suggestions[] = 'paragraph__' . $paragraph->bundle() . '__' . $viewmode;
+  }
+  if ($paragraph->type->entity->id() == 'chart') {
+    $viewmode = $paragraph->get('field_type')->value;
+    $suggestions[] = $suggestions[] = 'paragraph__' . $paragraph->bundle() . '__' . $viewmode;
+  }
+}
+
+/**
  * Hook preprocess_image
  * Prepare images for Lazy Loading if data-lazy attribute is set
  */
