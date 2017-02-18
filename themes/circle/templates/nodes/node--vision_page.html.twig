@@ -1,4 +1,15 @@
-<div data-vimeo-id="{{content.field_vimeo_id[0]['#context'].value}}" class="video-stage">
+<div class="vision-stage">
+  <h1>{{content.field_hero_title}}</h1>
+  <div data-vimeo-id="{{content.field_vimeo_id[0]['#context'].value}}" class="video-stage">
+  </div>
 </div>
 
-{{content}}
+{{content.field_text_blocks}}
+
+<div class="egg-area">
+{{content.field_blocks_middle}}
+</div>
+
+{{content.field_blocks_below}}
+
+{{content.field_other_modules}}

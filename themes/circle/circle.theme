@@ -219,6 +219,8 @@ function circle_preprocess_paragraph(&$vars) {
   if (isset($vars['content']['field_action'][0]) && isset($vars['content']['field_button_link'][0])) {
     $vars['content']['field_button_link'][0]['#attributes'] = array('data-action' => array($vars['content']['field_action'][0]['#markup']));
   }
+  
+  $vars['base_path'] = base_path();
 }
 
 /**

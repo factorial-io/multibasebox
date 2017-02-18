@@ -1,0 +1,13 @@
+<article class="article-full">
+  <h1>{{ label }}</h1>
+  {{ content.field_image }}
+  <div class="article-teaser__content">
+  
+    <footer>
+        {{ date }}
+        {{ metadata }}
+    </footer>
+  
+    {{ content|without('field_image')|without('links') }}
+  </div>
+</article>

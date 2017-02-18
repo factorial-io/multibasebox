@@ -6,6 +6,16 @@
     font-size: 2rem;
   }
   
+  .more-link {
+    text-align: center;
+    a {
+      @extend .button;
+      @extend .mt-0;
+    }
+  }
+}
+
+.grid {
   .article-teaser {
     @extend .card;
     img {
@@ -22,14 +32,6 @@
     }
     footer {
       font-size: $font-size-sm;
-    }
-  }
-  
-  .more-link {
-    text-align: center;
-    a {
-      @extend .button;
-      @extend .mt-0;
     }
   }
 }
