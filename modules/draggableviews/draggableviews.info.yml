@@ -1,0 +1,12 @@
+name: DraggableViews
+type: module
+description: Complete rewrite of D7 draggableviews
+# core: 8.x
+dependencies:
+  - views
+
+# Information added by Drupal.org packaging script on 2016-10-21
+version: '8.x-1.0'
+core: '8.x'
+project: 'draggableviews'
+datestamp: 1477076053

@@ -221,6 +221,10 @@ function circle_preprocess_paragraph(&$vars) {
   }
   
   $vars['base_path'] = base_path();
+  $paragraph = $vars['paragraph'];
+  if ($paragraph->type->entity->id() == 'circles_slider') {
+    $vars['circles'] = views_embed_view('circle_modules', 'circle_modules_block');
+  }
 }
 
 /**

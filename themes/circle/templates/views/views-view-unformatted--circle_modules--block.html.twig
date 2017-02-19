@@ -1,0 +1,7 @@
+<div data-slider data-slick='{"slidesToShow": 5, "slidesToScroll": 1, "swipeToSlide": true, "infinite": false}' class="circle-slider">
+{% for row in rows %}
+  <div class="slide">
+    {{ row.content }}
+  </div>
+{% endfor %}
+</div>
