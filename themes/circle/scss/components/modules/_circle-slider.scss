@@ -1,6 +1,47 @@
 .circle-slider {
+  .slide {
+    position: relative;
+    padding: 12vw 3vw 0 3vw;
+    transition: left 500ms;
+    left: 0;
+    img {
+      transform-origin: bottom;
+      transition: transform 500ms;
+    }
+    &.move-left {
+      left: -4vw;
+    }
+    &.move-right {
+      left: 4vw;
+    }
+    h6 {
+      text-align: center;
+      margin: 10px 0;
+      
+    }
+    
+    @each $key, $color in $color-list {
+      .#{$key} h6 {
+        color: $color;
+      }
+    }
+    
+    .details {
+      display: none;
+    }
+  }
+  .slick-center {
+    img {
+      transform: scale(1.7);
+    }
+  }
   img {
     width: 100%;
     height: auto;
+  }
+  .circle-details {
+    min-height: 15vw;
+    font-size: 2rem;
+    padding: 2*$spacer percentage(1/$grid-columns);
   }
 }

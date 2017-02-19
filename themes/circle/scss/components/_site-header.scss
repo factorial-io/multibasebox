@@ -81,16 +81,7 @@
       &.is-active {
         border-bottom: 3px solid $black;
         
-        $list: (
-          yellow: $circle-yellow,
-          orange: $circle-orange,
-          red: $circle-red,
-          brown: $circle-brown,
-          green: $circle-green,
-          sea: $circle-sea,
-          blue: $circle-blue
-        );
-        @each $key, $color in $list {
+        @each $key, $color in $color-list {
           .#{$key} & {
             border-bottom-color: $color;
           }

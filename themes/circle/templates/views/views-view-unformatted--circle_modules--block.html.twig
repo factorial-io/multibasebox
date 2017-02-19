@@ -1,7 +1,13 @@
-<div data-slider data-slick='{"slidesToShow": 5, "slidesToScroll": 1, "swipeToSlide": true, "infinite": false}' class="circle-slider">
-{% for row in rows %}
-  <div class="slide">
-    {{ row.content }}
+<div class="circle-slider">
+  <div data-circle-slider data-slick='{"slidesToShow": 5, "slidesToScroll": 1, "infinite": true, "initialSlide": 0, "centerMode": true, "adaptiveHeight": true}'>
+  {% for row in rows %}
+    <div class="slide">
+      {{ row.content }}
+    </div>
+  {% endfor %}
   </div>
-{% endfor %}
+
+  <div data-circle-details class="circle-details">
+  
+  </div>
 </div>
