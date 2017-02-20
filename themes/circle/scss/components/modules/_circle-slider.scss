@@ -2,18 +2,18 @@
   .slide {
     position: relative;
     padding: 12vw 3vw 0 3vw;
-    transition: left 500ms;
-    left: 0;
+//    transition: left 500ms;
+//    left: 0;
     img {
       transform-origin: bottom;
       transition: transform 500ms;
     }
-    &.move-left {
-      left: -4vw;
-    }
-    &.move-right {
-      left: 4vw;
-    }
+    //&.move-left {
+//      left: -4vw;
+//    }
+//    &.move-right {
+//      left: 4vw;
+//    }
     h6 {
       text-align: center;
       margin: 10px 0;

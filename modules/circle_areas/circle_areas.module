@@ -1,0 +1,68 @@
+<?php
+function circle_areas_node_view(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display, $view_mode) {
+  $overview_id = false;
+  $parent_id = false;
+  $field_name = false;
+  $overview_title = t('Overview');
+  $overview = null;
+  if ($entity->type->entity->id() == 'rental_overview') {
+    $overview_id = $entity->id();
+    $parent_id = $overview_id;
+    $field_name = 'field_belongs_to_overview';
+    $overview = $entity;
+  } else if ($entity->type->entity->id() == 'rental_house') {
+    $parent_id = $entity->field_belongs_to_overview->getValue()[0]['target_id'];
+    $overview_id = $parent_id;
+    $overview = node_load($overview_id);
+    $field_name = 'field_belongs_to_overview';
+  } else if ($entity->type->entity->id() == 'rental_floor') {
+    $parent_id = $entity->field_house->getValue()[0]['target_id'];
+    $overview_id = $parent_id;
+    $field_name = 'field_house';
+    $house = node_load($parent_id);
+    $overview = node_load($house->field_belongs_to_overview->getValue()[0]['target_id']);
+    $overview_title = $house->getTitle();
+    
+    $build['house'] = array(
+      '#house-title' => $house->getTitle()
+    );
+  }
+  
+  if ($overview_id && $parent_id) {
+    $query = \Drupal::entityQuery('node');
+    $query->condition($field_name.'.target_id', $parent_id);
+    $nids = $query->execute();
+    $links = [];
+    $options = array('set_active_class' => true);
+    foreach (node_load_multiple($nids) as $child) {
+      $links[] = Drupal\Core\Link::createFromRoute($child->getTitle(), 'entity.node.canonical', ['node' => $child->id()], $options);
+    }
+    $build['houses_nav'] = array(
+      '#theme' => 'rental_overview_nav',
+      '#links' => $links,
+      '#overview_link' => Drupal\Core\Link::createFromRoute($overview_title, 'entity.node.canonical', ['node' => $overview_id], $options)
+    );
+  }
+  
+  if ($overview) {
+    $build['overview'] = array(
+      '#color' => $overview->field_color->getValue()[0]['value']
+    );
+  }
+}
+
+function circle_areas_theme()
+{
+  return array
+  (
+    'rental_overview_nav' => array
+    (
+      'variables' => array
+      (
+        'links' => array(),
+        'overview_link' => ''
+      ),
+      'template' => 'circle_areas-overview_nav',
+    ),
+  );
+}

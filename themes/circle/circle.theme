@@ -31,6 +31,22 @@ function circle_preprocess_menu__social_media(&$variables) {
 }
 
 /**
+ * Highlight last menu link when on Floor, House or Overview
+ */
+function circle_preprocess_menu__main_menu(&$variables) {
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if ($node && in_array(
+    $node->type->entity->id(), 
+    array('rental_floor', 'rental_house', 'rental_overview')
+    )
+  ) {
+    end($variables['items']);
+    $lastKey = key($variables['items']);
+    $variables['items'][$lastKey]['in_active_trail'] = true;
+  }
+}
+
+/**
  * Add Theme settings for the circle
  */
 function circle_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormStateInterface &$form_state, $form_id = NULL) {
@@ -59,20 +75,6 @@ function circle_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormS
     '#title'         => t('Sold Space'),
     '#default_value' => theme_get_setting('sold_space'),
     '#description'   => t("Space already sold, in m x m")
-  );
-  
-  $form['email'] = array(
-    '#type'          => 'textfield',
-    '#title'         => t('Contact Email'),
-    '#default_value' => theme_get_setting('email'),
-    '#description'   => t("Email appearing on the site")
-  );
-  
-  $form['phone'] = array(
-    '#type'          => 'textfield',
-    '#title'         => t('Contact Phone'),
-    '#default_value' => theme_get_setting('phone'),
-    '#description'   => t("Phone No appearing on the site")
   );
 }
 
@@ -169,18 +171,6 @@ function circle_preprocess_node(&$vars) {
     $vars['labelPositions'] = $labelPositions;
   }
   
-  if ($node->type->entity->id() == 'module') {
-    $vars['email'] = theme_get_setting('email');
-    $vars['phone'] = theme_get_setting('phone');
-    $vars['percentage'] = theme_get_setting('sold_space') / theme_get_setting('total_space') * 100;
-    $vars['sold_space'] = theme_get_setting('sold_space');
-    $vars['total_space'] = theme_get_setting('total_space');
-    
-    
-    $node = \Drupal\node\Entity\Node::load(17);
-    $vars['brands'] = node_view($node);
-  }
-  
   $vars['base_path'] = base_path();
 }
 
@@ -222,8 +212,19 @@ function circle_preprocess_paragraph(&$vars) {
   
   $vars['base_path'] = base_path();
   $paragraph = $vars['paragraph'];
-  if ($paragraph->type->entity->id() == 'circles_slider') {
+  $pid = $paragraph->type->entity->id();
+  if ($pid == 'circles_slider') {
     $vars['circles'] = views_embed_view('circle_modules', 'circle_modules_block');
+  } else if($pid == 'module_contact') {
+    if($vars['elements']['field_show_progress']['#items']->value == '1') {
+      $vars['percentage'] = theme_get_setting('sold_space') / theme_get_setting('total_space') * 100;
+      $vars['sold_space'] = theme_get_setting('sold_space');
+      $vars['total_space'] = theme_get_setting('total_space'); 
+    }
+    if($vars['elements']['field_show_brands']['#items']->value == '1') {
+      $node = \Drupal\node\Entity\Node::load(17);
+      $vars['brands'] = node_view($node);
+    }
   }
 }
 

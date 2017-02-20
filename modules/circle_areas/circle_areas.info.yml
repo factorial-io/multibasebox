@@ -1,0 +1,5 @@
+name: Circle Areas
+type: module
+description: Custom functionality for areas
+core: 8.x
+package: The Circle
