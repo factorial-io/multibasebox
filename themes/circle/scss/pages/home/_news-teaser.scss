@@ -1,11 +1,10 @@
 .news-teaser {
   @extend .mt-6;
   padding: 0 percentage(1/$grid-columns);
-  h3 {
+  h2 {
     text-align: center;
-    font-size: 2rem;
   }
-  
+
   .more-link {
     text-align: center;
     a {
@@ -26,8 +25,7 @@
     &__content {
       @extend .card-block;
     }
-    h2 {
-      font-size: 1.5rem;
+    h3 {
       margin: 0.5rem 0;
     }
     footer {
