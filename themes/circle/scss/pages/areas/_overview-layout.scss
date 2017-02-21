@@ -1,0 +1,10 @@
+.overview-row {
+  @extend .row;
+  
+  .area-stage {
+    @extend .col;
+  }
+  .overview-info {
+    @extend .col;
+  }
+}

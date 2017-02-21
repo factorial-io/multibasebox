@@ -10,6 +10,7 @@ function circle_areas_node_view(array &$build, \Drupal\Core\Entity\EntityInterfa
     $parent_id = $overview_id;
     $field_name = 'field_belongs_to_overview';
     $overview = $entity;
+    $build['circles'] = views_embed_view('circle_modules', 'circles_areas_embed');
   } else if ($entity->type->entity->id() == 'rental_house') {
     $parent_id = $entity->field_belongs_to_overview->getValue()[0]['target_id'];
     $overview_id = $parent_id;
