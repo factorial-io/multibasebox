@@ -1,0 +1,37 @@
+<nav>
+{{content.houses_nav}}
+</nav>
+
+<div class="overview-row">
+  <section class="area-stage">
+    <div class="area-stage__images">
+      {{content.field_image}}
+    </div>
+  </section>
+  <section class="overview-info">
+    <h1>{{label}}</h1>
+
+    {{content.body}}
+
+    <h3 class="where-what">{{'Where is What in @house'|t({'@house': label|render})}}</h3>
+    {{content.circles}}
+  </section>
+</div>
+
+<h2>{{'Rental'|t}}</h2>
+
+{{content.field_floors}}
+
+<section class="house-contact">
+  <h2>{{'Contact'|t}}</h2>
+
+  {{content.field_contact}}
+
+  {% if content.field_vcard %}
+  <a href="{{file_url(content.field_vcard[0]['#file'].getFileUri())}}">vCard</a>
+  {% endif %}
+
+  {% if content.field_email %}
+  <a href="mailto:{{content.field_email[0]['#context']['value']}}">{{content.field_email[0]['#context']['value']}}</a>
+  {% endif %}
+</section>
