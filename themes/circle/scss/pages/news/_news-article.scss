@@ -1,0 +1,26 @@
+.news-article{
+  @extend .mt-6;
+
+  &__row{
+    @extend .row;
+  }
+
+  &__col{
+    @extend .col;
+    @extend .col-md-8;
+    @extend .offset-md-2;
+  }
+
+  h2{
+    font-size: $fontsize-subtitle;
+    letter-spacing: $letterspacing-narrow;
+  }
+
+  img{
+    max-width: 100%;
+  }
+
+  &__btn-back{
+    display: none;
+  }
+}

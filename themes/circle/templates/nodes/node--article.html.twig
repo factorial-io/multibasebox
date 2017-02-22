@@ -1,13 +1,45 @@
-<article class="article-full">
-  <h1>{{ label }}</h1>
-  {{ content.field_image }}
-  <div class="article-teaser__content">
-  
-    <footer>
-        {{ date }}
-        {{ metadata }}
-    </footer>
-  
-    {{ content|without('field_image')|without('links') }}
+<article class="news-article">
+
+  <div class="news-article__btn-back">
+    <button class="btn btn-primary" data-action=""><a href="{{ path('view.news.page_1') }}"><span class="icon-arrow-left"></span></a></button>
+    <div class="text">{{'Back to all News'|t}}</div>
+  </div>
+
+  <div class="news-article__row">
+    <div class="news-article__col">
+
+      <header>
+        <p>{{ date }}</p>
+        <h2>{{ label }}</h2>
+        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem.</p>
+      </header>
+
+      {{ content.field_image }}
+
+      <div>
+        {{ content.body }}
+      </div>
+
+      <footer>
+          {% if content.field_pdf %}
+          <div>
+            <a href="{{file_url(content.field_pdf[0]['#file'].getFileUri())}}">
+              PDF herunterladen
+              <span class="icon-file-pdf"></span>
+          </div>
+          {% endif %}
+
+          <div>
+            <p>Artikel teilen</p>
+            <ul>
+              <li class="icon-email"></li>
+              <li class="icon-facebook"></li>
+              <li class="icon-twitter"></li>
+              <li class="icon-linkedin"></li>
+            </ul>
+          </div>
+
+      </footer>
+    </div>
   </div>
 </article>
