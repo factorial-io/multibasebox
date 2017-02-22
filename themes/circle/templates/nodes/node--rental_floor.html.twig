@@ -6,6 +6,7 @@
   <section class="area-stage">
     <div class="area-stage__images">
       {{content.field_image}}
+      {{content.field_overlay_image}}
     </div>
   </section>
   <section class="overview-info">
@@ -28,6 +29,11 @@
     {{foyer_label|t}}    
     {{terrace_label|t}}
     {{content.field_floor_data}}
+    
+    {{'Floor workplaces'|t}}
+    {{content.field_workplaces}}&nbsp;{{'AP'|t}}<br>
+    {{'Floor efficiency'|t}}
+    {{content.field_efficiency}}&nbsp;m<sup>2</sup>/{{'AP'|t}}
     
     {% if content.field_pdf %}
     {% set pdf_url = file_url(content.field_pdf[0]['#file'].getFileUri()) %}

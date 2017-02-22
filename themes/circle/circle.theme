@@ -181,6 +181,8 @@ function circle_preprocess_page(&$vars) {
   if(isset($vars['node'])) {
     $node = $vars['node'];
     $vars['show_footer'] = !!($node->type->entity->id() != 'discover_page');
+  } else {
+    $vars['show_footer'] = true;
   }
 }
 
