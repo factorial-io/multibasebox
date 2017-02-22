@@ -1,35 +1,9 @@
 .news-teaser {
-  @extend .mt-6;
-  padding: 0 percentage(1/$grid-columns);
-  h2 {
-    text-align: center;
-  }
-
   .more-link {
     text-align: center;
     a {
       @extend .button;
       @extend .mt-0;
-    }
-  }
-}
-
-.grid {
-  .article-teaser {
-    @extend .card;
-    img {
-      @extend .img-fluid;
-      width: 100%;
-      height: auto;
-    }
-    &__content {
-      @extend .card-block;
-    }
-    h3 {
-      margin: 0.5rem 0;
-    }
-    footer {
-      font-size: $font-size-sm;
     }
   }
 }

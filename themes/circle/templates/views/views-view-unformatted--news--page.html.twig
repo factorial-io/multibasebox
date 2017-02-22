@@ -1,8 +1,23 @@
-<h3>{{ 'News'|trans }}</h3>
-<div class="grid">
-{% for row in rows %}
-  <div class="grid__element">
-    {{ row.content }}
+<div class="news-teaser">
+  <h2>{{ 'News'|trans }}</h2>
+
+  <div class="news-teaser__row">
+    <div class="news-teaser__col">
+      <div class="news-teaser__text">Lorem ipsum dolor sit amet, consetetur Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam.</div>
+    </div>
   </div>
-{% endfor %}
+
+  <div class="grid">
+  {% for row in rows %}
+    <div class="grid__element">
+      {{ row.content }}
+    </div>
+  {% endfor %}
+  </div>
+  <div class="load-more">
+      <p>Show more News</p>
+      <a data-toggle="collapse" data-target="#more-items" href="#">
+        <span class="icon-plus"></span>
+      </a>
+    </div>
 </div>
