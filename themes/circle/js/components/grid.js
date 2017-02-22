@@ -27,3 +27,9 @@ if ($grid[0]) {
   })
   checkForLoad()
 }
+
+const getGrid = () => {
+    return grid
+}
+
+export default getGrid
