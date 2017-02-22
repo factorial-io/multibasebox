@@ -1,3 +1,17 @@
 h1, h2, h3, h4, h5, h6 {
   text-transform: uppercase;
 }
+
+h2{
+  font-size: $fontsize-title;
+  letter-spacing: $letterspacing-wide;
+}
+
+h3{
+  font-size: $fontsize-subtitle;
+  letter-spacing: $letterspacing-narrow;
+}
+
+h6{
+  letter-spacing: $letterspacing-narrow;
+}

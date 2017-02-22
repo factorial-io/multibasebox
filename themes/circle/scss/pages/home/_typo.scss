@@ -1,20 +1,7 @@
 .path-frontpage {
   .stage{
     h2{
-      font-size: 3.5rem;
+      font-size: $fontsize-title + 1;
     }
-  }
-
-  h2{
-    font-size: 2.5rem;
-  }
-
-  h3{
-    font-size: 1.8rem;
-    letter-spacing: 0.08em;
-  }
-
-  h2, h6, .button, .load-more, .form-control{
-    letter-spacing: 0.16em;
   }
 }

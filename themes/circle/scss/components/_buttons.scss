@@ -2,6 +2,7 @@
   @extend .btn;
   @extend .btn-secondary;
   min-width: 240px;
+
   &:hover {
     background: $black;
     color: $white;
@@ -12,6 +13,7 @@
 .btn {
   font-family: $headings-font-family;
   text-transform: uppercase;
+  letter-spacing: $letterspacing-wide;
 }
 
 .btn-primary {
