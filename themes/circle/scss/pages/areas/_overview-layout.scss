@@ -1,0 +1,14 @@
+.overview-row {
+  @extend .row;
+  
+  .area-stage {
+    @extend .col-md-9;
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+  .overview-info {
+    @extend .col;
+  }
+}

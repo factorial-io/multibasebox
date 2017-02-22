@@ -9,8 +9,10 @@ var browserify = require('browserify');
 var watchify = require('watchify');
 var babel = require('babelify');
 var gutil = require('gulp-util');
+var cleanCSS = require('gulp-clean-css');
+var uglify = require('gulp-uglify');
 
-function compile(watch) {
+function compile(watch, dist) {
   var bundler = false
   if (watch) {
     bundler = watchify(browserify('./js/index.js', { debug: true }))
@@ -21,7 +23,7 @@ function compile(watch) {
   bundler.transform(babel, { presets: ['es2015'] })
 
   function rebundle() {
-    bundler.bundle()
+    var bundle = bundler.bundle()
       .on('error', function(err) {
         if (err && err.codeFrame) {
             gutil.log(
@@ -36,9 +38,13 @@ function compile(watch) {
       })
       .pipe(source('build.js'))
       .pipe(buffer())
-      .pipe(sourcemaps.init({ loadMaps: true }))
-      .pipe(sourcemaps.write('./'))
-      .pipe(gulp.dest('./js_dist'));
+      if (!dist) {
+        bundle.pipe(sourcemaps.init({ loadMaps: true }))
+        .pipe(sourcemaps.write('./'))
+      } else {
+        bundle.pipe(uglify())
+      }
+      bundle.pipe(gulp.dest('./js_dist'));
   }
 
   if (watch) {
@@ -51,20 +57,36 @@ function compile(watch) {
   rebundle();
 }
 
+function compileCSS(dist) {
+  var bundle = gulp.src('scss/*.scss')
+    .pipe(sass().on('error', sass.logError))
+  
+  if (!dist) {
+    bundle.pipe(sourcemaps.init())
+  }
+  bundle.pipe(postcss([ autoprefixer() ]))
+  if (!dist) {
+    bundle.pipe(sourcemaps.write('.'))
+  } else {
+    bundle.pipe(cleanCSS())
+  }
+
+  bundle.pipe(gulp.dest('./css/'));
+}
+
 function watch() {
   return compile(true);
 };
 
-gulp.task('build_js', function() { return compile(); });
+gulp.task('build_js', function() { return compile(false, true); });
 gulp.task('watch_js', function() { return watch(); });
 
 gulp.task('styles', function() {
-    gulp.src('scss/*.scss')
-        .pipe(sourcemaps.init())
-        .pipe(sass().on('error', sass.logError))
-        .pipe(postcss([ autoprefixer() ]))
-        .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('./css/'));
+  return compileCSS();
+});
+
+gulp.task('dist_styles', function() {
+  return compileCSS(true);
 });
 
 //Watch task
@@ -73,4 +95,4 @@ gulp.task('default',function() {
 	watch()
 });
 
-gulp.task('dist', ['styles', 'build_js'])
+gulp.task('dist', ['dist_styles', 'build_js'])
