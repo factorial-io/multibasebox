@@ -1,0 +1,28 @@
+<div data-news-view class="news-view">
+
+  {% if header %}
+    <header>
+      {{ header }}
+    </header>
+  {% endif %}
+
+  {{ exposed }}
+  {{ attachment_before }}
+
+  {{ rows }}
+  {{ empty }}
+  <div data-pager class="sr-only">
+    {{ pager }}
+  </div>
+
+  {{ attachment_after }}
+  {{ more }}
+
+  {% if footer %}
+    <footer>
+      {{ footer }}
+    </footer>
+  {% endif %}
+
+  {{ feed_icons }}
+</div>

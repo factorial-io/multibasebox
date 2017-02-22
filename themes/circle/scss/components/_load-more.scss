@@ -1,3 +1,9 @@
+@keyframes rotateAround {
+  30% { transform: rotate(20deg); }
+  60% { transform: rotate(-20deg); }
+  100% { transform: rotate(0deg); }
+}
+
 .load-more {
   @extend .my-5;
   text-align: center;
@@ -15,7 +21,8 @@
       border-color: $black;
     }
     line-height: 49px;
-    width: 49px;
+    height: 50px;
+    width: 50px;
     transition: transform 500ms;
     span {
       position: relative;
@@ -24,5 +31,11 @@
     &[aria-expanded="true"] {
       transform: rotate(45deg);
     }
+  }
+  
+  &.loading a {
+    animation-duration: 3s;
+    animation-name: rotateAround;
+    animation-iteration-count: infinite;
   }
 }
