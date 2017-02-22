@@ -1,0 +1,41 @@
+<nav>
+{{content.houses_nav}}
+</nav>
+
+<div class="overview-row">
+  <section class="area-stage">
+    <div class="area-stage__images">
+      {{content.field_image}}
+    </div>
+  </section>
+  <section class="overview-info">
+    <h1>{{content.house_title}}<br>{{label}}</h1>
+    
+    {% set office_label = 'Office Space' %}
+    {% set foyer_label = 'Foyer Space' %}
+    {% set terrace_label = 'Terrace Space' %}
+    
+    {{office_label|t}}
+    {{content.total_office_space}}&nbsp;m<sup>2</sup><br>
+    
+    {{foyer_label|t}}
+    {{content.total_foyer_space}}&nbsp;m<sup>2</sup><br>
+    
+    {{terrace_label|t}}
+    {{content.total_terrace_space}}&nbsp;m<sup>2</sup><br>
+    
+    {{office_label|t}}
+    {{foyer_label|t}}    
+    {{terrace_label|t}}
+    {{content.field_floor_data}}
+    
+    {% if content.field_pdf %}
+    {% set pdf_url = file_url(content.field_pdf[0]['#file'].getFileUri()) %}
+    <a class="button" href="{{pdf_url}}">{{'Download PDF'|t}}</a>
+    <a class="button" href="mailto:?subject={{'The Circle PDF'|t}}&body={{content.schemeandhost}}{{pdf_url}}">{{'Share'|t}}</a>
+    {% endif %}
+  </section>
+</div>
+
+
+{% include '@circle/partials/area_contact.html.twig' %}
