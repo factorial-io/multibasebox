@@ -2,7 +2,6 @@
   position: relative;
   h2 {
     @include full-overlay;
-    font-size: 3rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -48,7 +47,7 @@
     position: relative;
     padding: 15px 30px 15px 15px;
     text-transform: uppercase;
-    
+
     .icon-arrow-right {
       position: absolute;
       right: 10px;
