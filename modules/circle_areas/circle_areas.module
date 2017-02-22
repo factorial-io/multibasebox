@@ -29,8 +29,31 @@ function circle_areas_node_view(array &$build, \Drupal\Core\Entity\EntityInterfa
     $overview = node_load($house->field_belongs_to_overview->getValue()[0]['target_id']);
     $overview_title = $house->getTitle();
     
-    $build['house'] = array(
-      '#house-title' => $house->getTitle()
+    $build['house_title'] = array(
+      '#markup' => $house->getTitle(),
+    );
+    $build['field_contact'] = $house->field_contact->view('full');
+    $build['field_vcard'] = $house->field_vcard->view('full');
+    $build['field_email'] = $house->field_email->view('full');
+    $total_office_space = 0;
+    $total_foyer_space = 0;
+    $total_terrace_space = 0;
+    foreach ($entity->field_floor_data->referencedEntities() as $paragraph) {
+      $total_office_space += space_field_value($paragraph->get('field_floor_office_space')->getValue());
+      $total_foyer_space += space_field_value($paragraph->get('field_floor_foyer_space')->getValue());
+      $total_terrace_space += space_field_value($paragraph->get('field_floor_terrace_space')->getValue());
+    }
+    $build['total_office_space'] = array(
+      '#markup' => format_space($total_office_space)
+    );
+    $build['total_foyer_space'] = array(
+      '#markup' => format_space($total_foyer_space)
+    );
+    $build['total_terrace_space'] = array(
+      '#markup' => format_space($total_terrace_space)
+    );
+    $build['schemeandhost'] = array(
+      '#markup' => \Drupal::request()->getSchemeAndHttpHost()
     );
   }
   
@@ -57,6 +80,7 @@ function circle_areas_node_view(array &$build, \Drupal\Core\Entity\EntityInterfa
   }
 }
 
+
 function circle_areas_theme()
 {
   return array
@@ -71,4 +95,15 @@ function circle_areas_theme()
       'template' => 'circle_areas-overview_nav',
     ),
   );
+}
+
+function format_space($space) {
+  return number_format($space, 2, ',', '');
+}
+
+function space_field_value($value) {
+  if (isset($value[0])) {
+    return $value[0]['value'];
+  }
+  return 0;
 }
