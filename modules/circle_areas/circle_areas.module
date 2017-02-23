@@ -74,8 +74,8 @@ function circle_areas_node_view(array &$build, \Drupal\Core\Entity\EntityInterfa
   }
   
   if ($overview) {
-    $build['overview'] = array(
-      '#color' => $overview->field_color->getValue()[0]['value']
+    $build['overview_color'] = array(
+      '#markup' => $overview->field_color->getValue()[0]['value']
     );
   }
 }
