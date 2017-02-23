@@ -8,12 +8,18 @@
     }
   }
   &__text {
-    @extend .col;
+    @extend .col-md-5;
     padding: $spacer percentage(1 / $grid-columns);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+
+    @include media-breakpoint-down(md) {
+      @include set-spacer-for-py(6);
+      text-align: center;
+      align-items: center;
+    }
   }
   &.right {
     .image-with-text__image {
@@ -25,8 +31,13 @@
   }
   .button {
     @extend .mt-4;
+
+    @include media-breakpoint-down(md) {
+      margin: auto;
+    }
+
   }
-  
+
   // Animation
   h2,
   .para,

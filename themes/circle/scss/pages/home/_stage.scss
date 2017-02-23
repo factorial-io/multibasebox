@@ -23,6 +23,10 @@
     bottom: 90px;
     right: 0;
     background: $white;
+
+    @include media-breakpoint-down(lg) {
+      display: none;
+    }
   }
   &__scroll {
     position: absolute;
@@ -30,6 +34,10 @@
     left: 0;
     right: 0;
     text-align: center;
+
+    @include media-breakpoint-down(xs) {
+      display: none;
+    }
   }
 
 }

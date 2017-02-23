@@ -2,7 +2,7 @@
   @extend .mt-6;
   @extend .row;
   @extend .align-items-end;
-  
+
   background-color: $circle-egg;
   padding: 2*$spacer percentage(1/$grid-columns);
   .newsletter-teaser {
@@ -21,15 +21,21 @@
 }
 
 .social-nav {
-  @extend .col-md;
+  @extend .col-md-7;
   text-align: right;
+
+  @include media-breakpoint-down(sm) {
+    @include set-spacer-for-my(4);
+    text-align: left;
+  }
+
   ul {
     @extend .list-inline;
   }
   li {
     @extend .list-inline-item;
   }
-  
+
   $list: instagram facebook twitter vimeo youtube linkedin;
   @each $social in $list {
     li.#{$social} {
