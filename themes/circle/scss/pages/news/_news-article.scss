@@ -1,89 +1,86 @@
-.news-article{
+.news-article {
   @extend .mt-6;
 
-  &__btn-back{
+  &__back {
     display: none;
   }
 
-  &__row{
+  &__back-btn {
+    @extend .btn;
+    @extend .btn-primary;
+  }
+
+  &__row {
     @extend .row;
   }
 
-  &__col{
+  &__col {
     @extend .col;
     @extend .col-md-8;
     @extend .offset-md-2;
-
-    &__header{
-      @extend .mb-4;
-
-      h2{
-        font-size: $fontsize-subtitle;
-        letter-spacing: $letterspacing-narrow;
-      }
-
-      p:last-child{
-        font-weight: bold;
-      }
-    }
-
-    &__content{
-      img{
-        max-width: 100%;
-      }
-
-      div{
-        @extend .mt-3;
-        @extend .mb-6;
-      }
-    }
-
-    &__footer{
-      @extend .row;
-
-      div:first-child{
-        @extend .col;
-        @extend .col-md-3;
-        text-transform: uppercase;
-
-        span{
-          font-size: $fontsize-subtitle;
-          position: relative;
-          top: 4px;
-          left: 6px;
-        }
-      }
-
-      div:last-child{
-        @extend .col;
-        @extend .col-md-9;
-        text-align: right;
-
-        span{
-          text-transform: uppercase;
-          margin-right: 10px;
-        }
-
-        ul{
-          display: inline-block;
-          list-style: none;
-          padding: 0;
-          margin: 0;
-          position: relative;
-          top: 5px;
-
-          li{
-            display: inline-block;
-            margin-right: 5px;
-            font-size: $fontsize-subtitle;
-
-            &:last-child{
-              margin-right: 0;
-            }
-          }
-        }
-      }
-    }
-
   }
+
+  &__header {
+    @extend .mb-4;
+  }
+
+  &__label {
+   font-size: $fontsize-subtitle;
+   letter-spacing: $letterspacing-narrow;
+  }
+
+  &__summary{
+   font-family: $headings-font-family;
+  }
+
+  &__content {
+    img {
+      max-width: 100%;
+    }
+  }
+
+  &__text  {
+    @extend .mt-3;
+    @extend .mb-6;
+  }
+
+  &__footer {
+    @extend .row;
+  }
+
+  &__download {
+    @extend .col;
+    @extend .col-md-3;
+    text-transform: uppercase;
+
+    .icon-file-pdf {
+      font-size: $fontsize-subtitle;
+      position: relative;
+      top: 4px;
+      left: 6px;
+    }
+  }
+
+  &__social-share {
+    @extend .col;
+    @extend .col-md-9;
+    text-align: right;
+  }
+
+  &__share-text {
+    text-transform: uppercase;
+    margin-right: 10px;
+  }
+
+  &__share-icons{
+    @extend .list-inline;
+    display: inline-block;
+    position: relative;
+    top: 5px;
+
+    li {
+        @extend .list-inline-item;
+        font-size: $fontsize-subtitle;
+      }
+    }
 }

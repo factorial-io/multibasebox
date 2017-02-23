@@ -1,37 +1,39 @@
 <article class="news-article">
 
-  <div class="news-article__btn-back">
-    <button class="btn btn-primary" data-action=""><a href="{{ path('view.news.page_1') }}"><span class="icon-arrow-left"></span></a></button>
+  <div class="news-article__back">
+    <button class="news-article__back-btn" data-action="">
+      <a href="{{ path('view.news.page_1') }}"><span class="icon-arrow-left"></span></a>
+    </button>
     <div class="text">{{'Back to all News'|t}}</div>
   </div>
 
   <div class="news-article__row">
     <div class="news-article__col">
-      <header class="news-article__col__header">
-        <p>{{ date }}</p>
-        <h2>{{ label }}</h2>
-        <p>{{ content.body['#object'].body.summary }}</p>
+      <header class="news-article__header">
+        <p class="date">{{ date }}</p>
+        <h2 class="news-article__label">{{ label }}</h2>
+        <p class="news-article__summary">{{ content.body['#object'].body.summary }}</p>
       </header>
 
-      <div class="news-article__col__content">
+      <div class="news-article__content">
         {{ content.field_image }}
 
-        <div>
+        <div class="news-article__text">
           {{ content.body }}
         </div>
       </div>
 
-      <footer class="news-article__col__footer">
-          <div>
+      <footer class="news-article__footer">
+          <div class="news-article__download">
             <a href="{{file_url(content.field_pdf[0]['#file'].getFileUri())}}">
               {{'Download PDF'|t}}
               <span class="icon-file-pdf"></span>
             </a>
           </div>
 
-          <div>
-            <span>Artikel teilen</span>
-            <ul>
+          <div class="news-article__social-share">
+            <span class="news-article__share-text">{{'Artikel teilen'|t}}</span>
+            <ul class="news-article__share-icons">
               <li class="icon-email"></li>
               <li class="icon-facebook"></li>
               <li class="icon-twitter"></li>
