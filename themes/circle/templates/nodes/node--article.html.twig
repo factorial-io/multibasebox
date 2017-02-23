@@ -1,13 +1,47 @@
-<article class="article-full">
-  <h1>{{ label }}</h1>
-  {{ content.field_image }}
-  <div class="article-teaser__content">
-  
-    <footer>
-        {{ date }}
-        {{ metadata }}
-    </footer>
-  
-    {{ content|without('field_image')|without('links') }}
+<article class="news-article">
+
+  <div class="news-article__back">
+    <button class="news-article__back-btn" data-action="">
+      <a href="{{ path('view.news.page_1') }}"><span class="icon-arrow-left"></span></a>
+    </button>
+    <div class="text">{{'Back to all News'|t}}</div>
+  </div>
+
+  <div class="news-article__row">
+    <div class="news-article__col">
+      <header class="news-article__header">
+        <p class="date">{{ date }}</p>
+        <h2 class="news-article__label">{{ label }}</h2>
+        <p class="news-article__summary">{{ content.body['#object'].body.summary }}</p>
+      </header>
+
+      <div class="news-article__content">
+        {{ content.field_image }}
+
+        <div class="news-article__text">
+          {{ content.body }}
+        </div>
+      </div>
+
+      <footer class="news-article__footer">
+          <div class="news-article__download">
+            <a href="{{file_url(content.field_pdf[0]['#file'].getFileUri())}}">
+              {{'Download PDF'|t}}
+              <span class="icon-file-pdf"></span>
+            </a>
+          </div>
+
+          <div class="news-article__social-share">
+            <span class="news-article__share-text">{{'Artikel teilen'|t}}</span>
+            <ul class="news-article__share-icons">
+              <li class="icon-email"></li>
+              <li class="icon-facebook"></li>
+              <li class="icon-twitter"></li>
+              <li class="icon-linkedin"></li>
+            </ul>
+          </div>
+
+      </footer>
+    </div>
   </div>
 </article>
