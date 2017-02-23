@@ -16,12 +16,16 @@
   }
 }
 
+@function get-spacer($index, $xy:'y') {
+  @return map-get(map-get($spacers, $index), $xy);
+}
+
 @mixin set-spacer-for-py($index) {
-  padding-top: map-get(map-get($spacers, $index), 'y');
-  padding-bottom: map-get(map-get($spacers, $index), 'y');
+  padding-top: get-spacer($index);
+  padding-bottom: get-spacer($index);
 }
 
 @mixin set-spacer-for-my($index) {
-  margin-top: map-get(map-get($spacers, $index), 'y');
-  margin-bottom: map-get(map-get($spacers, $index), 'y');
+  margin-top: get-spacer($index);
+  margin-bottom: get-spacer($index);
 }
