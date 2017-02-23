@@ -26,11 +26,19 @@
     
       {{terrace_label|t}}
       {{content.total_terrace_space}}&nbsp;m<sup>2</sup><br>
-    
-      {{office_label|t}}
-      {{foyer_label|t}}    
-      {{terrace_label|t}}
-      {{content.field_floor_data}}
+      
+      <table class="floor-data">
+        <thead>
+          <tr>
+            <th colspan="2" class="floor-data__cell">{{office_label|t}}</th>
+            <th class="floor-data__cell">{{foyer_label|t}}</th>
+            <th class="floor-data__cell">{{terrace_label|t}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{content.field_floor_data}}
+        </tbody>
+      </table>
     
       {{'Floor workplaces'|t}}
       {{content.field_workplaces}}&nbsp;{{'AP'|t}}<br>

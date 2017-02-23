@@ -1,12 +1,11 @@
 .floor-data {
+  width: 100%;
   &__row {
-    display: flex;
+
   }
   &__cell {
-    flex: 1;
     font-size: $font-size-xs;
     &:first-child {
-      flex: none;
       width: 25px;
       font-family: $headings-font-family;
     }

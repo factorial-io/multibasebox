@@ -1,0 +1,11 @@
+<tr class="house-floors__row">
+  {% if content.field_not_rentable_text.0 is empty %}
+  <td class="house-floors__cell"><a href="{{content.field_link_to_floor.0['#url'].toString()}}">{{content.field_floor_no}}</a></td>
+  <td class="house-floors__cell">{{content.field_office_space}}&nbsp;m<sup>2</sup></td>
+  <td class="house-floors__cell">{{content.field_space_count}}</td>
+
+  <td class="house-floors__cell {{content.field_floor_state.0['#markup']}}"><span class="floor-status-text">{{content.field_floor_state.0['#markup']|t}}</span></td>
+  {% else %}
+    <td colspan="4" class="house-floors__cell not-for-rent">{{content.field_not_rentable_text}}</td>
+  {% endif %}
+</tr>

@@ -20,10 +20,9 @@
   </div>
 
   <h2>{{'Rental'|t}}</h2>
-
-  {{content.field_floors}}
-  <div class="house-svg" data-svg-url="{{file_url(content.field_house_svg[0]['#file'].getFileUri())}}">
-  
+  <div class="house-floors-container">
+    {{content.field_floors}}
+    <div class="house-svg" data-svg-url="{{file_url(content.field_house_svg[0]['#file'].getFileUri())}}"></div>
   </div>
 
   {% include '@circle/partials/area_contact.html.twig' %}

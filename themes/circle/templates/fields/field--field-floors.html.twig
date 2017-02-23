@@ -1,0 +1,17 @@
+<section class="house-floors">
+  <table class="house-floors__table">
+    <thead>
+      <tr>
+        <th class="house-floors__cell">{{'Floor'|t}}</th>
+        <th class="house-floors__cell">{{'Office Space'|t}}</th>
+        <th class="house-floors__cell">{{'Space Count'|t}}</th>
+        <th class="house-floors__cell">{{'State'|t}}</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for item in items %}
+        {{ item.content }}
+    {% endfor %}
+    </tbody>
+  </table>
+</section>
