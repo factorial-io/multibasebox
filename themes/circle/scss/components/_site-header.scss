@@ -9,21 +9,28 @@
     padding: 0 1rem;
     line-height: $site-nav-height;
   }
-  
+
   .text-logo {
     @extend .col-2;
+    @extend .ml-3;
+    @extend .ml-md-0;
     text-align: center;
     img {
       width: 95px;
       height: auto;
     }
   }
-  
+
   // Main menu
   .menu--main-menu {
     @extend .col-6;
     @extend .offset-1;
     position: static;
+
+    @include media-breakpoint-down(lg) {
+      display: none;
+    }
+
     ul {
       @extend .list-unstyled;
       margin: 0;
@@ -33,12 +40,12 @@
         flex: 1;
       }
     }
-  
+
     a {
       text-align: center;
       &:hover {
         background: $white;
-        color: $black; 
+        color: $black;
       }
     }
     .menu-item--active-trail {
@@ -53,6 +60,11 @@
 .menu--header-meta {
   @extend .col;
   @extend .offset-1;
+
+  @include media-breakpoint-down(lg) {
+    display: none;
+  }
+
   ul {
     @extend .list-inline;
     margin: 0;
@@ -60,12 +72,12 @@
   li {
     @extend .list-inline-item;
   }
-  
+
   a {
     &:hover {
       color: $gray-lighter;
     }
-  } 
+  }
 }
 
 /**
@@ -80,7 +92,7 @@
       color: $black;
       &.is-active {
         border-bottom: 3px solid $black;
-        
+
         @each $key, $color in $color-list {
           .#{$key} & {
             border-bottom-color: $color;
