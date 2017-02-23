@@ -7,30 +7,30 @@
 
   <div class="news-article__row">
     <div class="news-article__col">
-
-      <header>
+      <header class="news-article__col__header">
         <p>{{ date }}</p>
         <h2>{{ label }}</h2>
-        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem.</p>
+        <p>{{ content.body['#object'].body.summary }}</p>
       </header>
 
-      {{ content.field_image }}
+      <div class="news-article__col__content">
+        {{ content.field_image }}
 
-      <div>
-        {{ content.body }}
+        <div>
+          {{ content.body }}
+        </div>
       </div>
 
-      <footer>
-          {% if content.field_pdf %}
+      <footer class="news-article__col__footer">
           <div>
             <a href="{{file_url(content.field_pdf[0]['#file'].getFileUri())}}">
-              PDF herunterladen
+              {{'Download PDF'|t}}
               <span class="icon-file-pdf"></span>
+            </a>
           </div>
-          {% endif %}
 
           <div>
-            <p>Artikel teilen</p>
+            <span>Artikel teilen</span>
             <ul>
               <li class="icon-email"></li>
               <li class="icon-facebook"></li>
