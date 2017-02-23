@@ -13,20 +13,21 @@
   ul {
     margin: 0;
   }
-  
+
   .menu--footer {
     @extend .col;
     ul {
-      @extend .list-inline; 
+      @extend .list-inline;
     }
-    
+
     li {
       @extend .list-inline-item;
     }
   }
-  
+
   .language-switch {
-    @extend .col-2;
+    @extend .col-5;
+    @extend .col-md-3;
     margin-left: auto;
     text-align: right;
     &__selectbox {
@@ -44,7 +45,7 @@
       margin: 0 -15px;
       bottom: 0;
     }
-    
+
     .links {
       @extend %selectbox-list;
     }

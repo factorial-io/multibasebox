@@ -15,3 +15,13 @@
    color: $black;
   }
 }
+
+@mixin set-spacer-for-py($index) {
+  padding-top: map-get(map-get($spacers, $index), 'y');
+  padding-bottom: map-get(map-get($spacers, $index), 'y');
+}
+
+@mixin set-spacer-for-my($index) {
+  margin-top: map-get(map-get($spacers, $index), 'y');
+  margin-bottom: map-get(map-get($spacers, $index), 'y');
+}
