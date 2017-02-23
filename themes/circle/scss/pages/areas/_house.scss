@@ -1,0 +1,26 @@
+.house-floors-container {
+  @extend .row;
+  
+  .house-floors {
+    @extend .col-md-6;
+    @extend .offset-md-1;
+  }
+  .house-svg {
+    @extend .col-md-4;
+    text-align: center;
+    position: relative;
+  }
+}
+
+.house-floors {
+  &__table {
+    @extend .table;
+    @extend .table-hover;
+  }
+  &__cell {
+    text-align: center;
+    &.not-for-rent {
+      background-color: $gray-lighter;
+    }
+  }
+}
