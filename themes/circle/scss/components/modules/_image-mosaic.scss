@@ -1,0 +1,53 @@
+.image-mosaic {
+  position: relative;
+  display: flex;
+  &__part {
+    background-size: cover;
+    background-position: center;
+    
+    hyphens: auto;
+    
+    &:nth-child(1) {
+      .part__container {
+        padding-bottom: 100%;
+      }
+      width: 29.5%;
+    }
+    &:nth-child(2) {
+      .part__container {
+        padding-bottom: 100%;
+      }
+      width: 29.5%;
+    }
+    &:nth-child(3) {
+      width: 41%;
+      .part__container {
+        padding-bottom: 132%;
+      }
+    }
+    &:nth-child(4) {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 59%;
+      .part__container {
+        padding-bottom: 46%;
+      }
+    }
+    .part {
+      &__container {
+        position: relative;
+      }
+      &__overlay {
+        @include full-overlay;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      &__content {
+        padding: $spacer;
+      }
+    }
+  }
+}

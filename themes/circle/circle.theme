@@ -83,13 +83,13 @@ function circle_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormS
  */
 function circle_preprocess_field(&$variables) {
   $element = $variables['element'];
-  if($element['#field_name'] == 'field_stage_content') {
+  if ($element['#field_name'] == 'field_stage_content') {
     $time_left = round((theme_get_setting('target_time') - time()) / 60 / 60 / 24);
     $variables['time_left'] = $time_left;
     $variables['time_left_chars'] = str_split($time_left); 
   }
   
-  if($element['#field_name'] == 'field_button_link' || $element['#field_name'] == 'field_hero_link') {
+  if ($element['#field_name'] == 'field_button_link' || $element['#field_name'] == 'field_hero_link') {
     $variables['items'][0]['content']['#attributes']['class'] = ['button'];
   }
 }
@@ -227,6 +227,9 @@ function circle_preprocess_paragraph(&$vars) {
       $node = \Drupal\node\Entity\Node::load(17);
       $vars['brands'] = node_view($node);
     }
+  } else if ($pid == 'image_mosaic_part') {
+    $image_field = $vars['content']['field_image'][0];
+    $vars['image_url'] = ImageStyle::load($image_field['#image_style'])->buildUrl( $image_field['#item']->entity->getFileUri() );
   }
 }
 
