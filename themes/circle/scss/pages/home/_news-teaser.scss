@@ -6,4 +6,17 @@
       @extend .mt-0;
     }
   }
+
+  .article-teaser{
+    &.animation {
+       transition: all 800ms;
+       position: relative;
+       top: 0;
+       opacity: 1;
+     }
+     &.is-in-prepared {
+       top: 100px;
+       opacity: 0;
+     }
+  }
 }
