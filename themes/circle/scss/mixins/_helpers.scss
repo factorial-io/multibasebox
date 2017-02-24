@@ -1,9 +1,9 @@
-@mixin full-overlay() {
+@mixin full-overlay($space: 0) {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  top: $space;
+  left: $space;
+  right: $space;
+  bottom: $space;
 }
 
 @mixin circle-inverted-hover() {
