@@ -10,9 +10,9 @@ if ($('.page-node-type-front-page')[0]) {
     lazyload($('#more-items'), false)
   })
 
-  const sel = '.image-with-text:visible h2, .image-with-text:visible .para, .image-with-text:visible .button, .image-with-text:visible img'
+  const sel = '.image-with-text:visible h2, .image-with-text:visible .para, .image-with-text:visible .button, .image-with-text:visible img, .news-teaser .article-teaser'
   classanimateOut($(`${sel}`))
-  
+
   const spy = new ScrollSpy($(`${sel}`), SpyDirection.bottom)
   spy.onIn(($el) => {
     classanimateIn($el)

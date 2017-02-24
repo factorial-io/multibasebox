@@ -6,4 +6,8 @@
       @extend .mt-0;
     }
   }
+
+  .article-teaser{
+    @extend %from-bottom;
+  }
 }
