@@ -1,0 +1,40 @@
+.newsletter-form {
+  .modal-header{
+    @extend .p-4;
+  }
+
+  .modal-body {
+    @extend .p-4;
+
+    .ui-form-field {
+      &__select, &__text {
+        @extend .row;
+        @extend .form-group;
+
+        label {
+          @extend .col-4;
+          @extend .col-md-3;
+        }
+
+        input, select {
+          @extend .form-control;
+          @extend .col-7;
+          @extend .col-md-8;
+          text-transform: none;
+        }
+      }
+    }
+  }
+
+  .modal-footer {
+    &__submit {
+      @extend .btn;
+      @extend .btn-primary;
+    }
+
+    &__close {
+      @extend .btn;
+      @extend .btn-secondary;
+    }
+  }
+}
