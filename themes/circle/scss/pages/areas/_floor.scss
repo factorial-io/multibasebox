@@ -1,3 +1,15 @@
+.page-node-type-rental-floor {
+  .area-stage {
+    &__images {
+      position: relative;
+      img:last-child {
+        position: absolute;
+        top: 0;
+      }
+    }
+  } 
+}
+
 .floor-data {
   width: 100%;
   &__row {

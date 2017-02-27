@@ -190,16 +190,20 @@ function circle_preprocess_page(&$vars) {
  * Preprocess paragraphs
  */
 function circle_preprocess_paragraph(&$vars) {
+  $paragraph = $vars['paragraph'];
+  $pid = $paragraph->type->entity->id();
+  
   /**
    * Mark images as lazy loading
    */
-  if (isset($vars['content']['field_image'][0])) {
+  if (isset($vars['content']['field_image'][0]) && in_array($pid, ['image_with_text', 'panorama_view'])) {
     $element = $vars['content']['field_image'];
     $delta = 0;
     while (!empty($element[$delta])) {
       $element[$delta]['#item_attributes'] = array('data-lazy' => true);
       $vars['content']['field_image'][$delta] = $element[$delta];
       if ($delta === 0) {
+        //Panorama
         $vars['large_image'] = ImageStyle::load('max_2600x2600')->buildUrl( $element[$delta]['#item']->entity->getFileUri() );
       }
       $delta++;
@@ -213,8 +217,7 @@ function circle_preprocess_paragraph(&$vars) {
   }
   
   $vars['base_path'] = base_path();
-  $paragraph = $vars['paragraph'];
-  $pid = $paragraph->type->entity->id();
+  
   if ($pid == 'circles_slider') {
     $vars['circles'] = views_embed_view('circle_modules', 'circle_modules_block');
   } else if($pid == 'module_contact') {
