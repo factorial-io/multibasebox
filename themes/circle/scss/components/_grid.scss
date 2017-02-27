@@ -5,7 +5,7 @@
     @extend .col-md-4;
     @extend .col-sm-6;
     &:nth-child(2) {
-      @extend .mt-5;
+      @extend .mt-md-5;
     }
   }
 }
