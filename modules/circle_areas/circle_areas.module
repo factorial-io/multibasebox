@@ -61,9 +61,6 @@ function circle_areas_node_view(array &$build, \Drupal\Core\Entity\EntityInterfa
     $build['total_terrace_space'] = array(
       '#markup' => format_space($total_terrace_space)
     );
-    $build['schemeandhost'] = array(
-      '#markup' => \Drupal::request()->getSchemeAndHttpHost()
-    );
     
     $build['field_overlay_image'][0]['#item_attributes'] = array('data-lazy' => true);
   }
