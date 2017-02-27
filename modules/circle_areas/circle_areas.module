@@ -6,12 +6,18 @@ function circle_areas_node_view(array &$build, \Drupal\Core\Entity\EntityInterfa
   $overview_title = t('Overview');
   $overview = null;
   if ($entity->type->entity->id() == 'rental_overview') {
+    /**
+     * Overview Page
+     */
     $overview_id = $entity->id();
     $parent_id = $overview_id;
     $field_name = 'field_belongs_to_overview';
     $overview = $entity;
     $build['circles'] = views_embed_view('circle_modules', 'circles_areas_embed');
   } else if ($entity->type->entity->id() == 'rental_house') {
+    /**
+     * House Page
+     */
     $parent_id = $entity->field_belongs_to_overview->getValue()[0]['target_id'];
     $overview_id = $parent_id;
     $overview = node_load($overview_id);
@@ -22,6 +28,9 @@ function circle_areas_node_view(array &$build, \Drupal\Core\Entity\EntityInterfa
     }
     $build['circles'] = views_embed_view('circle_modules', 'circles_areas_embed', join($moduleIds, '+'));
   } else if ($entity->type->entity->id() == 'rental_floor') {
+    /**
+     * Floor Page
+     */
     $parent_id = $entity->field_house->getValue()[0]['target_id'];
     $overview_id = $parent_id;
     $field_name = 'field_house';
@@ -55,6 +64,8 @@ function circle_areas_node_view(array &$build, \Drupal\Core\Entity\EntityInterfa
     $build['schemeandhost'] = array(
       '#markup' => \Drupal::request()->getSchemeAndHttpHost()
     );
+    
+    $build['field_overlay_image'][0]['#item_attributes'] = array('data-lazy' => true);
   }
   
   if ($overview_id && $parent_id) {

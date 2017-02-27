@@ -1,4 +1,4 @@
-.overview-row {
+.area-row {
   @extend .row;
   
   .area-stage {
@@ -8,7 +8,7 @@
       height: auto;
     }
   }
-  .overview-info {
+  .area-info {
     @extend .col;
   }
 }
