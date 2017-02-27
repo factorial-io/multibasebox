@@ -49,7 +49,7 @@
 
     	<div class="ui-form-field g-6 push-2 g-tablet-6 push-tablet-2 g-mobile-14 push-mobile-1">
     		<div class="ui-textfield">
-    			<label for="Firma">Firma</label>
+    			<label for="Firma">{{'Firma'|t}}</label>
     			<input name="Firma" placeholder="" id="Firma" type="text">
     		</div>
     	</div>
@@ -57,53 +57,53 @@
 
     	<div class="ui-form-field g-6 g-tablet-6 g-mobile-14 push-mobile-1">
     		<div class="ui-textfield">
-    			<label for="Funktion">Funktion</label>
+    			<label for="Funktion">{{'Funktion'|t}}</label>
     			<input name="Funktion" placeholder="" id="Funktion" type="text">
     		</div>
     	</div>
 
     	<div class="ui-form-field g-6 push-2 g-tablet-6 push-tablet-2 g-mobile-14 push-mobile-1">
         <div class="ui-selectbox">
-      		<label for="Anrede">Anrede *</label>
+      		<label for="Anrede">{{'Anrede'|t}} *</label>
           <select name="Anrede" class="ui-select" required="" tabindex="0" style="">
-      			<option value="#DEL#">nicht ausgewählt</option>
-      			<option value="Frau">Frau</option>
-      			<option value="Herr">Herr</option>
+      			<option value="#DEL#">{{'nicht ausgewählt'|t}}</option>
+      			<option value="Frau">{{'Frau'|t}}</option>
+      			<option value="Herr">{{'Herr'|t}}</option>
       		</select>
         </div>
     	</div>
 
     	<div class="ui-form-field g-6 g-tablet-6 g-mobile-14 push-mobile-1">
     		<div class="ui-textfield">
-    			<label for="Vorname">Vorname*</label>
+    			<label for="Vorname">{{'Vorname'|t}}*</label>
     			<input name="firstname" placeholder="" id="Vorname" type="text" required="">
     		</div>
     	</div>
 
     	<div class="ui-form-field g-6 push-2 g-tablet-6 push-tablet-2 g-mobile-14 push-mobile-1">
     		<div class="ui-textfield">
-    			<label for="Name">Nachname*</label>
+    			<label for="Name">{{'Nachname'|t}}*</label>
     			<input name="Name" placeholder="" id="lastname" type="text" required="">
     		</div>
     	</div>
 
     	<div class="ui-form-field g-6 g-tablet-6 g-mobile-14 push-mobile-1">
     		<div class="ui-textfield">
-    			<label for="Adresse">Adresse</label>
+    			<label for="Adresse">{{'Adresse'|t}}</label>
     			<input name="Adresse" placeholder="" id="Adresse" type="text">
     		</div>
     	</div>
 
     	<div class="ui-form-field g-6 push-2 g-tablet-6 push-tablet-2 g-mobile-14 push-mobile-1">
     		<div class="ui-textfield">
-    			<label for="PLZ">PLZ</label>
+    			<label for="PLZ">{{'PLZ'|t}}</label>
     			<input name="PLZ" placeholder="" id="PLZ" type="text">
     		</div>
     	</div>
 
     	<div class="ui-form-field g-6 g-tablet-6 g-mobile-14 push-mobile-1">
     		<div class="ui-textfield">
-    			<label for="Ort">Ort</label>
+    			<label for="Ort">{{'Ort'|t}}</label>
     			<input name="Ort" placeholder="" id="Ort" type="text">
     		</div>
     	</div>
@@ -112,7 +112,7 @@
         <div class="ui-selectbox">
       		<label for="Land">Land</label>
       		<select id="Land" class="ui-select" tabindex="0" style="">
-      			<option value="#DEL#">nicht ausgewählt</option>
+      			<option value="#DEL#">{{'nicht ausgewählt'|t}}</option>
             {% for iso,country in countries %}
               <option {{ iso == 'CH' ? 'selected' : ''}} value="{{iso}}">{{country}}</option>
             {% endfor %}
@@ -122,24 +122,24 @@
 
     	<div class="ui-form-field g-6 g-tablet-6 g-mobile-14 push-mobile-1">
     		<div class="ui-textfield">
-    			<label for="Email">E-mail*</label>
+    			<label for="Email">{{'E-mail'|t}}*</label>
     			<input name="Email" value="{{email}}" placeholder="" id="Email" type="email" required>
     		</div>
     	</div>
 
     	<div class="ui-form-field g-6 push-2 g-tablet-6 push-tablet-2 g-mobile-14 push-mobile-1">
         <div class="ui-selectbox">
-      		<label for="Sprache">Sprache des Newsletters</label>
+      		<label for="Sprache">{{'Sprache des Newsletters'|t}}</label>
       		<select id="Sprache" class="ui-select" tabindex="0" style="">
-      			<option value="DE">deutsch</option>
-      			<option value="EN">englisch</option>
+      			<option value="DE">{{'Deutsch'|t}}</option>
+      			<option value="EN">{{'Englisch'|t}}</option>
       		</select>
         </div>
     	</div>
   </div>
   <div class="modal-footer">
-    <button class="btn btn-primary" type="submit">Registrieren</button>
-    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <button class="btn btn-primary" type="submit">{{'Registrieren'|t}}</button>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{'Close'|t}}</button>
   </div>
 </div>
 </form>
