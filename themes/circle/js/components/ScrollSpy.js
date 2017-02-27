@@ -25,29 +25,34 @@ class ScrollSpy {
     this.inCbs = []
     this.allCbs = []
     
+    this.$els = $els
+    
     this.spyState = SpyState.outside
     this.direction = direction
 
     $(window).on(`scroll.${this.uniqueId}`, (e) => {
-      $.each($els, (index, el) => {
-        const $el = $(el)
-        const offset = $el.offset()
-        const height = $el.height()
+      this.checkStates()
+    })
+  }
+  checkStates() {
+    $.each(this.$els, (index, el) => {
+      const $el = $(el)
+      const offset = $el.offset()
+      const height = $el.height()
 
-        if (this.direction === SpyDirection.top) {
-          if (offset.top + height < $(window).scrollTop()) {
-            this.out($el)
-          } else {
-            this.in($el)
-          }
-        } else if (this.direction === SpyDirection.bottom) {
-          if (offset.top > $(window).scrollTop() + $(window).height()) {
-            this.out($el)
-          } else {
-            this.in($el)
-          }
+      if (this.direction === SpyDirection.top) {
+        if (offset.top + height < $(window).scrollTop()) {
+          this.out($el)
+        } else {
+          this.in($el)
         }
-      })
+      } else if (this.direction === SpyDirection.bottom) {
+        if (offset.top > $(window).scrollTop() + $(window).height()) {
+          this.out($el)
+        } else {
+          this.in($el)
+        }
+      }
     })
   }
   destroy() {
@@ -61,12 +66,15 @@ class ScrollSpy {
   }
   onAll(fn) {
     this.allCbs.push(fn)
+    this.checkStates()
   }
   onOut(fn) {
     this.outCbs.push(fn)
+    this.checkStates()
   }
   onIn(fn) {
     this.inCbs.push(fn)
+    this.checkStates()
   }
   out($el) {
     if (this.getSpyState($el) === SpyState.outside) {
