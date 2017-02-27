@@ -9,9 +9,28 @@ const lazyload = ($els, visible = true) => {
         $lazyEls = $els.find(viSel)
     }
     
-    $lazyEls.each((index, el) => {
+    let loaded = 0
+    return new Promise((resolve, reject) => {
+      if ($lazyEls.length === 0) {
+        return resolve($lazyEls)
+      }
+      
+      $lazyEls.each((index, el) => {
+        $(el).on('load', () => {
+          loaded += 1
+          
+          if (loaded >= $lazyEls.length) {
+            resolve($lazyEls)
+          }
+        })
+        
+        $(el).on('error', () => {
+          reject($(el))
+        })
+        
         $(el).attr('src', $(el).attr('data-src')).attr('srcset', $(el).attr('data-srcset')).attr('sizes', $(el).attr('data-sizes'))
         $(el).attr('data-src', null).attr('data-srcset', null).attr('data-sizes', null)
+      })
     })
 }
 

@@ -196,7 +196,7 @@ function circle_preprocess_paragraph(&$vars) {
   /**
    * Mark images as lazy loading
    */
-  if (isset($vars['content']['field_image'][0]) && in_array($pid, ['image_with_text', 'panorama_view'])) {
+  if (isset($vars['content']['field_image'][0]) && in_array($pid, ['image_with_text', 'panorama_view', 'area_circle_layer'])) {
     $element = $vars['content']['field_image'];
     $delta = 0;
     while (!empty($element[$delta])) {

@@ -1,0 +1,7 @@
+// Views items list
+
+.item-list {
+  ul {
+    @extend .list-unstyled;
+  }
+}

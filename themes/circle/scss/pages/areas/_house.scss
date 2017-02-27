@@ -24,3 +24,19 @@
     }
   }
 }
+
+.page-node-type-rental-house {
+  .floor-images {
+    position: relative;
+    .circle-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity 500ms;
+      &.active {
+        opacity: 1;
+      }
+    }
+  }
+}
