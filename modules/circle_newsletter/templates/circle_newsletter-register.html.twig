@@ -63,12 +63,14 @@
     	</div>
 
     	<div class="ui-form-field g-6 push-2 g-tablet-6 push-tablet-2 g-mobile-14 push-mobile-1">
-    		<label for="Anrede">Anrede *</label>
-        <select name="Anrede" class="ui-select" required="" tabindex="0" style="">
-    			<option value="#DEL#">nicht ausgewählt</option>
-    			<option value="Frau">Frau</option>
-    			<option value="Herr">Herr</option>
-    		</select>
+        <div class="ui-selectbox">
+      		<label for="Anrede">Anrede *</label>
+          <select name="Anrede" class="ui-select" required="" tabindex="0" style="">
+      			<option value="#DEL#">nicht ausgewählt</option>
+      			<option value="Frau">Frau</option>
+      			<option value="Herr">Herr</option>
+      		</select>
+        </div>
     	</div>
 
     	<div class="ui-form-field g-6 g-tablet-6 g-mobile-14 push-mobile-1">
@@ -107,13 +109,15 @@
     	</div>
 
     	<div class="ui-form-field g-6 push-2 g-tablet-6 push-tablet-2 g-mobile-14 push-mobile-1">
-    		<label for="Land">Land</label>
-    		<select id="Land" class="ui-select" tabindex="0" style="">
-    			<option value="#DEL#">nicht ausgewählt</option>
-          {% for iso,country in countries %}
-            <option {{ iso == 'CH' ? 'selected' : ''}} value="{{iso}}">{{country}}</option>
-          {% endfor %}
-    		</select>
+        <div class="ui-selectbox">
+      		<label for="Land">Land</label>
+      		<select id="Land" class="ui-select" tabindex="0" style="">
+      			<option value="#DEL#">nicht ausgewählt</option>
+            {% for iso,country in countries %}
+              <option {{ iso == 'CH' ? 'selected' : ''}} value="{{iso}}">{{country}}</option>
+            {% endfor %}
+      		</select>
+        </div>
     	</div>
 
     	<div class="ui-form-field g-6 g-tablet-6 g-mobile-14 push-mobile-1">
@@ -124,11 +128,13 @@
     	</div>
 
     	<div class="ui-form-field g-6 push-2 g-tablet-6 push-tablet-2 g-mobile-14 push-mobile-1">
-    		<label for="Sprache">Sprache des Newsletters</label>
-    		<select id="Sprache" class="ui-select" tabindex="0" style="">
-    			<option value="DE">deutsch</option>
-    			<option value="EN">englisch</option>
-    		</select>
+        <div class="ui-selectbox">
+      		<label for="Sprache">Sprache des Newsletters</label>
+      		<select id="Sprache" class="ui-select" tabindex="0" style="">
+      			<option value="DE">deutsch</option>
+      			<option value="EN">englisch</option>
+      		</select>
+        </div>
     	</div>
   </div>
   <div class="modal-footer">

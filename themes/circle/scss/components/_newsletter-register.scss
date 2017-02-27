@@ -1,0 +1,22 @@
+.newsletter-form {
+  .modal-body {
+    @extend .p-4;
+
+    .ui-textfield, .ui-selectbox {
+      @extend .row;
+      @extend .form-group;
+
+      label {
+        @extend .col-4;
+        @extend .col-md-3;
+      }
+
+      input, select {
+        @extend .form-control;
+        @extend .col-7;
+        @extend .col-md-8;
+        text-transform: none;
+      }
+    }
+  }
+}
