@@ -14,6 +14,8 @@ function circle_areas_node_view(array &$build, \Drupal\Core\Entity\EntityInterfa
     $field_name = 'field_belongs_to_overview';
     $overview = $entity;
     $build['circles'] = views_embed_view('circle_modules', 'circles_areas_embed');
+    $build['field_overlay_image'][0]['#item_attributes'] = array('data-lazy' => true);
+    $build['field_image'][0]['#item_attributes'] = array('data-lazy' => true);
   } else if ($entity->type->entity->id() == 'rental_house') {
     /**
      * House Page

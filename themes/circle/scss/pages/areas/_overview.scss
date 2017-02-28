@@ -1,22 +1,30 @@
 .page-node-type-rental-overview {
+  .pre-footer {
+    @extend .mt-0;
+  }
   .area-stage__images {
     .overview-images {
       position: relative;
-      img {
-  //      filter: grayscale(100%);
-      }
+      overflow: hidden;
       svg {
         position: absolute;
+        z-index: 5;
         top: 0;
         left: 0px;
         width: 100%;
         height: 100%;
-        opacity: 0.6;
-        @supports(mix-blend-mode: multiply) {
-          opacity: 1;
-          mix-blend-mode: multiply;
-        }
-      } 
+        opacity: 0;
+      }
+    }
+    
+    .circle-overlays,
+    .zoom-out-image {
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 1;
+      }
     }
   }
 }
