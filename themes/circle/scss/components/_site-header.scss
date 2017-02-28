@@ -109,18 +109,32 @@
 * Sub-menu!!!
 **/
 #block-mainmenu {
-  .menu {
-    li {
-      flex: none;
-    }
-    a {
-      color: $black;
-      &.is-active {
-        border-bottom: 3px solid $black;
+  overflow-x: auto;
 
-        @each $key, $color in $color-list {
-          .#{$key} & {
-            border-bottom-color: $color;
+  .menu {
+    @extend .list-unstyled;
+    margin: 0;
+    display: flex;
+    min-width: map-get($grid-breakpoints, 'md');
+
+    li {
+      flex-grow: 1;
+
+      a {
+        @extend .p-3;
+        display: block;
+        text-align: center;
+        color: $gray-lighter;
+        border-bottom: 5px solid $gray-lighter;
+
+        &.is-active {
+          color: $black;
+          border-bottom: 5px solid $black;
+
+          @each $key, $color in $color-list {
+            .#{$key} & {
+              border-bottom-color: $color;
+            }
           }
         }
       }
