@@ -31,22 +31,6 @@ function circle_preprocess_menu__social_media(&$variables) {
 }
 
 /**
- * Highlight last menu link when on Floor, House or Overview
- */
-function circle_preprocess_menu__main_menu(&$variables) {
-  $node = \Drupal::routeMatch()->getParameter('node');
-  if ($node && in_array(
-    $node->type->entity->id(), 
-    array('rental_floor', 'rental_house', 'rental_overview')
-    )
-  ) {
-    end($variables['items']);
-    $lastKey = key($variables['items']);
-    $variables['items'][$lastKey]['in_active_trail'] = true;
-  }
-}
-
-/**
  * Add Theme settings for the circle
  */
 function circle_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormStateInterface &$form_state, $form_id = NULL) {

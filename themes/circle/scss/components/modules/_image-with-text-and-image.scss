@@ -1,14 +1,18 @@
 .image-with-text-and-image {
   @extend .image-with-text;
-  
+
   .image-with-text__image {
     @extend .col-md-6;
   }
-  
+
   .image-with-text__text {
+
     img {
-      width: 100%;
+      @extend .mt-4;
+      width: 150%;
       height: auto;
+      position: relative;
+      left: -25%;
     }
   }
 }

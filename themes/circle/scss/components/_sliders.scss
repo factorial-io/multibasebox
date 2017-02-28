@@ -8,9 +8,77 @@
     opacity: 0;
   }
   .image-with-text-slide {
+    .white-label{
+      @extend .p-4;
+
+      h2{
+        font-size: $fontsize-subtitle;
+        letter-spacing: $letterspacing-narrow;
+        @extend .mb-1;
+      }
+    }
+
     img {
       width: 100%;
       height: auto;
+    }
+  }
+
+  &__button-prev,
+  &__button-next, {
+    @extend .btn;
+    @extend .btn-secondary;
+    @extend .p-4;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: $white;
+
+    &:hover{
+      background: $white;
+    }
+  }
+
+  &__button-prev {
+    left: 0;
+  }
+
+  &__button-next {
+    right: 0;
+  }
+
+  &__pagination{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+
+
+    ul{
+      @extend .list-inline;
+      text-align: center;
+    }
+
+    li{
+      @extend .list-inline-item;
+
+      button{
+        font-size: 0;
+        line-height: 0;
+        padding: 0;
+        height: 8px;
+        width: 8px;
+        border-radius: 50%;
+        outline: 0;
+        background: none;
+        border: 2px solid $white;
+      }
+
+      &.slick-active{
+        button{
+          background: $white;
+        }
+      }
     }
   }
 }
