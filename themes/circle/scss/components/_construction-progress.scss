@@ -1,0 +1,20 @@
+.construction-progress{
+  .modal-body{
+    position: relative;
+    min-height: 350px;
+
+    &__loading{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-transform: uppercase;
+      z-index: 1;
+    }
+
+    &__image{
+      position: relative;
+      z-index: 2;
+    }
+  }
+}

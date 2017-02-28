@@ -1,11 +1,5 @@
 .newsletter-form {
-  .modal-header{
-    @extend .p-4;
-  }
-
   .modal-body {
-    @extend .p-4;
-
     .ui-form-field {
       &__select, &__text {
         @extend .row;
