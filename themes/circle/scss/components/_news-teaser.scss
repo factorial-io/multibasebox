@@ -8,6 +8,7 @@
   .grid {
     .article-teaser {
       @extend .card;
+      cursor: pointer;
 
       a {
         //IE11 Bugfix
