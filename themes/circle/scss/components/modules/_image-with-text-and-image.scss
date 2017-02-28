@@ -6,14 +6,13 @@
   }
 
   .image-with-text__text {
-    position: relative;
 
     img {
       @extend .mt-4;
       width: 150%;
       height: auto;
       position: relative;
-      left: -50px;
+      left: -25%;
     }
   }
 }
