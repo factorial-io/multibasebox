@@ -10,9 +10,3 @@ if ($('.page-node-type-front-page')[0]) {
 
   animate()
 }
-
-$(".article-teaser").click((event) => {
-  event.preventDefault()
-  let url = $(event.currentTarget).find("a").attr("href")
-  window.location = url
-})
