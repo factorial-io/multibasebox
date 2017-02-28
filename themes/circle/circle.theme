@@ -42,7 +42,9 @@ function circle_preprocess_menu__main_menu(&$variables) {
   ) {
     end($variables['items']);
     $lastKey = key($variables['items']);
+    reset($variables['items']);
     $variables['items'][$lastKey]['in_active_trail'] = true;
+    $variables['#cache']['contexts'][] = 'url.path';
   }
 }
 
