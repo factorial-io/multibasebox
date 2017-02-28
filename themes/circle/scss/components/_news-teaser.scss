@@ -8,6 +8,7 @@
   .grid {
     .article-teaser {
       @extend .card;
+      cursor: pointer;
       img {
         @extend .img-fluid;
         width: 100%;
