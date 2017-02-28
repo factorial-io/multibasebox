@@ -10,6 +10,7 @@
       @extend .card;
 
       a {
+        //IE11 Bugfix
         height: 100%;
       }
 
