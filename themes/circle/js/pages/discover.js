@@ -7,9 +7,7 @@ import TimelineLite from 'gsap/TimelineLite'
 import {animate, stop} from '../components/logo'
 import lazyload from '../utils/lazyload'
 import {initHotspots} from '../components/hotspots'
-import Mustache from 'mustache'
-
-Mustache.tags = ["[[", "]]"] //Prevent mustache twig beard clash
+import Mustache from '../utils/mustache'
 
 class Discover {
   constructor() {

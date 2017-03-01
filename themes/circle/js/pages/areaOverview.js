@@ -4,9 +4,26 @@ import TweenLite from 'gsap/TweenLite'
 import 'gsap/CSSPlugin'
 import 'gsap/EasePack'
 import TimelineLite from 'gsap/TimelineLite'
+import Mustache from '../utils/mustache'
 
+const cleanFlags = () => {
+  $('.house-flag').remove()
+}
 $('[id^=H]').on('mouseover', (e) => {
-  console.log($(e.currentTarget).attr('id'))
+  cleanFlags()
+  const id = $(e.currentTarget).data('node-id')
+  $('#house-overlay g').not(e.currentTarget).addClass('inactive')
+  
+  if (id) {
+    const title = $(`[data-drupal-link-system-path="node/${id}"]`).text()
+    $('.interactive-area').append(Mustache.render($('#house-flag').html(), {title: title}))
+  }
+}).on('mouseout', () => {
+  cleanFlags()
+  $('#house-overlay g').removeClass('inactive')
+}).on('mousemove', (e) => {
+  const offset = $('.interactive-area').offset()
+  TweenLite.set($('.house-flag')[0], {x: e.pageX - offset.left, y: e.pageY - offset.top})
 })
 
 lazyload($('.interactive-area, .zoom-out-image')).then(() => {
