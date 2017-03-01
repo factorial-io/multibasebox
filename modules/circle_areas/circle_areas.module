@@ -69,7 +69,8 @@ function circle_areas_node_view(array &$build, \Drupal\Core\Entity\EntityInterfa
   
   if ($overview_id && $parent_id) {
     $query = \Drupal::entityQuery('node');
-    $query->condition($field_name.'.target_id', $parent_id);
+    $query->condition($field_name.'.target_id', $parent_id)->sort('title', 'ASC');
+    
     $nids = $query->execute();
     $links = [];
     $options = array('set_active_class' => true);
