@@ -109,14 +109,14 @@
     }
 
     .email-address,
-    .icon-earphone,
+    .icon-phone,
     .icon-email,
     .telephone-number {
       @extend .btn;
       @extend .btn-primary;
     }
 
-    .icon-earphone,
+    .icon-phone,
     .icon-email, {
       color: $white !important;
       background-color: $black !important;
