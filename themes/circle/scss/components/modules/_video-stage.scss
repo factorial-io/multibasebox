@@ -8,6 +8,7 @@
   }
   &__thumbs {
     @extend .p-5;
+    margin-left: get-spacer(4)/2;
     position: absolute;
     bottom: 0;
     width: 100%;
