@@ -25,7 +25,7 @@
 }
 
 [class^="icon-"], [class*=" icon-"] {
-  @extend %icon;  
+  @extend %icon;
 }
 
 .icon-arrow-down .path1:before {
@@ -107,4 +107,7 @@
 }
 .icon-invisible:before {
   content: "\e919";
+}
+.icon-phone:before {
+  content: "\e910";
 }
