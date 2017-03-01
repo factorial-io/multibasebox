@@ -1,8 +1,28 @@
 .filter-link {
   cursor: pointer;
-  text-decoration: line-through;
+  &__eye {
+    @extend %icon;
+    @extend .icon-invisible;
+    font-size: 1.5rem;
+    vertical-align: middle;
+    margin-right: 5px;
+  }
+  
   &.active {
-    text-decoration: none;
+    .filter-link__eye {
+      @extend .icon-visible;
+    }
+  }
+  
+  @each $key, $color in $color-list {
+    &.#{$key} {
+      .filter-link__eye {
+        color: $color;
+      }
+      &.active {
+        color: $color;
+      }
+    }
   }
 }
 
