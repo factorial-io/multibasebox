@@ -9,6 +9,13 @@
     @extend .col-md-4;
     text-align: center;
     position: relative;
+    
+    [id^=Highlight] {
+      opacity: 0;
+      &.active {
+        opacity: 1;
+      }
+    }
   }
 }
 
@@ -16,6 +23,11 @@
   &__table {
     @extend .table;
     @extend .table-hover;
+  }
+  &__row {
+    &.clickable {
+      cursor: pointer;
+    }
   }
   &__cell {
     text-align: center;
