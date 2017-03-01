@@ -1,20 +1,69 @@
 .video-stage {
+  position: relative;
+
   &__player {
     @extend .embed-responsive;
     @extend .embed-responsive-16by9;
+    z-index: 2;
   }
   &__thumbs {
-    .is-out {
-      opacity: 1;
-      position: relative;
-      top: 30px;
+    @extend .p-5;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 3;
+
+    .slick-track {
+      display: flex;
+      align-items: flex-end;
     }
-  }
-  .slide {
-    padding: 0 30px;
-    img {
-      width: 100%;
-      height: auto;
+
+    .slide {
+      @extend .mr-4;
+      background-color: $white;
+      cursor: pointer;
+      overflow: hidden;
+
+      .video-thumb{
+        &__header{
+          @extend .row;
+          align-items: center;
+
+          img {
+            @extend .col;
+            @extend .col-md-3;
+          }
+
+          h2{
+            @extend .col;
+            @extend .col-md-9;
+            font-size: $font-size-base;
+            font-family: $headings-font-family;
+            line-height: $font-size-base;
+            margin: 0;
+          }
+        }
+
+        &__text{
+          @extend .offset-3;
+          @extend .pl-2;
+          @extend .pr-3;
+          @extend .py-3;
+          transition: max-height 500ms;
+          height: auto;
+          max-height: 500px;
+        }
+
+        &.is-out {
+          opacity: 1;
+
+          .video-thumb__text{
+            padding: 0 !important;
+            height: 0;
+            max-height: 0;
+          }
+        }
+      }
     }
   }
 }

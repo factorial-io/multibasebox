@@ -1,3 +1,9 @@
 <div data-vimeo-video-id="{{content.field_vimeo_id[0]['#context'].value}}" class="video-thumb">
-{{content|without('field_vimeo_id')}}
+  <header class="video-thumb__header">
+    {{content.field_image}}
+    {{content.field_headline}}
+  </header>
+  <div class="video-thumb__text">
+    {{content.field_text}}
+  </div>
 </div>
