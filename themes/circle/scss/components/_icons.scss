@@ -25,7 +25,7 @@
 }
 
 [class^="icon-"], [class*=" icon-"] {
-  @extend %icon;  
+  @extend %icon;
 }
 
 .icon-arrow-down .path1:before {
@@ -102,4 +102,6 @@
 .icon-youtube:before {
   content: "\e917";
 }
-
+.icon-earphone:before {
+  content: "\e917";
+}

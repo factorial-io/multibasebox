@@ -1,4 +1,126 @@
 .rental-info {
+  @extend .m-6;
   text-align: center;
-  margin: 4*$spacer 0;
+
+  &__row {
+    @extend .row;
+  }
+
+  &__col {
+    @extend .col;
+    @extend .col-md-10;
+    @extend .offset-md-1;
+    @extend .px-5;
+  }
+
+  &__heading {
+    @extend .mb-4;
+  }
+
+  &__brands {
+    @extend .mb-5;
+
+    img:not(:last-child) {
+      @extend .mr-2;
+    }
+  }
+
+  .progress {
+    position: relative;
+    overflow: visible;
+
+    &::after,
+    &::before {
+      content: "";
+      display: block;
+      width: 6px;
+      height: 6px;
+      position: absolute;
+      top: 0;
+      border-radius: 50%;
+    }
+
+    &::before {
+      background-color: $black;
+      left: -10px;
+    }
+
+    &::after {
+      background-color: $gray-lighter;
+      right: -10px;
+    }
+
+    .progress-bar {
+      position: relative;
+      height: 5px;
+    }
+    $offsetY: -25px;
+    $offsetX: -10px;
+
+    &__current,
+    &__end,
+    &__start {
+      color: $gray-lighter;
+      text-transform: uppercase;
+      letter-spacing: $letterspacing-narrow;
+    }
+
+    &__start {
+      position: absolute;
+      top: $offsetY;
+      left: $offsetX;
+    }
+
+    &__end {
+      position: absolute;
+      top: $offsetY;
+      right: $offsetX;
+    }
+
+    &__current {
+      position: absolute;
+      top: $offsetY;
+      right: $offsetX;
+      color: $black;
+
+      &::after {
+        content: "";
+        display: block;
+        width: 0;
+        height: 0;
+        border-left: 3px solid transparent;
+        border-right: 3px solid transparent;
+        border-top: 4px solid $black;
+        position: absolute;
+        right: $offsetX * (-1);
+      }
+    }
+  }
+
+  &__contact {
+    @extend .mt-5;
+
+    .telephone, .email{
+      display: inline-block;
+
+      &:not(:last-child){
+          @extend .mr-3;
+      }
+    }
+
+    .email-address,
+    .icon-earphone,
+    .icon-email,
+    .telephone-number {
+      @extend .btn;
+      @extend .btn-primary;
+    }
+
+    .icon-earphone,
+    .icon-email, {
+      color: $white !important;
+      background-color: $black !important;
+      margin-right: -2px;
+    }
+  }
 }

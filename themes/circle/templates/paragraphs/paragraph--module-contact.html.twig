@@ -1,17 +1,38 @@
 <section class="rental-info">
-  <div class="brands">
-  {{brands}}
-  </div>
+  <div class="rental-info__row">
+    <div class="rental-info__col">
+      <h2 class="rental-info__title">{{'Werden Sie jetzt Teil von the circle'|trans}}</h2>
 
-  {{'Already sold space'|trans}}
-  <div class="rent-progress">
-    {{sold_space}}m2 // {{total_space}}m2
-    <div class="progress">
-      <div class="progress-bar" role="progressbar" style="width:{{percentage}}%" aria-valuenow="{{sold_space}}" aria-valuemin="0" aria-valuemax="{{total_space}}"></div>
+      <div class="rental-info__brands">
+        {{brands}}
+      </div>
+
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" style="width:{{percentage}}%" aria-valuenow="{{sold_space}}" aria-valuemin="0" aria-valuemax="{{total_space}}">
+          <span class="progress__current">{{sold_space}}
+            m&sup2;</span>
+        </div>
+        <span class="progress__start">{{'Already sold space'|trans}}</span>
+        <span class="progress__end">{{total_space}}
+          m&sup2;</span>
+      </div>
+
+      <div class="rental-info__contact">
+
+        <div class="telephone">
+          <div class="icon-earphone"></div>
+          <div class="telephone-number">
+            {{content.field_telephone_number}}
+          </div>
+        </div>
+
+        <div class="email">
+          <div class="icon-email"></div>
+          <div class="email-address">
+            {{content.field_email}}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-
-  <h5>{{'Please contact us'|trans}}</h5>
-  {{content.field_telephone_number}}
-  {{content.field_email}}
 </section>
