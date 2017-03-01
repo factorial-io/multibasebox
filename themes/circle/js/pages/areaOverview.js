@@ -6,33 +6,36 @@ import 'gsap/EasePack'
 import TimelineLite from 'gsap/TimelineLite'
 import Mustache from '../utils/mustache'
 
-const cleanFlags = () => {
-  $('.house-flag').remove()
-}
-$('[id^=H]').on('mouseover', (e) => {
-  cleanFlags()
-  const id = $(e.currentTarget).data('node-id')
-  $('#house-overlay g').not(e.currentTarget).addClass('inactive')
-  
-  if (id) {
-    const title = $(`[data-drupal-link-system-path="node/${id}"]`).text()
-    $('.interactive-area').append(Mustache.render($('#house-flag').html(), {title: title}))
+if ($('.page-node-type-rental-overview')[0]) {
+  const cleanFlags = () => {
+    $('.house-flag').remove()
   }
-}).on('mouseout', () => {
-  cleanFlags()
-  $('#house-overlay g').removeClass('inactive')
-}).on('mousemove', (e) => {
-  const offset = $('.interactive-area').offset()
-  TweenLite.set($('.house-flag')[0], {x: e.pageX - offset.left, y: e.pageY - offset.top})
-})
 
-lazyload($('.interactive-area, .zoom-out-image')).then(() => {
-  lazyload($('.circle-overlays'))
-  const mainImage = $('.interactive-area img')[0]
-  const zoomImage = $('.zoom-out-image img')[0]
-  TweenLite.set(mainImage, {opacity: 0})
-  TweenLite.set(mainImage, {opacity: 1, delay: 1})
-  TweenLite.from(zoomImage, 0.3, {opacity: 0})
-  TweenLite.to(zoomImage, 2.5, {scale: 2.25, rotation: -2, transformOrigin:"77% 87%", ease: Sine.easeOut, delay: 0.5})
-  TweenLite.to(zoomImage, 0.8, {opacity: 0, delay: 2.9})
-})
+  $('[id^=H]').on('mouseover', (e) => {
+    cleanFlags()
+    const id = $(e.currentTarget).data('node-id')
+    $('#house-overlay g').not(e.currentTarget).addClass('inactive')
+  
+    if (id) {
+      const title = $(`[data-drupal-link-system-path="node/${id}"]`).text()
+      $('.interactive-area').append(Mustache.render($('#house-flag').html(), {title: title}))
+    }
+  }).on('mouseout', () => {
+    cleanFlags()
+    $('#house-overlay g').removeClass('inactive')
+  }).on('mousemove', (e) => {
+    const offset = $('.interactive-area').offset()
+    TweenLite.set($('.house-flag')[0], {x: e.pageX - offset.left, y: e.pageY - offset.top})
+  })
+
+  lazyload($('.interactive-area, .zoom-out-image')).then(() => {
+    lazyload($('.circle-overlays'))
+    const mainImage = $('.interactive-area img')[0]
+    const zoomImage = $('.zoom-out-image img')[0]
+    TweenLite.set(mainImage, {opacity: 0})
+    TweenLite.set(mainImage, {opacity: 1, delay: 1})
+    TweenLite.from(zoomImage, 0.3, {opacity: 0})
+    TweenLite.to(zoomImage, 2.5, {scale: 2.25, rotation: -2, transformOrigin:"77% 87%", ease: Sine.easeOut, delay: 0.5})
+    TweenLite.to(zoomImage, 0.8, {opacity: 0, delay: 2.9})
+  })
+}
