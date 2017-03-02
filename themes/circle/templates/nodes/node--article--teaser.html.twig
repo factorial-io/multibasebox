@@ -1,11 +1,12 @@
 <article class="article-teaser">
-  {{ content.field_image }}
+  <div class="article-teaser__image"
+    {{ content.field_image }}
+  </div>
   <div class="article-teaser__content">
-
-    <footer>
+    <header>
         {{ date }}
         {{ metadata }}
-    </footer>
+    </header>
 
     <h3>
       <a href="{{ url }}" rel="bookmark">{{ label }}</a>

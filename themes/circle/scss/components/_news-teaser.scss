@@ -1,33 +1,57 @@
 .news-teaser {
   @extend .mt-6;
   padding: 0 percentage(1/$grid-columns);
+
   h2 {
     text-align: center;
   }
 
   .grid {
     .article-teaser {
+      $box-shadow-width: 40px;
       @extend .card;
       cursor: pointer;
+      border: none;
+      box-shadow: 0 0 $box-shadow-width $gray-lighter;
 
-      a {
-        //IE11 Bugfix
-        height: 100%;
+      &__image {
+        overflow: hidden;
+
+        img {
+          @extend .img-fluid;
+          width: 100%;
+          height: auto;
+          transition: transform 500ms;
+        }
       }
 
-      img {
-        @extend .img-fluid;
-        width: 100%;
-        height: auto;
-      }
       &__content {
         @extend .card-block;
+
+        h3 {
+          margin: 0.5rem 0;
+        }
+
+        header {
+          font-size: $font-size-sm;
+        }
       }
-      h3 {
-        margin: 0.5rem 0;
+
+      a {
+        height: 100%; //IE11 Bugfix
+        transition: color 500ms;
       }
-      footer {
-        font-size: $font-size-sm;
+
+      &:hover {
+        box-shadow: 0 0 $box-shadow-width $gray-light;
+
+        a {
+          color: $gray-light;
+        }
+
+        img {
+          transform: scale(1.05);
+        }
       }
     }
   }
