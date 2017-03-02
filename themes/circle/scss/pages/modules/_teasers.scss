@@ -10,7 +10,7 @@
   position: relative;
 
   @each $key, $color in $color-list {
-    .#{$key} &::after {
+    &.#{$key}::after {
       background-color: $color;
     }
   }
@@ -51,6 +51,7 @@
     bottom: $spacer * 2;
     right: $spacer * 3;
     transition: right 500ms;
+    transform: translateZ(0);
   }
 
   &:hover::after {
