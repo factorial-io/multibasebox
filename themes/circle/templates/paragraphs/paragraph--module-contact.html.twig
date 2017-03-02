@@ -8,13 +8,11 @@
       </div>
 
       <div class="progress">
-        <div class="progress-bar" role="progressbar" style="width:{{percentage}}%" aria-valuenow="{{sold_space}}" aria-valuemin="0" aria-valuemax="{{total_space}}">
-          <span class="progress__current">{{sold_space}}
-            m&sup2;</span>
+        <div class="progress-bar" role="progressbar" data-sold-percentage="{{percentage}}" aria-valuenow="{{sold_space}}" aria-valuemin="0" aria-valuemax="{{total_space}}">
+          <span class="progress__current"><span data-sold-value>{{sold_space}}</span> m&sup2;</span>
         </div>
         <span class="progress__start">{{'Already sold space'|trans}}</span>
-        <span class="progress__end">{{total_space}}
-          m&sup2;</span>
+        <span class="progress__end">{{total_space}} m&sup2;</span>
       </div>
 
       <div class="rental-info__contact">
