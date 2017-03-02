@@ -25,13 +25,15 @@
       <input type="hidden" name="trackId" value="null">
       <!--
     	Die Definition einer Folgeseite kann durch einen speziellen Parameter geändert werden
-    	<input type="hidden" name="gotoUrl" value="http://www.thecircle.ch/newsletter-confirmationmail.html">
+      -->
+    	<input type="hidden" name="gotoUrl" value="{{ url('entity.node.canonical', {'node': 35}) }}">
+      <!--
     	<input type="hidden" name="gotoErrorUrl" value="null">
 
     	Falls der Empfänger bereits Double Opt-in registriert ist, die Applikation überspringt den ganzen Double Opt-in Prozess und präsentiert als Folgeseite die Bestätigungsseite. Diese Seite kann über diesen Parameter umspezifiziert werden.
-    	<input type="hidden" name="gotoConfirmationUrl" value="">
+            	-->
+    	<input type="hidden" name="gotoConfirmationUrl" value="{{ url('entity.node.canonical', {'node': 70}) }}">
 
-    	-->
       <input type="hidden" name="xp_sendBackParams" value="0">
       <!-- Werte von xp_sendBackParams
     	value = 0   does not return registration parameters to client's Url
