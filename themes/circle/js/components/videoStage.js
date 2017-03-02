@@ -44,6 +44,8 @@ $('[data-video-stage]').each((index, el) => {
 
   $('[data-video-thumbs]', $(el)).slick({
     slidesToShow: 3,
-    slidesToSlide: 1
+    slidesToSlide: 1,
+    prevArrow: $(el).find('[data-swipe-prev]'),
+    nextArrow: $(el).find('[data-swipe-next]')
   })
 })
