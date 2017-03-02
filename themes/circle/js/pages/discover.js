@@ -1,6 +1,5 @@
 import $ from 'jquery'
 import mousewheelFactory from 'jquery-mousewheel'
-import '../components/panorama'
 import TweenLite from 'gsap/TweenLite'
 import 'gsap/CSSPlugin'
 import TimelineLite from 'gsap/TimelineLite'
