@@ -214,9 +214,6 @@ function circle_preprocess_paragraph(&$vars) {
       $node = \Drupal\node\Entity\Node::load(17);
       $vars['brands'] = node_view($node);
     }
-  } else if ($pid == 'image_mosaic_part') {
-    $image_field = $vars['content']['field_image'][0];
-    $vars['image_url'] = ImageStyle::load($image_field['#image_style'])->buildUrl( $image_field['#item']->entity->getFileUri() );
   }
 }
 
