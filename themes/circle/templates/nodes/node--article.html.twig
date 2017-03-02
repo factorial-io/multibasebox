@@ -24,20 +24,30 @@
       </div>
 
       <footer class="news-article__footer">
+         {% if content.field_pdf.0 %}
           <div class="news-article__download">
             <a href="{{file_url(content.field_pdf[0]['#file'].getFileUri())}}">
               {{'Download PDF'|t}}
               <span class="icon-file-pdf"></span>
             </a>
           </div>
-
+          {% endif %}
           <div class="news-article__social-share">
             <span class="news-article__share-text">{{'Artikel teilen'|t}}</span>
             <ul class="news-article__share-icons">
-              <li class="icon-email"></li>
-              <li class="icon-facebook"></li>
-              <li class="icon-twitter"></li>
-              <li class="icon-linkedin"></li>
+              <li>
+                <a class="icon-email" href="mailto:?subject={{node.label}}&body={{ url('<current>') }}"></a>
+              </li>
+              <li>
+                <a data-popup-link class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ url('<current>')|url_encode }}"></a>
+              </li>
+              <li>
+                <a data-popup-link class="icon-twitter" href="https://twitter.com/share?url={{ url('<current>')|url_encode }}&text={{ url('<current>') }}">
+                </a>
+              </li>
+              <li>
+                <a data-popup-link class="icon-linkedin" href="https://www.linkedin.com/shareArticle?url={{ url('<current>')|url_encode }}&mini=true"></a>
+              </li>
             </ul>
           </div>
 

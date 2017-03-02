@@ -47,3 +47,8 @@ $(document).on('click', '.article-teaser', (event) => {
   let url = $(event.currentTarget).find('h3 a').attr('href')
   window.location = url
 })
+
+$(document).on('click', '[data-popup-link]', function(e) {
+  e.preventDefault()
+  window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=450,width=600')
+})
