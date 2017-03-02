@@ -1,10 +1,10 @@
 <article class="news-article">
 
   <div class="news-article__back">
-    <button class="news-article__back-btn" data-action="">
-      <a href="{{ path('view.news.page_1') }}"><span class="icon-arrow-left"></span></a>
-    </button>
-    <div class="text">{{'Back to all News'|t}}</div>
+    <a href="{{ path('view.news.page_1') }}">
+      <div class="news-article__back-btn"><span></span></div>
+      <div class="news-article__back-text">{{'Back to all News'|t}}</div>
+    </a>
   </div>
 
   <div class="news-article__row">

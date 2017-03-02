@@ -4,10 +4,12 @@
       &__select, &__text {
         @extend .row;
         @extend .form-group;
+        align-items: center;
 
         label {
           @extend .col-4;
           @extend .col-md-3;
+          margin: 0;
         }
 
         input, select {
