@@ -1,11 +1,65 @@
 .module-teasers {
   @extend .row;
-  article {
-    @extend .col-md-5;
-    @extend .offset-md-1;
-    img {
-      width: 100%;
-      height: auto;
+  @extend .justify-content-center;
+}
+
+.module-teaser {
+  @extend .col;
+  @extend .col-md-4;
+  @extend .mr-5;
+  position: relative;
+
+  @each $key, $color in $color-list {
+    .#{$key} &::after {
+      background-color: $color;
+    }
+  }
+
+  &::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 8px;
+    transition: transform 500ms;
+    transform-origin: top center;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  &__headline {
+    @extend .p-3;
+    position: absolute;
+    bottom: 0;
+    left: $spacer;
+    margin: 0;
+    width: calc(100% - 30px);
+
+    a {
+      display: block;
+      color: $white;
+    }
+  }
+
+  &__icon {
+    @extend %icon;
+    @extend .icon-arrow-right;
+    color: $white;
+    position: absolute;
+    bottom: $spacer * 2;
+    right: $spacer * 3;
+    transition: right 500ms;
+  }
+
+  &:hover::after {
+    transform: scaleY(1.3);
+  }
+
+  &:hover{
+    .module-teaser__icon{
+        right: $spacer * 2;
     }
   }
 }
