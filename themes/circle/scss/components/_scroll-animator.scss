@@ -1,32 +1,21 @@
 @keyframes arrow-top-down {
-  0% { top: 0px; }
-  50% { top: 30px; opacity: 1; }
-  51% { opacity: 0; top: -30px;}
-  52% { opacity: 1; }
-  100% { top: 0px;}
+  0% { transform: translateY(0); }
+  50% { transform: translateY(0.5rem); }
+  100% { transform: translateY(0); }
 }
 
 .scroll-animator {
   color: $white;
   font-size: 2rem;
+  .arrow {
+    position: absolute;
+  }
   &:hover {
     color: $white;
-  }
-}
-
-@supports ((-webkit-clip-path: circle(1rem at 1rem 1rem))) {
-  .scroll-animator {
-    .icon-arrow-down {
-      -webkit-clip-path: circle(1rem at 1rem 1rem);
-      clip-path: circle(1rem at 1rem 1rem); 
-    }
-    &:hover {
-      .arrow {
-        position: relative;
-        animation-duration: 2.5s;
-        animation-name: arrow-top-down;
-        animation-iteration-count: infinite;
-      } 
-    }
+    .arrow {
+      animation-duration: 2.5s;
+      animation-name: arrow-top-down;
+      animation-iteration-count: infinite;
+    } 
   }
 }
