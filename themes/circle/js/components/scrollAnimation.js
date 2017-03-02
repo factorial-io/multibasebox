@@ -15,12 +15,23 @@ spy.onIn(($el) => {
 
 if ($('[data-sold-percentage]')[0]) {
   const percentageSpy = new ScrollSpy($('[data-sold-percentage]'), SpyDirection.bottom)
-  const tweenObj = {percentage: 0}
   percentageSpy.onIn(($el) => {
+    const tweenObj = {percentage: 0}
     const valueMax = $el.attr('aria-valuemax')
     TweenLite.to(tweenObj, 2, {percentage: $el.data('sold-percentage'), onUpdate: () => {
       $el.css({width: `${tweenObj.percentage}%`})
       $el.find('[data-sold-value]').html(Math.round(valueMax * tweenObj.percentage / 100))
+    }})
+  })
+}
+
+if ($('[data-count-up]')[0]) {
+  const countUpSpy = new ScrollSpy($('[data-count-up]'), SpyDirection.bottom)
+  countUpSpy.onIn(($el) => {
+    const countUp = $el.data('count-up')
+    const tweenObj = {value: 0}
+    TweenLite.to(tweenObj, 2, {value: countUp, onUpdate: () => {
+      $el.html(Math.round(tweenObj.value))
     }})
   })
 }
