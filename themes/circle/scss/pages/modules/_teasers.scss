@@ -1,11 +1,47 @@
 .module-teasers {
   @extend .row;
-  article {
-    @extend .col-md-5;
-    @extend .offset-md-1;
-    img {
-      width: 100%;
-      height: auto;
+  @extend .justify-content-center;
+}
+
+.module-teaser {
+  @extend .col;
+  @extend .col-md-4;
+  @extend .mr-5;
+  position: relative;
+
+  &::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 6px;
+    background-color: $circle-modules-teaser-red;
+    transition: transform 500ms;
+    transform-origin: bottom center;
+  }
+
+  &:hover::after {
+    transform: scaleY(1.5);
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  h2 {
+    @extend .p-3;
+    position: absolute;
+    bottom: 0;
+    left: $spacer;
+    margin: 0;
+
+    a {
+      color: $white;
+    }
+
+    span {
+      @extend %icon;
+      @extend .icon-arrow-right;
     }
   }
 }
