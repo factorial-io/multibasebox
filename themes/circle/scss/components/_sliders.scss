@@ -8,16 +8,6 @@
     opacity: 0;
   }
   .image-with-text-slide {
-    .white-label{
-      @extend .p-4;
-
-      h2{
-        font-size: $fontsize-subtitle;
-        letter-spacing: $letterspacing-narrow;
-        @extend .mb-1;
-      }
-    }
-
     img {
       width: 100%;
       height: auto;

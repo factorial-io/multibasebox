@@ -23,6 +23,7 @@
 }
 
 .white-label {
+  @extend .p-4;
   $distance: 10%;
   position: absolute;
   z-index: 5;
@@ -30,6 +31,12 @@
   max-width: 360px;
   left: $distance;
   text-align: center;
+
+  h2{
+    font-size: $fontsize-subtitle;
+    letter-spacing: $letterspacing-narrow;
+    @extend .mb-1;
+  }
   
   .top-right & {
     left: auto;
