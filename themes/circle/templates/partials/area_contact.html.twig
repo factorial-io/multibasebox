@@ -3,11 +3,11 @@
 
   {{content.field_contact}}
 
-  {% if content.field_vcard %}
+  {% if content.field_vcard.0 %}
   <a href="{{file_url(content.field_vcard[0]['#file'].getFileUri())}}">vCard</a>
   {% endif %}
 
-  {% if content.field_email %}
+  {% if content.field_email.0 %}
   <a href="mailto:{{content.field_email[0]['#context']['value']}}">{{content.field_email[0]['#context']['value']}}</a>
   {% endif %}
 </section>
