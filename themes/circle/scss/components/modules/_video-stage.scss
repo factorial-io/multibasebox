@@ -7,16 +7,25 @@
     z-index: 2;
   }
   &__thumbs {
-    @extend .p-5;
-    margin-left: get-spacer(4)/2;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    z-index: 3;
+    @extend .p-lg-5;
+    @extend .p-md-3;
+    margin-left: get-spacer(3);
+
+    @include media-breakpoint-up(md) {
+      position: absolute;
+      bottom: 0;
+      z-index: 3;
+      width: 100%;
+    }
 
     .slick-track {
       display: flex;
       align-items: flex-end;
+
+      @include media-breakpoint-down(sm) {
+        margin-top: $spacer;
+        align-items: center;
+      }
     }
 
     .slide {
@@ -25,19 +34,45 @@
       cursor: pointer;
       overflow: hidden;
 
-      .video-thumb{
-        &__header{
+      .video-thumb {
+        transition: margin 500ms;
+
+        &__header {
           @extend .row;
           align-items: center;
+        }
 
-          img {
-            @extend .col;
+        &__image {
+            @extend .col-12;
+            @extend .col-sm-5;
             @extend .col-md-3;
+            position: relative;
+
+            &::after{
+              display: none;
+              content: "";
+              @include triangle-right(10px, $white);
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+            }
+
+            img{
+              width: 100%;
+              height: auto;
+            }
+        }
+
+        &__headline{
+          @extend .col-12;
+          @extend .col-sm-7;
+          @extend .col-md-9;
+          @include media-breakpoint-down(sm) {
+            margin-top: $spacer;
           }
 
           h2{
-            @extend .col;
-            @extend .col-md-9;
             font-size: $font-size-base;
             font-family: $headings-font-family;
             line-height: $font-size-base;
@@ -45,23 +80,40 @@
           }
         }
 
-        &__text{
-          @extend .offset-3;
+        &__text {
+          @extend .offset-md-3;
           @extend .pl-2;
           @extend .pr-3;
           @extend .py-3;
           transition: max-height 500ms;
           height: auto;
           max-height: 500px;
+          opacity: 1;
+          hyphens: auto;
+
+          @include media-breakpoint-down(sm) {
+            display: none;
+          }
+        }
+
+        &.is-out:hover {
+          @include media-breakpoint-up(md) {
+            margin-bottom: 10px;
+          }
         }
 
         &.is-out {
           opacity: 1;
 
-          .video-thumb__text{
+          .video-thumb__text {
             padding: 0 !important;
             height: 0;
             max-height: 0;
+            opacity: 0;
+          }
+
+          .video-thumb__image::after {
+            display: block;
           }
         }
       }
