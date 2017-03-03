@@ -25,7 +25,8 @@
         border: 2px solid $white;
         width: $dot-size;
         height: $dot-size;
-        border-radius: 100%;
+        border-radius: 50%;
+        box-shadow: 0 0 2px rgba(0,0,0,0.5);
       }
       .title {
         background: $white;

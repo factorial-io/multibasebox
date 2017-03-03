@@ -95,7 +95,7 @@ class Discover {
       }
       $page.append(Mustache.render($('#title-ani').html(), {title: title}))
     
-      const titleEl = $('.title-ani h3')[0]
+      const titleEl = $('.title-ani')[0]
       this.titleTimeline = new TimelineLite({
         onComplete: () => {
           $('.title-ani').remove()

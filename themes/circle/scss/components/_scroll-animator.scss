@@ -6,7 +6,14 @@
 
 .scroll-animator {
   color: $white;
-  font-size: 2rem;
+  p {
+    max-width: 200px;
+    margin: 0 auto 1rem;
+  }
+  .path2,
+  .arrow {
+    font-size: 2.5rem;
+  }
   .arrow {
     position: absolute;
   }

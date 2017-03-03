@@ -1,0 +1,30 @@
+.white-label {
+  @extend .p-4;
+  $distance: 10%;
+  position: absolute;
+  z-index: 5;
+  background: $white;
+  max-width: 360px;
+  left: $distance;
+  text-align: center;
+
+  h2{
+    @extend .mb-1;
+    font-size: $fontsize-subtitle;
+    letter-spacing: $letterspacing-narrow;
+  }
+  
+  .top-right & {
+    left: auto;
+    right: $distance;
+  }
+  .bottom-left & {
+    bottom: 0;
+  }
+  
+  .bottom-right & {
+    bottom: 0;
+    left: auto;
+    right: $distance;
+  }
+}
