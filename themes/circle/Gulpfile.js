@@ -11,6 +11,7 @@ var babel = require('babelify');
 var gutil = require('gulp-util');
 var cleanCSS = require('gulp-clean-css');
 var uglify = require('gulp-uglify');
+var gulpif = require('gulp-if');
 
 function compile(watch, dist) {
   var bundler = false
@@ -38,13 +39,12 @@ function compile(watch, dist) {
       })
       .pipe(source('build.js'))
       .pipe(buffer())
-      if (!dist) {
-        bundle.pipe(sourcemaps.init({ loadMaps: true }))
-        .pipe(sourcemaps.write('./'))
-      } else {
-        bundle.pipe(uglify())
-      }
-      bundle.pipe(gulp.dest('./js_dist'));
+      
+      .pipe(gulpif(!dist, sourcemaps.init({ loadMaps: true })))
+      .pipe(gulpif(!dist, sourcemaps.write('./')))
+      .pipe(gulpif(dist, uglify()))
+
+      .pipe(gulp.dest('./js_dist'))
   }
 
   if (watch) {
@@ -61,17 +61,12 @@ function compileCSS(dist) {
   var bundle = gulp.src('scss/*.scss')
     .pipe(sass().on('error', sass.logError))
   
-  if (!dist) {
-    bundle.pipe(sourcemaps.init())
-  }
-  bundle.pipe(postcss([ autoprefixer() ]))
-  if (!dist) {
-    bundle.pipe(sourcemaps.write('.'))
-  } else {
-    bundle.pipe(cleanCSS())
-  }
+    .pipe(gulpif(!dist, sourcemaps.init()))
+    .pipe(postcss([ autoprefixer() ]))
+    .pipe(gulpif(!dist, sourcemaps.write('.')))
+    .pipe(gulpif(dist, cleanCSS()))
 
-  bundle.pipe(gulp.dest('./css/'));
+    .pipe(gulp.dest('./css/'));
 }
 
 function watch() {

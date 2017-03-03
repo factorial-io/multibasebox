@@ -32,7 +32,10 @@
 
 .page-node-type-discover-page {
   .popover {
+    position: absolute;
     width: 360px;
+    transform: translateX(-100%);
+    top: -10px;
     display: none;
     background: $white;
     img {

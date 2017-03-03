@@ -3,19 +3,19 @@ import getGrid, {checkForLoad} from '../components/grid'
 
 const loadMoreSelect = '[data-news-view] [data-load-more]'
 const $loadMore = $(loadMoreSelect)
-const $realPager = $('[data-news-view] [data-pager]')
+let $realPager = $('[data-news-view] [data-pager]')
 
-const getNextUrl = () => {
-  return $realPager.find('[rel=next]').attr('href')
+const getNextUrl = ($pager) => {
+  return $pager.find('[rel=next]').attr('href')
 }
 
-if (!getNextUrl()) {
+if (!getNextUrl($realPager)) {
   $loadMore.remove()
 }
 
 $(document).on('click', loadMoreSelect, (e) => {
   e.preventDefault()
-  const nextUrl = getNextUrl()
+  const nextUrl = getNextUrl($realPager)
 
   if (nextUrl) {
     $loadMore.addClass('loading')
@@ -33,11 +33,12 @@ $(document).on('click', loadMoreSelect, (e) => {
         history.pushState({}, null, nextUrl)
       }
 
-      const $pager = $(data).find('[data-pager]')
-      if (!$pager.find('[data-pager]')[0]) {
+      const $newPager = $(data).find('[data-pager]')
+      if (!getNextUrl($newPager)) {
         $loadMore.remove()
       }
-      $realPager.replaceWith($pager)
+      $realPager.replaceWith($newPager)
+      $realPager = $newPager
     })
   }
 })
