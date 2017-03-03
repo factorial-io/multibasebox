@@ -13,15 +13,24 @@
       cursor: pointer;
       border: none;
       box-shadow: 0 0 $box-shadow-width $gray-lighter;
+      transition: box-shadow 450ms;
 
       &__image {
         overflow: hidden;
 
+        a{
+          display: block;
+          width: 101%;
+          height: auto;
+        }
+
         img {
           @extend .img-fluid;
+          display: block;
           width: 100%;
           height: auto;
-          transition: transform 500ms;
+          transition: transform 350ms;
+          transform: scale(1.0) translateZ(0);
         }
       }
 
@@ -39,18 +48,17 @@
 
       a {
         height: 100%; //IE11 Bugfix
-        transition: color 500ms;
       }
 
       &:hover {
         box-shadow: 0 0 $box-shadow-width $gray-light;
 
         a {
-          color: $gray-light;
+          color: $black;
         }
 
         img {
-          transform: scale(1.05);
+          transform: scale(1.05) translateZ(0);
         }
       }
     }
