@@ -1,11 +1,16 @@
 .news-article {
   @extend .mt-6;
+  padding: 0 percentage(1/$grid-columns);
   position: relative;
 
-  &__back{
-    position: absolute;
-    top: 0;
-    left: 0;
+  &__back {
+    margin-bottom: $spacer*3;
+
+    @include media-breakpoint-up(md){
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
   }
 
   &__back-btn {
@@ -19,7 +24,7 @@
     }
   }
 
-  &__back-text{
+  &__back-text {
     @extend .ml-2;
     display: inline-block;
     text-transform: uppercase;
@@ -46,7 +51,7 @@
    letter-spacing: $letterspacing-narrow;
   }
 
-  &__summary{
+  &__summary {
    font-family: $headings-font-family;
   }
 
@@ -56,7 +61,7 @@
     }
   }
 
-  &__text  {
+  &__text {
     @extend .mt-3;
     @extend .mb-6;
   }
@@ -89,7 +94,7 @@
     margin-right: 10px;
   }
 
-  &__share-icons{
+  &__share-icons {
     @extend .list-inline;
     display: inline-block;
     position: relative;
