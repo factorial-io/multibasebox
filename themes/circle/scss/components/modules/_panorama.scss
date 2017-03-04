@@ -1,3 +1,6 @@
+.panorama-container {
+  position: relative;
+}
 .panorama-close {
   @extend %icon;
   @extend .icon-close;
@@ -8,4 +11,5 @@
   color: $white;
   z-index: 10;
   display: none;
+  cursor: pointer;
 }
