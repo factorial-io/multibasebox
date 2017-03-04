@@ -13,7 +13,6 @@
       cursor: pointer;
       position: relative;
       $dot-size: 0.6rem;
-      margin-bottom: 0.5*$spacer;
       
       a {
         display: flex;
@@ -29,13 +28,23 @@
         box-shadow: 0 0 2px rgba(0,0,0,0.5);
       }
       .title {
+        position: relative;
         background: $white;
         color: $black;
         margin-right: -1010px;
+        padding: 7px 0 5px 10px;
+        text-transform: uppercase;
+        &::after {
+          position: absolute;
+          top: 0;
+          right: -32px;
+          content: "";
+          @include triangle-right(16px, $white);
+        }
       }
       &:hover {
        .title {
-         margin-right: 10px;
+         margin-right: 35px;
        } 
       }
       &.active {
