@@ -1,7 +1,7 @@
 .hotspot-overlay {
   position: absolute;
-  min-width: 100vw;      /*  for cover    */
-  min-height: calc(100vh - 66px);     /*  for cover    */
+  min-width: 100vw;
+  min-height: calc(100vh - 66px);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -12,10 +12,9 @@
   }
   &__spot {
     position: absolute;
-    .spot {
+    .flag {
       position: relative;
       z-index: 10;
-      background: $white;
       cursor: pointer;
     }
     .spot-wrapper {
@@ -35,9 +34,21 @@
     position: absolute;
     width: 360px;
     transform: translateX(-100%);
-    top: -10px;
-    display: none;
+    top: -50px;
+    transition: opacity 500ms;
+    box-shadow: 0 0 20px rgba(0,0,0, 0.6);
+    &.closed {
+      opacity: 0;
+    }
     background: $white;
+    .card__text {
+      h2 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+      padding: $spacer;
+      line-height: 1.5;
+    }
     img {
       width: 100%;
       height: auto;

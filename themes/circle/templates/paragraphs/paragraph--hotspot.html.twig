@@ -1,7 +1,11 @@
 <div data-hotspot class="hotspot-overlay__spot" style="left: {{content.field_position_x_[0]['#markup']}}%; top: {{content.field_position_y_[0]['#markup']}}%">
   <div class="spot-wrapper">
-    <div class="spot">{{content.field_headline[0]['#text']}}</div>
-    <div class="popover">
+    <div class="flag">
+      <div class="flag__inner">
+        <span class="flag__circle"></span><span class="flag__text">{{content.field_headline[0]['#text']}}</span>
+      </div>
+    </div>
+    <div class="popover closed">
       {{ content.field_image }}
       <div class="card__text">
         {{ content.field_headline }}

@@ -1,0 +1,43 @@
+.flag {
+  &__inner {
+    position: relative;
+    top: -20px;
+    display: flex;
+    align-items: center;
+  }
+  &__circle {
+    $size: 40px;
+    $bordersize: 8px;
+    @extend %icon;
+    @extend .icon-close;
+    width: $size;
+    height: $size;
+    line-height: $size - 2*$bordersize;
+    border: $bordersize solid $white;
+    color: $white;
+    text-align: center;
+    margin-left: -($size/2);
+    border-radius: 50%;
+    z-index: 1;
+    transition: all 500ms;
+    &::before {
+      display: none;
+    }
+    .flag.active & {
+      background-color: $black;
+      border-color: $black;
+      &::before {
+        display: block;
+      }
+    }
+  }
+  &__text {
+    background-color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+    font-size: 1.125rem;
+    line-height: 1.5;
+    padding: 2px 8px 0 12px;
+    margin-left: -6px;
+    white-space: nowrap;
+  }
+}

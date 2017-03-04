@@ -8,7 +8,7 @@ import Mustache from '../utils/mustache'
 
 if ($('.page-node-type-rental-overview')[0]) {
   const cleanFlags = () => {
-    $('.house-flag').remove()
+    $('.flag').remove()
   }
 
   $('[id^=H]').on('mouseover', (e) => {
@@ -25,7 +25,7 @@ if ($('.page-node-type-rental-overview')[0]) {
     $('#house-overlay g').removeClass('inactive')
   }).on('mousemove', (e) => {
     const offset = $('.interactive-area').offset()
-    TweenLite.set($('.house-flag')[0], {x: e.pageX - offset.left, y: e.pageY - offset.top})
+    TweenLite.set($('.flag')[0], {x: e.pageX - offset.left, y: e.pageY - offset.top})
   })
   
   $('#house-overlay').hide()

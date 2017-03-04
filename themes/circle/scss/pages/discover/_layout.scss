@@ -22,37 +22,6 @@
   }
 }
 
-.white-label {
-  @extend .p-4;
-  $distance: 10%;
-  position: absolute;
-  z-index: 5;
-  background: $white;
-  max-width: 360px;
-  left: $distance;
-  text-align: center;
-
-  h2{
-    font-size: $fontsize-subtitle;
-    letter-spacing: $letterspacing-narrow;
-    @extend .mb-1;
-  }
-  
-  .top-right & {
-    left: auto;
-    right: $distance;
-  }
-  .bottom-left & {
-    bottom: 0;
-  }
-  
-  .bottom-right & {
-    bottom: 0;
-    left: auto;
-    right: $distance;
-  }
-}
-
 .page-node-type-discover-page {
   height: 100%;
   body {
@@ -64,7 +33,6 @@
     top: $site-nav-height;
     height: calc(100% - #{$site-nav-height});
     width: 100%;
-    background: $circle-green;
   }
   .fix-wrapper {
     position: fixed;
