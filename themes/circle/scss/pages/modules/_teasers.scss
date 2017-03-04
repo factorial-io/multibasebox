@@ -4,10 +4,22 @@
 }
 
 .module-teaser {
-  @extend .col;
+  @extend .col-10;
   @extend .col-md-4;
-  @extend .mr-5;
+  padding: 0;
   position: relative;
+  transition: box-shadow 500ms;
+
+  @include media-breakpoint-down(sm){
+    &:not(:last-child){
+      margin-right: 0 !important;
+      margin-bottom: get-spacer(5);
+    }
+  }
+
+  &:not(:last-child){
+    margin-right: get-spacer(5);
+  }
 
   @each $key, $color in $color-list {
     &.#{$key}::after {
@@ -35,7 +47,7 @@
     bottom: 0;
     left: $spacer;
     margin: 0;
-    width: calc(100% - 30px);
+    width: calc(100% - 55px);
 
     a {
       display: block;
@@ -54,11 +66,11 @@
     transform: translateZ(0);
   }
 
-  &:hover::after {
-    transform: scaleY(1.3);
-  }
-
   &:hover{
+    @include media-breakpoint-up(sm){
+      box-shadow: none;
+    }
+
     .module-teaser__icon{
         right: $spacer * 2;
     }
