@@ -1,4 +1,5 @@
 .circle-slider {
+  position: relative;
   .slide {
     position: relative;
     padding: 12vw 3vw 0 3vw;
@@ -16,8 +17,7 @@
 //    }
     h6 {
       text-align: center;
-      margin: 10px 0;
-      
+      margin: 1rem 0;
     }
     
     @each $key, $color in $color-list {
@@ -33,15 +33,21 @@
   .slick-center {
     img {
       transform: scale(1.7);
+      @include media-breakpoint-down(sm) {
+        transform: scale(1);
+      }
     }
   }
   img {
     width: 100%;
     height: auto;
+    border-radius: 50%;
   }
-  .circle-details {
-    min-height: 15vw;
-    font-size: 2rem;
-    padding: 2*$spacer percentage(1/$grid-columns);
-  }
+}
+
+.circle-details {
+  min-height: 15vw;
+  font-size: 2rem;
+  text-align: center;
+  padding: 2*$spacer percentage(1/$grid-columns);
 }

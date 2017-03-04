@@ -1,13 +1,14 @@
 <div class="circle-slider">
-  <div data-circle-slider data-slick='{"slidesToShow": 5, "slidesToScroll": 1, "infinite": true, "initialSlide": 0, "centerMode": true, "adaptiveHeight": true}'>
+  <div class="circle-slider__slider" data-circle-slider data-slick='{"slidesToShow": 5, "slidesToScroll": 1, "infinite": true, "initialSlide": 0, "centerMode": true, "adaptiveHeight": true}'>
   {% for row in rows %}
     <div class="slide">
       {{ row.content }}
     </div>
   {% endfor %}
   </div>
+  <div data-swipe-prev class="slider__button-prev icon-arrow-left"><span></span></div>
+  <div data-swipe-next class="slider__button-next icon-arrow-right"><span></span></div>
+</div>
+<div data-circle-details class="circle-details">
 
-  <div data-circle-details class="circle-details">
-  
-  </div>
 </div>

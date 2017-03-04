@@ -1,4 +1,5 @@
 import $ from 'jquery'
+import Responsive, {RESKEYS} from '../utils/Responsive'
 import TweenLite from 'gsap/TweenLite'
 import 'gsap/CSSPlugin'
 
@@ -16,12 +17,21 @@ const setActive = (currentSlide) => {
 //   })
   $('[data-circle-details]').html($slider.find('.slick-center .details__text').html()).animate({opacity: 1}, 300)
 }
+console.log($slider.parent().find('[data-swipe-prev]'))
 $slider.slick({
+  prevArrow: $slider.parent().find('[data-swipe-prev]'),
+  nextArrow: $slider.parent().find('[data-swipe-next]'),
   responsive: [
       {
-        breakpoint: 900,
+        breakpoint: Responsive.BREAKPOINTS[RESKEYS.md],
         settings: {
           slidesToShow: 3
+        }
+      },
+      {
+        breakpoint: Responsive.BREAKPOINTS[RESKEYS.sm],
+        settings: {
+          slidesToShow: 1
         }
       }
     ]
