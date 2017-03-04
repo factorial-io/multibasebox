@@ -24,6 +24,10 @@
   border-bottom: $width solid transparent;
 }
 
+@mixin circle-shadow($color){
+  box-shadow: 0 0 40px $color;
+}
+
 @function get-spacer($index, $xy:'y') {
   @return map-get(map-get($spacers, $index), $xy);
 }

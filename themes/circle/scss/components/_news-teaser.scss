@@ -12,7 +12,7 @@
       @extend .card;
       cursor: pointer;
       border: none;
-      box-shadow: 0 0 $box-shadow-width $gray-lighter;
+      @include circle-shadow($gray-lighter);
       transition: box-shadow 450ms;
 
       &__image {
@@ -51,7 +51,7 @@
       }
 
       &:hover {
-        box-shadow: 0 0 $box-shadow-width $gray-light;
+        @include circle-shadow($gray-light);
 
         a {
           color: $black;
