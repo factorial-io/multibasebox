@@ -1,0 +1,11 @@
+.panorama-close {
+  @extend %icon;
+  @extend .icon-close;
+  position: absolute;
+  right: 2rem;
+  top: 2rem;
+  font-size: 2rem;
+  color: $white;
+  z-index: 10;
+  display: none;
+}

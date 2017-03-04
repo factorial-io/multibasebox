@@ -17,7 +17,7 @@ const setActive = (currentSlide) => {
 //   })
   $('[data-circle-details]').html($slider.find('.slick-center .details__text').html()).animate({opacity: 1}, 300)
 }
-console.log($slider.parent().find('[data-swipe-prev]'))
+
 $slider.slick({
   prevArrow: $slider.parent().find('[data-swipe-prev]'),
   nextArrow: $slider.parent().find('[data-swipe-next]'),

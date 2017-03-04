@@ -3,7 +3,8 @@ import {getString} from '../utils/strings'
 import $ from 'jquery'
 
 $('[data-panorama-url]').each((index, el) => {
-  pannellum.viewer(el, {
+  const $close = $(el).parent().find('[data-panorama-close]')
+  const viewer = pannellum.viewer(el, {
     type: 'equirectangular',
     panorama: $(el).data('panorama-url'),
     mouseZoom: false,
@@ -12,5 +13,12 @@ $('[data-panorama-url]').each((index, el) => {
     default: {
       loadButtonLabel: getString('panorama-loadtext')
     }
+  })
+  viewer.on('load', () => {
+    $close.show()
+  })
+  $close.on('click', (e) => {
+    viewer.standby()
+    $close.hide()
   })
 })

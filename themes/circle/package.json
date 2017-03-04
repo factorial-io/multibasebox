@@ -30,6 +30,7 @@
     "@vimeo/player": "^2.0.1",
     "babel-polyfill": "^6.23.0",
     "gsap": "^1.19.1",
+    "hammerjs": "^2.0.8",
     "imagesloaded": "^4.1.1",
     "jquery": "^3.1.1",
     "jquery-mousewheel": "^3.1.13",

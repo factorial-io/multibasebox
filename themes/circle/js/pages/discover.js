@@ -1,5 +1,6 @@
 import $ from 'jquery'
 import mousewheelFactory from 'jquery-mousewheel'
+import Hammer from 'hammerjs'
 import TweenLite from 'gsap/TweenLite'
 import 'gsap/CSSPlugin'
 import TimelineLite from 'gsap/TimelineLite'
@@ -45,6 +46,15 @@ class Discover {
   }
   init() {
     mousewheelFactory($)
+    const hammertime = new Hammer($('body')[0])
+    hammertime.get('swipe').set({ direction: Hammer.DIRECTION_VERTICAL })
+    hammertime.on('swipe', (ev) => {
+    	if (ev.deltaY > 0) {
+        this.previousPage()
+      } else {
+        this.nextPage()
+      }
+    })
     $('body').on('mousewheel', this.scrollHandler.bind(this))
     $(document).on('click', '.discover-slides__nav li', (e) => {
       this.gotoPage($('.discover-slides__nav li').index(e.currentTarget))
