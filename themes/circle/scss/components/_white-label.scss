@@ -13,7 +13,7 @@
     font-size: $fontsize-subtitle;
     letter-spacing: $letterspacing-narrow;
   }
-  
+
   .top-right & {
     left: auto;
     right: $distance;
@@ -21,10 +21,16 @@
   .bottom-left & {
     bottom: 0;
   }
-  
+
   .bottom-right & {
     bottom: 0;
     left: auto;
     right: $distance;
+  }
+
+
+  @include media-breakpoint-down(sm){
+    position: static;
+    max-width: 100%;
   }
 }
