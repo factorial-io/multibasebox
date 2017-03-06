@@ -1,5 +1,6 @@
 .page-node-type-rental-floor {
   .area-stage {
+    position: relative;
     &__images {
       position: relative;
       img:last-child {
@@ -7,25 +8,99 @@
         top: 0;
       }
     }
+    .interior-switch-wrapper {
+      position: absolute;
+      bottom: $spacer;
+      left: 0;
+      right: 0;
+      text-align: center;
+    }
+    .interior-switch {
+      text-transform: uppercase;
+      cursor: pointer;
+      color: $gray-light;
+      transition: color 400ms;
+      &__eye {
+        @extend %icon;
+        @extend .icon-invisible;
+        position: relative;
+        top: -2px;
+        font-size: 1.5rem;
+        vertical-align: middle;
+        margin-right: 5px;
+      }
+      &.active {
+        color: $body-color;
+        .interior-switch__eye {
+          @extend .icon-visible;
+        }
+      }
+    }
   }
   .floor-info {
     text-align: left;
     h1 {
+      @extend .mt-4;
+      @extend .mt-lg-0;
       text-align: center;
     }
+  }
+  
+  .pdf-button {
+    @extend .btn;
+    @extend .btn-primary;
+    @extend .mb-2;
+    width: 100%;
+    display: block;
+  }
+  .share-button {
+    @extend .button;
+    width: 100%;
+    display: block;
+  }
+}
+
+.floor-summary {
+  @extend strong;
+  width: 100%;
+  
+  td:last-child {
+    text-align: right;
   }
 }
 
 .floor-data {
   width: 100%;
-  &__row {
-
+  @extend .mt-5;
+  @extend .mb-4;
+  
+  th {
+    @extend strong;
+    padding-bottom: $spacer;
   }
   &__cell {
     font-size: $font-size-xs;
     &:first-child {
       width: 25px;
       font-family: $headings-font-family;
+    }
+  }
+}
+
+.interior-data {
+  @extend .mb-5;
+  width: 100%;
+  th {
+    @extend strong;
+    padding-bottom: $spacer;
+  }
+  td {
+    font-size: $font-size-xs;
+    &:first-child {
+      @extend strong;
+    }
+    &:last-child {
+      text-align: right;
     }
   }
 }

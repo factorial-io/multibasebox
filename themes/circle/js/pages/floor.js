@@ -9,12 +9,13 @@ if ($('.page-node-type-rental-floor')[0]) {
   }
   $interiorImg.hide()
   
-  $('[data-interior-switch]').on('click', () => {
+  $('[data-interior-switch]').on('click', (e) => {
     if (getState()) {
       $interiorImg.hide()
     } else {
       $interiorImg.show()
       lazyload($('.area-stage'))
     }
+    $(e.currentTarget).toggleClass('active', getState())
   })
 }

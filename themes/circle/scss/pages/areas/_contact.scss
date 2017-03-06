@@ -1,6 +1,7 @@
 .house-contact {
   h2 {
-    margin: get-spacer(7) 0;
+    @extend .mt-5;
+    @extend .my-lg-7;
   }
   text-align: center;
   
