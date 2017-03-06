@@ -1,5 +1,6 @@
 .image-mosaic {
   position: relative;
+  overflow: hidden;
   &__part {
     float: left;
     width: 25%;
@@ -26,10 +27,6 @@
       }
       &__overlay {
         @include full-overlay;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        align-items: center;
         hyphens: auto;
         background-color: rgba(0,0,0,0);
         transition: background-color 250ms;
@@ -46,13 +43,14 @@
         }
       }
       &__content {
-        position: relative;
+        position: absolute;
         bottom: 0;
         transform: translateY(0);
+        width: 100%;
         padding: $spacer;
         color: $white;
         text-align: center;
-        transition: bottom 450ms, transform 450ms;
+        transition: bottom 450ms;
 
         @include media-breakpoint-down(md) {
           padding: $spacer*2;
