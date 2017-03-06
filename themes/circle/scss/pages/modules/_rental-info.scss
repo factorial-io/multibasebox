@@ -101,27 +101,14 @@
   &__contact {
     @extend .mt-5;
 
-    .telephone, .email{
+    .telephone, .email {
+      @extend %contact-btn;
+      
       display: inline-block;
 
-      &:not(:last-child){
-          @extend .mr-3;
+      &:not(:last-child) {
+        @extend .mr-3;
       }
-    }
-
-    .email-address,
-    .icon-phone,
-    .icon-email,
-    .telephone-number {
-      @extend .btn;
-      @extend .btn-primary;
-    }
-
-    .icon-phone,
-    .icon-email, {
-      color: $white !important;
-      background-color: $black !important;
-      margin-right: -2px;
     }
   }
 }

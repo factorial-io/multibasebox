@@ -25,7 +25,7 @@ if ($('.page-node-type-rental-house')[0]) {
   $('[data-svg-url]').each((index, el) => {
     const snap = Snap(el)
     const syncBuildingHeight = () => {
-      $(el).find('svg').height($('.house-floors__table').height())
+      $(el).find('svg').height($('.house-floors__table tbody').height())
     }
     Snap.load($(el).data('svg-url'), (fragment) => {
       snap.append(fragment)

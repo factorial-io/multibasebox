@@ -1,7 +1,5 @@
 <div class="for-overview {{content.overview_color}}">
-  <nav>
   {{content.houses_nav}}
-  </nav>
 
   <div class="area-row">
     <section class="area-stage">
@@ -12,44 +10,48 @@
       <a data-interior-switch>{{'Interior example'|t}}</a>
     </section>
     <section class="area-info">
-      <h1>{{content.house_title}}<br>{{label}}</h1>
+      <div class="area-info__top">
+        <div class="floor-info">
+          <h1>{{content.house_title}}<br>{{label}}</h1>
     
-      {% set office_label = 'Office Space' %}
-      {% set foyer_label = 'Foyer Space' %}
-      {% set terrace_label = 'Terrace Space' %}
+          {% set office_label = 'Office Space' %}
+          {% set foyer_label = 'Foyer Space' %}
+          {% set terrace_label = 'Terrace Space' %}
     
-      {{office_label|t}}
-      {{content.total_office_space}}&nbsp;m<sup>2</sup><br>
+          {{office_label|t}}
+          {{content.total_office_space}}&nbsp;m<sup>2</sup><br>
     
-      {{foyer_label|t}}
-      {{content.total_foyer_space}}&nbsp;m<sup>2</sup><br>
+          {{foyer_label|t}}
+          {{content.total_foyer_space}}&nbsp;m<sup>2</sup><br>
     
-      {{terrace_label|t}}
-      {{content.total_terrace_space}}&nbsp;m<sup>2</sup><br>
+          {{terrace_label|t}}
+          {{content.total_terrace_space}}&nbsp;m<sup>2</sup><br>
       
-      <table class="floor-data">
-        <thead>
-          <tr>
-            <th colspan="2" class="floor-data__cell">{{office_label|t}}</th>
-            <th class="floor-data__cell">{{foyer_label|t}}</th>
-            <th class="floor-data__cell">{{terrace_label|t}}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {{content.field_floor_data}}
-        </tbody>
-      </table>
+          <table class="floor-data">
+            <thead>
+              <tr>
+                <th colspan="2" class="floor-data__cell">{{office_label|t}}</th>
+                <th class="floor-data__cell">{{foyer_label|t}}</th>
+                <th class="floor-data__cell">{{terrace_label|t}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{content.field_floor_data}}
+            </tbody>
+          </table>
     
-      {{'Floor workplaces'|t}}
-      {{content.field_workplaces}}&nbsp;{{'AP'|t}}<br>
-      {{'Floor efficiency'|t}}
-      {{content.field_efficiency}}&nbsp;m<sup>2</sup>/{{'AP'|t}}
+          {{'Floor workplaces'|t}}
+          {{content.field_workplaces}}&nbsp;{{'AP'|t}}<br>
+          {{'Floor efficiency'|t}}
+          {{content.field_efficiency}}&nbsp;m<sup>2</sup>/{{'AP'|t}}
     
-      {% if content.field_pdf %}
-      {% set pdf_url = file_url(content.field_pdf[0]['#file'].getFileUri()) %}
-      <a class="button" href="{{pdf_url}}">{{'Download PDF'|t}}</a>
-      <a class="button" href="mailto:?subject={{'The Circle - @floor'|t({'@floor': node.label})}}&body={{url('<current>')}}">{{'Share'|t}}</a>
-      {% endif %}
+          {% if content.field_pdf %}
+          {% set pdf_url = file_url(content.field_pdf[0]['#file'].getFileUri()) %}
+          <a class="button" href="{{pdf_url}}">{{'Download PDF'|t}}</a>
+          <a class="button" href="mailto:?subject={{'The Circle - @floor'|t({'@floor': node.label})}}&body={{url('<current>')}}">{{'Share'|t}}</a>
+          {% endif %}
+        </div>
+      </div>
     </section>
   </div>
 

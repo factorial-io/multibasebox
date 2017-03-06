@@ -2,12 +2,28 @@
   <h2>{{'Contact'|t}}</h2>
 
   {{content.field_contact}}
+  
+  <ul class="contact-links">
+    {% if content.field_vcard.0 %}
+    <li>
+      <div class="vcard">
+        <div data-contact-icon class="icon-vcard"></div>
+        <div class="email-address">
+          <a href="{{file_url(content.field_vcard[0]['#file'].getFileUri())}}">{{'Download vCard'|t}}</a>
+        </div>
+      </div>
+    </li>
+    {% endif %}
 
-  {% if content.field_vcard.0 %}
-  <a href="{{file_url(content.field_vcard[0]['#file'].getFileUri())}}">vCard</a>
-  {% endif %}
-
-  {% if content.field_email.0 %}
-  <a href="mailto:{{content.field_email[0]['#context']['value']}}">{{content.field_email[0]['#context']['value']}}</a>
-  {% endif %}
+    {% if content.field_email.0 %}
+    <li>
+      <div class="email">
+        <div data-contact-icon class="icon-email"></div>
+        <div class="email-address">
+          <a href="mailto:{{content.field_email.0['#context']['value']}}">{{content.field_email}}</a>
+        </div>
+      </div>
+    </li>
+    {% endif %}
+  </ul>
 </section>

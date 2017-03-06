@@ -1,11 +1,22 @@
 .filter-link {
   cursor: pointer;
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   &__eye {
     @extend %icon;
     @extend .icon-invisible;
     font-size: 1.5rem;
     vertical-align: middle;
     margin-right: 5px;
+  }
+  &__title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    @include media-breakpoint-down(sm) {
+      font-size: 0.7rem;
+    }
   }
   
   &.active {
@@ -39,4 +50,28 @@
   &.active {
     opacity: 1;
   }
+}
+
+.for-overview {
+  @each $key, $color in $color-list {
+    &.#{$key} {
+      h1 {
+        color: $color;
+      }
+    }
+  }
+}
+
+.where-what {
+  background: $black;
+  color: $white;
+  font-size: 1rem;
+  text-align: center;
+  padding: $spacer;
+  margin: 0 -50px;
+}
+
+.headline-between {
+  text-align: center;
+  margin: get-spacer(8) 0;
 }

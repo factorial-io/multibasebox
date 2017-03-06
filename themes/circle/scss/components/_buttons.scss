@@ -22,3 +22,27 @@
      @include circle-inverted-hover();
   }
 }
+
+%contact-btn {
+  > div {
+    @extend .btn;
+    @extend .btn-primary;
+    text-transform: none;
+    a {
+      color: $white;
+    }
+    &:hover {
+      a {
+        color: $black;
+      }
+    }
+    &:last-child {
+      @extend .hidden-sm-down;
+    }
+  }
+  [class^=icon] {
+    color: $white !important;
+    background-color: $black !important;
+    margin-right: -2px;
+  }
+}

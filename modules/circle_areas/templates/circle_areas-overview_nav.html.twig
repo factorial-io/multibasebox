@@ -1,4 +1,8 @@
-{{overview_link}}
-{% for link in links %}
-{{link}}
-{% endfor %}
+<nav class="area-navigation">
+  <ul class="menu">
+    <li>{{overview_link}}</li>
+    {% for link in links %}
+      <li>{{link}}</li>
+    {% endfor %}
+  </ul>
+</nav>

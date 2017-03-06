@@ -18,16 +18,16 @@
       <div class="rental-info__contact">
 
         <div class="telephone">
-          <div class="icon-phone"></div>
+          <div data-contact-icon class="icon-phone"></div>
           <div class="telephone-number">
-            {{content.field_telephone_number}}
+            <a href="tel: {{content.field_telephone_number.0['#context']['value']}}">{{content.field_telephone_number}}</a>
           </div>
         </div>
 
         <div class="email">
-          <div class="icon-email"></div>
+          <div data-contact-icon class="icon-email"></div>
           <div class="email-address">
-            {{content.field_email}}
+            <a href="mailto:{{content.field_email.0['#context']['value']}}">{{content.field_email}}</a>
           </div>
         </div>
       </div>

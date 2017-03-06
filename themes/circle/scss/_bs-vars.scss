@@ -86,6 +86,14 @@ $spacers: (
   6: (
     x: 60px,
     y: 60px
+  ),
+  7: (
+    x: 70px,
+    y: 70px
+  ),
+  8: (
+    x: 80px,
+    y: 80px
   )
 ) !default;
 $border-width: 1px !default;
@@ -257,11 +265,11 @@ $table-inverse-bg:              $gray-dark !default;
 $table-inverse-color:           $body-bg !default;
 
 $table-bg-accent:               rgba($black,.05) !default;
-$table-bg-hover:                rgba($black,.075) !default;
+$table-bg-hover:                #393b3e;
 $table-bg-active:               $table-bg-hover !default;
 
-$table-head-bg:                 $gray-lighter !default;
-$table-head-color:              $gray !default;
+$table-head-bg:                 transparent;
+$table-head-color:              $body-color;
 
 $table-border-width:            $border-width !default;
 $table-border-color:            $gray-lighter !default;

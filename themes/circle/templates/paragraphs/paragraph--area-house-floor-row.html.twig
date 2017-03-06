@@ -4,7 +4,10 @@
   <td class="house-floors__cell">{{content.field_office_space}}&nbsp;m<sup>2</sup></td>
   <td class="house-floors__cell">{{content.field_space_count}}</td>
 
-  <td class="house-floors__cell {{content.field_floor_state.0['#markup']}}"><span class="floor-status-text">{{content.field_floor_state.0['#markup']|t}}</span></td>
+  <td class="house-floors__cell">
+    <span class="floor-status-text">{{content.field_floor_state.0['#markup']|t}}</span>
+    <span class="floor-status-icon {{content.field_floor_state.0['#markup']}}"></span>
+  </td>
 </tr>
 {% else %}
 <tr class="house-floors__row">

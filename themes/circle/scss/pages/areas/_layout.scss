@@ -1,14 +1,58 @@
 .area-row {
   @extend .row;
+  @extend .no-gutters;
   
   .area-stage {
-    @extend .col-md-9;
+    @extend .col-xl-9;
+    @extend .col-lg-8;
+    padding: 0;
     img {
       width: 100%;
       height: auto;
     }
   }
   .area-info {
-    @extend .col;
+    @extend .col-xl-3;
+    @extend .col-lg-4;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 0 2%;
+    &__top {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      padding: $spacer 0;
+    }
+    &__bottom {
+      flex: 1;
+      .item-list {
+        margin-top: 2*$spacer;
+        li {
+          padding: 2px 0;
+        }
+        @include media-breakpoint-down(md) {
+          li {
+            display: inline-block;
+            width: 49%;
+          }
+        }
+      }
+    }
+    
+    @include media-breakpoint-down(md) {
+      &__top {
+        order: 2;
+      }
+      &__bottom {
+        order: 1;
+      }
+    }
+    
+    h1 {
+      font-size: 2rem;
+    }
   }
 }

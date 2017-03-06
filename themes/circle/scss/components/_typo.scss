@@ -1,4 +1,4 @@
-html{
+html {
   @include media-breakpoint-down(md) {
     font-size: 14px;
   }
@@ -9,7 +9,7 @@ h1, h2, h3, h4, h5, h6 {
   hyphens: auto;
 }
 
-h2{
+h2 {
   font-size: $fontsize-title;
   letter-spacing: $letterspacing-wide;
 
@@ -18,7 +18,7 @@ h2{
   }
 }
 
-h3{
+h3 {
   font-size: $fontsize-subtitle;
   letter-spacing: $letterspacing-narrow;
 
@@ -27,6 +27,11 @@ h3{
   }
 }
 
-h5, h6{
+h5, h6 {
   letter-spacing: $letterspacing-narrow;
+}
+
+strong, b {
+  font-family: $headings-font-family;
+  font-weight: normal;
 }

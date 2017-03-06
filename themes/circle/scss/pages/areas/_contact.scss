@@ -1,0 +1,19 @@
+.house-contact {
+  h2 {
+    margin: get-spacer(7) 0;
+  }
+  text-align: center;
+  
+  .contact-links {
+    @extend .list-inline;
+    margin-top: 2*$spacer;
+    
+    li {
+      @extend .list-inline-item;
+    }
+    
+    .email, .vcard {
+      @extend %contact-btn;
+    }
+  }
+}

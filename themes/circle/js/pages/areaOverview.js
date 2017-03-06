@@ -24,8 +24,10 @@ if ($('.page-node-type-rental-overview')[0]) {
     cleanFlags()
     $('#house-overlay g').removeClass('inactive')
   }).on('mousemove', (e) => {
-    const offset = $('.interactive-area').offset()
-    TweenLite.set($('.flag')[0], {x: e.pageX - offset.left, y: e.pageY - offset.top})
+    if ($('.flag')[0]) {
+      const offset = $('.interactive-area').offset()
+      TweenLite.set($('.flag')[0], {x: e.pageX - offset.left, y: e.pageY - offset.top})
+    }
   })
   
   $('#house-overlay').hide()

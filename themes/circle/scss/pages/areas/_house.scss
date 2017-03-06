@@ -7,6 +7,9 @@
   }
   .house-svg {
     @extend .col-md-4;
+    @extend .hidden-sm-down;
+    
+    align-self: flex-end;
     text-align: center;
     position: relative;
     
@@ -23,10 +26,26 @@
   &__table {
     @extend .table;
     @extend .table-hover;
+    margin: 0;
+    
+    th {
+      @extend strong;
+      text-transform: uppercase;
+      border-top: none;
+    }
   }
   &__row {
     &.clickable {
       cursor: pointer;
+      &:hover {
+        color: $white;
+        a {
+          color: $white;
+        }
+      }
+      a {
+        color: $body-color;
+      }
     }
   }
   &__cell {
@@ -34,6 +53,40 @@
     &.not-for-rent {
       background-color: $gray-lighter;
     }
+  }
+}
+
+.floor-status-text {
+  @extend .hidden-sm-down;
+}
+.floor-status-icon {
+  @extend .hidden-md-up;
+  $size: 10px;
+  width: $size;
+  height: $size;
+  display: inline-block;
+  border-radius: 50%;
+  background-image: linear-gradient(
+    to right, 
+    lighten($circle-sea, 8%),
+    lighten($circle-sea, 8%) 50%,
+    $circle-sea 50%
+  );
+  &.reserved {
+    background-image: linear-gradient(
+      to right, 
+      lighten($circle-orange, 8%),
+      lighten($circle-orange, 8%) 50%,
+      $circle-orange 50%
+    );
+  }
+  &.taken {
+    background-image: linear-gradient(
+      to right, 
+      lighten($circle-red, 8%),
+      lighten($circle-red, 8%) 50%,
+      $circle-red 50%
+    );
   }
 }
 
