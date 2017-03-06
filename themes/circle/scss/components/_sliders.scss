@@ -25,7 +25,11 @@
     background: $white;
     z-index: 10;
 
-    &:hover{
+    @include media-breakpoint-down(sm){
+      top: 60%;
+    }
+
+    &:hover {
       background: $white;
     }
   }
@@ -38,22 +42,21 @@
     right: 0;
   }
 
-  &__pagination{
+  &__pagination {
     position: absolute;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
 
-
-    ul{
+    ul {
       @extend .list-inline;
       text-align: center;
     }
 
-    li{
+    li {
       @extend .list-inline-item;
 
-      button{
+      button {
         font-size: 0;
         line-height: 0;
         padding: 0;
@@ -65,8 +68,8 @@
         border: 2px solid $white;
       }
 
-      &.slick-active{
-        button{
+      &.slick-active {
+        button {
           background: $white;
         }
       }

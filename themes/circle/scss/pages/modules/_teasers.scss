@@ -67,7 +67,9 @@
   }
 
   &:hover{
-    @include media-breakpoint-up(sm){
+    @include circle-shadow($gray-light);
+
+    @include media-breakpoint-down(sm){
       box-shadow: none;
     }
 
