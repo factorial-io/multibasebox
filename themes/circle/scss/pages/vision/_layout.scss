@@ -2,8 +2,10 @@
   .egg-area {
     background-color: $circle-egg;
   }
-  .video-stage {
-    @extend .embed-responsive;
-    @extend .embed-responsive-16by9;
-  } 
+  .vision-stage {
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
 }

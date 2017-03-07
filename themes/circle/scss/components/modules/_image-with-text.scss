@@ -1,5 +1,6 @@
 .image-with-text {
   @extend .row;
+  background-color: $white;
   &__image {
     @extend .col-md-7;
     img {
