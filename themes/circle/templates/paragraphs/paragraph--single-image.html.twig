@@ -1,0 +1,14 @@
+<div class="single-image">
+  {% set link = content.field_button_link.0 %}
+  {% if link %}
+    <a href="{{link['#url'].toString()}}">
+  {% endif %}
+  {% if content.field_svg.0 %}
+    <img src="{{file_url(content.field_svg[0]['#file'].getFileUri())}}">
+  {% else %}
+    {{content.field_image}}
+  {% endif %}
+  {% if link %}
+    </a>
+  {% endif %}
+</div>

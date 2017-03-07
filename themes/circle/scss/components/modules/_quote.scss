@@ -1,0 +1,20 @@
+.quote {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  min-height: 300px;
+  padding: 2*$spacer;
+  background: url(../assets/images/quote-bg.svg) no-repeat bottom center $circle-egg;
+  
+  blockquote {
+    @extend .my-0;
+    max-width: 460px;
+    margin: 0 auto;
+    text-transform: uppercase;
+  }
+  
+  &__author {
+    @extend .mt-3;
+    @extend strong;
+  }
+}

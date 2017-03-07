@@ -63,8 +63,8 @@ function compileCSS(dist) {
   
     .pipe(gulpif(!dist, sourcemaps.init()))
     .pipe(postcss([ autoprefixer() ]))
-    .pipe(gulpif(!dist, sourcemaps.write('.')))
     .pipe(gulpif(dist, cleanCSS()))
+    .pipe(gulpif(!dist, sourcemaps.write('.')))
 
     .pipe(gulp.dest('./css/'));
 }
@@ -77,7 +77,7 @@ gulp.task('build_js', function() { return compile(false, true); });
 gulp.task('watch_js', function() { return watch(); });
 
 gulp.task('styles', function() {
-  return compileCSS();
+  return compileCSS(false);
 });
 
 gulp.task('dist_styles', function() {
