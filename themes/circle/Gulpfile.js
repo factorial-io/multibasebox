@@ -59,12 +59,11 @@ function compile(watch, dist) {
 
 function compileCSS(dist) {
   var bundle = gulp.src('scss/*.scss')
-    .pipe(sass().on('error', sass.logError))
-  
     .pipe(gulpif(!dist, sourcemaps.init()))
+    .pipe(sass().on('error', sass.logError))
     .pipe(postcss([ autoprefixer() ]))
-    .pipe(gulpif(dist, cleanCSS()))
     .pipe(gulpif(!dist, sourcemaps.write('.')))
+    .pipe(gulpif(dist, cleanCSS()))
 
     .pipe(gulp.dest('./css/'));
 }
