@@ -1,0 +1,109 @@
+.contact {
+
+  &__heading {
+    margin-top: (get-spacer(6) * 2);
+    text-align: center;
+
+    @include media-breakpoint-down(md){
+      margin-top: get-spacer(6);
+    }
+  }
+
+  &__info-row,
+  &__team-row,
+  &__partner-row {
+    @extend .row;
+    padding: get-spacer(6) 0;
+    justify-content: center;
+
+    &.egg {
+      background-color: $circle-egg;
+    }
+
+    @include media-breakpoint-down(md){
+      padding: get-spacer(5) 0;
+    }
+  }
+
+  &__info-col,
+  &__partner-col {
+    @extend .col-12;
+    @extend .col-lg-4;
+    text-align: center;
+
+    h4, h5 {
+      font-size: 1rem;
+      text-transform: none;
+    }
+
+    h6{
+      @extend .mt-5;
+      margin-bottom: 0;
+    }
+
+    @include media-breakpoint-down(md){
+      margin-bottom: get-spacer(5);
+
+      &:last-child{
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__team-col {
+    @extend .col-12;
+    @extend .col-lg-2;
+    margin: get-spacer(5) get-spacer(5) 0 get-spacer(5);
+
+    @include media-breakpoint-down(md){
+      margin: 0 0 get-spacer(6) 0;
+      text-align: center;
+
+      &:last-child{
+        margin-bottom: 0;
+      }
+    }
+
+    &.toTop{
+      margin-top: 0;
+    }
+
+    h3{
+      text-align: center;
+    }
+
+    h5{
+      font-size: 1rem;
+    }
+
+    p{
+      margin-bottom: 0;
+    }
+
+    img{
+      @extend .mb-3;
+      max-width: 100%;
+    }
+  }
+
+  &__team-heading,
+  &__partner-heading {
+    @extend .col-12;
+    text-align: center;
+  }
+
+  .mail {
+    @extend .mt-md-5;
+    @extend %contact-btn;
+
+    &__icon {
+      @extend %icon;
+      @extend .icon-email;
+    }
+
+    .arrow__icon{
+      @extend %icon;
+      @extend .icon-arrow-right;
+    }
+  }
+}
