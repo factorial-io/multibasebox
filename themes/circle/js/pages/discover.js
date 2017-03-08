@@ -69,11 +69,11 @@ class Discover {
     if (this.blocked) {
       return
     }
-    if (e.deltaY < -10) {
+    if (e.deltaY < -3) {
       this.blocked = true
       this.nextPage()
     }
-    if (e.deltaY > 10) {
+    if (e.deltaY > 3) {
       this.blocked = true
       this.previousPage()
     }
@@ -105,20 +105,24 @@ class Discover {
       }
       $page.append(Mustache.render($('#title-ani').html(), {title: title}))
     
-      const titleEl = $('.title-ani')[0]
+      const titleEl = $('.title-ani h3')[0]
+      const overlay = $('.title-ani')[0]
       this.titleTimeline = new TimelineLite({
         onComplete: () => {
           $('.title-ani').remove()
         }
       })
-      TweenLite.set(titleEl, {opacity: 0, scale: 0.5})
-      this.titleTimeline.to(titleEl, .5, {opacity: 1, scale: 1})
-      this.titleTimeline.to(titleEl, 1, {opacity: 0}, '+=1.5')
+      TweenLite.set(overlay, {opacity: 0})
+      TweenLite.set(titleEl, {scale: 0.5})
+      this.titleTimeline.to(titleEl, .5, {scale: 1})
+      this.titleTimeline.to(overlay, .5, {opacity: 1}, '-=0.5')
+      this.titleTimeline.to(overlay, 1, {opacity: 0}, '+=1.5')
       this.titleTimeline.play()
     }
     /**
     * End Title Animation
     **/
+    
     
     /**
     * Mask Animation
@@ -156,6 +160,11 @@ class Discover {
         }
       }
     })
+    
+    if (!window.CSS || !CSS.supports('clip-path', 'url(#svg)')) {
+      TweenLite.set($page[0], {opacity: 0})
+      TweenLite.to($page[0], 2, {opacity: 1})
+    }
     /**
     * End Mask Animation
     **/

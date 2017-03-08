@@ -24,6 +24,8 @@
     align-items: center;
     color: $white;
     background: rgba(0,0,0,0.5);
+    transform: translateZ(0);
+    z-index: 99;
     h3 {
       font-size: 3rem;
       img {

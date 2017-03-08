@@ -1,10 +1,12 @@
 .logo {
   position: relative;
   &__static {
-    @include full-overlay;
+    position: relative;
+    z-index: 1;
     padding: 15%;
   }
   &__ani {
+    @include full-overlay;
   	.st0{fill:#008074;}
   	.st1{fill:#747B0D;}
   	.st2{fill:#006EAB;}
