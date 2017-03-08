@@ -44,9 +44,10 @@
       @extend .hidden-sm-down;
     }
   }
-  [class^=icon] {
+  [class*=icon] {
     color: $white !important;
     background-color: $black !important;
     margin-right: -2px;
+    font-size: 1.5rem;
   }
 }

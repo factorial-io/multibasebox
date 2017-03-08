@@ -104,6 +104,7 @@
     .arrow__icon{
       @extend %icon;
       @extend .icon-arrow-right;
+      font-size: 1.0rem;
     }
   }
 }
