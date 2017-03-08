@@ -1,11 +1,36 @@
+@keyframes circleAni {
+  0% { opacity: 0; transform: scale(0.4); }
+  50% { opacity: 1; transform: scale(1);}
+  100% { opacity: 0;}
+}
+
 .location-map {
   svg {
     width: 100%;
+  }
+  .circle {
+    opacity: 0;
+    transform-origin: center;
+    animation-name: circleAni;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+  }
+  #circle-1 {
+  }
+  #circle-2 {
+    animation-delay: 400ms;
+  }
+  #circle-3 {
+    animation-delay: 800ms;
+  }
+  #circle-4 {
+    animation-delay: 1000ms;
   }
   text {
     font-family: $font-family-sans-serif;
     font-size: $font-size-xs;
     letter-spacing: 1px;
+    text-transform: uppercase;
   }
   .bold-text {
     @extend strong;
