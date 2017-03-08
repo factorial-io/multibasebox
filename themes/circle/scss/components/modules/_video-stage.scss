@@ -119,4 +119,15 @@
       }
     }
   }
+
+  .slider__button-prev,
+  .slider__button-next {
+    @include media-breakpoint-down(sm) {
+      top: 40%;
+    }
+    @include media-breakpoint-down(xs) {
+      top: 30%;
+    }
+  }
+
 }
