@@ -26,6 +26,11 @@
       max-width: 100%;
     }
   }
+  &.small {
+    h2 {
+      font-size: $font-size-h4;
+    }
+  }
   &.right {
     .image-with-text__image {
       order: 2;
