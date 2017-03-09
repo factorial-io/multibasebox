@@ -37,7 +37,8 @@
  */
 #}
 
-<div class="image-with-text {{content.field_color_variation[0]['#markup']|clean_class}} {{content.field_picture_side[0]['#markup']|clean_class}}">
+{% set textsize = content.field_large_text.0['#markup'] == 1 ? 'large' : 'small' %}
+<div class="image-with-text {{content.field_color_variation[0]['#markup']|clean_class}} {{content.field_picture_side[0]['#markup']|clean_class}} {{textsize}}">
     <div class="image-with-text__image">
         {{content.field_image}}
     </div>
