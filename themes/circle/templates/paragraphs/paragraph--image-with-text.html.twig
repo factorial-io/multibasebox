@@ -37,7 +37,7 @@
  */
 #}
 
-{% set textsize = content.field_large_text.0['#markup'] == 1 ? 'large' : 'small' %}
+{% set textsize = content.field_large_text.0['#markup'] == 1 ? 'large-headline' : 'small-headline' %}
 <div class="image-with-text {{content.field_color_variation[0]['#markup']|clean_class}} {{content.field_picture_side[0]['#markup']|clean_class}} {{textsize}}">
     <div class="image-with-text__image">
         {{content.field_image}}

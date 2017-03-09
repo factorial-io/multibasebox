@@ -2,31 +2,20 @@
   position: relative;
   .slide {
     position: relative;
-    padding: 35vw 3vw 0 3vw;
-    transition: left 500ms;
-    left: 0;
     text-align: center;
-    img {
-      width: 100px;
-      transform-origin: bottom;
-      transition: transform 500ms;
-      height: auto;
-      border-radius: 50%;
-    }
-    &.move-left {
-      left: -6vw;
-    }
-    &.move-right {
-      left: 6vw;
-    }
+    transform: translateZ(0);
+
     h6 {
       text-align: center;
-      margin: 1rem 0;
+      margin: 1rem;
     }
     
     @each $key, $color in $color-list {
       .#{$key} h6 {
         color: $color;
+      }
+      .#{$key} .mask-color {
+        fill: $color;
       }
     }
     
@@ -34,19 +23,41 @@
       display: none;
     }
   }
-  .active-circle {
+  
+  .egg-image {
+    position: relative;
+    overflow: hidden;
+    transform-origin: bottom;
+    transition: transform 500ms;
+    padding: 3px;
     img {
-      transform: scale(5.5);
-      @include media-breakpoint-down(sm) {
-        transform: scale(1);
+      position: relative;
+      width: 100%;
+      height: auto;
+      z-index: 0;
+    }
+    svg {
+      @include full-overlay;
+      width: 100%;
+      z-index: 1;
+      .mask-white {
+        fill: $white;
       }
+    }
+  }
+  .egg-image {
+    transform: scale(0.7);
+  }
+  .slick-center {
+    .egg-image {
+      transform: scale(1);
     }
   }
 }
 
 .circle-details {
   min-height: 15vw;
-  font-size: 2rem;
+  font-size: 1.5rem;
   text-align: center;
   padding: 2*$spacer percentage(1/$grid-columns);
 }
