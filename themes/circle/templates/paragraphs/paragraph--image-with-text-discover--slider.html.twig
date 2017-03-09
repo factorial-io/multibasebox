@@ -1,9 +1,11 @@
 <div class="image-with-text-slide slide">
   <div class="image-with-text-slide__content">
+    {% if content.field_headline.0 or content.field_text.0 %}
     <div class="white-label">
       {{content.field_headline}}
       {{content.field_text}}
     </div>
+    {% endif %}
     {{content.field_image}}
   </div>
 </div>
