@@ -6,15 +6,15 @@ import 'gsap/CSSPlugin'
 const $slider = $('[data-circle-slider]')
 
 const setActive = (currentSlide) => {
-  // $slider.find(`[data-slick-index]`).each((index, el) => {
-//     if( $(el).data('slick-index') < currentSlide) {
-//       // $(el).addClass('move-left')
-//     } else if ($(el).data('slick-index') > currentSlide) {
-//       // $(el).addClass('move-right')
-//     } else {
-//       $(el).addClass('active-circle')
-//     }
-//   })
+  $slider.find(`[data-slick-index]`).each((index, el) => {
+    if( $(el).data('slick-index') < currentSlide) {
+      $(el).addClass('move-left')
+    } else if ($(el).data('slick-index') > currentSlide) {
+      $(el).addClass('move-right')
+    } else {
+      $(el).addClass('active-circle')
+    }
+  })
   $('[data-circle-details]').html($slider.find('.slick-center .details__text').html()).animate({opacity: 1}, 300)
 }
 
@@ -37,12 +37,22 @@ $slider.slick({
     ]
 })
 $slider.on('beforeChange', (event, slick, currentSlide, nextSlide) => {
-  // $slider.find('.slide').removeClass('active-circle move-left move-right')
-  // setActive(nextSlide)
-  $('[data-circle-details]').animate({opacity: 0}, 300)
+  $slider.find('.slide').removeClass('active-circle move-left move-right')
+  // setTimeout(()=> {
+//   $slider.find('.slide').removeClass('active-circle move-left move-right')
+//   setActive(nextSlide)
+//   }, 1000)
+//   $('[data-circle-details]').animate({opacity: 0}, 300)
 })
 $slider.on('afterChange', (event, slick, currentSlide) => {
-  setActive(currentSlide)
-  // $('[data-circle-details]').html($slider.find('.slick-center .details__text').html()).animate({opacity: 1}, 0.5)
+  // setActive(currentSlide)
+  setTimeout(() => {
+    setActive(currentSlide)
+  },0)
+})
+$slider.on('setPosition', (event, slick) => {
+  console.log(event);
+  
+  $('[data-circle-details]').animate({opacity: 0}, 300)
 })
 setActive(0)

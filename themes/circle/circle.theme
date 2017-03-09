@@ -125,17 +125,18 @@ function circle_preprocess_node(&$vars) {
         $textBl[$delta]['#cache']['keys'][] = 'special';
       }
       
-      if(!empty($par->field_headline) && !empty($par->field_headline->getValue())) {
-        $val = $par->field_headline->getValue();
-        $titles[] = $val[0]['value'];
-      } else {
-        $titles[] = '';
-      }
       
       if( !empty($par->field_image) ) {
         $imageUrls[] = ImageStyle::load('max_2600x2600')->buildUrl( $par->field_image->entity->getFileUri() );
+        $titles[] = $par->field_image[0]->getProperties()['alt']->getValue();
       } else {
         $imageUrls[] = '';
+        if(!empty($par->field_headline) && !empty($par->field_headline->getValue())) {
+          $val = $par->field_headline->getValue();
+          $titles[] = $val[0]['value'];
+        } else {
+          $titles[] = '';
+        }
       }
       
       if(!empty($par->field_label_position) && !empty($par->field_label_position->getValue())) {

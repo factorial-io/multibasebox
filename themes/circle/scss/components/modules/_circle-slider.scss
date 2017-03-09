@@ -2,19 +2,23 @@
   position: relative;
   .slide {
     position: relative;
-    padding: 12vw 3vw 0 3vw;
-//    transition: left 500ms;
-//    left: 0;
+    padding: 35vw 3vw 0 3vw;
+    transition: left 500ms;
+    left: 0;
+    text-align: center;
     img {
+      width: 100px;
       transform-origin: bottom;
       transition: transform 500ms;
+      height: auto;
+      border-radius: 50%;
     }
-    //&.move-left {
-//      left: -4vw;
-//    }
-//    &.move-right {
-//      left: 4vw;
-//    }
+    &.move-left {
+      left: -6vw;
+    }
+    &.move-right {
+      left: 6vw;
+    }
     h6 {
       text-align: center;
       margin: 1rem 0;
@@ -30,18 +34,13 @@
       display: none;
     }
   }
-  .slick-center {
+  .active-circle {
     img {
-      transform: scale(1.7);
+      transform: scale(5.5);
       @include media-breakpoint-down(sm) {
         transform: scale(1);
       }
     }
-  }
-  img {
-    width: 100%;
-    height: auto;
-    border-radius: 50%;
   }
 }
 

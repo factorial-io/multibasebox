@@ -101,7 +101,7 @@ class Discover {
     if (page > 0 || this.page > 1) {
       let title = null
       if (this.page !== 0) {
-        title = $page.find('.white-label h2').html()
+        title = $page.find('[data-title]').data('title')
       }
       $page.append(Mustache.render($('#title-ani').html(), {title: title}))
     
