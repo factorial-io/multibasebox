@@ -20,13 +20,7 @@
     @include full-overlay;
     @include gradient-radial(rgba(0,0,0,0), rgba(0,0,0, 0.8));
   }
-  &__counter {
-    @extend .hidden-lg-down;
-    position: absolute;
-    bottom: 90px;
-    right: 0;
-    background: $white;
-  }
+
   &__scroll {
     @extend .hidden-md-down;
     position: absolute;
@@ -34,29 +28,5 @@
     left: 0;
     right: 0;
     text-align: center;
-  }
-
-}
-
-.counter {
-  display: flex;
-  &__char {
-    font-family: $headings-font-family;
-    font-size: 5rem;
-    border-right: 1px solid $black;
-    padding: 5px;
-    background: $gray-lightest;
-  }
-  &__message {
-    position: relative;
-    padding: 15px 30px 15px 15px;
-    text-transform: uppercase;
-
-    .icon-arrow-right {
-      position: absolute;
-      right: 10px;
-      bottom: 10px;
-      font-size: 0.8rem;
-    }
   }
 }
