@@ -38,9 +38,7 @@
 }
 
 .circle-layer {
-  position: absolute;
-  top: 0;
-  left: 0;
+  @include full-overlay;
   opacity: 0;
   transition: opacity 500ms;
   img {

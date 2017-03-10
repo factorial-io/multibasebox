@@ -4,8 +4,7 @@
     &__images {
       position: relative;
       img:last-child {
-        position: absolute;
-        top: 0;
+        @include full-overlay;
       }
     }
     .interior-switch-wrapper {
