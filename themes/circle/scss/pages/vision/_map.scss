@@ -47,6 +47,8 @@
   @include media-breakpoint-down(sm) {
     transform: scale(1.1);
     transform-origin: center center;
+    margin-bottom: get-spacer(5);
+
     text {
       font-size: 1.2rem;
     }
@@ -54,14 +56,14 @@
       transform: scale(2);
       transform-origin: left center;
       text {
-        font-size: 1rem; 
+        font-size: 1rem;
       }
     }
     #legend {
       transform: scale(1.3) translateX(-40px);
       transform-origin: right bottom;
       text {
-        font-size: 1rem; 
+        font-size: 1rem;
       }
     }
   }
