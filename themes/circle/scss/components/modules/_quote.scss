@@ -18,3 +18,7 @@
     @extend strong;
   }
 }
+
+_:-ms-fullscreen, :root .quote {
+  height: 300px; // align-items does not work with min-height in IE11
+}

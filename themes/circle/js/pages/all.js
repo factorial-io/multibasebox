@@ -8,3 +8,5 @@ import '../components/circleSlider'
 import '../components/scrollAnimation'
 import '../components/panorama'
 import '../components/contact'
+
+import '../utils/ieFixes'
