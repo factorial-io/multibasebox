@@ -30,6 +30,10 @@ const lazyload = ($els, visible = true) => {
         
         $(el).attr('src', $(el).attr('data-src')).attr('srcset', $(el).attr('data-srcset')).attr('sizes', $(el).attr('data-sizes'))
         $(el).attr('data-src', null).attr('data-srcset', null).attr('data-sizes', null)
+        
+        if (window.picturefill) {
+          window.picturefill();
+        }
       })
     })
 }
