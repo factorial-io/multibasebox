@@ -30,6 +30,7 @@
     @extend .col-md-3;
     margin-left: auto;
     text-align: right;
+    letter-spacing: $letterspacing-wide;
     &__selectbox {
       display: inline-block;
     }
