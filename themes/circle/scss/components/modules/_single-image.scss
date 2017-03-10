@@ -1,6 +1,6 @@
 .single-image {
-  padding: 0 percentage(1/$grid-columns);
   @extend .mb-5;
+  padding: 0 percentage(1/$grid-columns);
 
   img {
     width: 100%;
