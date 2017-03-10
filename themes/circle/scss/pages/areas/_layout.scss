@@ -1,7 +1,7 @@
 .area-row {
   @extend .row;
   @extend .no-gutters;
-  
+
   .area-stage {
     @extend .col-xl-9;
     @extend .col-lg-8;
@@ -41,7 +41,7 @@
         }
       }
     }
-    
+
     @include media-breakpoint-down(md) {
       &__top {
         order: 2;
@@ -50,9 +50,9 @@
         order: 1;
       }
     }
-    
+
     h1 {
-      font-size: 2rem;
+      font-size: $fontsize-title;
     }
   }
 }

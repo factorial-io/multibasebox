@@ -1,6 +1,6 @@
 .house-floors-container {
   @extend .row;
-  
+
   .house-floors {
     @extend .col-md-6;
     @extend .offset-md-1;
@@ -8,11 +8,11 @@
   .house-svg {
     @extend .col-md-4;
     @extend .hidden-sm-down;
-    
+
     align-self: flex-end;
     text-align: center;
     position: relative;
-    
+
     [id^=Highlight] {
       opacity: 0;
       &.active {
@@ -27,7 +27,7 @@
     @extend .table;
     @extend .table-hover;
     margin: 0;
-    
+
     th {
       @extend strong;
       text-transform: uppercase;
@@ -39,6 +39,7 @@
       cursor: pointer;
       &:hover {
         color: $white;
+        background-color: $gray-light;
         a {
           color: $white;
         }
@@ -67,14 +68,14 @@
   display: inline-block;
   border-radius: 50%;
   background-image: linear-gradient(
-    to right, 
+    to right,
     lighten($circle-sea, 8%),
     lighten($circle-sea, 8%) 50%,
     $circle-sea 50%
   );
   &.reserved {
     background-image: linear-gradient(
-      to right, 
+      to right,
       lighten($circle-orange, 8%),
       lighten($circle-orange, 8%) 50%,
       $circle-orange 50%
@@ -82,7 +83,7 @@
   }
   &.taken {
     background-image: linear-gradient(
-      to right, 
+      to right,
       lighten($circle-red, 8%),
       lighten($circle-red, 8%) 50%,
       $circle-red 50%

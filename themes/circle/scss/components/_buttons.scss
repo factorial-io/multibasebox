@@ -11,7 +11,6 @@
 }
 
 .btn {
-  font-family: $headings-font-family;
   text-transform: uppercase;
   letter-spacing: $letterspacing-wide;
   cursor: pointer;
@@ -32,13 +31,13 @@
     text-transform: none;
     font-size: 1rem;
     line-height: 1rem;
-
     border: 1px solid $black;
     color: $white;
+    background-color: $black;
     a {
       color: $white;
+      transition: color 250ms;
     }
-    background-color: $black;
 
     &:last-child {
       @extend .hidden-sm-down;
