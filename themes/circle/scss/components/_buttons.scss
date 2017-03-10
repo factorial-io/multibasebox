@@ -20,6 +20,7 @@
 .btn-primary {
   &:hover {
      @include circle-inverted-hover();
+     border: 1px solid $gray-lighter;
   }
 }
 
@@ -31,7 +32,7 @@
     text-transform: none;
     font-size: 1rem;
     line-height: 1rem;
-    
+
     border: 1px solid $black;
     color: $white;
     a {
@@ -50,13 +51,14 @@
   }
   &:hover {
     > div {
+      border: 1px solid $gray-lighter;
+      background-color: $white;
       color: $black;
       a {
         color: $black;
       }
-      background-color: $white;
       &:last-child {
-        border-left-color: $black;
+        border-left-color: $gray-lighter;
       }
     }
   }
