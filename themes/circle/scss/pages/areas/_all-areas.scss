@@ -18,13 +18,13 @@
       font-size: 0.7rem;
     }
   }
-  
+
   &.active {
     .filter-link__eye {
       @extend .icon-visible;
     }
   }
-  
+
   @each $key, $color in $color-list {
     &.#{$key} {
       .filter-link__eye {
@@ -69,6 +69,7 @@
   text-align: center;
   padding: $spacer;
   margin: 0 -50px;
+  letter-spacing: $letterspacing-wide;
 }
 
 .headline-between {
