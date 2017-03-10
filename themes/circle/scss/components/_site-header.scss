@@ -37,6 +37,7 @@
       text-transform: uppercase;
       li {
         flex: 1;
+        letter-spacing: $letterspacing-wide;
       }
     }
 
