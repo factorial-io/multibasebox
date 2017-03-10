@@ -1,6 +1,7 @@
 .stage {
   position: relative;
   h2 {
+    @extend .hidden-md-down;
     @include full-overlay;
     display: flex;
     align-items: center;
@@ -14,53 +15,18 @@
     display: block;
   }
   &::before {
+    @extend .hidden-md-down;
     content: " ";
     @include full-overlay;
     @include gradient-radial(rgba(0,0,0,0), rgba(0,0,0, 0.8));
   }
-  &__counter {
-    position: absolute;
-    bottom: 90px;
-    right: 0;
-    background: $white;
 
-    @include media-breakpoint-down(lg) {
-      display: none;
-    }
-  }
   &__scroll {
+    @extend .hidden-md-down;
     position: absolute;
     bottom: $spacer;
     left: 0;
     right: 0;
     text-align: center;
-
-    @include media-breakpoint-down(xs) {
-      display: none;
-    }
-  }
-
-}
-
-.counter {
-  display: flex;
-  &__char {
-    font-family: $headings-font-family;
-    font-size: 5rem;
-    border-right: 1px solid $black;
-    padding: 5px;
-    background: $gray-lightest;
-  }
-  &__message {
-    position: relative;
-    padding: 15px 30px 15px 15px;
-    text-transform: uppercase;
-
-    .icon-arrow-right {
-      position: absolute;
-      right: 10px;
-      bottom: 10px;
-      font-size: 0.8rem;
-    }
   }
 }
