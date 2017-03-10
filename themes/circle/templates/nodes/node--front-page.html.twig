@@ -19,7 +19,7 @@
   
   {% for item in items %}
   {{ item }}
-  {% if loop.index == 3 %}
+  {% if loop.index == 3 and loop.length > 3 %}
     <div class="load-more">
       <p>{{'Show more specials'|trans}}</p>
       <a data-toggle="collapse" data-target="#more-items" href="#">
@@ -30,7 +30,7 @@
     <div id="more-items" class="more-items collapse">
   {% endif%}
   
-  {% if loop.last %}
+  {% if loop.last and loop.length > 3 %}
     </div>
   {% endif%}
   {% endfor %}
