@@ -103,8 +103,6 @@
 
     .telephone, .email {
       @extend %contact-btn;
-      
-      display: inline-block;
 
       &:not(:last-child) {
         @extend .mr-3;
