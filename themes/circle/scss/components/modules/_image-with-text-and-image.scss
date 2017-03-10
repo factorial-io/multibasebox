@@ -13,6 +13,7 @@
       height: auto;
       position: relative;
       left: -25%;
+      flex: 0 0 auto;
 
       @include media-breakpoint-down(md) {
         width: 125%;

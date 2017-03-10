@@ -1,0 +1,6 @@
+[data-svg-container] {
+  position: relative;
+  svg {
+    @include full-overlay; // inline svg not working in ie11
+  }
+}
