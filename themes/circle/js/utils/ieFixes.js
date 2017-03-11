@@ -1,7 +1,7 @@
 const svg = document.querySelectorAll('[data-svg-container] svg');
 const len = svg.length; 
 for (let i=0; i<len; i++) {
-  const viewBox = svg[i].getAttribute('viewBox')
+  let viewBox = svg[i].getAttribute('viewBox')
   viewBox = viewBox.replace(/\s\s+/g, ' ')
   const w = viewBox.split(' ')[2]
   const h = viewBox.split(' ')[3]
