@@ -22,6 +22,25 @@
   border-top: $width solid transparent;
   border-left: $width*2 solid $color;
   border-bottom: $width solid transparent;
+  border-right: none;
+}
+
+@mixin triangle-up($width, $color){
+  width: 0;
+  height: 0;
+  border-top: none;
+  border-left: $width solid transparent;
+  border-bottom: $width*2 solid $color;
+  border-right: $width solid transparent;
+}
+
+@mixin triangle-down($width, $color){
+  width: 0;
+  height: 0;
+  border-top: $width*2 solid $color;
+  border-left: $width solid transparent;
+  border-bottom: none;
+  border-right: $width solid transparent;
 }
 
 @mixin circle-shadow($color){
