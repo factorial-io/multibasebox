@@ -31,7 +31,7 @@
 
     &::after,
     &::before {
-      content: "";
+      content: '';
       display: block;
       width: 6px;
       height: 6px;
@@ -85,9 +85,9 @@
       color: $black;
 
       &::after {
-        content: "";
+        content: '';
         display: block;
-//        @include triangle-down(3px, $black);
+        @include triangle-down(3px, $black);
         position: absolute;
         right: $offsetX * (-1);
       }
@@ -95,8 +95,8 @@
       @include media-breakpoint-down(md) {
         top: $offsetY * (-1);
 
-        &::after{
-//          @include triangle-up(3px, $black);
+        &::after {
+          @include triangle-up(3px, $black);
           top: $offsetX;
         }
       }
@@ -106,7 +106,8 @@
   &__contact {
     @extend .my-5;
 
-    .telephone, .email {
+    .telephone,
+    .email {
       @extend %contact-btn;
 
       &:not(:last-child) {
