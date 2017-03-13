@@ -12,8 +12,11 @@
 
 .btn {
   text-transform: uppercase;
-  letter-spacing: $letterspacing-wide;
   cursor: pointer;
+
+  &:not([class*=icon]){
+    letter-spacing: $letterspacing-wide;
+  }
 }
 
 .btn-primary {

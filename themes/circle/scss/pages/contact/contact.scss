@@ -1,11 +1,11 @@
 .contact {
+  text-align: center;
 
   &__heading {
     margin-top: (get-spacer(6) * 2);
-    text-align: center;
 
     @include media-breakpoint-down(md){
-      margin-top: get-spacer(6);
+      margin-top: get-spacer(5);
     }
   }
 
@@ -29,7 +29,6 @@
   &__partner-col {
     @extend .col-12;
     @extend .col-lg-4;
-    text-align: center;
 
     h4, h5 {
       font-size: 1rem;
@@ -52,44 +51,64 @@
 
   &__team-col {
     @extend .col-12;
-    @extend .col-lg-2;
-    margin: get-spacer(5) get-spacer(5) 0 get-spacer(5);
-
-    @include media-breakpoint-down(md){
-      margin: 0 0 get-spacer(6) 0;
-      text-align: center;
-
-      &:last-child{
-        margin-bottom: 0;
-      }
-    }
+    @extend .col-lg-3;
+    margin: get-spacer(4) get-spacer(4) 0 get-spacer(4);
 
     &.toTop{
       margin-top: 0;
     }
 
-    h3{
-      text-align: center;
-    }
-
     h5{
       font-size: 1rem;
+      text-align: left;
+      margin-left: 15%;
     }
 
     p{
+      text-align: left;
       margin-bottom: 0;
+      margin-left: 15%;
     }
 
     img{
       @extend .mb-3;
-      max-width: 100%;
+      width: 70%;
+      max-width: 500px;
+    }
+
+    @include media-breakpoint-down(md){
+      margin: 0 0 get-spacer(6) 0;
+
+      img{
+        width: auto;
+      }
+
+      h5, p{
+        text-align: inherit;
+        margin-left: 0;
+      }
+
+      &:last-child{
+        margin-bottom: 0;
+      }
+
+      &:nth-child(1){
+        order: 2;
+      }
+
+      &:nth-child(2){
+        order: 1;
+      }
+
+      &:nth-child(3){
+        order: 3;
+      }
     }
   }
 
   &__team-heading,
   &__partner-heading {
     @extend .col-12;
-    text-align: center;
   }
 
   .mail {
