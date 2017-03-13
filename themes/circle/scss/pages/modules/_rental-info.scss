@@ -87,7 +87,7 @@
       &::after {
         content: "";
         display: block;
-        @include triangle-down(3px, $black);
+//        @include triangle-down(3px, $black);
         position: absolute;
         right: $offsetX * (-1);
       }
@@ -96,7 +96,7 @@
         top: $offsetY * (-1);
 
         &::after{
-          @include triangle-up(3px, $black);
+//          @include triangle-up(3px, $black);
           top: $offsetX;
         }
       }
