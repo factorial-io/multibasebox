@@ -8,7 +8,7 @@
   left: $distance;
   text-align: center;
 
-  h2{
+  h2 {
     @extend .mb-1;
     font-size: $fontsize-subtitle;
     letter-spacing: $letterspacing-narrow;
@@ -27,7 +27,6 @@
     left: auto;
     right: $distance;
   }
-
 
   @include media-breakpoint-down(sm) {
     position: static;
