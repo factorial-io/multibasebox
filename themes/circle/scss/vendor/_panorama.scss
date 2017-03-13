@@ -40,7 +40,7 @@
 
 .pnlm-render-container {
     cursor: inherit;
-    
+
     /* Fix display bug in Safari 7 */
     position: absolute;
     height: 100%;
@@ -48,20 +48,7 @@
 }
 
 .pnlm-controls {
-    margin-top: 4px;
-    background-color: #fff;
-    border: 1px solid #999;
-    border-color: rgba(0,0,0,0.4);
-    border-radius: 3px;
-    cursor: pointer;
-    z-index: 2;
-    /* Fix Safari fullscreen bug */
-    -webkit-transform: translateZ(9999px);
-    transform: translateZ(9999px);
-}
-
-.pnlm-control:hover {
-    background-color: #f8f8f8;
+    display: none;
 }
 
 .pnlm-controls-container {
