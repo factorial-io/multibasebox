@@ -14,7 +14,7 @@
   text-transform: uppercase;
   cursor: pointer;
 
-  &:not([class*=icon]){
+  &:not([class*=icon]) {
     letter-spacing: $letterspacing-wide;
   }
 }
