@@ -1,5 +1,5 @@
 .rental-info {
-  @extend .m-6;
+  @extend .m-md-6;
   text-align: center;
 
   &__row {
@@ -7,14 +7,14 @@
   }
 
   &__col {
-    @extend .col;
-    @extend .col-md-10;
-    @extend .offset-md-1;
-    @extend .px-5;
+    @extend .col-10;
+    @extend .col-md-8;
+    @extend .offset-1;
+    @extend .offset-md-2;
   }
 
-  &__heading {
-    @extend .mb-4;
+  &__title {
+    @extend .mb-5;
   }
 
   &__brands {
@@ -87,25 +87,31 @@
       &::after {
         content: "";
         display: block;
-        width: 0;
-        height: 0;
-        border-left: 3px solid transparent;
-        border-right: 3px solid transparent;
-        border-top: 4px solid $black;
+        @include triangle-down(3px, $black);
         position: absolute;
         right: $offsetX * (-1);
+      }
+
+      @include media-breakpoint-down(md) {
+        top: $offsetY * (-1);
+
+        &::after{
+          @include triangle-up(3px, $black);
+          top: $offsetX;
+        }
       }
     }
   }
 
   &__contact {
-    @extend .mt-5;
+    @extend .my-5;
 
     .telephone, .email {
       @extend %contact-btn;
 
       &:not(:last-child) {
         @extend .mr-3;
+        @extend .mb-3;
       }
     }
   }

@@ -10,25 +10,26 @@
   transition: background 400ms, color 300ms;
   background: $black;
   color: $white;
+
   &:hover {
-   background: $white;
-   color: $black;
+    background: $white;
+    color: $black;
   }
 }
 
-@mixin triangle-right($width, $color){
+@mixin triangle-right($width, $color) {
   width: 0;
   height: 0;
   border-top: $width solid transparent;
-  border-left: $width*2 solid $color;
+  border-left: $width * 2 solid $color;
   border-bottom: $width solid transparent;
 }
 
-@mixin circle-shadow($color){
+@mixin circle-shadow($color) {
   box-shadow: 0 0 40px $color;
 }
 
-@function get-spacer($index, $xy:'y') {
+@function get-spacer($index, $xy: 'y') {
   @return map-get(map-get($spacers, $index), $xy);
 }
 

@@ -1,6 +1,11 @@
 .video-stage {
   position: relative;
 
+  @include media-breakpoint-down(sm) {
+    margin-bottom: get-spacer(6);
+  }
+
+
   &__player {
     @extend .embed-responsive;
     @extend .embed-responsive-16by9;
