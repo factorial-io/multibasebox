@@ -5,13 +5,16 @@
     @extend .row;
   }
   .chart-data-icon {
-    @extend .col-12;
-    @extend .col-sm-6;
+    @extend .col-6;
     @extend .col-lg-3;
     text-align: center;
     &__icon {
       img {
         height: 100px;
+
+        @include media-breakpoint-down(md) {
+          height: 50px;
+        }
       }
     }
     &__name {
@@ -23,6 +26,10 @@
     &__value {
       @extend strong;
       font-size: 3rem;
+
+      @include media-breakpoint-down(md) {
+        font-size: $fontsize-title-mobile;
+      }
     }
   }
 }

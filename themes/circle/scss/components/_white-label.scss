@@ -28,8 +28,7 @@
     right: $distance;
   }
 
-
-  @include media-breakpoint-down(sm){
+  @include media-breakpoint-down(sm) {
     position: static;
     max-width: 100%;
   }
