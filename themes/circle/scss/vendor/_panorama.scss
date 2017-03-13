@@ -40,7 +40,7 @@
 
 .pnlm-render-container {
     cursor: inherit;
-    
+
     /* Fix display bug in Safari 7 */
     position: absolute;
     height: 100%;
@@ -48,6 +48,7 @@
 }
 
 .pnlm-controls {
+    display: none;
     margin-top: 4px;
     background-color: #fff;
     border: 1px solid #999;
