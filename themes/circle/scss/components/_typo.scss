@@ -4,7 +4,12 @@ html {
   }
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   text-transform: uppercase;
   hyphens: auto;
 }
@@ -27,11 +32,13 @@ h3 {
   }
 }
 
-h5, h6 {
+h5,
+h6 {
   letter-spacing: $letterspacing-narrow;
 }
 
-strong, b {
+strong,
+b {
   font-family: $headings-font-family;
   font-weight: bold;
 }
