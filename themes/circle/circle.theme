@@ -181,14 +181,14 @@ function circle_preprocess_paragraph(&$vars) {
   /**
    * Mark images as lazy loading
    */
-  if (isset($vars['content']['field_image'][0]) && in_array($pid, ['image_with_text', 'panorama_view', 'area_circle_layer'])) {
+  if (isset($vars['content']['field_image'][0]) && in_array($pid, ['image_with_text', 'panorama_view', 'area_circle_layer', 'video_loop_with_text'])) {
     $element = $vars['content']['field_image'];
     $delta = 0;
     while (!empty($element[$delta])) {
       $element[$delta]['#item_attributes'] = array('data-lazy' => true);
       $vars['content']['field_image'][$delta] = $element[$delta];
       if ($delta === 0) {
-        //Panorama
+        //Panorama, Video Stage
         $vars['large_image'] = ImageStyle::load('max_2600x2600')->buildUrl( $element[$delta]['#item']->entity->getFileUri() );
       }
       $delta++;
