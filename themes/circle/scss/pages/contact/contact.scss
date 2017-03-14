@@ -74,14 +74,14 @@
     img {
       @extend .mb-3;
       width: 70%;
-      max-width: 500px;
+      max-width: 400px;
     }
 
     @include media-breakpoint-down(md) {
       margin: 0 0 get-spacer(6);
 
       img {
-        width: auto;
+        //width: auto;
       }
 
       h5,
