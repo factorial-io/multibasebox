@@ -1,11 +1,19 @@
 <div class="image-mosaic__part">
   <div class="part__container">
     {{content.field_image}}
+    {% if content.field_button_link.0 %}
+    <a class="part__overlay" href="{{content.field_button_link.0['#url'].toString()}}">
+    {% else %}
     <div class="part__overlay">
+    {% endif %}
       <div class="part__content">
         <div class="part__headline">{{content.field_headline}}</div>
         <div class="part__text">{{content.field_text}}</div>
       </div>
+    {% if content.field_button_link.0 %}
+    </a>
+    {% else %}
     </div>
+    {% endif %}
   </div>
 </div>

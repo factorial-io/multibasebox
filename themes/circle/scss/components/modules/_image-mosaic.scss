@@ -27,6 +27,7 @@
       }
       &__overlay {
         @include full-overlay;
+        display: block;
         hyphens: auto;
         background-color: rgba(0,0,0,0);
         transition: background-color 250ms;
