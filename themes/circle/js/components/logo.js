@@ -15,7 +15,7 @@ const init = () => {
   const path7 = s.select('.st6')
 
   let back = false
-  const time = 20000
+  const time = 14000
   const ease = mina.easeinout
 
   const path1d = path1.attr('d')
