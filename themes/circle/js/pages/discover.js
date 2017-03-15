@@ -143,7 +143,8 @@ class Discover {
       el.style.display = 'block'
     }
     
-    let scale = ($page.width() / maskWidth) * 2
+    const scaleRef = Math.max($page.width(), $page.height())
+    let scale = (scaleRef / maskWidth) * 2
 
     TweenLite.to(tweenObj, 2, {
       scale: scale, 
