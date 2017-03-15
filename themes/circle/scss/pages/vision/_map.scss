@@ -40,14 +40,16 @@
     letter-spacing: 3px;
   }
   #bubble {
+    transform-origin: left center;
     transform: scale(1);
   }
   #legend {
+    transform-origin: right bottom;
     transform: scale(1) translateX(0);
   }
+  transform-origin: center center;
   @include media-breakpoint-down(sm) {
-    transform: scale(1.1);
-    transform-origin: center center;
+    transform: scale(1.2);
     margin-bottom: get-spacer(5);
 
     text {
@@ -55,14 +57,12 @@
     }
     #bubble {
       transform: scale(2);
-      transform-origin: left center;
       text {
         font-size: 1rem;
       }
     }
     #legend {
-      transform: scale(1.3) translateX(-40px);
-      transform-origin: right bottom;
+      transform: scale(1.3) translateX(-80px) translateY(40px);
       text {
         font-size: 1rem;
       }
