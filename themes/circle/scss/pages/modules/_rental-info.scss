@@ -55,8 +55,8 @@
       height: 5px;
       width: 0%;
     }
-    $offsetY: -25px;
-    $offsetX: -10px;
+    $offset-y: -25px;
+    $offset-x: -10px;
 
     &__current,
     &__end,
@@ -68,43 +68,36 @@
 
     &__start {
       position: absolute;
-      top: $offsetY;
-      left: $offsetX;
+      top: $offset-y;
+      left: $offset-x;
     }
 
     &__end {
       position: absolute;
-      top: $offsetY;
-      right: $offsetX;
+      top: $offset-y;
+      right: $offset-x;
     }
 
     &__current {
       position: absolute;
-      top: $offsetY;
-      right: $offsetX;
+      top: $offset-y * (-1);
+      right: $offset-x;
       color: $black;
 
       &::after {
         content: '';
         display: block;
-        @include triangle-down(3px, $black);
+        @include triangle-up(3px, $black);
         position: absolute;
-        right: $offsetX * (-1);
-      }
-
-      @include media-breakpoint-down(md) {
-        top: $offsetY * (-1);
-
-        &::after {
-          @include triangle-up(3px, $black);
-          top: $offsetX;
-        }
+        top: $offset-x;
+        right: $offset-x * (-1);
       }
     }
   }
 
   &__contact {
-    @extend .my-5;
+    @extend .mb-5;
+    margin-top: calc(#{get-spacer(5)} + #{$offset-y} * (-1));
 
     .telephone,
     .email {
