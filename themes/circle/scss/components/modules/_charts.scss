@@ -1,13 +1,18 @@
 .chart {
   @extend .mb-4;
   padding: 0 percentage(2/$grid-columns);
+
   &__data {
     @extend .row;
+    justify-content: center;
   }
+
   .chart-data-icon {
     @extend .col-6;
-    @extend .col-lg-3;
+    @extend .col-sm-4;
+    @extend .col-xl;
     text-align: center;
+
     &__icon {
       img {
         height: 100px;
@@ -17,12 +22,14 @@
         }
       }
     }
+
     &__name {
       @extend .mt-3;
       @extend .mb-0;
       text-transform: uppercase;
       font-size: $font-size-xs;
     }
+
     &__value {
       @extend strong;
       font-size: 3rem;
