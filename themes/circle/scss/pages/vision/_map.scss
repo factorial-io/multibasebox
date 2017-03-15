@@ -16,8 +16,7 @@
     animation-duration: 5s;
     animation-iteration-count: infinite;
   }
-  #circle-1 {
-  }
+
   #circle-2 {
     animation-delay: 400ms;
   }
@@ -41,7 +40,7 @@
   }
   #bubble {
     transform-origin: left center;
-    transform: scale(1);
+    transform: scale(1) translateZ(0);
   }
   #legend {
     transform-origin: right bottom;

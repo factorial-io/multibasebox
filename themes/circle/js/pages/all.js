@@ -7,6 +7,7 @@ import '../components/videoStage'
 import '../components/circleSlider'
 import '../components/scrollAnimation'
 import '../components/panorama'
+import '../components/map'
 import '../components/video'
 import '../components/contact'
 
