@@ -1,9 +1,11 @@
 .grid {
   @extend .row;
+
   &__element {
     @extend .mb-6;
-    @extend .col-md-4;
-    @extend .col-sm-6;
+    @extend .col-lg-4;
+    @extend .col-md-6;
+
     &:nth-child(2) {
       @extend .mt-md-5;
     }
