@@ -80,10 +80,6 @@
     @include media-breakpoint-down(md) {
       margin: 0 0 get-spacer(6);
 
-      img {
-        //width: auto;
-      }
-
       h5,
       p {
         text-align: inherit;
