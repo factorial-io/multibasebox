@@ -169,6 +169,8 @@ function circle_preprocess_page(&$vars) {
   } else {
     $vars['show_footer'] = true;
   }
+  
+  $vars['base_path'] = base_path();
 }
 
 /**
@@ -265,4 +267,7 @@ function circle_preprocess_html(&$variables) {
   if ($node && $node->type->entity->id() == 'module') {
     $variables['color'] = $node->field_color->getValue()[0]['value'];
   }
+  
+  $variables['base_path'] = base_path();
 }
+
