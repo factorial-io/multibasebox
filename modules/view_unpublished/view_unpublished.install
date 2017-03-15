@@ -1,0 +1,19 @@
+<?php
+/**
+ * @file view_unpublished.install
+ * Contains install and update functions for view_unpublished.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function view_unpublished_install() {
+  node_access_needs_rebuild(TRUE);
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function view_unpublished_uninstall() {
+  node_access_needs_rebuild(TRUE);
+}
