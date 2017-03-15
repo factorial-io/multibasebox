@@ -1,4 +1,5 @@
 .hotspot-overlay {
+  @extend .hidden-sm-down;
   position: absolute;
   min-width: 100vw;
   min-height: calc(100vh - 66px);

@@ -34,5 +34,14 @@
         height: auto;
       }
     }
+    @include media-breakpoint-down(sm) {
+      h3 {
+        margin: 0 3*$spacer;
+        font-size: 2rem;
+        img {
+          min-width: 200px;
+        }
+      }
+    }
   }
 }

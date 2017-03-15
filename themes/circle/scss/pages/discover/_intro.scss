@@ -19,5 +19,11 @@
       right: 0;
       text-align: center;
     }
+    
+    @include media-breakpoint-down(sm) {
+      h2 {
+        max-width: 250px;
+      }
+    }
   }
 }
