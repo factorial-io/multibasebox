@@ -44,7 +44,7 @@
       text-align: center;
     }
   }
-  
+
   .pdf-button {
     @extend .btn;
     @extend .btn-primary;
@@ -62,7 +62,7 @@
 .floor-summary {
   @extend strong;
   width: 100%;
-  
+
   td:last-child {
     text-align: right;
   }
@@ -72,13 +72,17 @@
   width: 100%;
   @extend .mt-5;
   @extend .mb-4;
-  
+
   th {
     @extend strong;
     padding-bottom: $spacer;
   }
+
   &__cell {
-    font-size: $font-size-xs;
+    @include media-breakpoint-up(lg) {
+      font-size: $font-size-xs;
+    }
+
     &:first-child {
       width: 25px;
       font-family: $headings-font-family;
@@ -93,8 +97,12 @@
     @extend strong;
     padding-bottom: $spacer;
   }
+
   td {
-    font-size: $font-size-xs;
+    @include media-breakpoint-up(lg) {
+      font-size: $font-size-xs;
+    }
+
     &:first-child {
       @extend strong;
     }
