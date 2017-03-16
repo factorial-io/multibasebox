@@ -7,11 +7,13 @@
         {{content.field_image}}
         {{content.field_overlay_image}}
       </div>
+      {% if content.field_overlay_image.0['#item'] %}
       <div class="interior-switch-wrapper">
         <a class="interior-switch" data-interior-switch>
           <span class="interior-switch__eye"></span> <span class="interior-switch__text">{{'Interior example'|t}}</span>
         </a>
       </div>
+      {% endif %}
     </section>
     <section class="area-info">
       <div class="area-info__top">
