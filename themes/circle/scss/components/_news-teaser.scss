@@ -4,6 +4,10 @@
 
   h2 {
     text-align: center;
+
+    @include media-breakpoint-down(md) {
+      margin-bottom: get-spacer(5);
+    }
   }
 
   .article-teaser {
