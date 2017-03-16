@@ -8,6 +8,7 @@ import '../components/circleSlider'
 import '../components/scrollAnimation'
 import '../components/panorama'
 import '../components/map'
+import '../components/totop'
 import '../components/video'
 import '../components/contact'
 

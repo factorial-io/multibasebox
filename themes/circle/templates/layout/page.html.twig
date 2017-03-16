@@ -4,6 +4,12 @@
     {{ page.content }}
 </main>
 
+{% if show_totop %}
+  <button data-to-top class="to-top">
+    <span class="icon-arrow-up"></span>
+  </button>
+{% endif %}
+
 {% if show_footer %}
 <section class="pre-footer">
     {{ page.prefooter }}

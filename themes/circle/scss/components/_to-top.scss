@@ -1,0 +1,16 @@
+.to-top {
+  $size: 35px;
+  @extend .btn;
+  @extend .btn-primary;
+  position: fixed;
+  display: none;
+  z-index: 10;
+  bottom: 2*$spacer;
+  right: 2*$spacer;
+  width: $size;
+  height: $size;
+  line-height: $size;
+  padding: 0;
+  text-align: center;
+  border-radius: 50%;
+}

@@ -27,7 +27,6 @@ class ScrollSpy {
     
     this.$els = $els
     
-    this.spyState = SpyState.outside
     this.direction = direction
 
     $(window).on(`scroll.${this.uniqueId}`, (e) => {

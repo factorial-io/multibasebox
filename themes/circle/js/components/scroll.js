@@ -7,6 +7,14 @@ $(document).on('click', '[data-scroll-target]', (e) => {
   scrollTo($el)
 })
 
+const scroll = (pos) => {
+  $('body, html').animate({scrollTop: pos}, 1000)
+}
+
 export const scrollTo = ($el) => {
-  $('body, html').animate({scrollTop: $el.offset().top}, 1000)
+  scroll($el.offset().top)
+}
+
+export const scrollToTop = () => {
+  scroll(0)
 }
