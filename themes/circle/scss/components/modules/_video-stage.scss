@@ -5,16 +5,18 @@
     margin-bottom: get-spacer(6);
   }
 
-
   &__player {
     @extend .embed-responsive;
     @extend .embed-responsive-16by9;
     z-index: 2;
   }
+
   &__thumbs {
-    @extend .p-lg-5;
-    @extend .p-md-3;
-    margin-left: get-spacer(3);
+    @extend .px-lg-5;
+    @extend .px-md-3;
+    @extend .pb-lg-5;
+    @extend .pb-md-3;
+    margin-left: get-spacer(4) / 2;
 
     @include media-breakpoint-up(md) {
       position: absolute;
@@ -48,28 +50,28 @@
         }
 
         &__image {
-            @extend .col-12;
-            @extend .col-sm-5;
-            @extend .col-md-3;
-            position: relative;
+          @extend .col-12;
+          @extend .col-sm-5;
+          @extend .col-md-3;
+          position: relative;
 
-            &::after{
-              display: none;
-              content: "";
-              @include triangle-right(10px, $white);
-              position: absolute;
-              top: 50%;
-              left: 50%;
-              transform: translate(-50%, -50%);
-            }
+          &::after {
+            display: none;
+            content: '';
+            @include triangle-right(10px, $white);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+          }
 
-            img{
-              width: 100%;
-              height: auto;
-            }
+          img {
+            width: 100%;
+            height: auto;
+          }
         }
 
-        &__headline{
+        &__headline {
           @extend .col-12;
           @extend .col-sm-7;
           @extend .col-md-9;
@@ -77,7 +79,7 @@
             margin-top: $spacer;
           }
 
-          h2{
+          h2 {
             font-size: $font-size-base;
             font-family: $headings-font-family;
             line-height: $font-size-base;
@@ -134,5 +136,4 @@
       top: 30%;
     }
   }
-
 }

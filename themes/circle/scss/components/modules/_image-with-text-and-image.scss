@@ -6,17 +6,18 @@
   }
 
   .image-with-text__text {
+    @extend .col-md-6;
+    @extend .image-with-text__text;
 
     img {
       @extend .mt-4;
-      width: 150%;
+      width: 120%;
       height: auto;
       position: relative;
-      left: -25%;
+      left: -10%;
       flex: 0 0 auto;
 
       @include media-breakpoint-down(md) {
-        width: 125%;
         left: 0;
       }
 
