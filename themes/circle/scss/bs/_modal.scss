@@ -107,6 +107,7 @@
   justify-content: flex-end; // Right align buttons with flex property because text-align doesn't work on flex items
   padding: $modal-inner-padding;
   border-top: $modal-footer-border-width solid $modal-footer-border-color;
+  flex-wrap: wrap;
 
   // Easily place margin between footer elements
   > :not(:first-child) { margin-left: .25rem; }
@@ -123,7 +124,7 @@
 }
 
 // Scale up the modal
-@include media-breakpoint-up(sm) {
+@include media-breakpoint-up(lg) {
   // Automatically set modal's width for larger viewports
   .modal-dialog {
     max-width: $modal-md;
