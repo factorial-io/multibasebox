@@ -2,7 +2,8 @@
   @extend .row;
 
   &__element {
-    @extend .mb-6;
+    @extend .mb-5;
+    @extend .mb-lg-6;
     @extend .col-lg-4;
     @extend .col-md-6;
 
