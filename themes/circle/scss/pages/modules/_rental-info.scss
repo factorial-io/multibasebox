@@ -22,8 +22,12 @@
   &__brands {
     @extend .mb-5;
 
-    img:not(:last-child) {
-      @extend .mr-2;
+    img {
+      vertical-align: baseline;
+
+      &:not(:last-child) {
+        @extend .mr-2;
+      }
     }
   }
 
