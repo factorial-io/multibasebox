@@ -9,6 +9,10 @@
     @extend .col-md-6;
     @extend .image-with-text__text;
 
+    h2 {
+      hyphens: none;
+    }
+
     img {
       @extend .mt-4;
       width: 120%;
