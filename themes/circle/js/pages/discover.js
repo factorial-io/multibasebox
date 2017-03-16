@@ -18,7 +18,6 @@ class Discover {
     
     if ($('.page-node-type-discover-page')[0]) {
       this.load()
-      console.log("Hallo!")
     }
   }
   load() {
@@ -60,11 +59,14 @@ class Discover {
     $(document).on('click', '.discover-slides__nav li', (e) => {
       this.gotoPage($('.discover-slides__nav li').index(e.currentTarget))
     })
+    $(document).on('click', '[data-discover-arrow]', (e) => {
+      this.nextPage()
+    })
   }
   
   scrollHandler(e) {
     e.preventDefault()
-    console.log(e.deltaY)
+
     if (this.blocked) {
       return
     }
