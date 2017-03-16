@@ -18,6 +18,7 @@ class Discover {
     
     if ($('.page-node-type-discover-page')[0]) {
       this.load()
+      console.log("Hallo!")
     }
   }
   load() {
@@ -63,18 +64,14 @@ class Discover {
   
   scrollHandler(e) {
     e.preventDefault()
-    if (e.deltaY === 1 || e.deltaY === -1) {
-      this.blocked = false
-    }
+    console.log(e.deltaY)
     if (this.blocked) {
       return
     }
-    if (e.deltaY < -3) {
-      this.blocked = true
+    if (e.deltaY < 0) {
       this.nextPage()
     }
-    if (e.deltaY > 3) {
-      this.blocked = true
+    if (e.deltaY > 0) {
       this.previousPage()
     }
   }
@@ -86,6 +83,8 @@ class Discover {
     if (page === this.page || (page === 0 && this.page === 0)) {
       return
     }
+    
+    this.blocked = true
     
     if (this.page > -1) { //special case preloader
       this.$slides.removeClass('was-active transitioning').eq(this.page).addClass('was-active')
@@ -159,6 +158,7 @@ class Discover {
         if (cb) {
           cb()
         }
+        this.blocked = false
       }
     })
     
