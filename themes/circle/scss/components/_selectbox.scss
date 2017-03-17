@@ -18,7 +18,7 @@
   .arrow {
     @extend %icon;
     @extend .icon-down;
-    margin-left: 1rem;
+    @extend .ml-sm-3;
     display: inline-block;
     transition: transform 200ms;
     font-size: 0.5rem;
@@ -35,7 +35,7 @@
   text-align: left;
   text-transform: uppercase;
   li {
-    &.is-active, 
+    &.is-active,
     &:hover {
       a {
         background-color: $white;
