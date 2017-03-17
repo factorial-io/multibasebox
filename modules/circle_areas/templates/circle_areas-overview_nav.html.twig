@@ -1,6 +1,9 @@
 <nav class="area-navigation">
   <ul class="menu">
     <li>{{overview_link}}</li>
+    {% if house_link %}
+      <li>{{house_link}}</li>
+    {% endif %}
     {% for link in links %}
       <li>{{link}}</li>
     {% endfor %}

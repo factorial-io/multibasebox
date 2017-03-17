@@ -5,6 +5,12 @@ function circle_areas_node_view(array &$build, \Drupal\Core\Entity\EntityInterfa
   $field_name = false;
   $overview_title = t('Overview');
   $overview = null;
+  $options = array('set_active_class' => true);
+  
+  $build['houses_nav'] = array(
+    '#theme' => 'rental_overview_nav'
+  );
+  
   if ($entity->type->entity->id() == 'rental_overview') {
     /**
      * Overview Page
@@ -24,7 +30,6 @@ function circle_areas_node_view(array &$build, \Drupal\Core\Entity\EntityInterfa
      */
     $parent_id = $entity->field_belongs_to_overview->getValue()[0]['target_id'];
     $overview_id = $parent_id;
-    $overview = node_load($overview_id);
     $field_name = 'field_belongs_to_overview';
     $moduleIds = [];
     foreach ($entity->field_layer->referencedEntities() as $paragraph) {
@@ -36,15 +41,17 @@ function circle_areas_node_view(array &$build, \Drupal\Core\Entity\EntityInterfa
      * Floor Page
      */
     $parent_id = $entity->field_house->getValue()[0]['target_id'];
-    $overview_id = $parent_id;
     $field_name = 'field_house';
     $house = node_load($parent_id);
-    $overview = node_load($house->field_belongs_to_overview->getValue()[0]['target_id']);
-    $overview_title = $house->getTitle();
+    $overview_id = $house->field_belongs_to_overview->getValue()[0]['target_id'];
+    
+    $build['houses_nav']['#house_link'] = Drupal\Core\Link::createFromRoute($house->getTitle(), 'entity.node.canonical', ['node' => $parent_id], $options);
+    
     
     $build['house_title'] = array(
       '#markup' => $house->getTitle(),
     );
+    
     $build['field_contact'] = $house->field_contact->view('full');
     $build['field_vcard'] = $house->field_vcard->view('full');
     $build['field_email'] = $house->field_email->view('full');
@@ -70,20 +77,18 @@ function circle_areas_node_view(array &$build, \Drupal\Core\Entity\EntityInterfa
   }
   
   if ($overview_id && $parent_id) {
+    $overview = node_load($overview_id);
+    
     $query = \Drupal::entityQuery('node');
     $query->condition($field_name.'.target_id', $parent_id)->sort('title', 'ASC');
     
     $nids = $query->execute();
     $links = [];
-    $options = array('set_active_class' => true);
     foreach (node_load_multiple($nids) as $child) {
       $links[] = Drupal\Core\Link::createFromRoute($child->getTitle(), 'entity.node.canonical', ['node' => $child->id()], $options);
     }
-    $build['houses_nav'] = array(
-      '#theme' => 'rental_overview_nav',
-      '#links' => $links,
-      '#overview_link' => Drupal\Core\Link::createFromRoute($overview_title, 'entity.node.canonical', ['node' => $overview_id], $options)
-    );
+    $build['houses_nav']['#links'] = $links;
+    $build['houses_nav']['#overview_link'] = Drupal\Core\Link::createFromRoute($overview_title, 'entity.node.canonical', ['node' => $overview_id], $options);
   }
   
   if ($overview) {
@@ -103,7 +108,8 @@ function circle_areas_theme()
       'variables' => array
       (
         'links' => array(),
-        'overview_link' => ''
+        'overview_link' => '',
+        'house_link' => ''
       ),
       'template' => 'circle_areas-overview_nav',
     ),
