@@ -25,7 +25,16 @@ $('[data-video-stage]').each((index, el) => {
     currentId = e.id
     activateThumbWithId(e.id)
   })
-
+  
+  const playingClass = 'playing'
+  player.on('play', (e) => {
+    $(el).addClass(playingClass)
+  })
+  
+  player.on('pause', (e) => {
+    $(el).removeClass(playingClass)
+  })
+  
   $('[data-vimeo-video-id]', $(el)).on('click', (e) => {
     const lastId = currentId
     const newId = getIdFromThumb( $(e.currentTarget) )
