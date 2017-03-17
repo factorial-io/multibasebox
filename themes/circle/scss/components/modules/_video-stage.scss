@@ -96,7 +96,6 @@
           height: auto;
           max-height: 500px;
           opacity: 1;
-          hyphens: auto;
 
           @include media-breakpoint-down(sm) {
             display: none;
