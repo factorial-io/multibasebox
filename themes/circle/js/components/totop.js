@@ -12,7 +12,7 @@ if ( $('[data-to-top]')[0] ) {
       toggleToTop(false)
     } else if (
       $(document).height() / $(window).height() > 2.5 && 
-      $(window).scrollTop() > 2 * $(window).height()
+      $(window).scrollTop() > $(window).height()
       ) {
       toggleToTop(true)
     } else {
