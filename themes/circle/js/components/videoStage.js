@@ -35,6 +35,10 @@ $('[data-video-stage]').each((index, el) => {
     $(el).removeClass(playingClass)
   })
   
+  player.on('ended', (e) => {
+    $(el).removeClass(playingClass)
+  })
+  
   $('[data-vimeo-video-id]', $(el)).on('click', (e) => {
     const lastId = currentId
     const newId = getIdFromThumb( $(e.currentTarget) )
