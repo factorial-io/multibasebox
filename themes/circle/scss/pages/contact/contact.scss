@@ -50,6 +50,10 @@
     }
   }
 
+  &__info-col {
+    @extend .col-lg-5;
+  }
+
   &__team-col {
     @extend .col-12;
     @extend .col-lg-3;
