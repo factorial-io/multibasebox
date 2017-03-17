@@ -27,16 +27,26 @@ $('[data-video-stage]').each((index, el) => {
   })
   
   const playingClass = 'playing'
+  let playTimeout = null
+  const stoppedPlaying = () => {
+    if (playTimeout) {
+      clearTimeout(playTimeout)
+      playTimeout = null
+    }
+    $(el).removeClass(playingClass)
+  }
   player.on('play', (e) => {
-    $(el).addClass(playingClass)
+    playTimeout = setTimeout(() => {
+      $(el).addClass(playingClass)
+    }, 5000)
   })
   
   player.on('pause', (e) => {
-    $(el).removeClass(playingClass)
+    stoppedPlaying()
   })
   
   player.on('ended', (e) => {
-    $(el).removeClass(playingClass)
+    stoppedPlaying()
   })
   
   $('[data-vimeo-video-id]', $(el)).on('click', (e) => {
