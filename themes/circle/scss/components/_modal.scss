@@ -1,0 +1,11 @@
+.modal-dialog {
+  max-width: 95%;
+
+  @include media-breakpoint-up(lg) {
+    max-width: $modal-md;
+  }
+
+  .modal-footer {
+    flex-wrap: wrap;
+  }
+}
