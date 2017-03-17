@@ -31,38 +31,6 @@ function circle_preprocess_menu__social_media(&$variables) {
 }
 
 /**
- * Add Theme settings for the circle
- */
-function circle_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormStateInterface &$form_state, $form_id = NULL) {
-  // Work-around for a core bug affecting admin themes. See issue #943212.
-  if (isset($form_id)) {
-    return;
-  }
-  
-
-  $form['target_time'] = array(
-    '#type'          => 'textfield',
-    '#title'         => t('Target Time'),
-    '#default_value' => theme_get_setting('target_time'),
-    '#description'   => t("Timestamp when The Circle launches.. Convert at http://www.unixtimestamp.com")
-  );
-  
-  $form['total_space'] = array(
-    '#type'          => 'textfield',
-    '#title'         => t('Total Space'),
-    '#default_value' => theme_get_setting('total_space'),
-    '#description'   => t("Total space that can be sold, in m x m"),
-  );
-  
-  $form['sold_space'] = array(
-    '#type'          => 'textfield',
-    '#title'         => t('Sold Space'),
-    '#default_value' => theme_get_setting('sold_space'),
-    '#description'   => t("Space already sold, in m x m")
-  );
-}
-
-/**
  * Preprocess fields
  */
 function circle_preprocess_field(&$variables) {
@@ -209,13 +177,15 @@ function circle_preprocess_paragraph(&$vars) {
   if ($pid == 'circles_slider') {
     $vars['circles'] = views_embed_view('circle_modules', 'circle_modules_block');
   } else if($pid == 'module_contact') {
+    $node = \Drupal\node\Entity\Node::load(17);
     if($vars['elements']['field_show_progress']['#items']->value == '1') {
-      $vars['percentage'] = theme_get_setting('sold_space') / theme_get_setting('total_space') * 100;
-      $vars['sold_space'] = theme_get_setting('sold_space');
-      $vars['total_space'] = theme_get_setting('total_space'); 
+      $sold_space = $node->field_sold_space->getValue()[0]['value'];
+      $total_space = $node->field_total_space->getValue()[0]['value'];
+      $vars['percentage'] = $sold_space / $total_space * 100;
+      $vars['sold_space'] = $sold_space;
+      $vars['total_space'] = $total_space;
     }
     if($vars['elements']['field_show_brands']['#items']->value == '1') {
-      $node = \Drupal\node\Entity\Node::load(17);
       $vars['brands'] = node_view($node);
     }
   }
