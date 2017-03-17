@@ -1,5 +1,6 @@
 .circle-slider {
   position: relative;
+
   .slide {
     position: relative;
     text-align: center;
@@ -9,45 +10,52 @@
       text-align: center;
       margin: 1rem;
     }
-    
+
+    a {
+      outline: 0;
+    }
+
     @each $key, $color in $color-list {
       .#{$key} h6 {
         color: $color;
       }
+
       .#{$key} .mask-color {
         fill: $color;
       }
     }
-    
+
     .details {
       display: none;
     }
   }
-  
+
   .egg-image {
     position: relative;
     overflow: hidden;
     transform-origin: bottom;
     transition: transform 500ms;
     padding: 3px;
+    transform: scale(.7);
+
     img {
       position: relative;
       width: 100%;
       height: auto;
       z-index: 0;
     }
+
     svg {
       @include full-overlay;
       width: 100%;
       z-index: 1;
+
       .mask-white {
         fill: $white;
       }
     }
   }
-  .egg-image {
-    transform: scale(0.7);
-  }
+
   .slick-center {
     .egg-image {
       transform: scale(1);
@@ -57,7 +65,10 @@
 
 .circle-details {
   min-height: 15vw;
-  font-size: 1.5rem;
   text-align: center;
-  padding: 2*$spacer percentage(1/$grid-columns);
+  padding: 2 * $spacer percentage(3/$grid-columns);
+
+  @include media-breakpoint-down(sm) {
+    padding: 2 * $spacer percentage(1/$grid-columns);
+  }
 }
