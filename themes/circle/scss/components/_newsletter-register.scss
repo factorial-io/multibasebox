@@ -1,7 +1,8 @@
 .newsletter-form {
   .modal-body {
     .ui-form-field {
-      &__select, &__text {
+      &__select,
+      &__text {
         @extend .row;
         @extend .form-group;
         align-items: center;
@@ -12,7 +13,8 @@
           margin: 0;
         }
 
-        input, select {
+        input,
+        select {
           @extend .form-control;
           @extend .col-7;
           @extend .col-md-8;
@@ -23,14 +25,19 @@
   }
 
   .modal-footer {
+
     &__submit {
       @extend .btn;
       @extend .btn-primary;
+      @extend .mb-2;
+      @extend .mr-0;
     }
 
     &__close {
       @extend .btn;
       @extend .btn-secondary;
+      @extend .mb-2;
+      @extend .ml-2;
     }
   }
 }
