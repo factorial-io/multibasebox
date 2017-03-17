@@ -1,3 +1,5 @@
+{% set has_overview = content.field_overlay_image.0['#item'] %}
+
 <div class="for-overview {{content.overview_color}}">
   {{content.houses_nav}}
 
@@ -7,7 +9,7 @@
         {{content.field_image}}
         {{content.field_overlay_image}}
       </div>
-      {% if content.field_overlay_image.0['#item'] %}
+      {% if has_overview %}
       <div class="interior-switch-wrapper">
         <a class="interior-switch" data-interior-switch>
           <span class="interior-switch__eye"></span> <span class="interior-switch__text">{{'Interior example'|t}}</span>
@@ -51,7 +53,7 @@
               {{content.field_floor_data}}
             </tbody>
           </table>
-          
+          {% if has_overview %}
           <table class="interior-data">
             <thead>
               <th colspan="2">{{'Interior Example'|t}}</th>
@@ -73,6 +75,7 @@
               </td>
             </tr>
           </table>
+          {% endif %}
     
           {% if content.field_pdf.0 %}
             {% set pdf_url = file_url(content.field_pdf[0]['#file'].getFileUri()) %}
