@@ -31,16 +31,18 @@
         hyphens: auto;
         background-color: rgba(0,0,0,0);
         transition: background-color 250ms;
-
-        &:hover {
-          background-color: rgba(0,0,0,0.6);
-          .part__content{
-            transform: translateY(50%);
-            bottom: 50%;
-          }
-          .part__text{
-            display: block;
-          }
+        
+        &--hover {
+          &:hover {
+            background-color: rgba(0,0,0,0.6);
+            .part__content{
+              transform: translateY(50%);
+              bottom: 50%;
+            }
+            .part__text{
+              display: block;
+            }
+          } 
         }
       }
       &__content {

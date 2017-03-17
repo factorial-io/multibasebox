@@ -2,9 +2,9 @@
   <div class="part__container">
     {{content.field_image}}
     {% if content.field_button_link.0 %}
-    <a class="part__overlay" href="{{content.field_button_link.0['#url'].toString()}}">
+    <a class="part__overlay part__overlay--hover" href="{{content.field_button_link.0['#url'].toString()}}">
     {% else %}
-    <div class="part__overlay">
+    <div class="part__overlay {% if content.field_text.0 %} part__overlay--hover {% endif %}">
     {% endif %}
       <div class="part__content">
         <div class="part__headline">{{content.field_headline}}</div>
