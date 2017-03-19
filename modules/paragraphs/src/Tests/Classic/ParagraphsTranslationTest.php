@@ -1,20 +1,19 @@
 <?php
 
-namespace Drupal\paragraphs\Tests;
+namespace Drupal\paragraphs\Tests\Classic;
 
 use Drupal\Component\Render\FormattableMarkup;
-use Drupal\Core\Entity\Entity;
+use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\node\Entity\Node;
-use Drupal\simpletest\WebTestBase;
 
 /**
  * Tests the configuration of paragraphs.
  *
  * @group paragraphs
  */
-class ParagraphsTranslationTest extends WebTestBase {
+class ParagraphsTranslationTest extends ParagraphsTestBase {
 
   /**
    * Modules to enable.
@@ -22,17 +21,15 @@ class ParagraphsTranslationTest extends WebTestBase {
    * @var array
    */
   public static $modules = array(
-    'node',
     'paragraphs_demo',
     'content_translation',
-    'block',
     'link',
   );
 
   /**
    * A user with admin permissions.
    *
-   * @var \Drupal\user\UserInterface $entity
+   * @var array
    */
   protected $admin_user;
 
@@ -41,26 +38,16 @@ class ParagraphsTranslationTest extends WebTestBase {
    */
   protected function setUp() {
     parent::setUp();
-    $this->drupalPlaceBlock('local_tasks_block');
-    $this->drupalPlaceBlock('page_title_block');
-
-    $this->admin_user = $this->drupalCreateUser(array(
+    $this->loginAsAdmin([
       'administer site configuration',
-      'administer nodes',
       'create paragraphed_content_demo content',
       'edit any paragraphed_content_demo content',
       'delete any paragraphed_content_demo content',
-      'administer paragraph form display',
-      'administer paragraph fields',
       'administer content translation',
       'translate any entity',
       'create content translations',
       'administer languages',
-      'administer content types',
-    ));
-
-    $this->drupalLogin($this->admin_user);
-
+    ]);
     $edit = [
       'settings[paragraph][nested_paragraph][translatable]' => TRUE,
       'settings[paragraph][nested_paragraph][settings][language][language_alterable]' => TRUE,
@@ -82,10 +69,16 @@ class ParagraphsTranslationTest extends WebTestBase {
     $this->assertFieldChecked('edit-settings-paragraph-images-columns-field-images-demo-alt');
     $this->assertFieldChecked('edit-settings-paragraph-images-columns-field-images-demo-title');
 
+    // Set the form display to classic.
+    $form_display = EntityFormDisplay::load('node.paragraphed_content_demo.default')
+      ->setComponent('field_paragraphs_demo', ['type' => 'entity_reference_paragraphs']);
+    $form_display->save();
+
     // Check if the publish/unpublish option works.
     $this->drupalGet('admin/structure/paragraphs_type/text_image/form-display');
     $edit = array(
       'fields[status][type]' => 'boolean_checkbox',
+      'fields[status][region]' => 'content',
     );
 
     $this->drupalPostForm(NULL, $edit, t('Save'));
@@ -393,6 +386,11 @@ class ParagraphsTranslationTest extends WebTestBase {
   public function testParagraphTranslationMultilingual() {
     // Case 1: original node langcode in EN, translate in FR, change to DE.
 
+    // Set the form display to classic.
+    $form_display = EntityFormDisplay::load('node.paragraphed_content_demo.default')
+      ->setComponent('field_paragraphs_demo', ['type' => 'entity_reference_paragraphs']);
+    $form_display->save();
+
     // Add 'Images' paragraph and check the paragraphs buttons are displayed.
     $this->drupalGet('node/add/paragraphed_content_demo');
     $this->drupalPostForm(NULL, NULL, t('Add Images'));
@@ -568,6 +566,11 @@ class ParagraphsTranslationTest extends WebTestBase {
   public function testParagraphsMultilingualWorkflow() {
     // Case 1: Check the paragraphs buttons after changing the NODE language
     // (original node langcode in GERMAN, default site langcode in english).
+
+    // Set the form display to classic.
+    $form_display = EntityFormDisplay::load('node.paragraphed_content_demo.default')
+      ->setComponent('field_paragraphs_demo', ['type' => 'entity_reference_paragraphs']);
+    $form_display->save();
 
     // Create a node and check that the node langcode is 'english'.
     $this->drupalGet('node/add/paragraphed_content_demo');

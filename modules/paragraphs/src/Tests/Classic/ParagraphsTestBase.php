@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\paragraphs\Tests;
+namespace Drupal\paragraphs\Tests\Classic;
 
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\Core\Entity\Entity\EntityViewDisplay;
@@ -43,6 +43,7 @@ abstract class ParagraphsTestBase extends WebTestBase {
     'field',
     'field_ui',
     'block',
+    'paragraphs_test',
   ];
 
   /**
@@ -129,9 +130,9 @@ abstract class ParagraphsTestBase extends WebTestBase {
       'field_name' => $paragraphs_field_name,
       'entity_type' => $entity_type,
       'type' => 'entity_reference_revisions',
+      'cardinality' => '-1',
       'settings' => [
         'target_type' => 'paragraph',
-        'cardinality' => '-1',
       ],
     ]);
     $field_storage->save();
@@ -233,6 +234,55 @@ abstract class ParagraphsTestBase extends WebTestBase {
     $this->drupalGet('admin/structure/types/manage/' . $content_type . '/fields/node.' . $content_type . '.' . $paragraphs_field);
     $edit['settings[handler_settings][target_bundles_drag_drop][' . $paragraphs_type . '][weight]'] = $weight;
     $this->drupalPostForm(NULL, $edit, t('Save settings'));
+  }
+
+  /**
+   * Sets the default paragraph type.
+   *
+   * @param $content_type
+   *   Content type name that contains the paragraphs field.
+   * @param $paragraphs_name
+   *   Paragraphs name.
+   * @param $paragraphs_field_name
+   *   Paragraphs field name to be used.
+   * @param $default_type
+   *   Default paragraph type which should be set.
+   */
+  protected function setDefaultParagraphType($content_type, $paragraphs_name, $paragraphs_field_name, $default_type) {
+    $this->drupalGet('admin/structure/types/manage/' . $content_type . '/form-display');
+    $this->drupalPostAjaxForm(NULL, [], $paragraphs_field_name);
+    $this->drupalPostForm(NULL, ['fields[' . $paragraphs_name . '][settings_edit_form][settings][default_paragraph_type]' => $default_type], t('Update'));
+    $this->drupalPostForm(NULL, [], t('Save'));
+  }
+
+  /**
+   * Removes the default paragraph type.
+   *
+   * @param $content_type
+   *   Content type name that contains the paragraphs field.
+   */
+  protected function removeDefaultParagraphType($content_type) {
+    $this->drupalGet('node/add/' . $content_type);
+    $this->drupalPostForm(NULL, [], 'Remove');
+    $this->drupalPostForm(NULL, [], 'Confirm removal');
+    $this->assertNoText('No paragraphs added yet.');
+  }
+
+  /**
+   * Sets the Paragraphs widget display mode.
+   *
+   * @param string $content_type
+   *   Content type name where to set the widget mode.
+   * @param string $paragraphs_field
+   *   Paragraphs field to change the mode.
+   * @param string $mode
+   *   Mode to be set. ('closed', 'preview' or 'open').
+   */
+  protected function setParagraphsWidgetMode($content_type, $paragraphs_field, $mode) {
+    $this->drupalGet('admin/structure/types/manage/' . $content_type . '/form-display');
+    $this->drupalPostAjaxForm(NULL, [], $paragraphs_field . '_settings_edit');
+    $this->drupalPostForm(NULL, ['fields[' . $paragraphs_field . '][settings_edit_form][settings][edit_mode]' => $mode], t('Update'));
+    $this->drupalPostForm(NULL, [], 'Save');
   }
 
 }

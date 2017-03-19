@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\paragraphs\Tests;
+namespace Drupal\paragraphs\Tests\Experimental;
 
 use Drupal\contact\Entity\ContactForm;
 
@@ -9,7 +9,7 @@ use Drupal\contact\Entity\ContactForm;
  *
  * @group paragraphs
  */
-class ParagraphsContactTest extends ParagraphsTestBase {
+class ParagraphsExperimentalContactTest extends ParagraphsExperimentalTestBase {
 
   /**
    * Modules to enable.
@@ -30,19 +30,19 @@ class ParagraphsContactTest extends ParagraphsTestBase {
     ]);
     // Add a paragraph type.
     $this->addParagraphsType('paragraphs_contact');
+    $this->addParagraphsType('text');
 
     // Create a contact form.
     $contact_form = ContactForm::create(['id' => 'test_contact_form']);
     $contact_form->save();
     // Add a paragraphs field to the contact form.
     $this->addParagraphsField($contact_form->id(), 'paragraphs', 'contact_message');
-
     // Add a paragraph to the contact form.
     $this->drupalGet('contact/test_contact_form');
     $this->drupalPostAjaxForm(NULL, [], 'paragraphs_paragraphs_contact_add_more');
     // Check that the paragraph is displayed.
-    $this->assertText('Type: paragraphs_contact');
+    $this->assertText('paragraphs_contact');
     $this->drupalPostAjaxForm(NULL, [], 'paragraphs_0_remove');
-    $this->assertText('Deleted Paragraph: paragraphs_contact');
+    $this->assertText('No Paragraph added yet.');
   }
 }

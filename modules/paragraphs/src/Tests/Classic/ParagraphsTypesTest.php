@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\paragraphs\Tests;
+namespace Drupal\paragraphs\Tests\Classic;
 
 /**
  * Tests paragraphs types.
@@ -18,6 +18,7 @@ class ParagraphsTypesTest extends ParagraphsTestBase {
     // Add a Paragraphed test content.
     $this->addParagraphedContentType('paragraphed_test', 'paragraphs');
     $this->addParagraphsType('paragraph_type_test');
+    $this->addParagraphsType('text');
 
     // Attempt to delete the content type not used yet.
     $this->drupalGet('admin/structure/paragraphs_type');
@@ -37,4 +38,5 @@ class ParagraphsTypesTest extends ParagraphsTestBase {
     $this->assertText('paragraph_type_test Paragraphs type is used by 1 piece of content on your site. You can not remove this paragraph_type_test Paragraphs type until you have removed all from the content.');
 
   }
+
 }

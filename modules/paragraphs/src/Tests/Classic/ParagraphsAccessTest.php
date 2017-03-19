@@ -1,10 +1,9 @@
 <?php
 
-namespace Drupal\paragraphs\Tests;
+namespace Drupal\paragraphs\Tests\Classic;
 
-use Drupal\Core\Entity\Entity;
+use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\field_ui\Tests\FieldUiTestTrait;
-use Drupal\simpletest\WebTestBase;
 use Drupal\user\RoleInterface;
 use Drupal\user\Entity\Role;
 
@@ -13,7 +12,7 @@ use Drupal\user\Entity\Role;
  *
  * @group paragraphs
  */
-class ParagraphsAccessTest extends WebTestBase {
+class ParagraphsAccessTest extends ParagraphsTestBase {
 
   use FieldUiTestTrait;
 
@@ -23,12 +22,7 @@ class ParagraphsAccessTest extends WebTestBase {
    * @var array
    */
   public static $modules = array(
-    'node',
-    'paragraphs',
-    'field',
     'image',
-    'field_ui',
-    'block',
     'paragraphs_demo',
   );
 
@@ -37,31 +31,20 @@ class ParagraphsAccessTest extends WebTestBase {
    */
   protected function setUp() {
     parent::setUp();
-    $this->drupalPlaceBlock('local_tasks_block');
-    $this->drupalPlaceBlock('page_title_block');
   }
 
   /**
    * Tests the paragraph translation.
    */
   public function testParagraphAccessCheck() {
-    $admin_user = $this->drupalCreateUser(array(
+    $admin_user = [
       'administer site configuration',
-      'administer nodes',
-      'administer content types',
-      'administer node fields',
       'administer node display',
-      'administer paragraphs types',
-      'administer paragraph fields',
       'administer paragraph display',
-      'administer paragraph form display',
-      'administer node form display',
       'create paragraphed_content_demo content',
       'edit any paragraphed_content_demo content',
-    ));
-    $this->drupalLogin($admin_user);
-
-    $this->drupalLogin($admin_user);
+    ];
+    $this->loginAsAdmin($admin_user);
 
     // Remove the "access content" for anonymous users. That results in
     // anonymous users not being able to "view" the host entity.
@@ -78,21 +61,26 @@ class ParagraphsAccessTest extends WebTestBase {
     );
     $this->drupalPostForm('admin/structure/paragraphs_type/images/fields/paragraph.images.field_images_demo/storage', $edit, t('Save field settings'));
 
+    // Set the form display to classic.
+    $form_display = EntityFormDisplay::load('node.paragraphed_content_demo.default')
+      ->setComponent('field_paragraphs_demo', ['type' => 'entity_reference_paragraphs']);
+    $form_display->save();
+
     // Create a new demo node.
     $this->drupalGet('node/add/paragraphed_content_demo');
 
     // Add a new paragraphs images item.
     $this->drupalPostForm(NULL, NULL, t('Add Images'));
 
+    $images = $this->drupalGetTestFiles('image');
+
     // Create a file, upload it.
-    $text = 'Trust me I\'m an image';
-    file_put_contents('temporary://privateImage.jpg', $text);
+    file_unmanaged_copy($images[0]->uri, 'temporary://privateImage.jpg');
     $file_path = $this->container->get('file_system')
       ->realpath('temporary://privateImage.jpg');
 
     // Create a file, upload it.
-    $text = 'Trust me I\'m an image 2';
-    file_put_contents('temporary://privateImage2.jpg', $text);
+    file_unmanaged_copy($images[1]->uri, 'temporary://privateImage2.jpg');
     $file_path_2 = $this->container->get('file_system')
       ->realpath('temporary://privateImage2.jpg');
 
@@ -101,18 +89,13 @@ class ParagraphsAccessTest extends WebTestBase {
       'files[field_paragraphs_demo_0_subform_field_images_demo_0][]' => [$file_path, $file_path_2],
     );
 
-    $this->drupalPostForm(NULL, $edit, t('Preview'));
+    $this->drupalPostForm(NULL, $edit, t('Upload'));
+    $this->drupalPostForm(NULL,  [], t('Preview'));
     $img1_url = file_create_url(\Drupal::token()->replace('private://privateImage.jpg'));
     $image_url = file_url_transform_relative($img1_url);
     $this->assertRaw($image_url, 'Image was found in preview');
     $this->clickLink(t('Back to content editing'));
-    $edit = [
-      'field_paragraphs_demo[0][subform][field_images_demo][0][width]' => 100,
-      'field_paragraphs_demo[0][subform][field_images_demo][0][height]' => 100,
-      'field_paragraphs_demo[0][subform][field_images_demo][1][width]' => 100,
-      'field_paragraphs_demo[0][subform][field_images_demo][1][height]' => 100,
-    ];
-    $this->drupalPostForm(NULL, $edit, 'Save and publish');
+    $this->drupalPostForm(NULL,  [], 'Save and publish');
 
     $node = $this->drupalGetNodeByTitle('Security test node');
 
@@ -138,11 +121,11 @@ class ParagraphsAccessTest extends WebTestBase {
     $this->assertResponse(403, 'Image could not be downloaded');
 
     // Login as admin with no delete permissions.
-    $this->drupalLogin($admin_user);
+    $this->loginAsAdmin($admin_user);
     // Create a new demo node.
     $this->drupalGet('node/add/paragraphed_content_demo');
     $this->drupalPostForm(NULL, NULL, t('Add Text'));
-    $this->assertText('Type: Text');
+    $this->assertText('Text');
     $edit = [
       'title[0][value]' => 'delete_permissions',
       'field_paragraphs_demo[0][subform][field_text_demo][0][value]' => 'Test',
