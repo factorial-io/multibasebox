@@ -1,4 +1,11 @@
 <?php
+use Drupal\Core\Language\LanguageInterface;
+
+function circle_areas_load_translated_node($node) {
+  $langcode = \Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
+  return \Drupal::service('entity.repository')->getTranslationFromContext($node, $langcode);
+}
+
 function circle_areas_node_view(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display, $view_mode) {
   $overview_id = false;
   $parent_id = false;
@@ -45,11 +52,11 @@ function circle_areas_node_view(array &$build, \Drupal\Core\Entity\EntityInterfa
     $house = node_load($parent_id);
     $overview_id = $house->field_belongs_to_overview->getValue()[0]['target_id'];
     
-    $build['houses_nav']['#house_link'] = Drupal\Core\Link::createFromRoute($house->getTitle(), 'entity.node.canonical', ['node' => $parent_id], $options);
+    $build['houses_nav']['#house_link'] = Drupal\Core\Link::createFromRoute(circle_areas_load_translated_node($house)->getTitle(), 'entity.node.canonical', ['node' => $parent_id], $options);
     
     
     $build['house_title'] = array(
-      '#markup' => $house->getTitle(),
+      '#markup' => circle_areas_load_translated_node($house)->getTitle(),
     );
     
     $build['field_contact'] = $house->field_contact->view('full');
@@ -84,8 +91,11 @@ function circle_areas_node_view(array &$build, \Drupal\Core\Entity\EntityInterfa
     
     $nids = $query->execute();
     $links = [];
+    
+    
     foreach (node_load_multiple($nids) as $child) {
-      $links[] = Drupal\Core\Link::createFromRoute($child->getTitle(), 'entity.node.canonical', ['node' => $child->id()], $options);
+      $translation = circle_areas_load_translated_node($child);
+      $links[] = Drupal\Core\Link::createFromRoute($translation->getTitle(), 'entity.node.canonical', ['node' => $child->id()], $options);
     }
     $build['houses_nav']['#links'] = $links;
     $build['houses_nav']['#overview_link'] = Drupal\Core\Link::createFromRoute($overview_title, 'entity.node.canonical', ['node' => $overview_id], $options);
