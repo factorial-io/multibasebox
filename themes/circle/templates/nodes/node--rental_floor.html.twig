@@ -79,7 +79,7 @@
     
           {% if content.field_pdf.0 %}
             {% set pdf_url = file_url(content.field_pdf[0]['#file'].getFileUri()) %}
-            <a class="pdf-button" href="{{pdf_url}}">{{'Download PDF'|t}} <span class="icon-download"></span></a>
+            <a class="pdf-button" target="_blank" href="{{pdf_url}}">{{'Download PDF'|t}} <span class="icon-download"></span></a>
           {% endif %}
           
           <a class="share-button" href="mailto:?subject={{'The Circle - @floor'|t({'@floor': node.label})}}&body={{url('<current>')}}">{{'Share'|t}} <span class="icon-email"></span></a>
