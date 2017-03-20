@@ -24,6 +24,10 @@ h2 {
   @include media-breakpoint-down(md) {
     font-size: $fontsize-title-mobile;
   }
+
+  @include media-breakpoint-down(sm) {
+    font-size: $fontsize-title-tablet;
+  }
 }
 
 h3 {
