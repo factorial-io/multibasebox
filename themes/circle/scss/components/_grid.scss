@@ -4,11 +4,11 @@
   &__element {
     @extend .mb-5;
     @extend .mb-lg-6;
-    @extend .col-lg-4;
+    @extend .col-xl-4;
     @extend .col-md-6;
 
     &:nth-child(2) {
-      @extend .mt-lg-5;
+      @extend .mt-xl-5;
     }
   }
 }
