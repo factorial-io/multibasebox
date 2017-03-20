@@ -29,8 +29,9 @@
         @include full-overlay;
         display: block;
         hyphens: auto;
+        @include gradient-y(rgba(0,0,0,0), rgba(0,0,0,0.6), 60%, 100%);
+        transition: background-color 450ms;
         background-color: rgba(0,0,0,0);
-        transition: background-color 250ms;
         
         &--hover {
           &:hover {
@@ -53,7 +54,7 @@
         padding: $spacer;
         color: $white;
         text-align: center;
-        transition: bottom 450ms;
+        transition: bottom 450ms, transform 450ms;
 
         @include media-breakpoint-down(md) {
           padding: $spacer*2;
