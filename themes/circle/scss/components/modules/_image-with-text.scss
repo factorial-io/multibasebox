@@ -18,8 +18,11 @@
 
     @include media-breakpoint-down(md) {
       @include set-spacer-for-py(6);
-      text-align: center;
       align-items: center;
+    }
+
+    @include media-breakpoint-down(sm) {
+      text-align: center;
     }
 
     h2,div,a {
