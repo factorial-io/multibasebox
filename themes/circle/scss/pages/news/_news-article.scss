@@ -4,12 +4,17 @@
   position: relative;
 
   &__back {
-    margin-bottom: $spacer*3;
+    margin-bottom: $spacer * 3;
 
-    @include media-breakpoint-up(md){
+    @include media-breakpoint-up(md) {
       position: absolute;
       top: 0;
       left: 0;
+    }
+
+    a {
+      display: flex;
+      align-items: center;
     }
   }
 
@@ -18,7 +23,7 @@
     @extend .btn-primary;
     padding: 1.2rem 1.5rem;
 
-    span{
+    span {
       @extend %icon;
       @extend .icon-arrow-left;
     }
@@ -26,10 +31,13 @@
 
   &__back-text {
     @extend .ml-2;
-    display: inline-block;
     text-transform: uppercase;
     letter-spacing: $letterspacing-narrow;
     color: $black;
+
+    @include media-breakpoint-only(md) {
+      max-width: 100px;
+    }
   }
 
   &__row {
@@ -47,12 +55,12 @@
   }
 
   &__label {
-   font-size: $fontsize-subtitle;
-   letter-spacing: $letterspacing-narrow;
+    font-size: $fontsize-subtitle;
+    letter-spacing: $letterspacing-narrow;
   }
 
   &__summary {
-   font-family: $headings-font-family;
+    font-family: $headings-font-family;
   }
 
   &__content {
@@ -101,8 +109,8 @@
     top: 5px;
 
     li {
-        @extend .list-inline-item;
-        font-size: $fontsize-subtitle;
-      }
+      @extend .list-inline-item;
+      font-size: $fontsize-subtitle;
     }
+  }
 }
