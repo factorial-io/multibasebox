@@ -21,12 +21,8 @@ h2 {
     font-size: $fontsize-title-tablet;
   }
 
-  @include media-breakpoint-down(md) {
+  @include media-breakpoint-only(md) {
     font-size: $fontsize-title-mobile;
-  }
-
-  @include media-breakpoint-down(sm) {
-    font-size: $fontsize-title-tablet;
   }
 }
 
