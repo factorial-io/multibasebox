@@ -17,6 +17,10 @@ h2 {
   font-size: $fontsize-title;
   letter-spacing: $letterspacing-wide;
 
+  @include media-breakpoint-down(lg) {
+    font-size: $fontsize-title-tablet;
+  }
+
   @include media-breakpoint-down(md) {
     font-size: $fontsize-title-mobile;
   }
