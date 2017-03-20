@@ -51,70 +51,70 @@
 
       <div class="ui-form-field">
         <div class="ui-form-field__text">
-          <label for="Firma">{{'Firma'|t}}</label>
+          <label for="Firma">{{'Company'|t}}</label>
           <input name="Firma" placeholder="" id="Firma" type="text">
         </div>
       </div>
 
       <div class="ui-form-field">
         <div class="ui-form-field__text">
-          <label for="Funktion">{{'Funktion'|t}}</label>
+          <label for="Funktion">{{'Position'|t}}</label>
           <input name="Funktion" placeholder="" id="Funktion" type="text">
         </div>
       </div>
 
       <div class="ui-form-field">
         <div class="ui-form-field__select">
-          <label for="Anrede">{{'Anrede'|t}}
+          <label for="Anrede">{{'Salutation'|t}}
             *</label>
           <select name="Anrede" class="ui-select" required="" tabindex="0" style="">
-            <option value="#DEL#">{{'nicht ausgewählt'|t}}</option>
-            <option value="Frau">{{'Frau'|t}}</option>
-            <option value="Herr">{{'Herr'|t}}</option>
+            <option value="#DEL#">{{'please choose'|t}}</option>
+            <option value="Frau">{{'Mrs'|t}}</option>
+            <option value="Herr">{{'Mr'|t}}</option>
           </select>
         </div>
       </div>
 
       <div class="ui-form-field">
         <div class="ui-form-field__text">
-          <label for="Vorname">{{'Vorname'|t}}*</label>
-          <input name="firstname" placeholder="" id="Vorname" type="text" required="">
+          <label for="Vorname">{{'First Name'|t}}*</label>
+          <input name="Vorname" placeholder="" id="Vorname" type="text" required="">
         </div>
       </div>
 
       <div class="ui-form-field">
         <div class="ui-form-field__text">
-          <label for="Name">{{'Nachname'|t}}*</label>
+          <label for="Name">{{'Last Name'|t}}*</label>
           <input name="Name" placeholder="" id="lastname" type="text" required="">
         </div>
       </div>
 
       <div class="ui-form-field">
         <div class="ui-form-field__text">
-          <label for="Adresse">{{'Adresse'|t}}</label>
+          <label for="Adresse">{{'Address'|t}}</label>
           <input name="Adresse" placeholder="" id="Adresse" type="text">
         </div>
       </div>
 
       <div class="ui-form-field">
         <div class="ui-form-field__text">
-          <label for="PLZ">{{'PLZ'|t}}</label>
+          <label for="PLZ">{{'Zip Code'|t}}</label>
           <input name="PLZ" placeholder="" id="PLZ" type="text">
         </div>
       </div>
 
       <div class="ui-form-field">
         <div class="ui-form-field__text">
-          <label for="Ort">{{'Ort'|t}}</label>
+          <label for="Ort">{{'City'|t}}</label>
           <input name="Ort" placeholder="" id="Ort" type="text">
         </div>
       </div>
 
       <div class="ui-form-field">
         <div class="ui-form-field__select">
-          <label for="Land">Land</label>
+          <label for="Land">{{'Country'|t}}</label>
           <select id="Land" class="ui-select" tabindex="0" style="">
-            <option value="#DEL#">{{'nicht ausgewählt'|t}}</option>
+            <option value="#DEL#">{{'please choose'|t}}</option>
             {% for iso, country in countries %}
               <option {{ iso == 'CH' ? 'selected' : ''}} value="{{iso}}">{{country}}</option>
             {% endfor %}
@@ -124,23 +124,23 @@
 
       <div class="ui-form-field">
         <div class="ui-form-field__text">
-          <label for="Email">{{'E-mail'|t}}*</label>
+          <label for="Email">{{'Email Address'|t}}*</label>
           <input name="Email" value="{{email}}" placeholder="" id="Email" type="email" required>
         </div>
       </div>
 
       <div class="ui-form-field">
         <div class="ui-form-field__select">
-          <label for="Sprache">{{'Sprache des Newsletters'|t}}</label>
+          <label for="Sprache">{{'Language'|t}}</label>
           <select id="Sprache" class="ui-select" tabindex="0" style="">
-            <option value="DE">{{'Deutsch'|t}}</option>
-            <option value="EN">{{'Englisch'|t}}</option>
+            <option value="DE">{{'German'|t}}</option>
+            <option value="EN">{{'English'|t}}</option>
           </select>
         </div>
       </div>
     </div>
     <div class="modal-footer">
-      <button class="modal-footer__submit" type="submit">{{'Registrieren'|t}}</button>
+      <button class="modal-footer__submit" type="submit">{{'Register'|t}}</button>
       <button class="modal-footer__close" type="button" data-dismiss="modal">{{'Close'|t}}</button>
     </div>
   </div>
