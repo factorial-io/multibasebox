@@ -11,19 +11,22 @@ function circle_preprocess_menu__social_media(&$variables) {
     $socialClass = "";
     if(strpos($url, 'instagram') != false) {
       $socialClass = 'instagram';
-    } else if (strpos($url, 'youtube') != false){
+    } else if (strpos($url, 'youtube') != false) {
       $socialClass = 'youtube'; 
-    } else if (strpos($url, 'facebook') != false){
+    } else if (strpos($url, 'facebook') != false) {
       $socialClass = 'facebook'; 
-    } else if (strpos($url, 'twitter') != false){
+    } else if (strpos($url, 'twitter') != false) {
       $socialClass = 'twitter'; 
-    } else if (strpos($url, 'pinterest') != false){
+    } else if (strpos($url, 'pinterest') != false) {
       $socialClass = 'pinterest'; 
-    } else if (strpos($url, 'vimeo') != false){
+    } else if (strpos($url, 'vimeo') != false) {
       $socialClass = 'vimeo'; 
-    } else if (strpos($url, 'linkedin') != false){
+    } else if (strpos($url, 'linkedin') != false) {
       $socialClass = 'linkedin'; 
+    } else if (strpos($url, 'xing') != false) {
+      $socialClass = 'xing'; 
     }
+    
     if (!empty($socialClass)) {
       $item['attributes']['class'] = array($socialClass);
     }
