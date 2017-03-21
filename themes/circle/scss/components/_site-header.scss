@@ -147,6 +147,8 @@
 * Mobile Flyout
 **/
 .flyout {
+  @extend .hidden-md-up;
+
   &__navi {
     background: $black;
     color: $white;
