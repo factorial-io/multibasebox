@@ -39,7 +39,7 @@ if ($('.page-node-type-rental-overview')[0]) {
     TweenLite.set(mainImage, {opacity: 0})
     TweenLite.set(mainImage, {opacity: 1, delay: 1})
     TweenLite.from(zoomImage, 0.3, {opacity: 0})
-    TweenLite.to(zoomImage, 2.3, {scale: 2.25, rotation: 0, transformOrigin:"78.5% 84.6%", ease: Sine.easeOut, delay: 0.5, onComplete: () => {
+    TweenLite.to(zoomImage, 2.3, {scale: 2.25, rotation: 0, transformOrigin:"78.2% 84.6%", ease: Sine.easeOut, delay: 0.5, onComplete: () => {
       $('#house-overlay').show()
     }})
     TweenLite.to(zoomImage, 0.8, {opacity: 0, delay: 2.7})
