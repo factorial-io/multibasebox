@@ -33,7 +33,6 @@ if ($('.page-node-type-rental-overview')[0]) {
   $('#house-overlay').hide()
   
   lazyload($('.interactive-area, .zoom-out-image')).then(() => {
-    // lazyload($('.circle-layer'))
     const mainImage = $('.interactive-area img')[0]
     const zoomImage = $('.zoom-out-image img')[0]
     TweenLite.set(mainImage, {opacity: 0})
@@ -41,6 +40,7 @@ if ($('.page-node-type-rental-overview')[0]) {
     TweenLite.from(zoomImage, 0.3, {opacity: 0})
     TweenLite.to(zoomImage, 2.3, {scale: 2.23, rotation: 0, x: '-35.1%', y: '-44.46%', ease: Sine.easeOut, delay: 0.5, onComplete: () => {
       $('#house-overlay').show()
+      lazyload($('.circle-layer'))
     }})
     TweenLite.to(zoomImage, 0.8, {opacity: 0, delay: 2.7})
   })
