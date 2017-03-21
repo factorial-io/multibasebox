@@ -67,6 +67,11 @@ function circle_preprocess_region(&$variables) {
  */
 function circle_preprocess_node(&$vars) {
   $node = $vars['node'];
+  if ($node->id() == 82) {
+    $vars['#attached'] = [
+      'library' => ['core/picturefill'],
+    ];
+  }
   
   if ($node->type->entity->id() == 'front_page') {
     $items = [];
