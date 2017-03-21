@@ -16,6 +16,7 @@
     cursor: pointer;
     border: 0;
     @include circle-shadow($gray-lighter);
+    transition: box-shadow 800ms;
 
     &__image {
       overflow: hidden;
