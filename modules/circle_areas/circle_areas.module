@@ -14,9 +14,7 @@ function circle_areas_node_view(array &$build, \Drupal\Core\Entity\EntityInterfa
   $overview = null;
   $options = array('set_active_class' => true);
   
-  $build['houses_nav'] = array(
-    '#theme' => 'rental_overview_nav'
-  );
+  $build['houses_nav'] = array();
   
   if ($entity->type->entity->id() == 'rental_overview') {
     /**
@@ -97,6 +95,7 @@ function circle_areas_node_view(array &$build, \Drupal\Core\Entity\EntityInterfa
       $translation = circle_areas_load_translated_node($child);
       $links[] = Drupal\Core\Link::createFromRoute($translation->getTitle(), 'entity.node.canonical', ['node' => $child->id()], $options);
     }
+    $build['houses_nav']['#theme'] ='rental_overview_nav';
     $build['houses_nav']['#links'] = $links;
     $build['houses_nav']['#overview_link'] = Drupal\Core\Link::createFromRoute($overview_title, 'entity.node.canonical', ['node' => $overview_id], $options);
   }
