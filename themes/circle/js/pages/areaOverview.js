@@ -33,7 +33,7 @@ if ($('.page-node-type-rental-overview')[0]) {
   $('#house-overlay').hide()
   
   lazyload($('.interactive-area, .zoom-out-image')).then(() => {
-    lazyload($('.circle-layer'))
+    // lazyload($('.circle-layer'))
     const mainImage = $('.interactive-area img')[0]
     const zoomImage = $('.zoom-out-image img')[0]
     TweenLite.set(mainImage, {opacity: 0})
