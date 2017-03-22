@@ -6,6 +6,10 @@
   background-color: $circle-egg;
   padding: 2*$spacer percentage(1/$grid-columns);
   .newsletter-teaser {
+    input {
+      font-size: 16px; //iOS Safari Fix
+    }
+
     @extend .col-md-5;
     .input-group-lg > .input-group-btn > .btn {
       padding-left: 1.5rem;

@@ -1,5 +1,9 @@
 .newsletter-form {
   .modal-body {
+    @include media-breakpoint-down(xs) {
+      padding: get-spacer(5);
+    }
+
     .ui-form-field {
       &__select,
       &__text {
@@ -8,17 +12,25 @@
         align-items: center;
 
         label {
-          @extend .col-4;
+          @extend .col-12;
+          @extend .col-sm-4;
           @extend .col-md-3;
           margin: 0;
+
+          @include media-breakpoint-down(xs) {
+            padding: 0;
+            margin-bottom: get-spacer(2);
+          }
         }
 
         input,
         select {
           @extend .form-control;
-          @extend .col-7;
+          @extend .col-12;
+          @extend .col-sm-7;
           @extend .col-md-8;
           text-transform: none;
+          font-size: 16px; //iOS Safari Fix
         }
       }
     }
