@@ -23,6 +23,10 @@
 }
 
 .house-floors {
+  @include media-breakpoint-down(sm) {
+    overflow-x: auto;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+  }
   &__table {
     @extend .table;
     @extend .table-hover;
