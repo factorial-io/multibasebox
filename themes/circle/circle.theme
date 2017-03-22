@@ -50,7 +50,7 @@ function circle_preprocess_field(&$variables) {
 }
 
 function circle_preprocess_block(&$variables) {
-  $variables['language'] = \Drupal::languageManager()->getCurrentLanguage()->getName();
+  $variables['language'] = t(\Drupal::languageManager()->getCurrentLanguage()->getName());
 }
 
 /**
