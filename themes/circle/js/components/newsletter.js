@@ -6,3 +6,7 @@ $('[data-newsletter-teaser]').on('submit', (e) => {
   e.preventDefault()
   loadUrl(getUrl(`newsletter-register/${$(e.currentTarget).find('[type=email]').val()}`))
 })
+
+if (window.location.hash === '#newsletter') {
+  loadUrl(getUrl(`newsletter-register`))
+}
