@@ -7,6 +7,8 @@ import TweenLite from 'gsap/TweenLite'
 const sel = '.image-with-text:visible h2, .image-with-text:visible .para, .image-with-text:visible .button, .image-with-text:visible img, .news-teaser .article-teaser'
 classanimateOut($(`${sel}`))
 
+lazyload($('.image-with-text'))
+
 const spy = new ScrollSpy($(`${sel}`), SpyDirection.bottom)
 spy.onIn(($el) => {
   lazyload($el)
