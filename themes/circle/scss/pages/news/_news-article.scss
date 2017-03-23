@@ -93,8 +93,9 @@
 
   &__social-share {
     @extend .col;
-    @extend .col-md-12;
+    @extend .col-md-9;
     text-align: right;
+    margin-left: auto;
   }
 
   &__share-text {
