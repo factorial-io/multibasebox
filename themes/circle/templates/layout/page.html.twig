@@ -1,7 +1,16 @@
+{%
+  set classes = [
+    system_page ? 'system-page',
+  ]
+%}
+
 {{ page.header }}
 
-<main role="main">
-    {{ page.content }}
+<main role="main" {{attributes.addClass(classes)}}>
+  {% if system_page %}
+    <h1>{{page['#title']}}</h1>
+  {% endif %}
+  {{ page.content }}
 </main>
 
 {% if show_totop %}

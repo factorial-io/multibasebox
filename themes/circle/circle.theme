@@ -148,6 +148,11 @@ function circle_preprocess_page(&$vars) {
   
   $vars['show_totop'] = $vars['show_footer'];
   $vars['base_path'] = base_path();
+  
+  $route_name = \Drupal::service('current_route_match')->getRouteName();
+  if ($route_name == 'system.404') {     
+    $vars['system_page'] = true;
+  }
 }
 
 /**
