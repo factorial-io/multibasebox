@@ -20,4 +20,4 @@ if ($el[0]) {
   }, 800)
 }
 
-$('.social-nav a').attr('target', '_blank')
+$('a[href^=http]').attr('target', '_blank')
