@@ -17,21 +17,22 @@ If you want to recreate the haproxy-configuraion just touch `/tmp/haproxy`, the 
 
 ## Installation
 
-1. Clone this repository
-2. Make sure you have ansible installed.
-2. Install needed plugins:
+1. Clone this repository, 
+2. Clone the submodules via `git submodule update --init`
+3. Make sure you have ansible installed.
+4. Install needed plugins:
 
     ```
     vagrant plugin install vagrant-dns # only for OS X
     vagrant plugin install vagrant-fabric
     ```
 
-3. If you want to use vmware, make sure you have installed the corresponding plugin and applied a valid license (More info [here](https://www.vagrantup.com/vmware/))
-4. Start your terminal, cd into the multibasebox-folder
-5. Install vagrant-dns with `vagrant dns --install`
-6. Run `vagrant up` (if you are using vmware, append `--provider=vmware_fusion`)
-7. Wait
-8. Visit `http://multibasebox.dev:1936` This will show you the haproxy status page.
+5. If you want to use vmware, make sure you have installed the corresponding plugin and applied a valid license (More info [here](https://www.vagrantup.com/vmware/))
+6. Start your terminal, cd into the multibasebox-folder
+7. Install vagrant-dns with `vagrant dns --install`
+8. Run `vagrant up` (if you are using vmware, append `--provider=vmware_fusion`)
+9. Wait
+10. Visit `http://multibasebox.dev:1936` This will show you the haproxy status page.
 
 ## Linux-specific remarks
 
