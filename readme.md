@@ -22,7 +22,7 @@ If you want to recreate the haproxy-configuraion just touch `/tmp/haproxy`, the 
 2. Install needed plugins:
 
     ```
-    vagrant plugin install vagrant-dns
+    vagrant plugin install vagrant-dns # only for OS X
     vagrant plugin install vagrant-fabric
     ```
 
@@ -32,6 +32,15 @@ If you want to recreate the haproxy-configuraion just touch `/tmp/haproxy`, the 
 6. Run `vagrant up` (if you are using vmware, append `--provider=vmware_fusion`)
 7. Wait
 8. Visit `http://multibasebox.dev:1936` This will show you the haproxy status page.
+
+## Linux-specific remarks
+
+`vagrant-dns` is not supported on Linux, you'll need to add your hosts to `/etc/hosts` manually:
+
+```
+33.33.33.33 multibasebox.dev <your-other-hosts.dev>
+```
+
 
 ## Local modifications
 
