@@ -1,4 +1,4 @@
-const track = (cat, action, label, value) => {
+const track = (cat, action, label) => {
   if (window.ga) {
     ga('send', 'event', {
       eventCategory: cat,
