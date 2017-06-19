@@ -14,14 +14,21 @@ tasks:
     - execute(docker, reload_haproxy)
   rm:
     - execute(docker, stop)
-    - cd $ROOT_FOLDER; docker-compose rm -f
+    - cd $ROOT_FOLDER; docker-compose rm -f -a
+
+  spinUp:
+    - execute(docker, run)
+
+  spinDown:
+    - execute(docker,stop)
+
+  deleteContainer:
+    - execute(docker, rm)
 
   rebuild:
-    - mkdir -p $MYSQL_ROOT
     - cd $ROOT_FOLDER; docker-compose pull
 
   run:
-    - mkdir -p $MYSQL_ROOT
     - cd $ROOT_FOLDER; docker-compose up -d
     - execute(docker, reload_haproxy)
     - execute(docker, waitForServices)
