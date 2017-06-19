@@ -4,9 +4,6 @@
 [submodule "provision/roles/franklinkim.docker"]
 	path = provision/roles/franklinkim.docker
 	url = https://github.com/weareinteractive/ansible-docker.git
-[submodule "provision/roles/franklinkim.docker-compose"]
-	path = provision/roles/franklinkim.docker-compose
-	url = https://github.com/weareinteractive/ansible-docker-compose.git
 [submodule "provision/roles/php-cli-ondrej"]
 	path = provision/roles/php-cli-ondrej
 	url = https://github.com/Oefenweb/ansible-php-cli-ondrej.git
