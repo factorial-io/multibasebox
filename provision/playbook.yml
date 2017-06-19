@@ -3,15 +3,25 @@
   sudo: yes
   roles:
     - franklinkim.docker
-    - franklinkim.docker-compose
     - role: php-cli-ondrej
       php_cli_ondrej_version: 7.0
       php_cli_ondrej_mods_present: [{name: zip}, {name: json}, {name: xml}, {name: readline}, {name: mysql}, {name: memcache}, {name: memcached}, {name: msgpack}, {name: mstring}, {name: mcrypt}, {name: gd}, {name: curl}]
     - php-composer
     - kbrebanov.zip
   tasks:
+
+    - name: "Install docker-compose"
+      become: true
+      shell: "curl -L https://github.com/docker/compose/releases/download/1.13.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose"
+    - name: "Setup docker-compose"
+      shell: "chmod +x /usr/local/bin/docker-compose"
+      become: true
+    - name: "Fix up docker-compose"
+      become: true
+      shell: "pip uninstall -y docker-py; pip uninstall -y docker; pip install docker"
     - name: Add vagrant user to docker-group
-      user: name=vagrant
+      user:
+        name=vagrant
         groups=docker
         append=yes
     - name: Pull haproxy-config
