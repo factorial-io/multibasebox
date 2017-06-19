@@ -48,3 +48,5 @@ themes/circle/js_dist
 
 # Ignore MacOS files
 .DS_Store
+/_tools/fabalicious
+/fabfile.pyc

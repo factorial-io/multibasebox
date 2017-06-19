@@ -1,0 +1,110 @@
+name: the_circle
+key: SP
+
+repository: ssh://git@source.factorial.io:2222/soliddd/the-circle.git
+
+requires: 2.0.0
+
+needs:
+  - ssh
+  - composer
+  - docker
+  - drush8
+  - drupalconsole
+  - git
+  - files
+
+dockerKeyFile: ./_tools/ssh-keys/docker-root-key
+dockerAuthorizedKeyFile: ./_tools/ssh-keys/authorized_keys
+dockerKnownHostsFile: ./_tools/ssh-keys/known_hosts
+
+configurationManagement:
+  staging: []
+
+excludeFiles:
+  backup:
+    - "styles"
+    - "tmp"
+  copyFrom:
+    - "tmp"
+    - "styles"
+    - "php"
+    - "js"
+    - "css"
+
+scripts:
+  xdebug:
+    - export DEBIAN_FRONTEND=noninteractive && apt-get -y -q install php5-xdebug
+    - echo xdebug.remote_autostart=1 >> /etc/php5/apache2/php.ini
+    - echo xdebug.remote_enable=1 >> /etc/php5/apache2/php.ini
+    - echo xdebug.remote_host=33.33.33.1 >> /etc/php5/apache2/php.ini
+    - echo xdebug.idekey=PHP-XDEBUG >> /etc/php5/apache2/php.ini
+    - echo xdebug.remote_mode=req >> /etc/php5/apache2/php.ini
+    - echo xdebug.remote_port=9000 >> /etc/php5/apache2/php.ini
+    - echo xdebug.max_nesting_level=1000 >> /etc/php5/apache2/php.ini
+    - echo zend_extension xdebug.so >> /etc/php5/apache2/php.ini
+    - echo xdebug.remote_autostart=1 >> /etc/php5/cli/php.ini
+    - echo xdebug.remote_enable=1 >> /etc/php5/cli/php.ini
+    - echo xdebug.remote_host=33.33.33.1 >> /etc/php5/cli/php.ini
+    - echo xdebug.idekey=PHP-XDEBUG >> /etc/php5/cli/php.ini
+    - echo xdebug.remote_mode=req >> /etc/php5/cli/php.ini
+    - echo xdebug.remote_port=9000 >> /etc/php5/cli/php.ini
+    - echo xdebug.max_nesting_level=1000 >> /etc/php5/cli/php.ini
+    - echo zend_extension xdebug.so >> /etc/php5/apache2/php.ini
+    - service apache2 graceful
+
+dockerHosts:
+  default:
+    tasks:
+      start:
+        - docker start %name%
+      stop:
+        - docker stop %name%
+      logs:
+        - docker logs %name%
+      ps:
+        - docker ps
+  mbb:
+    environment:
+      COMPOSE_FILE: docker-compose-mbb.yml
+    inheritsFrom:
+      - ../../fabalicious/2.0/mbb-docker.yaml
+      - http://config.factorial.io/docker/2.0/docker-compose.yaml
+
+  clients.factorial.io:
+    environment:
+      VHOST: "%host.docker.vhost%"
+    inheritsFrom:
+      - http://config.factorial.io/clients.factorial.io/2.0/d8/docker.yaml
+    blueprint:
+      resetPrepare:
+        - execute(script, patternlab)
+
+
+
+hosts:
+  mbb:
+    host: the-circle.dev
+    user: root
+    password: root
+    port: 8751
+    type: dev
+    rootFolder: /var/www
+    gitRootFolder: /var/www
+    siteFolder: /sites/default
+    filesFolder: /sites/default/files
+    backupFolder: /var/www/backups
+    branch: develop
+    supportsInstalls: true
+    docker:
+      name: thecircle_web_1
+      configuration: mbb
+      projectFolder: the-circle
+    database:
+      name: thecircle
+      user: root
+      pass: admin
+      host: mysql
+
+
+
