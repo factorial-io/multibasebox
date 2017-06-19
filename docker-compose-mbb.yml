@@ -1,0 +1,20 @@
+web:
+  image: factorial/drupal-docker:php-70
+  ports:
+    - "$SSH_PORT:22"
+  volumes:
+    - .:/var/www
+  links:
+    - mysql:mysql
+  environment:
+    VHOST: $VHOST
+    WEB_ROOT: $WEB_ROOT
+
+mysql:
+  image: mysql
+  volumes:
+    - "/opt/mysql/$VHOST:/var/lib/mysql"
+
+  environment:
+    MYSQL_ROOT_PASSWORD: "admin"
+
