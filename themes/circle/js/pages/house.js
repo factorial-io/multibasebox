@@ -40,8 +40,9 @@ if ($('.page-node-type-rental-house')[0]) {
       }).on('mouseout', (e) => {
         $(`[id^="Highlight_"]`).removeClass('active')
       }).on('click', (e) => {
-        if ($(e.currentTarget).find('a').length) {
-          window.location.href = $(e.currentTarget).find('a').attr('href');
+        const link = $(e.currentTarget).find('a');
+        if (link.length) {
+          window.location.href = link.attr('href');
         }
       })
     })
