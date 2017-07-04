@@ -4,6 +4,14 @@
 
   position: relative;
 
+  .area__scroll {
+    bottom: 1rem;
+    left: 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+  }
+
   .area-stage {
     @extend .col-xl-9;
     @extend .col-lg-8;
@@ -57,12 +65,5 @@
       font-size: $fontsize-title;
     }
 
-    .area__scroll {
-      bottom: 1rem;
-      left: 0;
-      position: absolute;
-      right: 0;
-      text-align: center;
-    }
   }
 }
