@@ -7,6 +7,22 @@ $(document).on('click', '[data-burger]', (e) => {
   }
 })
 
+$(window).scroll(function() {
+  const header = $('.site-header').height();
+  const scroll = $(document).scrollTop();
+  const nav = $('.area-navigation');
+  const navHeight = nav.height();
+  const row = $('.area-row');
+  if (scroll < header) {
+    nav.removeClass('fixed');
+    row.css('margin-top', '');
+  }
+  else {
+    nav.addClass('fixed');
+    row.css('margin-top', navHeight);
+  }
+})
+
 let $el = $('#block-mainmenu')[0] ? $('#block-mainmenu') : $('.area-navigation')
 if ($el[0]) {
   setTimeout(() => {
