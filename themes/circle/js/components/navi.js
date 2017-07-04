@@ -8,11 +8,11 @@ $(document).on('click', '[data-burger]', (e) => {
 })
 
 $(window).scroll(function() {
-  const header = $('.site-header').height();
-  const scroll = $(document).scrollTop();
-  const nav = $('.area-navigation');
-  const navHeight = nav.height();
-  const row = $('.area-row');
+  let header = $('.site-header').height();
+  let scroll = $(document).scrollTop();
+  let nav = $('.area-navigation');
+  let navHeight = nav.height();
+  let row = $('.area-row');
   if (scroll < header) {
     nav.removeClass('fixed');
     row.css('margin-top', '');
