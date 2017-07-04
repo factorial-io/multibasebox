@@ -25,18 +25,7 @@ if (areaNav.length) {
     }
   })
 }
-/*
-$(window).scroll(function() {
-  if (scrollTop < siteHeader) {
-    areaNav.removeClass('fixed');
-    areaRow.css('margin-top', '');
-  }
-  else {
-    areaNav.addClass('fixed');
-    areaRow.css('margin-top', navHeight);
-  }
-})
-*/
+
 let $el = $('#block-mainmenu')[0] ? $('#block-mainmenu') : $('.area-navigation')
 if ($el[0]) {
   setTimeout(() => {
