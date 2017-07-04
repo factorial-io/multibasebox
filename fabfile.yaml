@@ -114,7 +114,7 @@ hosts:
     # path to drupal's root folder
     gitRootFolder: /var/www
     branch: develop
-    rootFolder: /var/www/web
+    rootFolder: /var/www
     database:
       name: thecircle
       host: mysql
