@@ -10,6 +10,14 @@
     position: absolute;
     right: 0;
     text-align: center;
+
+    @include media-breakpoint-up(lg) {
+      left: 48%;
+    }
+
+    @include media-breakpoint-up(xl) {
+      left: 33%;
+    }
   }
 
   .area-stage {
