@@ -109,7 +109,7 @@ hosts:
       host: mysql
 
   dev.the-circle.clients.factorial.io:
-    inheritsFrom: http://config.factorial.io/clients.factorial.io/2.0/host.yaml
+    inheritsFrom: http://config.factorial.io/clients.factorial.io/2.0/d8/host.yaml
     port: 2323
     # path to drupal's root folder
     gitRootFolder: /var/www
@@ -124,6 +124,7 @@ hosts:
       projectFolder: the-circle
       vhost: dev.the-circle.clients.factorial.io
       repository: ssh://git@source.factorial.io:2222/soliddd/the-circle.git
+
 
   dev:
     host: 207.154.218.133
