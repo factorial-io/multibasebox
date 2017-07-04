@@ -7,22 +7,36 @@ $(document).on('click', '[data-burger]', (e) => {
   }
 })
 
+const areaNav = $('.area-navigation');
+if (areaNav.length) {
+  const siteHeader = $('.site-header').height();
+  const navHeight = areaNav.height();
+  const areaRow = $('.area-row');
+
+  $(document).scroll(function() {
+    let scrollTop = $(document).scrollTop();
+    if (scrollTop < siteHeader) {
+      areaNav.removeClass('fixed');
+      areaRow.css('margin-top', '');
+    }
+    else {
+      areaNav.addClass('fixed');
+      areaRow.css('margin-top', navHeight);
+    }
+  })
+}
+/*
 $(window).scroll(function() {
-  let header = $('.site-header').height();
-  let scroll = $(document).scrollTop();
-  let nav = $('.area-navigation');
-  let navHeight = nav.height();
-  let row = $('.area-row');
-  if (scroll < header) {
-    nav.removeClass('fixed');
-    row.css('margin-top', '');
+  if (scrollTop < siteHeader) {
+    areaNav.removeClass('fixed');
+    areaRow.css('margin-top', '');
   }
   else {
-    nav.addClass('fixed');
-    row.css('margin-top', navHeight);
+    areaNav.addClass('fixed');
+    areaRow.css('margin-top', navHeight);
   }
 })
-
+*/
 let $el = $('#block-mainmenu')[0] ? $('#block-mainmenu') : $('.area-navigation')
 if ($el[0]) {
   setTimeout(() => {
