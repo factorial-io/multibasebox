@@ -26,7 +26,7 @@ function circle_preprocess_menu__social_media(&$variables) {
     } else if (strpos($url, 'xing') != false) {
       $socialClass = 'xing'; 
     }
-    
+
     if (!empty($socialClass)) {
       $item['attributes']['class'] = array($socialClass);
     }
