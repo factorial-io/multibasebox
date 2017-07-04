@@ -21,6 +21,8 @@ dockerKnownHostsFile: ./_tools/ssh-keys/known_hosts
 configurationManagement:
   staging: []
 
+repository: ssh://git@source.factorial.io:2222/soliddd/the-circle.git
+
 excludeFiles:
   backup:
     - "styles"
@@ -105,6 +107,69 @@ hosts:
       user: root
       pass: admin
       host: mysql
+
+  dev.the-circle.clients.factorial.io:
+    inheritsFrom: http://config.factorial.io/clients.factorial.io/2.0/d8/host.yaml
+    port: 2323
+    # path to drupal's root folder
+    gitRootFolder: /var/www
+    branch: develop
+    rootFolder: /var/www
+    database:
+      name: thecircle
+      host: mysql
+    docker:
+      name: thecircle_web_1
+      configuration: clients.factorial.io
+      projectFolder: the-circle
+      vhost: dev.the-circle.clients.factorial.io
+      repository: ssh://git@source.factorial.io:2222/soliddd/the-circle.git
+
+
+  dev:
+    host: 207.154.218.133
+    user: factorial
+    port: 122
+    type: stage
+    rootFolder: /var/www/develop/html
+    backupFolder: /home/factorial/backups
+    needs:
+      - ssh
+      - git
+      - files
+      - drush8
+      - composer
+    siteFolder: /sites/default
+    filesFolder: /sites/default/files
+    branch: develop
+    database:
+      host: localhost
+      name: the-circle
+      user: root
+      pass: root
+
+  live:
+    host: 207.154.218.133
+    user: factorial
+    port: 122
+    type: prod
+    rootFolder: /var/www/prod/html
+    backupFolder: /home/factorial/backups
+    needs:
+      - ssh
+      - git
+      - files
+      - drush8
+      - composer
+    siteFolder: /sites/default
+    filesFolder: /sites/default/files
+    branch: master
+    database:
+      host: localhost
+      name: the-circle
+      user: root
+      pass: root
+
 
 
 

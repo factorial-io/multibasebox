@@ -32,21 +32,22 @@
             </a>
           </div>
           {% endif %}
+          {% set page_url = url('<current>')['#markup']%}
           <div class="news-article__social-share">
             <span class="news-article__share-text">{{'Artikel teilen'|t}}</span>
             <ul class="news-article__share-icons">
               <li>
-                <a class="icon-email" href="mailto:?subject={{node.label}}&body={{ url('<current>') }}"></a>
+                <a class="icon-email" href="mailto:?subject={{node.label}}&body={{ page_url }}"></a>
               </li>
               <li>
-                <a data-popup-link class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ url('<current>')|url_encode }}"></a>
+                <a data-popup-link class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ page_url|url_encode }}"></a>
               </li>
               <li>
-                <a data-popup-link class="icon-twitter" href="https://twitter.com/share?url={{ url('<current>')|url_encode }}&text={{ url('<current>') }}">
+                <a data-popup-link class="icon-twitter" href="https://twitter.com/share?url={{ page_url|url_encode }}">
                 </a>
               </li>
               <li>
-                <a data-popup-link class="icon-linkedin" href="https://www.linkedin.com/shareArticle?url={{ url('<current>')|url_encode }}&mini=true"></a>
+                <a data-popup-link class="icon-linkedin" href="https://www.linkedin.com/shareArticle?url={{ page_url|url_encode }}&mini=true"></a>
               </li>
             </ul>
           </div>
