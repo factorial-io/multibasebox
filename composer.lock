@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "4b956e36f6d6cccd6aa6a0d79565d7b8",
+    "content-hash": "5e9beaee9e79f526db62b7fad4907b36",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -724,12 +724,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/factorial-io/fabalicious.git",
-                "reference": "f4faf3e7787cb9996a9436d76594a587d65b3987"
+                "reference": "195b9a2e4bf98ed683bb5c2f50de0e0855289c19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/factorial-io/fabalicious/zipball/f4faf3e7787cb9996a9436d76594a587d65b3987",
-                "reference": "f4faf3e7787cb9996a9436d76594a587d65b3987",
+                "url": "https://api.github.com/repos/factorial-io/fabalicious/zipball/195b9a2e4bf98ed683bb5c2f50de0e0855289c19",
+                "reference": "195b9a2e4bf98ed683bb5c2f50de0e0855289c19",
                 "shasum": ""
             },
             "require": {
@@ -741,7 +741,7 @@
                 "MIT"
             ],
             "description": "deployment system based on fabric",
-            "time": "2017-04-27 20:10:29"
+            "time": "2017-07-04 09:15:31"
         },
         {
             "name": "factorial-io/factorial-tools-installer-plugin",
