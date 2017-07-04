@@ -184,6 +184,14 @@ AddEncoding gzip svgz
       Header append Vary Accept-Encoding
     </FilesMatch>
   </IfModule>
+  
+  RewriteCond %{REQUEST_URI} ^/$
+  RewriteCond %{HTTP:Accept-Language} ^(de) [NC]
+  RewriteRule .* /%1 [L,R]
+  
+  RewriteCond %{REQUEST_URI} ^/$
+  RewriteCond %{HTTP:Accept-Language} !^(de) [NC]
+  RewriteRule .* /en [L,R]
 </IfModule>
 
 # Various header fixes.

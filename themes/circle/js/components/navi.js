@@ -19,3 +19,5 @@ if ($el[0]) {
     }
   }, 800)
 }
+
+$('a[href^=http]').attr('target', '_blank')
