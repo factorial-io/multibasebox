@@ -5,7 +5,12 @@
     <section class="area-stage">
       <div class="area-stage__images">
         <div class="floor-images">
+          <div class="floor-images__wrapper">
           {{content.field_image}}
+          {% block svg_overlay %}
+            please rewrite this part
+          {% endblock %}
+          </div>
           {{content.field_layer}}
         </div>
       </div>
