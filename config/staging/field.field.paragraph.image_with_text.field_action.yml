@@ -1,0 +1,21 @@
+uuid: 47581f36-a9dc-4a5b-bed3-987881cb2367
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_action
+    - paragraphs.paragraphs_type.image_with_text
+  module:
+    - options
+id: paragraph.image_with_text.field_action
+field_name: field_action
+entity_type: paragraph
+bundle: image_with_text
+label: Action
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

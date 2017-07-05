@@ -1,0 +1,21 @@
+uuid: 9fb1d6be-ef7a-4bf0-a14d-3d4f124f395d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_headline
+    - paragraphs.paragraphs_type.vimeo_video
+  module:
+    - text
+id: paragraph.vimeo_video.field_headline
+field_name: field_headline
+entity_type: paragraph
+bundle: vimeo_video
+label: Headline
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

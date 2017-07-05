@@ -1,0 +1,42 @@
+uuid: 4ec99804-8626-40d0-b212-2c0126a03331
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_color
+field_name: field_color
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: yellow
+      label: Yellow
+    -
+      value: orange
+      label: Orange
+    -
+      value: red
+      label: Red
+    -
+      value: brown
+      label: Brown
+    -
+      value: green
+      label: Green
+    -
+      value: sea
+      label: 'Sea Green'
+    -
+      value: blue
+      label: Blue
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

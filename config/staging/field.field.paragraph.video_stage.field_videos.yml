@@ -1,0 +1,60 @@
+uuid: 0d98c68b-9f51-4c36-833e-b9a93ff31e19
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_videos
+    - paragraphs.paragraphs_type.video_stage
+    - paragraphs.paragraphs_type.vimeo_video
+  module:
+    - entity_reference_revisions
+id: paragraph.video_stage.field_videos
+field_name: field_videos
+entity_type: paragraph
+bundle: video_stage
+label: Videos
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      vimeo_video: vimeo_video
+    target_bundles_drag_drop:
+      video_stage:
+        weight: 12
+        enabled: false
+      hotspot:
+        weight: 13
+        enabled: false
+      hotspot_image:
+        weight: 14
+        enabled: false
+      image_slider:
+        weight: 15
+        enabled: false
+      image_with_text:
+        weight: 16
+        enabled: false
+      image_with_text_discover:
+        weight: 17
+        enabled: false
+      panorama_view:
+        weight: 18
+        enabled: false
+      slider:
+        weight: 19
+        enabled: false
+      text_module:
+        weight: 20
+        enabled: false
+      video_loop_with_text:
+        weight: 21
+        enabled: false
+      vimeo_video:
+        enabled: true
+        weight: 22
+field_type: entity_reference_revisions

@@ -1,0 +1,42 @@
+uuid: 94a76343-0ad4-43b8-a279-a0b7d199ebdf
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.rental_overview.body
+    - field.field.node.rental_overview.field_color
+    - field.field.node.rental_overview.field_image
+    - field.field.node.rental_overview.field_layer
+    - field.field.node.rental_overview.field_overlay_image
+    - node.type.rental_overview
+    - responsive_image.styles.narrow_square
+  module:
+    - options
+    - responsive_image
+    - user
+id: node.rental_overview.teaser
+targetEntityType: node
+bundle: rental_overview
+mode: teaser
+content:
+  field_color:
+    type: list_key
+    weight: 3
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  field_image:
+    type: responsive_image
+    weight: 4
+    label: hidden
+    settings:
+      responsive_image_style: narrow_square
+      image_link: content
+    third_party_settings: {  }
+hidden:
+  body: true
+  field_layer: true
+  field_overlay_image: true
+  langcode: true
+  links: true

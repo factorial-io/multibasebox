@@ -1,0 +1,22 @@
+uuid: aab14b52-28c3-4f48-911f-1d9206caaa12
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.area_house_floor_row
+id: paragraph.area_house_floor_row.status
+field_name: status
+entity_type: paragraph
+bundle: area_house_floor_row
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

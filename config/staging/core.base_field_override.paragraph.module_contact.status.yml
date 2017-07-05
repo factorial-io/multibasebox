@@ -1,0 +1,22 @@
+uuid: 5158320b-3f0f-4dc9-84f3-8fb656e2e460
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.module_contact
+id: paragraph.module_contact.status
+field_name: status
+entity_type: paragraph
+bundle: module_contact
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

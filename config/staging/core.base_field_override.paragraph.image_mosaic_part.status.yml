@@ -1,0 +1,22 @@
+uuid: e78a2eeb-77a3-4273-a861-1c4602ddca4d
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.image_mosaic_part
+id: paragraph.image_mosaic_part.status
+field_name: status
+entity_type: paragraph
+bundle: image_mosaic_part
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

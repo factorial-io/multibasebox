@@ -1,0 +1,18 @@
+uuid: 73c8662e-8d21-4a1b-8755-4491b4cc9a8b
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.image_mosaic
+id: paragraph.image_mosaic.created
+field_name: created
+entity_type: paragraph
+bundle: image_mosaic
+label: 'Authored on'
+description: 'The time that the Paragraph was created.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: created

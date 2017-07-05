@@ -1,0 +1,6 @@
+uuid: 01575378-4fd4-420b-a5a5-2c2a9f65d078
+langcode: en
+status: true
+dependencies: {  }
+id: single_image
+label: 'Single Image'

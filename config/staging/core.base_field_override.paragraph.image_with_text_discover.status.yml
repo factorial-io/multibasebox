@@ -1,0 +1,22 @@
+uuid: ec30c575-1668-49c7-8a4b-27f13a166c3f
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.image_with_text_discover
+id: paragraph.image_with_text_discover.status
+field_name: status
+entity_type: paragraph
+bundle: image_with_text_discover
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,19 @@
+uuid: dedf2435-83c0-44ca-aced-ef486b3d4719
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_other_modules
+field_name: field_other_modules
+entity_type: node
+type: entity_reference
+settings:
+  target_type: node
+module: core
+locked: false
+cardinality: 2
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

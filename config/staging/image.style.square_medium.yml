@@ -1,0 +1,14 @@
+uuid: 522846fc-4f66-4e99-8471-1bc8720652f4
+langcode: en
+status: true
+dependencies: {  }
+name: square_medium
+label: 'Square Medium'
+effects:
+  50222625-6322-45ba-87a5-ad17c9a0553c:
+    uuid: 50222625-6322-45ba-87a5-ad17c9a0553c
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 800
+      height: 800

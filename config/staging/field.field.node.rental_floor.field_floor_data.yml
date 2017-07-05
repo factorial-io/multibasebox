@@ -1,0 +1,87 @@
+uuid: 9d113075-ce9d-47ac-b722-0b9a61448bbc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_floor_data
+    - node.type.rental_floor
+    - paragraphs.paragraphs_type.area_floor_data
+  module:
+    - entity_reference_revisions
+id: node.rental_floor.field_floor_data
+field_name: field_floor_data
+entity_type: node
+bundle: rental_floor
+label: 'Floor Data'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      area_floor_data: area_floor_data
+    target_bundles_drag_drop:
+      area_floor_data:
+        enabled: true
+        weight: 21
+      area_circle_layer:
+        weight: 22
+        enabled: false
+      area_house_floor_row:
+        weight: 23
+        enabled: false
+      chart:
+        weight: 24
+        enabled: false
+      chart_data:
+        weight: 25
+        enabled: false
+      circles_slider:
+        weight: 26
+        enabled: false
+      hotspot:
+        weight: 27
+        enabled: false
+      hotspot_image:
+        weight: 28
+        enabled: false
+      image_slider:
+        weight: 29
+        enabled: false
+      image_with_text:
+        weight: 30
+        enabled: false
+      image_with_text_and_image:
+        weight: 31
+        enabled: false
+      image_with_text_discover:
+        weight: 32
+        enabled: false
+      module_contact:
+        weight: 33
+        enabled: false
+      panorama_view:
+        weight: 34
+        enabled: false
+      placeholder:
+        weight: 35
+        enabled: false
+      slider:
+        weight: 36
+        enabled: false
+      text_module:
+        weight: 37
+        enabled: false
+      video_loop_with_text:
+        weight: 38
+        enabled: false
+      video_stage:
+        weight: 39
+        enabled: false
+      vimeo_video:
+        weight: 40
+        enabled: false
+field_type: entity_reference_revisions

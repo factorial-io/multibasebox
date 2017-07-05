@@ -1,0 +1,22 @@
+uuid: 249638d7-f38c-4140-afbc-0e34ff1cd240
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.panorama_view
+id: paragraph.panorama_view.status
+field_name: status
+entity_type: paragraph
+bundle: panorama_view
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,27 @@
+uuid: 65310ec1-fc9d-4bbe-8d19-9bec978acb4b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.discover_page.field_page
+    - node.type.discover_page
+  module:
+    - entity_reference_revisions
+    - user
+id: node.discover_page.default
+targetEntityType: node
+bundle: discover_page
+mode: default
+content:
+  field_page:
+    type: entity_reference_revisions_entity_view
+    weight: 101
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+  links:
+    weight: 100
+hidden:
+  langcode: true

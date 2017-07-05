@@ -1,0 +1,16 @@
+uuid: df964c4e-9f28-4856-afff-ff384f217891
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.rental_floor
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+id: node.rental_floor
+target_entity_type_id: node
+target_bundle: rental_floor
+default_langcode: site_default
+language_alterable: false

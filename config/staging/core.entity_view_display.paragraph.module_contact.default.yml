@@ -1,0 +1,49 @@
+uuid: fbf856dd-d2eb-4abd-b974-6667e070102a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.module_contact.field_email
+    - field.field.paragraph.module_contact.field_show_brands
+    - field.field.paragraph.module_contact.field_show_progress
+    - field.field.paragraph.module_contact.field_telephone_number
+    - paragraphs.paragraphs_type.module_contact
+id: paragraph.module_contact.default
+targetEntityType: paragraph
+bundle: module_contact
+mode: default
+content:
+  field_email:
+    weight: 3
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_show_brands:
+    weight: 1
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+  field_show_progress:
+    weight: 0
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+  field_telephone_number:
+    weight: 2
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+hidden:
+  created: true
+  uid: true

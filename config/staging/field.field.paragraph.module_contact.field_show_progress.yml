@@ -1,0 +1,23 @@
+uuid: 926dcf45-3db9-4e6a-a517-928842d9fb41
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_show_progress
+    - paragraphs.paragraphs_type.module_contact
+id: paragraph.module_contact.field_show_progress
+field_name: field_show_progress
+entity_type: paragraph
+bundle: module_contact
+label: 'Show Progress'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

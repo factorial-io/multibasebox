@@ -1,0 +1,22 @@
+uuid: d68b733b-3ced-4da4-bd58-76cbe9445d8c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.rental_overview
+  module:
+    - text
+id: node.rental_overview.body
+field_name: body
+entity_type: node
+bundle: rental_overview
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+field_type: text_with_summary

@@ -1,0 +1,20 @@
+uuid: dd4f6d39-e2f2-4535-9e5d-bf7bb1343588
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.video_loop_with_text
+id: paragraph.video_loop_with_text.uid
+field_name: uid
+entity_type: paragraph
+bundle: video_loop_with_text
+label: 'Authored by'
+description: 'The user ID of the paragraphs author.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: 'Drupal\paragraphs\Entity\Paragraph::getCurrentUserId'
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

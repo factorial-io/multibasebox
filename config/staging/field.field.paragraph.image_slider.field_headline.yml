@@ -1,0 +1,21 @@
+uuid: ec095999-8057-416e-a719-8e86fde53248
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_headline
+    - paragraphs.paragraphs_type.image_slider
+  module:
+    - text
+id: paragraph.image_slider.field_headline
+field_name: field_headline
+entity_type: paragraph
+bundle: image_slider
+label: Headline
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

@@ -1,0 +1,19 @@
+uuid: df8ff5ad-bc54-4764-8d02-5b6eecc4d421
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_email
+    - node.type.rental_house
+id: node.rental_house.field_email
+field_name: field_email
+entity_type: node
+bundle: rental_house
+label: E-Mail
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

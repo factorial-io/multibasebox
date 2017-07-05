@@ -1,0 +1,23 @@
+uuid: dcafe71f-66d0-458c-a31a-4acc0d06c102
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_color
+    - node.type.rental_overview
+  module:
+    - options
+id: node.rental_overview.field_color
+field_name: field_color
+entity_type: node
+bundle: rental_overview
+label: Color
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: orange
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -1,0 +1,23 @@
+uuid: 1d62b914-4ddf-4e10-8c55-ebc8ce03a1e0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_label_position
+    - paragraphs.paragraphs_type.hotspot_image
+  module:
+    - options
+id: paragraph.hotspot_image.field_label_position
+field_name: field_label_position
+entity_type: paragraph
+bundle: hotspot_image
+label: 'Label Position'
+description: 'Position of the white box with headline and text'
+required: true
+translatable: false
+default_value:
+  -
+    value: top-left
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -1,0 +1,16 @@
+uuid: eb50878e-9086-4866-ac4f-f8671a9052db
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.rental_overview
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+id: node.rental_overview
+target_entity_type_id: node
+target_bundle: rental_overview
+default_langcode: site_default
+language_alterable: false

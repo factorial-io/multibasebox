@@ -1,0 +1,9 @@
+uuid: 5c7110a6-db6a-4ef1-ab2e-1cddee147aff
+langcode: de
+status: true
+dependencies: {  }
+id: node__article
+label: 'Inhalt: Artikel'
+tags:
+  title: '[current-page:title] | [site:name]'
+  og_image: '[node:field_image:large:url]'

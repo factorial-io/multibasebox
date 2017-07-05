@@ -1,0 +1,29 @@
+uuid: fef70daa-99d6-4596-b888-88b9cce684ac
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_other_modules
+    - node.type.module
+    - node.type.rental_overview
+id: node.module.field_other_modules
+field_name: field_other_modules
+entity_type: node
+bundle: module
+label: 'Other Modules'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      module: module
+      rental_overview: rental_overview
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: module
+field_type: entity_reference

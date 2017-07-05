@@ -1,0 +1,116 @@
+uuid: 42514ee2-8979-47ec-ae7b-aa1bb9ab69f4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_blocks_middle
+    - node.type.vision_page
+    - paragraphs.paragraphs_type.chart
+    - paragraphs.paragraphs_type.circles_slider
+    - paragraphs.paragraphs_type.image_mosaic
+    - paragraphs.paragraphs_type.image_with_text
+    - paragraphs.paragraphs_type.placeholder
+    - paragraphs.paragraphs_type.quote
+    - paragraphs.paragraphs_type.single_image
+    - paragraphs.paragraphs_type.text_module
+  module:
+    - entity_reference_revisions
+id: node.vision_page.field_blocks_middle
+field_name: field_blocks_middle
+entity_type: node
+bundle: vision_page
+label: 'Blocks Middle'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      placeholder: placeholder
+      chart: chart
+      circles_slider: circles_slider
+      image_with_text: image_with_text
+      single_image: single_image
+      text_module: text_module
+      image_mosaic: image_mosaic
+      quote: quote
+    target_bundles_drag_drop:
+      placeholder:
+        enabled: true
+        weight: 16
+      chart:
+        enabled: true
+        weight: 17
+      circles_slider:
+        enabled: true
+        weight: 17
+      chart_data:
+        weight: 18
+        enabled: false
+      hotspot:
+        weight: 19
+        enabled: false
+      hotspot_image:
+        weight: 20
+        enabled: false
+      image_slider:
+        weight: 21
+        enabled: false
+      image_with_text:
+        enabled: true
+        weight: 22
+      image_with_text_and_image:
+        weight: 23
+        enabled: false
+      image_with_text_discover:
+        weight: 24
+        enabled: false
+      panorama_view:
+        weight: 25
+        enabled: false
+      slider:
+        weight: 26
+        enabled: false
+      single_image:
+        enabled: true
+        weight: 26
+      text_module:
+        enabled: true
+        weight: 27
+      area_circle_layer:
+        weight: 27
+        enabled: false
+      area_floor_data:
+        weight: 28
+        enabled: false
+      video_loop_with_text:
+        weight: 28
+        enabled: false
+      area_house_floor_row:
+        weight: 29
+        enabled: false
+      video_stage:
+        weight: 29
+        enabled: false
+      vimeo_video:
+        weight: 30
+        enabled: false
+      image_mosaic:
+        enabled: true
+        weight: 35
+      image_mosaic_part:
+        weight: 36
+        enabled: false
+      module_contact:
+        weight: 41
+        enabled: false
+      quote:
+        enabled: true
+        weight: 44
+      single_vimeo_video:
+        weight: 45
+        enabled: false
+field_type: entity_reference_revisions

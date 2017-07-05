@@ -1,0 +1,20 @@
+uuid: c0a6f7c0-1c5c-49db-a054-2ae77d75e52d
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_floor_terrace_space
+field_name: field_floor_terrace_space
+entity_type: paragraph
+type: decimal
+settings:
+  precision: 10
+  scale: 2
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,21 @@
+uuid: 7ff2a432-e390-4f9d-9e47-20eded6f1b39
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_vimeo_id
+    - paragraphs.paragraphs_type.vimeo_video
+id: paragraph.vimeo_video.field_vimeo_id
+field_name: field_vimeo_id
+entity_type: paragraph
+bundle: vimeo_video
+label: 'Vimeo ID'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: '182267614'
+default_value_callback: ''
+settings: {  }
+field_type: string

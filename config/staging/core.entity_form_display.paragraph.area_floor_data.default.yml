@@ -1,0 +1,36 @@
+uuid: 99ae9080-7c9b-41db-9114-eec260d490d5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.area_floor_data.field_floor_foyer_space
+    - field.field.paragraph.area_floor_data.field_floor_office_space
+    - field.field.paragraph.area_floor_data.field_floor_terrace_space
+    - paragraphs.paragraphs_type.area_floor_data
+id: paragraph.area_floor_data.default
+targetEntityType: paragraph
+bundle: area_floor_data
+mode: default
+content:
+  field_floor_foyer_space:
+    weight: 1
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+  field_floor_office_space:
+    weight: 0
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+  field_floor_terrace_space:
+    weight: 2
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+hidden:
+  created: true
+  status: true
+  uid: true

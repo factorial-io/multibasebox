@@ -1,0 +1,16 @@
+uuid: 7a008e75-790d-4aef-88cd-ef80bfde9664
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.hotspot_image
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+id: paragraph.hotspot_image
+target_entity_type_id: paragraph
+target_bundle: hotspot_image
+default_langcode: site_default
+language_alterable: true

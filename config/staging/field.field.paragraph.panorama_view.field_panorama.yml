@@ -1,0 +1,27 @@
+uuid: 49733204-946d-4e20-bafe-0cd3bc421c44
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_panorama
+    - paragraphs.paragraphs_type.panorama_view
+  module:
+    - file
+id: paragraph.panorama_view.field_panorama
+field_name: field_panorama
+entity_type: paragraph
+bundle: panorama_view
+label: Panorama
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: jpg
+  max_filesize: ''
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

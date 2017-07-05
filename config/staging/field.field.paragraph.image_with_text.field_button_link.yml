@@ -1,0 +1,23 @@
+uuid: 12a175ba-f5a0-4bce-a818-9874558cc657
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_button_link
+    - paragraphs.paragraphs_type.image_with_text
+  module:
+    - link
+id: paragraph.image_with_text.field_button_link
+field_name: field_button_link
+entity_type: paragraph
+bundle: image_with_text
+label: 'Button Link'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

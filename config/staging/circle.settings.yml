@@ -1,0 +1,15 @@
+features:
+  node_user_picture: 0
+  comment_user_picture: 0
+  comment_user_verification: 0
+  favicon: 0
+logo:
+  use_default: 0
+  path: ''
+favicon:
+  use_default: 1
+target_time: '1490313600'
+total_space: '35000'
+sold_space: '12000'
+email: brands@thecircle.ch
+phone: '+41 43 xx x xxx xxx'

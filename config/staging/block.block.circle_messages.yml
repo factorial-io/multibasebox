@@ -1,0 +1,22 @@
+uuid: 7977aabe-d474-4e99-815e-af47b4a66fac
+langcode: en
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - circle
+_core:
+  default_config_hash: KHQIJ7Vfl25lTjzIc7qIvnuistt-Mw2O0kG4jCofmkI
+id: circle_messages
+theme: circle
+region: '-1'
+weight: 0
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  provider: system
+  label_display: '0'
+visibility: {  }

@@ -1,0 +1,21 @@
+uuid: 613f04f9-1eed-44f5-9895-8ab2a555789c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_headline
+    - paragraphs.paragraphs_type.text_module
+  module:
+    - text
+id: paragraph.text_module.field_headline
+field_name: field_headline
+entity_type: paragraph
+bundle: text_module
+label: Headline
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long
