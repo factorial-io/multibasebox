@@ -34,7 +34,13 @@
       </div>
     </section>
   </div>
-
+  <script type="x-tmpl-mustache" id="house-flag">
+    <div class="flag">
+      <div class="flag__inner">
+        <span class="flag__circle"></span><span class="flag__text">[[title]]</span>
+      </div>
+    </div>
+  </script>
   <h2 class="headline-between">{{'Rental'|t}}</h2>
   <div class="house-floors-container">
     {{content.field_floors}}

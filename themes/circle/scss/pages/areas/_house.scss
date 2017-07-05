@@ -102,4 +102,34 @@
   .content-blocks {
     margin-top: 4*$spacer;
   }
+
+  .floor-images__wrapper {
+    position: relative;
+    overflow: hidden;
+    svg {
+      position: absolute;
+      z-index: 5;
+      top: 0;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+      path {
+        fill: $circle-egg;
+      }
+      g {
+        opacity: 0;
+        transition: opacity 500ms;
+        &.inactive {
+          opacity: 0.3;
+        }
+      }
+    }
+
+    .flag {
+      position: absolute;
+      z-index: 3;
+      top: 0;
+      left: 0;
+    }
+  }
 }
