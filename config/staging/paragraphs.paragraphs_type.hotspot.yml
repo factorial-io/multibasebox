@@ -1,0 +1,6 @@
+uuid: bc35f8f4-e947-44e6-b9a6-dfc6608f593f
+langcode: en
+status: true
+dependencies: {  }
+id: hotspot
+label: 'Hotspot Discover'

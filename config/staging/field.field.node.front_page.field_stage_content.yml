@@ -1,0 +1,35 @@
+uuid: 4db019d9-08c1-43af-b551-7340d34b2092
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_stage_content
+    - node.type.front_page
+    - paragraphs.paragraphs_type.image_slider
+    - paragraphs.paragraphs_type.video_loop_with_text
+  module:
+    - entity_reference_revisions
+id: node.front_page.field_stage_content
+field_name: field_stage_content
+entity_type: node
+bundle: front_page
+label: 'Stage Content'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      video_loop_with_text: video_loop_with_text
+      image_slider: image_slider
+    target_bundles_drag_drop:
+      video_loop_with_text:
+        enabled: true
+        weight: 2
+      image_slider:
+        enabled: true
+        weight: 3
+field_type: entity_reference_revisions

@@ -1,0 +1,23 @@
+uuid: d01dcee7-f21a-45d0-b9da-246cbb9b879e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_total_space
+    - node.type.brands
+id: node.brands.field_total_space
+field_name: field_total_space
+entity_type: node
+bundle: brands
+label: 'Total Space'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

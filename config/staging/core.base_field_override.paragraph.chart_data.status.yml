@@ -1,0 +1,22 @@
+uuid: 4c26b9a8-3b5e-45af-9f06-79b236d62248
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.chart_data
+id: paragraph.chart_data.status
+field_name: status
+entity_type: paragraph
+bundle: chart_data
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

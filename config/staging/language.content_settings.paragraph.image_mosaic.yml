@@ -1,0 +1,16 @@
+uuid: 700df3a3-95e5-4a76-b903-19e13aba5bde
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.image_mosaic
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+id: paragraph.image_mosaic
+target_entity_type_id: paragraph
+target_bundle: image_mosaic
+default_langcode: site_default
+language_alterable: true

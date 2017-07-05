@@ -1,0 +1,27 @@
+uuid: 53d874a2-b804-4453-b01b-d9ba861ee3e7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_svg_icon
+    - paragraphs.paragraphs_type.chart_data
+  module:
+    - file
+id: paragraph.chart_data.field_svg_icon
+field_name: field_svg_icon
+entity_type: paragraph
+bundle: chart_data
+label: 'SVG Icon'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: svg
+  max_filesize: ''
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

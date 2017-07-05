@@ -1,0 +1,16 @@
+uuid: c1b46b71-f6a5-4baf-9f46-5db97dda841f
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.vimeo_video
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+id: paragraph.vimeo_video
+target_entity_type_id: paragraph
+target_bundle: vimeo_video
+default_langcode: site_default
+language_alterable: true

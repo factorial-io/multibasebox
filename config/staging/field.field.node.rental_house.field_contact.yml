@@ -1,0 +1,21 @@
+uuid: 79d3eff3-e385-4d4d-b017-5042287e8cfc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_contact
+    - node.type.rental_house
+  module:
+    - text
+id: node.rental_house.field_contact
+field_name: field_contact
+entity_type: node
+bundle: rental_house
+label: Contact
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

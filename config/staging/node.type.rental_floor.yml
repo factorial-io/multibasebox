@@ -1,0 +1,17 @@
+uuid: 2f8f7b1e-8021-4233-aee4-60b9c53d3ceb
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Rental Floor'
+type: rental_floor
+description: 'Belongs to house'
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: false

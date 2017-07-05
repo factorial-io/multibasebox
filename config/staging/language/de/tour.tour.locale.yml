@@ -1,0 +1,13 @@
+label: Übersetzung
+tips:
+  locale-language:
+    label: Übersetzungssprache
+    body: 'Wählen Sie die Sprache, die Sie übersetzen wollen.'
+  locale-search:
+    label: Suche
+  locale-submit:
+    label: 'Ihre Suchkriterien anwenden'
+  locale-translate:
+    label: Übersetzen
+  locale-continue:
+    label: 'Fortsetzen auf'

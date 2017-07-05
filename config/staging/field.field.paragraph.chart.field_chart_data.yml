@@ -1,0 +1,69 @@
+uuid: 4c494cea-90d3-4cae-8dfb-fb78ca989434
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_chart_data
+    - paragraphs.paragraphs_type.chart
+    - paragraphs.paragraphs_type.chart_data
+  module:
+    - entity_reference_revisions
+id: paragraph.chart.field_chart_data
+field_name: field_chart_data
+entity_type: paragraph
+bundle: chart
+label: 'Chart Data'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      chart_data: chart_data
+    target_bundles_drag_drop:
+      chart:
+        weight: 15
+        enabled: false
+      chart_data:
+        enabled: true
+        weight: 16
+      hotspot:
+        weight: 17
+        enabled: false
+      hotspot_image:
+        weight: 18
+        enabled: false
+      image_slider:
+        weight: 19
+        enabled: false
+      image_with_text:
+        weight: 20
+        enabled: false
+      image_with_text_and_image:
+        weight: 21
+        enabled: false
+      image_with_text_discover:
+        weight: 22
+        enabled: false
+      panorama_view:
+        weight: 23
+        enabled: false
+      slider:
+        weight: 24
+        enabled: false
+      text_module:
+        weight: 25
+        enabled: false
+      video_loop_with_text:
+        weight: 26
+        enabled: false
+      video_stage:
+        weight: 27
+        enabled: false
+      vimeo_video:
+        weight: 28
+        enabled: false
+field_type: entity_reference_revisions

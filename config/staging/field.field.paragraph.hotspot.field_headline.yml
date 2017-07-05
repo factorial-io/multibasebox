@@ -1,0 +1,21 @@
+uuid: f709f66c-0cc1-42a1-ac34-2920ac6d3489
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_headline
+    - paragraphs.paragraphs_type.hotspot
+  module:
+    - text
+id: paragraph.hotspot.field_headline
+field_name: field_headline
+entity_type: paragraph
+bundle: hotspot
+label: Headline
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

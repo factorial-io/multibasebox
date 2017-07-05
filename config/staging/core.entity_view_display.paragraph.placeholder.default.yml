@@ -1,0 +1,22 @@
+uuid: 3731ace8-d87f-424f-bef9-db1297e02ba2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.placeholder.field_key
+    - paragraphs.paragraphs_type.placeholder
+id: paragraph.placeholder.default
+targetEntityType: paragraph
+bundle: placeholder
+mode: default
+content:
+  field_key:
+    weight: 0
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+hidden:
+  created: true
+  uid: true

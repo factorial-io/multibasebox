@@ -1,0 +1,6 @@
+uuid: 833d083d-e975-4cb7-b1e2-7a0550455a61
+langcode: en
+status: true
+dependencies: {  }
+id: video_loop_with_text
+label: 'Video Loop with Text Frontpage'

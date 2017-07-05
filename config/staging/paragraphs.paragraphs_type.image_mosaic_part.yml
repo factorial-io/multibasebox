@@ -1,0 +1,6 @@
+uuid: fe491935-f9d2-4b9a-a4c6-a0a08acedaf6
+langcode: en
+status: true
+dependencies: {  }
+id: image_mosaic_part
+label: 'Image Mosaic Part'

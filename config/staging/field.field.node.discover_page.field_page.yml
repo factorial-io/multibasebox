@@ -1,0 +1,55 @@
+uuid: 5c7e2b89-060a-439c-a2f2-6149b629c6e9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_page
+    - node.type.discover_page
+    - paragraphs.paragraphs_type.hotspot_image
+    - paragraphs.paragraphs_type.image_with_text_discover
+    - paragraphs.paragraphs_type.panorama_view
+  module:
+    - entity_reference_revisions
+id: node.discover_page.field_page
+field_name: field_page
+entity_type: node
+bundle: discover_page
+label: Page
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      hotspot_image: hotspot_image
+      image_with_text_discover: image_with_text_discover
+      panorama_view: panorama_view
+    target_bundles_drag_drop:
+      hotspot:
+        weight: 7
+        enabled: false
+      hotspot_image:
+        enabled: true
+        weight: 8
+      image_with_text_discover:
+        enabled: true
+        weight: 8
+      image_slider:
+        weight: 9
+        enabled: false
+      panorama_view:
+        enabled: true
+        weight: 9
+      image_with_text:
+        weight: 10
+        enabled: false
+      text_module:
+        weight: 11
+        enabled: false
+      video_loop_with_text:
+        weight: 12
+        enabled: false
+field_type: entity_reference_revisions

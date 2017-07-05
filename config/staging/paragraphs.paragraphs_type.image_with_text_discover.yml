@@ -1,0 +1,6 @@
+uuid: b0ad2ac7-18bf-4265-a5df-e79f53f9fe99
+langcode: en
+status: true
+dependencies: {  }
+id: image_with_text_discover
+label: 'Image with Text Discover'

@@ -1,0 +1,20 @@
+uuid: df97b6e1-a948-4317-9a9c-128eacda77fe
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_value
+field_name: field_value
+entity_type: paragraph
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

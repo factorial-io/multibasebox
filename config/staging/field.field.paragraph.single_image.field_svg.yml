@@ -1,0 +1,27 @@
+uuid: f4e216b9-2fe4-4af2-a1d3-56455cb42dbd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_svg
+    - paragraphs.paragraphs_type.single_image
+  module:
+    - file
+id: paragraph.single_image.field_svg
+field_name: field_svg
+entity_type: paragraph
+bundle: single_image
+label: SVG
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: svg
+  max_filesize: ''
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

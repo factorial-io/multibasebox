@@ -1,0 +1,11 @@
+uuid: b303bf0b-d4ee-4d46-a3b8-77038df72088
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 5rOnjIF_aDyGBmfXNhJnkPXxQMlem0CmVmggV-TF3Fg
+id: global
+label: Global
+tags:
+  title: '[current-page:title] | [site:name]'
+  og_image: '[site:url]/../themes/circle/assets/images/share-image.jpg'

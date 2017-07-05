@@ -1,0 +1,46 @@
+uuid: 66d3e40c-e829-46bf-9f48-77087b52858b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.module_contact.field_email
+    - field.field.paragraph.module_contact.field_show_brands
+    - field.field.paragraph.module_contact.field_show_progress
+    - field.field.paragraph.module_contact.field_telephone_number
+    - paragraphs.paragraphs_type.module_contact
+  module:
+    - telephone
+id: paragraph.module_contact.default
+targetEntityType: paragraph
+bundle: module_contact
+mode: default
+content:
+  field_email:
+    weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_show_brands:
+    weight: 1
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+  field_show_progress:
+    weight: 0
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+  field_telephone_number:
+    weight: 2
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: telephone_default
+hidden:
+  created: true
+  status: true
+  uid: true

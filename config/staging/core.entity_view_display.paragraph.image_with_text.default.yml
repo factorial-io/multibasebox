@@ -1,0 +1,86 @@
+uuid: add4add8-f3eb-479d-900f-c0784effd739
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.image_with_text.field_action
+    - field.field.paragraph.image_with_text.field_button_link
+    - field.field.paragraph.image_with_text.field_color_variation
+    - field.field.paragraph.image_with_text.field_headline
+    - field.field.paragraph.image_with_text.field_image
+    - field.field.paragraph.image_with_text.field_large_text
+    - field.field.paragraph.image_with_text.field_picture_side
+    - field.field.paragraph.image_with_text.field_text
+    - paragraphs.paragraphs_type.image_with_text
+    - responsive_image.styles.narrow
+  module:
+    - link
+    - options
+    - responsive_image
+    - text
+id: paragraph.image_with_text.default
+targetEntityType: paragraph
+bundle: image_with_text
+mode: default
+content:
+  field_action:
+    weight: 4
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_key
+  field_button_link:
+    weight: 3
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+  field_color_variation:
+    weight: 6
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_key
+  field_headline:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+  field_image:
+    weight: 0
+    label: hidden
+    settings:
+      responsive_image_style: narrow
+      image_link: ''
+    third_party_settings: {  }
+    type: responsive_image
+  field_large_text:
+    weight: 7
+    label: hidden
+    settings:
+      format: boolean
+      format_custom_true: ''
+      format_custom_false: ''
+    third_party_settings: {  }
+    type: boolean
+  field_picture_side:
+    weight: 5
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_key
+  field_text:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+hidden:
+  created: true
+  uid: true

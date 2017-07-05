@@ -1,0 +1,28 @@
+uuid: 1aa3b3b0-56e4-4f0f-b13a-c02a6a3af5c4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_belongs_to_overview
+    - node.type.rental_house
+    - node.type.rental_overview
+id: node.rental_house.field_belongs_to_overview
+field_name: field_belongs_to_overview
+entity_type: node
+bundle: rental_house
+label: 'Belongs to Overview'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      rental_overview: rental_overview
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
