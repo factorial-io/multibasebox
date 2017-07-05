@@ -2,6 +2,24 @@
   @extend .row;
   @extend .no-gutters;
 
+  position: relative;
+
+  .area__scroll {
+    bottom: 1rem;
+    left: 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+
+    @include media-breakpoint-up(lg) {
+      left: 48%;
+    }
+
+    @include media-breakpoint-up(xl) {
+      left: 33%;
+    }
+  }
+
   .area-stage {
     @extend .col-xl-9;
     @extend .col-lg-8;
@@ -54,5 +72,6 @@
     h1 {
       font-size: $fontsize-title;
     }
+
   }
 }
