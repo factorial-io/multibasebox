@@ -7,6 +7,25 @@ $(document).on('click', '[data-burger]', (e) => {
   }
 })
 
+const areaNav = $('.area-navigation');
+if (areaNav.length) {
+  const siteHeader = $('.site-header').height();
+  const navHeight = areaNav.height();
+  const areaRow = $('.area-row');
+
+  $(document).scroll(function() {
+    let scrollTop = $(document).scrollTop();
+    if (scrollTop < siteHeader) {
+      areaNav.removeClass('fixed');
+      areaRow.css('margin-top', '');
+    }
+    else {
+      areaNav.addClass('fixed');
+      areaRow.css('margin-top', navHeight);
+    }
+  })
+}
+
 let $el = $('#block-mainmenu')[0] ? $('#block-mainmenu') : $('.area-navigation')
 if ($el[0]) {
   setTimeout(() => {
