@@ -1,0 +1,31 @@
+uuid: f94f86f5-c3f1-4a62-b9d6-ee5448484455
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.download_resource.field_high_res_image_download
+    - field.field.paragraph.download_resource.field_image
+    - field.field.paragraph.download_resource.field_pdf
+    - field.field.paragraph.download_resource.field_rgb_image_download
+    - field.field.paragraph.download_resource.field_text
+    - paragraphs.paragraphs_type.download_resource
+  module:
+    - image
+id: paragraph.download_resource.default
+targetEntityType: paragraph
+bundle: download_resource
+mode: default
+content:
+  field_image:
+    weight: 0
+    label: hidden
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+hidden:
+  field_high_res_image_download: true
+  field_pdf: true
+  field_rgb_image_download: true
+  field_text: true

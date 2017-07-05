@@ -1,0 +1,27 @@
+uuid: 01ec115c-0140-47ef-afe9-93d3251e76b2
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.preview
+    - field.field.paragraph.download_resource.field_image
+    - field.field.paragraph.download_resource.field_pdf
+    - image.style.thumbnail
+    - paragraphs.paragraphs_type.download_resource
+  module:
+    - image
+id: paragraph.download_resource.preview
+targetEntityType: paragraph
+bundle: download_resource
+mode: preview
+content:
+  field_image:
+    weight: 0
+    label: hidden
+    settings:
+      image_style: thumbnail
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+hidden:
+  field_pdf: true

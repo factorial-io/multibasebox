@@ -1,0 +1,27 @@
+uuid: 9fb47b00-6f09-4a80-a08b-e14d612dd217
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_rgb_image_download
+    - paragraphs.paragraphs_type.download_resource
+  module:
+    - file
+id: paragraph.download_resource.field_rgb_image_download
+field_name: field_rgb_image_download
+entity_type: paragraph
+bundle: download_resource
+label: 'RGB Image (Download)'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'jpg png gif jpeg'
+  max_filesize: ''
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

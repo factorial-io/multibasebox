@@ -1,0 +1,16 @@
+uuid: a8dfbf59-a558-4692-951f-f6db2bea3c58
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.download_resource
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+id: paragraph.download_resource
+target_entity_type_id: paragraph
+target_bundle: download_resource
+default_langcode: site_default
+language_alterable: true

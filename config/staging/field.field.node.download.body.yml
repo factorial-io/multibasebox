@@ -1,0 +1,22 @@
+uuid: 54044a03-b65c-4d49-bb67-2f2beb2db48b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.download
+  module:
+    - text
+id: node.download.body
+field_name: body
+entity_type: node
+bundle: download
+label: Body
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+field_type: text_with_summary
