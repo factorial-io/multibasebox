@@ -7,6 +7,7 @@ dependencies:
     - node.type.article
     - taxonomy.vocabulary.news_category
   module:
+    - better_exposed_filters
     - node
     - taxonomy
     - user
@@ -433,7 +434,7 @@ display:
         use_ajax: false
         filters: false
         filter_groups: false
-        exposed_form: true
+        exposed_form: false
       use_more_always: false
       use_more_text: 'All News'
       pager:
@@ -566,6 +567,30 @@ display:
         operator: AND
         groups:
           1: AND
+      exposed_form:
+        type: bef
+        options:
+          submit_button: Apply
+          reset_button: false
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          expose_sort_order: true
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+          bef:
+            general:
+              allow_secondary: false
+              secondary_label: 'Advanced options'
+              autosubmit: true
+              autosubmit_hide: true
+            field_category_target_id:
+              bef_format: bef_links
+              more_options:
+                bef_select_all_none: false
+                bef_collapsible: false
+                is_secondary: false
+                rewrite:
+                  filter_rewrite_values: "- Any -|All News\n"
     cache_metadata:
       max-age: -1
       contexts:
