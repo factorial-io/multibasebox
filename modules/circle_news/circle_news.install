@@ -16,7 +16,7 @@ function circle_news_install() {
     ]);
   $term->addTranslation(
     'de', [
-      'name' => 'Medienmitteilung'
+      'name' => 'Medienmitteilungen'
     ]
   );
   $term->save();
