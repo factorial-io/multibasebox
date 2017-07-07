@@ -24,7 +24,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 1
+    weight: 2
     settings:
       rows: 9
       summary_rows: 3
@@ -36,13 +36,10 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_category:
-    weight: 3
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    weight: 1
+    settings: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: options_select
   field_image:
     type: image_image
     weight: 5
@@ -66,7 +63,7 @@ content:
     third_party_settings: {  }
   langcode:
     type: language_select
-    weight: 2
+    weight: 3
     settings: {  }
     third_party_settings: {  }
   path:
