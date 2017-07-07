@@ -6,6 +6,7 @@ module:
   breakpoint: 0
   circle_ajax: 0
   circle_areas: 0
+  circle_news: 0
   circle_newsletter: 0
   ckeditor: 0
   color: 0

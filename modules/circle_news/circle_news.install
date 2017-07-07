@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * @file
+ * Install hooks.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function circle_news_install() {
+  $term = \Drupal\taxonomy\Entity\Term::create([
+    'vid' => 'news_category',
+    'langcode' => 'en',
+    'name' => 'press releases'
+    ]);
+  $term->addTranslation(
+    'de', [
+      'name' => 'Medienmitteilung'
+    ]
+  );
+  $term->save();
+}
