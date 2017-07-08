@@ -1,0 +1,16 @@
+uuid: 69e472ed-69fc-4e27-8e5d-0a6a0fabd08e
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.rental_house
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+id: node.rental_house
+target_entity_type_id: node
+target_bundle: rental_house
+default_langcode: site_default
+language_alterable: false

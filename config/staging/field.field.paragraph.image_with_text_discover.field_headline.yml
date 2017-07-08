@@ -1,0 +1,21 @@
+uuid: 4d8d77db-f213-4843-aa3a-8e3c2d19bd0a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_headline
+    - paragraphs.paragraphs_type.image_with_text_discover
+  module:
+    - text
+id: paragraph.image_with_text_discover.field_headline
+field_name: field_headline
+entity_type: paragraph
+bundle: image_with_text_discover
+label: Headline
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

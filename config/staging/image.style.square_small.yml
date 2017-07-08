@@ -1,0 +1,14 @@
+uuid: 049f4a2a-789e-4ec5-895d-253aeafaba04
+langcode: en
+status: true
+dependencies: {  }
+name: square_small
+label: 'Square Small (480x480)'
+effects:
+  e001d9bf-26d0-4b0f-870c-171fe10db791:
+    uuid: e001d9bf-26d0-4b0f-870c-171fe10db791
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 480
+      height: 480

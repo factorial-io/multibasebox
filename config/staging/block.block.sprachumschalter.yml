@@ -1,0 +1,20 @@
+uuid: a859f3db-20b0-4b93-8df0-f49d187698b5
+langcode: de
+status: true
+dependencies:
+  module:
+    - language
+  theme:
+    - circle
+id: sprachumschalter
+theme: circle
+region: footer
+weight: 0
+provider: null
+plugin: 'language_block:language_interface'
+settings:
+  id: 'language_block:language_interface'
+  label: Sprachumschalter
+  provider: language
+  label_display: '0'
+visibility: {  }

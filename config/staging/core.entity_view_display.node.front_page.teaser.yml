@@ -1,0 +1,20 @@
+uuid: 2b7d1c5a-cb05-4d8c-b4d1-20874eff7fbc
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.front_page.field_stage_content
+    - node.type.front_page
+  module:
+    - user
+id: node.front_page.teaser
+targetEntityType: node
+bundle: front_page
+mode: teaser
+content:
+  links:
+    weight: 100
+hidden:
+  field_stage_content: true
+  langcode: true

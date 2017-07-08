@@ -1,0 +1,22 @@
+uuid: d143d7f3-c658-4ad0-88e4-5663a4ea6dcf
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.rental_floor.field_floor_data
+    - field.field.node.rental_floor.field_house
+    - node.type.rental_floor
+  module:
+    - user
+id: node.rental_floor.teaser
+targetEntityType: node
+bundle: rental_floor
+mode: teaser
+content:
+  links:
+    weight: 100
+hidden:
+  field_floor_data: true
+  field_house: true
+  langcode: true

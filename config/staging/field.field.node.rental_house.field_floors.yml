@@ -1,0 +1,84 @@
+uuid: d5ecadf4-0bbb-44d9-aef7-32d9ad0c00b9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_floors
+    - node.type.rental_house
+    - paragraphs.paragraphs_type.area_house_floor_row
+  module:
+    - entity_reference_revisions
+id: node.rental_house.field_floors
+field_name: field_floors
+entity_type: node
+bundle: rental_house
+label: Floors
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      area_house_floor_row: area_house_floor_row
+    target_bundles_drag_drop:
+      area_house_floor_row:
+        enabled: true
+        weight: 20
+      area_circle_layer:
+        weight: 21
+        enabled: false
+      chart:
+        weight: 22
+        enabled: false
+      chart_data:
+        weight: 23
+        enabled: false
+      circles_slider:
+        weight: 24
+        enabled: false
+      hotspot:
+        weight: 25
+        enabled: false
+      hotspot_image:
+        weight: 26
+        enabled: false
+      image_slider:
+        weight: 27
+        enabled: false
+      image_with_text:
+        weight: 28
+        enabled: false
+      image_with_text_and_image:
+        weight: 29
+        enabled: false
+      image_with_text_discover:
+        weight: 30
+        enabled: false
+      module_contact:
+        weight: 31
+        enabled: false
+      panorama_view:
+        weight: 32
+        enabled: false
+      placeholder:
+        weight: 33
+        enabled: false
+      slider:
+        weight: 34
+        enabled: false
+      text_module:
+        weight: 35
+        enabled: false
+      video_loop_with_text:
+        weight: 36
+        enabled: false
+      video_stage:
+        weight: 37
+        enabled: false
+      vimeo_video:
+        weight: 38
+        enabled: false
+field_type: entity_reference_revisions

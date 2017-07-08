@@ -1,0 +1,23 @@
+uuid: 6f3a1d5d-fce2-45d9-b79d-df61b44b13b5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_color
+    - node.type.module
+  module:
+    - options
+id: node.module.field_color
+field_name: field_color
+entity_type: node
+bundle: module
+label: Color
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: yellow
+default_value_callback: ''
+settings: {  }
+field_type: list_string

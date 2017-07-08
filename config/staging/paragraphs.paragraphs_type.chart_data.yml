@@ -1,0 +1,6 @@
+uuid: 3677d8a6-5a51-4f19-b35f-2f349bae31c5
+langcode: en
+status: true
+dependencies: {  }
+id: chart_data
+label: 'Chart Data'

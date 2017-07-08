@@ -1,0 +1,65 @@
+uuid: a2ba568f-b048-4588-809d-e5d24af34ed0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hotspot_image.field_headline
+    - field.field.paragraph.hotspot_image.field_hotspot
+    - field.field.paragraph.hotspot_image.field_image
+    - field.field.paragraph.hotspot_image.field_label_position
+    - field.field.paragraph.hotspot_image.field_text
+    - image.style.thumbnail
+    - paragraphs.paragraphs_type.hotspot_image
+  module:
+    - image
+    - paragraphs
+    - text
+id: paragraph.hotspot_image.default
+targetEntityType: paragraph
+bundle: hotspot_image
+mode: default
+content:
+  field_headline:
+    weight: 0
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+  field_hotspot:
+    type: entity_reference_paragraphs
+    weight: 4
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+    third_party_settings: {  }
+  field_image:
+    weight: 3
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+  field_label_position:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+  field_text:
+    weight: 1
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+  translation:
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true

@@ -1,0 +1,6 @@
+uuid: 890a14bc-0b53-4d03-858c-31313c1708b9
+langcode: en
+status: true
+dependencies: {  }
+id: image_with_text
+label: 'Image with Text'

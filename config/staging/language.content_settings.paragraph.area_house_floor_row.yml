@@ -1,0 +1,16 @@
+uuid: df03d36e-52ec-41c8-ac7b-b79d470a66db
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.area_house_floor_row
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+id: paragraph.area_house_floor_row
+target_entity_type_id: paragraph
+target_bundle: area_house_floor_row
+default_langcode: site_default
+language_alterable: true

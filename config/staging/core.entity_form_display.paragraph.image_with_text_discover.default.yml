@@ -1,0 +1,49 @@
+uuid: ca98fad5-fb9f-48e9-8e8b-0ab8993be478
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.image_with_text_discover.field_headline
+    - field.field.paragraph.image_with_text_discover.field_image
+    - field.field.paragraph.image_with_text_discover.field_label_position
+    - field.field.paragraph.image_with_text_discover.field_text
+    - image.style.thumbnail
+    - paragraphs.paragraphs_type.image_with_text_discover
+  module:
+    - image
+    - text
+id: paragraph.image_with_text_discover.default
+targetEntityType: paragraph
+bundle: image_with_text_discover
+mode: default
+content:
+  field_headline:
+    weight: 2
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+  field_image:
+    weight: 0
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+  field_label_position:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+  field_text:
+    weight: 1
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+hidden:
+  created: true
+  status: true
+  uid: true

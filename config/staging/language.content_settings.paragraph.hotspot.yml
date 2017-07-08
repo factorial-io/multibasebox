@@ -1,0 +1,16 @@
+uuid: 31b29b7d-af26-4feb-a288-101cd705f7d4
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.hotspot
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+id: paragraph.hotspot
+target_entity_type_id: paragraph
+target_bundle: hotspot
+default_langcode: site_default
+language_alterable: true

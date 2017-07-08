@@ -1,0 +1,21 @@
+uuid: 7a7827ee-6d45-4847-8ff2-a1132fb4d3ab
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_headline
+    - paragraphs.paragraphs_type.panorama_view
+  module:
+    - text
+id: paragraph.panorama_view.field_headline
+field_name: field_headline
+entity_type: paragraph
+bundle: panorama_view
+label: Headline
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

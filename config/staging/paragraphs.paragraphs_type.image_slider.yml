@@ -1,0 +1,6 @@
+uuid: 780704cf-73de-4f36-9724-610b8fd1b938
+langcode: en
+status: true
+dependencies: {  }
+id: image_slider
+label: 'Image Slider Frontpage'

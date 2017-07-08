@@ -5,8 +5,10 @@
       {{ header }}
     </header>
   {% endif %}
-
-  {{ exposed }}
+  <div class="news-teaser">
+    <h2>{{ 'News'|trans }}</h2>
+    {{ exposed }}
+  </div>
   {{ attachment_before }}
 
   {{ rows }}

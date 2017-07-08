@@ -1,0 +1,23 @@
+uuid: b70c21d0-7e3f-476d-90de-57d75d4dbb88
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_button_link
+    - paragraphs.paragraphs_type.image_mosaic_part
+  module:
+    - link
+id: paragraph.image_mosaic_part.field_button_link
+field_name: field_button_link
+entity_type: paragraph
+bundle: image_mosaic_part
+label: Link
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 0
+field_type: link

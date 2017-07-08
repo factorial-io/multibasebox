@@ -1,0 +1,16 @@
+uuid: 1ddb11a7-2c36-4335-a482-352f600d01ac
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.area_circle_layer
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+id: paragraph.area_circle_layer
+target_entity_type_id: paragraph
+target_bundle: area_circle_layer
+default_langcode: site_default
+language_alterable: true

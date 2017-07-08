@@ -1,0 +1,62 @@
+uuid: 2a78ed9d-b487-469b-9538-2511011e9b1a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.chart.field_chart_data
+    - field.field.paragraph.chart.field_color_variation
+    - field.field.paragraph.chart.field_headline
+    - field.field.paragraph.chart.field_picture_side
+    - field.field.paragraph.chart.field_text
+    - field.field.paragraph.chart.field_type
+    - paragraphs.paragraphs_type.chart
+  module:
+    - entity_reference_revisions
+    - options
+    - text
+id: paragraph.chart.default
+targetEntityType: paragraph
+bundle: chart
+mode: default
+content:
+  field_chart_data:
+    type: entity_reference_revisions_entity_view
+    weight: 2
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+  field_color_variation:
+    weight: 4
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+  field_headline:
+    weight: 0
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+  field_picture_side:
+    weight: 5
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+  field_text:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+  field_type:
+    weight: 3
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+hidden:
+  created: true
+  uid: true

@@ -1,0 +1,18 @@
+uuid: c03dd1f9-b41f-4041-8c4d-36329f2ebc0b
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.brands
+id: node.brands.created
+field_name: created
+entity_type: node
+bundle: brands
+label: 'Authored on'
+description: 'The time that the node was created.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: created

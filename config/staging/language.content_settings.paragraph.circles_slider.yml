@@ -1,0 +1,16 @@
+uuid: 53b5c46c-3c96-4e86-9557-118291692486
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.circles_slider
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+id: paragraph.circles_slider
+target_entity_type_id: paragraph
+target_bundle: circles_slider
+default_langcode: site_default
+language_alterable: true

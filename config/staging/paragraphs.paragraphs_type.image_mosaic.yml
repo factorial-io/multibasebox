@@ -1,0 +1,6 @@
+uuid: 7a77fc55-6f9f-4968-a416-a054494f8edb
+langcode: en
+status: true
+dependencies: {  }
+id: image_mosaic
+label: 'Image Mosaic'

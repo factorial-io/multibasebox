@@ -1,0 +1,23 @@
+uuid: 522f55c9-1631-496a-8349-6f47f36c82e3
+langcode: en
+status: true
+dependencies:
+  module:
+    - file
+    - node
+id: node.field_house_svg
+field_name: field_house_svg
+entity_type: node
+type: file
+settings:
+  display_field: false
+  display_default: false
+  uri_scheme: public
+  target_type: file
+module: file
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

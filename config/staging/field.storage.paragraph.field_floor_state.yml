@@ -1,0 +1,30 @@
+uuid: a7ad3b4f-e45c-4415-8caf-fd81479a1d5c
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_floor_state
+field_name: field_floor_state
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: free
+      label: Free
+    -
+      value: reserved
+      label: Reserved
+    -
+      value: taken
+      label: Taken
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,11 @@
+display:
+  page_1:
+    display_options:
+      use_more_text: 'Alle Meldungen'
+      exposed_form:
+        options:
+          bef:
+            field_category_target_id:
+              more_options:
+                rewrite:
+                  filter_rewrite_values: "- Alle -|Alle Meldungen\r\n"

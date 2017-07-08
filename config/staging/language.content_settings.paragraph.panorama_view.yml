@@ -1,0 +1,16 @@
+uuid: 3b9a7336-9d89-425e-9f19-72b3fa97d35d
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.panorama_view
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+id: paragraph.panorama_view
+target_entity_type_id: paragraph
+target_bundle: panorama_view
+default_langcode: site_default
+language_alterable: true

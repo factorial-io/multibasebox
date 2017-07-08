@@ -1,0 +1,23 @@
+uuid: 3d5ed985-51e1-4058-985d-3441c44bde31
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_floor_terrace_space
+    - paragraphs.paragraphs_type.area_floor_data
+id: paragraph.area_floor_data.field_floor_terrace_space
+field_name: field_floor_terrace_space
+entity_type: paragraph
+bundle: area_floor_data
+label: 'Floor Terrace Space'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: decimal

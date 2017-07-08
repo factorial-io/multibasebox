@@ -1,0 +1,6 @@
+uuid: f4d30055-5bcf-4d88-8e04-9b8636ba207d
+langcode: en
+status: true
+dependencies: {  }
+id: chart
+label: Chart

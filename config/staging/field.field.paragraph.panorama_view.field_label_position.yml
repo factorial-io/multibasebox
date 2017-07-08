@@ -1,0 +1,23 @@
+uuid: 53f9a181-741b-4006-9e36-6630ffd1bc5c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_label_position
+    - paragraphs.paragraphs_type.panorama_view
+  module:
+    - options
+id: paragraph.panorama_view.field_label_position
+field_name: field_label_position
+entity_type: paragraph
+bundle: panorama_view
+label: 'Label Position'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: top-left
+default_value_callback: ''
+settings: {  }
+field_type: list_string

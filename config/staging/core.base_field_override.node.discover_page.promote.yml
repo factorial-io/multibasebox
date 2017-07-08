@@ -1,0 +1,22 @@
+uuid: 040fed67-c81f-47d1-a185-bc10b2160465
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.discover_page
+id: node.discover_page.promote
+field_name: promote
+entity_type: node
+bundle: discover_page
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

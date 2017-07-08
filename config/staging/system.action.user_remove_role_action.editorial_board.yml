@@ -1,0 +1,14 @@
+uuid: 549195b6-56bc-4e72-a5ff-ac707ed44e91
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.editorial_board
+  module:
+    - user
+id: user_remove_role_action.editorial_board
+label: 'Remove the Editorial board role from the selected users'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: editorial_board

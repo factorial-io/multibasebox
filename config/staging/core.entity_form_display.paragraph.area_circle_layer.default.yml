@@ -1,0 +1,35 @@
+uuid: fde7e4a3-01a6-4a61-b22e-f7159769f924
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.area_circle_layer.field_image
+    - field.field.paragraph.area_circle_layer.field_module_reference
+    - image.style.thumbnail
+    - paragraphs.paragraphs_type.area_circle_layer
+  module:
+    - image
+id: paragraph.area_circle_layer.default
+targetEntityType: paragraph
+bundle: area_circle_layer
+mode: default
+content:
+  field_image:
+    weight: 0
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+  field_module_reference:
+    weight: 1
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+hidden:
+  created: true
+  status: true
+  uid: true

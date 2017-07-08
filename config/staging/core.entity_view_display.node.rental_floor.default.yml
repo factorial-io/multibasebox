@@ -1,0 +1,90 @@
+uuid: 3fff0a46-f121-424b-8715-fc0df9c3faed
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.rental_floor.field_efficiency
+    - field.field.node.rental_floor.field_floor_data
+    - field.field.node.rental_floor.field_house
+    - field.field.node.rental_floor.field_image
+    - field.field.node.rental_floor.field_overlay_image
+    - field.field.node.rental_floor.field_pdf
+    - field.field.node.rental_floor.field_position
+    - field.field.node.rental_floor.field_workplaces
+    - node.type.rental_floor
+    - responsive_image.styles.wide
+  module:
+    - entity_reference_revisions
+    - file
+    - responsive_image
+    - user
+id: node.rental_floor.default
+targetEntityType: node
+bundle: rental_floor
+mode: default
+content:
+  field_efficiency:
+    weight: 106
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_floor_data:
+    type: entity_reference_revisions_entity_view
+    weight: 103
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+  field_house:
+    weight: 102
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_image:
+    weight: 107
+    label: above
+    settings:
+      responsive_image_style: wide
+      image_link: ''
+    third_party_settings: {  }
+    type: responsive_image
+  field_overlay_image:
+    weight: 108
+    label: above
+    settings:
+      responsive_image_style: wide
+      image_link: ''
+    third_party_settings: {  }
+    type: responsive_image
+  field_pdf:
+    weight: 104
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: file_default
+  field_position:
+    weight: 109
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+  field_workplaces:
+    weight: 105
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  langcode: true

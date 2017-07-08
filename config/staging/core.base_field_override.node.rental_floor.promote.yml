@@ -1,0 +1,22 @@
+uuid: bcd0eeae-f6a0-4c39-a665-347c20559de2
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.rental_floor
+id: node.rental_floor.promote
+field_name: promote
+entity_type: node
+bundle: rental_floor
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

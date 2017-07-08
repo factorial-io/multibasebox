@@ -1,0 +1,57 @@
+uuid: d0670d74-2e54-41fb-b3ec-d464650c7451
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.discover_page.field_page
+    - node.type.discover_page
+  module:
+    - paragraphs
+    - path
+id: node.discover_page.default
+targetEntityType: node
+bundle: discover_page
+mode: default
+content:
+  field_page:
+    type: entity_reference_paragraphs
+    weight: 5
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: closed
+      add_mode: dropdown
+      form_display_mode: default
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+  promote:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 2
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 3
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  translation:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  langcode: true
+  uid: true

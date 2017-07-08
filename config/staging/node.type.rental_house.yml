@@ -1,0 +1,17 @@
+uuid: 45de0886-a9bb-4275-9c55-b8a9abab000c
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Rental House'
+type: rental_house
+description: 'Belongs to rental overview'
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: false
