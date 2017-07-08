@@ -19,9 +19,6 @@ dockerKeyFile: ./_tools/ssh-keys/docker-root-key
 dockerAuthorizedKeyFile: ./_tools/ssh-keys/authorized_keys
 dockerKnownHostsFile: ./_tools/ssh-keys/known_hosts
 
-configurationManagement:
-  staging: []
-
 repository: ssh://git@source.factorial.io:2222/soliddd/the-circle.git
 
 excludeFiles:
