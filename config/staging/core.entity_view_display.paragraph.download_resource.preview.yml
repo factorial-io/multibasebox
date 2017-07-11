@@ -24,4 +24,7 @@ content:
     third_party_settings: {  }
     type: image
 hidden:
+  field_high_res_image_download: true
   field_pdf: true
+  field_rgb_image_download: true
+  field_text: true
