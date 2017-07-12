@@ -1,9 +1,9 @@
 import $ from 'jquery'
 import getGrid, {checkForLoad} from '../components/grid'
 
-const loadMoreSelect = '[data-downloads-view] [data-load-more]'
+const loadMoreSelect = '[data-download-view] [data-load-more]'
 const $loadMore = $(loadMoreSelect)
-let $realPager = $('[data-downloads-view] [data-pager]')
+let $realPager = $('[data-download-view] [data-pager]')
 
 const getNextUrl = ($pager) => {
   return $pager.find('[rel=next]').attr('href')
@@ -43,7 +43,7 @@ $(document).on('click', loadMoreSelect, (e) => {
   }
 })
 
-$(document).on('click', '.downloads-teaser .article-teaser', (event) => {
+$(document).on('click', '.download-teaser .article-teaser', (event) => {
   event.preventDefault()
   let url = $(event.currentTarget).find('h3 a').attr('href')
   window.location = url
