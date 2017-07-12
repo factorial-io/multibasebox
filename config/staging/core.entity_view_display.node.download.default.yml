@@ -27,7 +27,7 @@ content:
     weight: 2
     label: hidden
     settings:
-      view_mode: slider
+      view_mode: default
       link: ''
     third_party_settings: {  }
 hidden:

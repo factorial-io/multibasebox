@@ -10,10 +10,9 @@ dependencies:
     - field.field.paragraph.download_resource.field_rgb_image_download
     - field.field.paragraph.download_resource.field_text
     - paragraphs.paragraphs_type.download_resource
-    - responsive_image.styles.narrow
   module:
     - file
-    - responsive_image
+    - image
     - text
 id: paragraph.download_resource.slider
 targetEntityType: paragraph
@@ -30,10 +29,10 @@ content:
     weight: 0
     label: hidden
     settings:
-      responsive_image_style: narrow
       image_link: ''
+      image_style: ''
     third_party_settings: {  }
-    type: responsive_image
+    type: image
   field_pdf:
     type: file_url_plain
     weight: 3
