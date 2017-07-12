@@ -1,0 +1,29 @@
+<article class="download-article">
+
+  <div class="download-article__back">
+    <a href="{{ path('view.download.page_1') }}">
+      <div class="download-article__back-btn"><span></span></div>
+      <div class="download-article__back-text">{{'Back to all Downloads'|t}}</div>
+    </a>
+  </div>
+
+  <div class="download-article__row">
+    <div class="download-article__col">
+      <header class="download-article__header">
+        <h2 class="download-article__label">{{ label }}</h2>
+        <p class="download-article__body">{{ content.body }}</p>
+      </header>
+      <div class="download-article__content download-slidershow">
+        <div class="download-slidershow-wrapper">
+          {{ content.field_download_resource }}
+        </div>
+        <div class="download-slidershow-buttons">
+          <div class="download-slidershow download-slidershow--prev"></div>
+          <div class="download-slidershow download-slidershow--next"></div>
+        </div>
+        <div class="download-slidershow-pagination"></div>
+      </div>
+    </div>
+  </div>
+
+</article>
