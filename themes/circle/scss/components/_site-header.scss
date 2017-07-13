@@ -58,7 +58,7 @@
 
   .menu--header-meta {
     @extend .col;
-    @extend .offset-xl-1;
+    @extend .offset-xl-0;
     @extend .hidden-sm-down;
     padding-left: 0;
     ul {
@@ -71,6 +71,7 @@
     }
 
     a {
+      padding: 0 0.8rem;
       &:hover {
         color: $gray-lighter;
       }

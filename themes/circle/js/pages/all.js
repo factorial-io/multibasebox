@@ -11,6 +11,6 @@ import '../components/map'
 import '../components/totop'
 import '../components/video'
 import '../components/contact'
-import '../components/downloadSlider'
+import '../components/slidershow'
 
 import '../utils/ieFixes'

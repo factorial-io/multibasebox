@@ -1,3 +1,9 @@
+{% set slides = [] %}
 {% for item in items %}
-  <div class="download-slidershow-slide">{{ item.content }}</div>
+  {% set slides = slides|merge([item.content]) %}
 {% endfor %}
+{% include "@circle/partials/slidershow.html.twig" with {
+  "slides": slides,
+  "has_buttons": true,
+  "has_pagination": false
+}%}

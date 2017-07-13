@@ -1,0 +1,72 @@
+.slidershow-container {
+  position: relative;
+  z-index: 1;
+  margin-right: auto;
+  margin-left: auto;
+  overflow: hidden;
+}
+
+.slidershow-wrapper {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transform: translate3d(0, 0, 0);
+  box-sizing: content-box;
+  transition-property: transform;
+}
+
+.slidershow-slide {
+  position: relative;
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.slidershow-button {
+  $size: 40px;
+  @extend .btn;
+  @extend .btn-primary;
+  width: $size;
+  height: $size;
+  line-height: $size;
+  padding: 0;
+  text-align: center;
+  border-radius: 50%;
+  font-size: .85rem;
+  position: absolute;
+  top: 50%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  transform: translateY(-50%);
+}
+
+.slidershow-button--prev {
+  left: 0;
+}
+
+.slidershow-button--next {
+  right: 0;
+}
+
+.slidershow-button.is-disabled {
+  pointer-events: none;
+  cursor: auto;
+  opacity: .35;
+}
+
+.slidershow-pagination {
+  position: absolute;
+  left: 50%;
+  z-index: 10;
+  display: none;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  transform: translateX(-50%);
+}
