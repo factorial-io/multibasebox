@@ -55,6 +55,7 @@
     @extend .col;
     @extend .col-md-6;
     @extend .offset-md-3;
+    box-shadow: 0 0 40px #ccc;
   }
 
   &__header {
@@ -64,6 +65,7 @@
   &__label {
     font-size: $fontsize-subtitle;
     letter-spacing: $letterspacing-narrow;
+    margin-top: $headings-margin-bottom;
   }
 
   &__body {
@@ -121,6 +123,37 @@
     li {
       @extend .list-inline-item;
       font-size: $fontsize-subtitle;
+    }
+  }
+
+  .slidershow-button {
+    top: 30%;
+  }
+
+  .download-resource {
+    position: relative;
+
+    &__text {
+      @extend .mt-3;
+    }
+
+    &__downloads {
+      margin-top: $headings-margin-bottom;
+      display: flex;
+
+      a {
+        margin-bottom: $headings-margin-bottom;
+        width: 100%;
+        display: flex;
+      }
+
+      @include media-breakpoint-down(md) {
+        display: block;
+
+        a {
+          display: block;
+        }
+      }
     }
   }
 }

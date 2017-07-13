@@ -4,6 +4,6 @@
 {% endfor %}
 {% include "@circle/partials/slidershow.html.twig" with {
   "slides": slides,
-  "has_buttons": true,
+  "has_buttons": slides|length > 1 ? true: false,
   "has_pagination": false
 }%}
