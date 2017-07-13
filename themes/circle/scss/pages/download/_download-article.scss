@@ -55,7 +55,6 @@
     @extend .col;
     @extend .col-md-6;
     @extend .offset-md-3;
-    box-shadow: 0 0 40px #ccc;
   }
 
   &__header {
@@ -125,6 +124,11 @@
       font-size: $fontsize-subtitle;
     }
   }
+  
+  .slidershow-container {
+    box-shadow: 0 0 40px #ccc;
+    margin-bottom: 1.25rem;
+  }
 
   .slidershow-button {
     top: 30%;
@@ -135,11 +139,13 @@
 
     &__text {
       @extend .mt-3;
+      padding: 0 1.25rem;
     }
 
     &__downloads {
       margin-top: $headings-margin-bottom;
       display: flex;
+      padding: 0 1.25rem;
 
       a {
         margin-bottom: $headings-margin-bottom;

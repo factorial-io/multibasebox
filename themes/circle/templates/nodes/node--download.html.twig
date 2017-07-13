@@ -16,6 +16,13 @@
       <div class="download-article__content download-slidershow">
         {{ content.field_download_resource }}
       </div>
+      <footer class="download-article__footer">
+        {% include "@circle/partials/social_share.html.twig" with {
+          "share_headline": 'Download teilen'|t,
+          "label": node.label,
+          "url": url('<current>')['#markup']
+        }%}
+      </footer>
     </div>
   </div>
 
