@@ -1,0 +1,24 @@
+uuid: ebe5ffef-b7cf-42ba-ad00-62c7d4fc8779
+langcode: de
+status: true
+dependencies:
+  config:
+    - system.menu.header-meta
+  module:
+    - system
+  theme:
+    - circle
+id: headermeta
+theme: circle
+region: header
+weight: 0
+provider: null
+plugin: 'system_menu_block:header-meta'
+settings:
+  id: 'system_menu_block:header-meta'
+  label: 'Header Meta'
+  provider: system
+  label_display: '0'
+  level: 1
+  depth: 0
+visibility: {  }

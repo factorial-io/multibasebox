@@ -1,0 +1,22 @@
+uuid: bb21356c-a6fa-4754-a37e-05ed9f47fc58
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.single_vimeo_video.field_vimeo_id
+    - paragraphs.paragraphs_type.single_vimeo_video
+id: paragraph.single_vimeo_video.default
+targetEntityType: paragraph
+bundle: single_vimeo_video
+mode: default
+content:
+  field_vimeo_id:
+    weight: 0
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+hidden:
+  created: true
+  uid: true

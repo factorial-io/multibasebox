@@ -1,0 +1,64 @@
+uuid: 2b60276a-f376-4a2f-8803-7c031f48557a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.vision_page.field_blocks_below
+    - field.field.node.vision_page.field_blocks_middle
+    - field.field.node.vision_page.field_image
+    - field.field.node.vision_page.field_other_modules
+    - field.field.node.vision_page.field_text_blocks
+    - node.type.vision_page
+    - responsive_image.styles.wide
+  module:
+    - entity_reference_revisions
+    - responsive_image
+    - user
+id: node.vision_page.default
+targetEntityType: node
+bundle: vision_page
+mode: default
+content:
+  field_blocks_below:
+    type: entity_reference_revisions_entity_view
+    weight: 3
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+  field_blocks_middle:
+    type: entity_reference_revisions_entity_view
+    weight: 2
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+  field_image:
+    weight: 0
+    label: above
+    settings:
+      responsive_image_style: wide
+      image_link: ''
+    third_party_settings: {  }
+    type: responsive_image
+  field_other_modules:
+    weight: 4
+    label: above
+    settings:
+      view_mode: teaser
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+  field_text_blocks:
+    weight: 1
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+hidden:
+  langcode: true
+  links: true

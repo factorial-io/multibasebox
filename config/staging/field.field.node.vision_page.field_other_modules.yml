@@ -1,0 +1,30 @@
+uuid: b2d242ec-0571-4a00-b187-caeebb10bc64
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_other_modules
+    - node.type.module
+    - node.type.rental_overview
+    - node.type.vision_page
+id: node.vision_page.field_other_modules
+field_name: field_other_modules
+entity_type: node
+bundle: vision_page
+label: 'Other Content'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      module: module
+      rental_overview: rental_overview
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: module
+field_type: entity_reference

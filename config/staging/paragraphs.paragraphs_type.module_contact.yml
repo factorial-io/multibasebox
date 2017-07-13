@@ -1,0 +1,6 @@
+uuid: 8c67e079-d4c6-4a3b-b099-866ab3b42cad
+langcode: en
+status: true
+dependencies: {  }
+id: module_contact
+label: 'Module Contact'

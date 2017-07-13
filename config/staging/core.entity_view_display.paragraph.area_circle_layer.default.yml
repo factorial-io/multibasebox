@@ -1,0 +1,33 @@
+uuid: ed142333-bf5b-4801-a2be-6c5e04b6466c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.area_circle_layer.field_image
+    - field.field.paragraph.area_circle_layer.field_module_reference
+    - paragraphs.paragraphs_type.area_circle_layer
+    - responsive_image.styles.wide
+  module:
+    - responsive_image
+id: paragraph.area_circle_layer.default
+targetEntityType: paragraph
+bundle: area_circle_layer
+mode: default
+content:
+  field_image:
+    weight: 0
+    label: above
+    settings:
+      responsive_image_style: wide
+      image_link: ''
+    third_party_settings: {  }
+    type: responsive_image
+  field_module_reference:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: entity_reference_entity_id
+hidden:
+  created: true
+  uid: true

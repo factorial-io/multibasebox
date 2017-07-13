@@ -1,0 +1,27 @@
+uuid: db52c191-4f9d-40dc-b34a-e339c21e4ed4
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.rental_house.body
+    - node.type.rental_house
+  module:
+    - text
+    - user
+id: node.rental_house.teaser
+targetEntityType: node
+bundle: rental_house
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+  links:
+    weight: 100
+hidden:
+  langcode: true

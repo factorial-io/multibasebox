@@ -1,0 +1,33 @@
+uuid: 4a4b7d4f-fb49-4402-a64b-7fd4e23c65ce
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.image_slider.field_headline
+    - field.field.paragraph.image_slider.field_images
+    - paragraphs.paragraphs_type.image_slider
+  module:
+    - image
+    - text
+id: paragraph.image_slider.default
+targetEntityType: paragraph
+bundle: image_slider
+mode: default
+content:
+  field_headline:
+    weight: 0
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+  field_images:
+    weight: 1
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+hidden:
+  created: true
+  uid: true

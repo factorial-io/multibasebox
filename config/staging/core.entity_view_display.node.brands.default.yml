@@ -1,0 +1,45 @@
+uuid: 00fe3382-5f38-44a7-bcfe-bbbe7e8f39e4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.brands.field_brands
+    - field.field.node.brands.field_sold_space
+    - field.field.node.brands.field_total_space
+    - node.type.brands
+  module:
+    - image
+    - user
+id: node.brands.default
+targetEntityType: node
+bundle: brands
+mode: default
+content:
+  field_brands:
+    weight: 101
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+  field_sold_space:
+    weight: 102
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+  field_total_space:
+    weight: 103
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+  links:
+    weight: 100
+hidden:
+  langcode: true

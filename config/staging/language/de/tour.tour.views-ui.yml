@@ -1,0 +1,22 @@
+tips:
+  views-main:
+    body: 'Konfiguration anzeigen oder bearbeiten.'
+  views-ui-displays:
+    label: 'Anzeigen in dieser Ansicht'
+  views-ui-format:
+    label: Ausgabeformat
+  views-ui-fields:
+    label: Felder
+    body: 'Wenn diese Ansicht Felder verwendet, so werden sie hier aufgelistet. Sie können auf ein Feld klicken um es zu konfigurieren.'
+  views-ui-filter:
+    label: 'Ansicht filtern'
+  views-ui-filter-operations:
+    label: Filteraktionen
+    body: 'Filter hinzufügen, umsortieren oder entfernen.'
+  views-ui-sorts:
+    label: Sortierkriterium
+  views-ui-sorts-operations:
+    label: Sortieraktionen
+    body: 'Sortierregeln hinzufügen, umsortieren oder entfernen.'
+  views-ui-preview:
+    label: Vorschau

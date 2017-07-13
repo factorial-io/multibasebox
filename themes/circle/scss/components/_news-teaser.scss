@@ -10,6 +10,33 @@
     }
   }
 
+  .bef-links {
+    display: block;
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 4%;
+
+    > div {
+      display: inline-block;
+
+      a {
+        padding: $font-size-base $font-size-base*3;
+        border: 1px solid $gray-lighter;
+        background-color: $white;
+        font-family: $headings-font-family;
+      }
+
+      &.bef-link-active,
+      &:hover {
+        a {
+          color: $white;
+          border-color: $black;
+          background-color: $black;
+        }
+      }
+    }
+  }
+
   .article-teaser {
     @extend .card;
     $box-shadow-width: 40px;

@@ -1,0 +1,16 @@
+uuid: 94c9e252-cb1b-4117-b54d-e99b9562f71e
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.image_mosaic_part
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+id: paragraph.image_mosaic_part
+target_entity_type_id: paragraph
+target_bundle: image_mosaic_part
+default_langcode: site_default
+language_alterable: true

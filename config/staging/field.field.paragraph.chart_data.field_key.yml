@@ -1,0 +1,19 @@
+uuid: 25832762-6cad-4b4b-80df-6b2c8018ebb6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_key
+    - paragraphs.paragraphs_type.chart_data
+id: paragraph.chart_data.field_key
+field_name: field_key
+entity_type: paragraph
+bundle: chart_data
+label: Key
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,27 @@
+uuid: 00bc3cc8-73bd-4c14-86cc-03f42e2409db
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_pdf
+    - node.type.rental_floor
+  module:
+    - file
+id: node.rental_floor.field_pdf
+field_name: field_pdf
+entity_type: node
+bundle: rental_floor
+label: PDF
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: pdf
+  max_filesize: ''
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

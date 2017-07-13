@@ -1,5 +1,6 @@
 name: the_circle
 key: SP
+uuid: e358a210-8579-4501-b413-06a8e82a6b45
 
 repository: ssh://git@source.factorial.io:2222/soliddd/the-circle.git
 
@@ -17,9 +18,6 @@ needs:
 dockerKeyFile: ./_tools/ssh-keys/docker-root-key
 dockerAuthorizedKeyFile: ./_tools/ssh-keys/authorized_keys
 dockerKnownHostsFile: ./_tools/ssh-keys/known_hosts
-
-configurationManagement:
-  staging: []
 
 repository: ssh://git@source.factorial.io:2222/soliddd/the-circle.git
 

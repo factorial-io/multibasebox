@@ -1,0 +1,20 @@
+uuid: 7294d280-caf2-4a42-bbfd-56e98605f2ba
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.area_circle_layer
+id: paragraph.area_circle_layer.uid
+field_name: uid
+entity_type: paragraph
+bundle: area_circle_layer
+label: 'Authored by'
+description: 'The user ID of the paragraphs author.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: 'Drupal\paragraphs\Entity\Paragraph::getCurrentUserId'
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

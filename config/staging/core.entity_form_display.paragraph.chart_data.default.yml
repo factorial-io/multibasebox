@@ -1,0 +1,47 @@
+uuid: 0117f979-9980-480d-a805-ce420ff6d1f7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.chart_data.field_key
+    - field.field.paragraph.chart_data.field_name
+    - field.field.paragraph.chart_data.field_svg_icon
+    - field.field.paragraph.chart_data.field_value
+    - paragraphs.paragraphs_type.chart_data
+  module:
+    - file
+id: paragraph.chart_data.default
+targetEntityType: paragraph
+bundle: chart_data
+mode: default
+content:
+  field_key:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_name:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_svg_icon:
+    weight: 3
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+    type: file_generic
+  field_value:
+    weight: 2
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+hidden:
+  created: true
+  status: true
+  uid: true

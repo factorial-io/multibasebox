@@ -1,0 +1,23 @@
+uuid: 8c7e8d0c-4008-40a9-ba27-1e334e05ca7f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_show_brands
+    - paragraphs.paragraphs_type.module_contact
+id: paragraph.module_contact.field_show_brands
+field_name: field_show_brands
+entity_type: paragraph
+bundle: module_contact
+label: 'Show Brands'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: Show
+  off_label: 'Off'
+field_type: boolean

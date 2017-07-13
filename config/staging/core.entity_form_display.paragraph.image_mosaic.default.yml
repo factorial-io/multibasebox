@@ -1,0 +1,28 @@
+uuid: 688e6519-17fb-44a1-bad4-6bd2cb0cf42e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.image_mosaic.field_mosaic_parts
+    - paragraphs.paragraphs_type.image_mosaic
+  module:
+    - paragraphs
+id: paragraph.image_mosaic.default
+targetEntityType: paragraph
+bundle: image_mosaic
+mode: default
+content:
+  field_mosaic_parts:
+    type: entity_reference_paragraphs
+    weight: 0
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true

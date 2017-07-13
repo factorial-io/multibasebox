@@ -1,0 +1,20 @@
+uuid: f97899e2-7ff8-4d44-b0a0-0d164754f7d7
+langcode: en
+status: true
+dependencies: {  }
+name: CircleText
+format: circletext
+weight: -10
+filters:
+  filter_html_escape:
+    id: filter_html_escape
+    provider: filter
+    status: true
+    weight: -10
+    settings: {  }
+  filter_autop:
+    id: filter_autop
+    provider: filter
+    status: true
+    weight: 0
+    settings: {  }

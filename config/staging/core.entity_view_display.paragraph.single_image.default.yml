@@ -1,0 +1,47 @@
+uuid: 4c1d592e-dcc1-46f1-9326-db28fba403c7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.single_image.field_button_link
+    - field.field.paragraph.single_image.field_image
+    - field.field.paragraph.single_image.field_svg
+    - paragraphs.paragraphs_type.single_image
+    - responsive_image.styles.wide
+  module:
+    - file
+    - link
+    - responsive_image
+id: paragraph.single_image.default
+targetEntityType: paragraph
+bundle: single_image
+mode: default
+content:
+  field_button_link:
+    weight: 2
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+  field_image:
+    weight: 0
+    label: above
+    settings:
+      responsive_image_style: wide
+      image_link: ''
+    third_party_settings: {  }
+    type: responsive_image
+  field_svg:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: file_default
+hidden:
+  created: true
+  uid: true

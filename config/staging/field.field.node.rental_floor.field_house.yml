@@ -1,0 +1,28 @@
+uuid: 454c3219-d8c9-4f14-8e25-018056d52957
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_house
+    - node.type.rental_floor
+    - node.type.rental_house
+id: node.rental_floor.field_house
+field_name: field_house
+entity_type: node
+bundle: rental_floor
+label: House
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      rental_house: rental_house
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

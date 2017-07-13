@@ -1,0 +1,104 @@
+uuid: 82cd1fe5-c3bb-4414-8403-da702abadaec
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.rental_house.body
+    - field.field.node.rental_house.field_belongs_to_overview
+    - field.field.node.rental_house.field_blocks_below
+    - field.field.node.rental_house.field_contact
+    - field.field.node.rental_house.field_email
+    - field.field.node.rental_house.field_floors
+    - field.field.node.rental_house.field_house_svg
+    - field.field.node.rental_house.field_image
+    - field.field.node.rental_house.field_layer
+    - field.field.node.rental_house.field_vcard
+    - node.type.rental_house
+    - responsive_image.styles.wide
+  module:
+    - entity_reference_revisions
+    - file
+    - responsive_image
+    - text
+    - user
+id: node.rental_house.default
+targetEntityType: node
+bundle: rental_house
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+  field_belongs_to_overview:
+    weight: 102
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_blocks_below:
+    weight: 110
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+  field_contact:
+    weight: 106
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+  field_email:
+    weight: 108
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_floors:
+    type: entity_reference_revisions_entity_view
+    weight: 105
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+  field_house_svg:
+    weight: 109
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: file_default
+  field_image:
+    weight: 104
+    label: above
+    settings:
+      responsive_image_style: wide
+      image_link: ''
+    third_party_settings: {  }
+    type: responsive_image
+  field_layer:
+    type: entity_reference_revisions_entity_view
+    weight: 103
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+  field_vcard:
+    weight: 107
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: file_default
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  langcode: true

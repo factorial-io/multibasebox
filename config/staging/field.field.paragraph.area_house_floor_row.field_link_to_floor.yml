@@ -1,0 +1,28 @@
+uuid: 1f068ef6-f503-4d65-9415-53d3b700d770
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_link_to_floor
+    - node.type.rental_floor
+    - paragraphs.paragraphs_type.area_house_floor_row
+id: paragraph.area_house_floor_row.field_link_to_floor
+field_name: field_link_to_floor
+entity_type: paragraph
+bundle: area_house_floor_row
+label: 'Link to floor'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      rental_floor: rental_floor
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

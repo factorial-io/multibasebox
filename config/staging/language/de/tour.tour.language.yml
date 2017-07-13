@@ -1,0 +1,8 @@
+label: Sprache
+tips:
+  language-overview:
+    label: Sprachen
+  language-default:
+    label: 'Eine Sprache als Standard setzen'
+  language-continue:
+    label: 'Fortsetzen auf'

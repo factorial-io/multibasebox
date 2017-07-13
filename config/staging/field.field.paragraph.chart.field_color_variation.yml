@@ -1,0 +1,23 @@
+uuid: 9b91323b-5c91-4e54-b8ab-1751f73aab31
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_color_variation
+    - paragraphs.paragraphs_type.chart
+  module:
+    - options
+id: paragraph.chart.field_color_variation
+field_name: field_color_variation
+entity_type: paragraph
+bundle: chart
+label: 'Color Variation'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: clean
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -1,0 +1,23 @@
+uuid: 21d0c9f1-3986-45f3-a52d-ee6f47a190c8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sold_space
+    - node.type.brands
+id: node.brands.field_sold_space
+field_name: field_sold_space
+entity_type: node
+bundle: brands
+label: 'Sold Space'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

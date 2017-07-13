@@ -1,0 +1,19 @@
+uuid: db960f21-146d-4cb0-9698-5342dc442cbf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_efficiency
+    - node.type.rental_floor
+id: node.rental_floor.field_efficiency
+field_name: field_efficiency
+entity_type: node
+bundle: rental_floor
+label: Efficiency
+description: 'm<sup>2</sup>/AP added automatically'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

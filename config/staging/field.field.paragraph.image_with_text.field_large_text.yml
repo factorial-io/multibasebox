@@ -1,0 +1,23 @@
+uuid: 6df5b98d-6720-42ec-9f6a-ce961e048376
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_large_text
+    - paragraphs.paragraphs_type.image_with_text
+id: paragraph.image_with_text.field_large_text
+field_name: field_large_text
+entity_type: paragraph
+bundle: image_with_text
+label: 'Large Text'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: Large
+  off_label: Small
+field_type: boolean

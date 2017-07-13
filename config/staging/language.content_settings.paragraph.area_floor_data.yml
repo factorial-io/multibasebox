@@ -1,0 +1,16 @@
+uuid: 7fe0e4ac-dacd-44b7-a19c-ed588a32516f
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.area_floor_data
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+id: paragraph.area_floor_data
+target_entity_type_id: paragraph
+target_bundle: area_floor_data
+default_langcode: site_default
+language_alterable: true

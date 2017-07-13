@@ -1,0 +1,42 @@
+uuid: f6d31b71-29e9-47ea-ae5c-3ba65557f8d9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.video_loop_with_text.field_headline
+    - field.field.paragraph.video_loop_with_text.field_image
+    - field.field.paragraph.video_loop_with_text.field_video_file
+    - image.style.max_2600x2600
+    - paragraphs.paragraphs_type.video_loop_with_text
+  module:
+    - file
+    - image
+    - text
+id: paragraph.video_loop_with_text.default
+targetEntityType: paragraph
+bundle: video_loop_with_text
+mode: default
+content:
+  field_headline:
+    weight: 0
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+  field_image:
+    weight: 2
+    label: above
+    settings:
+      image_style: max_2600x2600
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+  field_video_file:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: file_url_plain
+hidden:
+  created: true
+  uid: true

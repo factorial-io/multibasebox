@@ -1,0 +1,6 @@
+uuid: 341a36d1-e97f-4b6a-96d9-0b21a6740f83
+langcode: en
+status: true
+dependencies: {  }
+id: text_module
+label: 'Text Module'

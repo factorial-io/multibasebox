@@ -1,0 +1,20 @@
+uuid: 098f6a56-23ab-4f61-910e-ced7cd47189d
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.single_vimeo_video
+id: paragraph.single_vimeo_video.uid
+field_name: uid
+entity_type: paragraph
+bundle: single_vimeo_video
+label: 'Authored by'
+description: 'The user ID of the paragraphs author.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: 'Drupal\paragraphs\Entity\Paragraph::getCurrentUserId'
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

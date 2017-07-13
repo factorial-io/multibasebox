@@ -1,0 +1,21 @@
+uuid: 251d1382-d847-4e5d-9ffa-250e4d124b04
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_text
+    - paragraphs.paragraphs_type.image_mosaic_part
+  module:
+    - text
+id: paragraph.image_mosaic_part.field_text
+field_name: field_text
+entity_type: paragraph
+bundle: image_mosaic_part
+label: Text
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

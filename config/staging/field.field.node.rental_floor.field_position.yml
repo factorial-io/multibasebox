@@ -1,0 +1,23 @@
+uuid: 7d2b8921-827a-451b-9c8e-aee4e44090cc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_position
+    - node.type.rental_floor
+id: node.rental_floor.field_position
+field_name: field_position
+entity_type: node
+bundle: rental_floor
+label: Position
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

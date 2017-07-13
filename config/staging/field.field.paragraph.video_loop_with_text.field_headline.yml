@@ -1,0 +1,21 @@
+uuid: d232f5e6-1179-4236-a4c4-23ef63ea1058
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_headline
+    - paragraphs.paragraphs_type.video_loop_with_text
+  module:
+    - text
+id: paragraph.video_loop_with_text.field_headline
+field_name: field_headline
+entity_type: paragraph
+bundle: video_loop_with_text
+label: Headline
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

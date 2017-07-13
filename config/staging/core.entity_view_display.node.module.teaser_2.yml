@@ -1,0 +1,51 @@
+uuid: 57044772-c11b-483a-97ee-8f457381ae14
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser_2
+    - field.field.node.module.field_color
+    - field.field.node.module.field_image
+    - field.field.node.module.field_other_modules
+    - field.field.node.module.field_teaser_text
+    - field.field.node.module.field_text_blocks
+    - node.type.module
+    - responsive_image.styles.narrow_square
+  module:
+    - options
+    - responsive_image
+    - text
+    - user
+id: node.module.teaser_2
+targetEntityType: node
+bundle: module
+mode: teaser_2
+content:
+  field_color:
+    type: list_key
+    weight: 3
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  field_image:
+    type: responsive_image
+    weight: 2
+    label: hidden
+    settings:
+      responsive_image_style: narrow_square
+      image_link: ''
+    third_party_settings: {  }
+  field_teaser_text:
+    type: text_default
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  links:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_other_modules: true
+  field_text_blocks: true
+  langcode: true

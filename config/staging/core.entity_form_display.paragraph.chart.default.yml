@@ -1,0 +1,63 @@
+uuid: fd61039f-a3fe-4cef-b1dd-4a5547a3d70e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.chart.field_chart_data
+    - field.field.paragraph.chart.field_color_variation
+    - field.field.paragraph.chart.field_headline
+    - field.field.paragraph.chart.field_picture_side
+    - field.field.paragraph.chart.field_text
+    - field.field.paragraph.chart.field_type
+    - paragraphs.paragraphs_type.chart
+  module:
+    - paragraphs
+    - text
+id: paragraph.chart.default
+targetEntityType: paragraph
+bundle: chart
+mode: default
+content:
+  field_chart_data:
+    type: entity_reference_paragraphs
+    weight: 3
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+    third_party_settings: {  }
+  field_color_variation:
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+  field_headline:
+    weight: 0
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+  field_picture_side:
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+  field_text:
+    weight: 1
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+  field_type:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+hidden:
+  created: true
+  status: true
+  uid: true

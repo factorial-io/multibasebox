@@ -1,0 +1,22 @@
+uuid: 4bd88cf1-6d1a-47f5-b8fc-3f6489f4e1e5
+langcode: en
+status: false
+dependencies:
+  theme:
+    - circle
+_core:
+  default_config_hash: X9I1OB0W3WlWtrK-CNcg6hNWwa8wficanpH8pYnDZDE
+id: circle_local_tasks
+theme: circle
+region: '-1'
+weight: -2
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  provider: core
+  label_display: '0'
+  primary: true
+  secondary: true
+visibility: {  }

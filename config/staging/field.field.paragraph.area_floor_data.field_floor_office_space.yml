@@ -1,0 +1,23 @@
+uuid: 910b3ac5-a4eb-4e15-b2c7-4c0edc19cc43
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_floor_office_space
+    - paragraphs.paragraphs_type.area_floor_data
+id: paragraph.area_floor_data.field_floor_office_space
+field_name: field_floor_office_space
+entity_type: paragraph
+bundle: area_floor_data
+label: 'Office Space'
+description: 'm<sup>2</sup> appended automatically'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: decimal

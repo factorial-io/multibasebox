@@ -1,0 +1,51 @@
+uuid: 19947500-dc42-4a5c-8ff2-91472260aa41
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.vimeo_video.field_headline
+    - field.field.paragraph.vimeo_video.field_image
+    - field.field.paragraph.vimeo_video.field_text
+    - field.field.paragraph.vimeo_video.field_vimeo_id
+    - image.style.thumbnail
+    - paragraphs.paragraphs_type.vimeo_video
+  module:
+    - image
+    - text
+id: paragraph.vimeo_video.default
+targetEntityType: paragraph
+bundle: vimeo_video
+mode: default
+content:
+  field_headline:
+    weight: 0
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+  field_image:
+    weight: 2
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+  field_text:
+    weight: 1
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+  field_vimeo_id:
+    weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+hidden:
+  created: true
+  status: true
+  uid: true

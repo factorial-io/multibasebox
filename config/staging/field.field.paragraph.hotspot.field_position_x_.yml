@@ -1,0 +1,23 @@
+uuid: f8d9546f-fd9f-45b8-8fad-c3c9d61e1ece
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_position_x_
+    - paragraphs.paragraphs_type.hotspot
+id: paragraph.hotspot.field_position_x_
+field_name: field_position_x_
+entity_type: paragraph
+bundle: hotspot
+label: 'Position X (%)'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: !!float 0
+  max: !!float 100
+  prefix: ''
+  suffix: ''
+field_type: float

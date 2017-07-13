@@ -1,0 +1,16 @@
+uuid: c8ff3721-fea9-40b5-a1f3-90da1ff7718a
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.video_loop_with_text
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+id: paragraph.video_loop_with_text
+target_entity_type_id: paragraph
+target_bundle: video_loop_with_text
+default_langcode: site_default
+language_alterable: true

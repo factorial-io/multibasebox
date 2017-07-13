@@ -1,0 +1,21 @@
+uuid: 25390c3b-3182-4916-b1e9-f85aefd6393c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_floor_state
+    - paragraphs.paragraphs_type.area_house_floor_row
+  module:
+    - options
+id: paragraph.area_house_floor_row.field_floor_state
+field_name: field_floor_state
+entity_type: paragraph
+bundle: area_house_floor_row
+label: 'Floor State'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -1,0 +1,49 @@
+uuid: e3e80659-3ee2-4159-8626-1ab8f1d34ae8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.image_with_text_discover.field_headline
+    - field.field.paragraph.image_with_text_discover.field_image
+    - field.field.paragraph.image_with_text_discover.field_label_position
+    - field.field.paragraph.image_with_text_discover.field_text
+    - paragraphs.paragraphs_type.image_with_text_discover
+    - responsive_image.styles.wide
+  module:
+    - options
+    - responsive_image
+    - text
+id: paragraph.image_with_text_discover.default
+targetEntityType: paragraph
+bundle: image_with_text_discover
+mode: default
+content:
+  field_headline:
+    weight: 2
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+  field_image:
+    weight: 0
+    label: hidden
+    settings:
+      responsive_image_style: wide
+      image_link: ''
+    third_party_settings: {  }
+    type: responsive_image
+  field_label_position:
+    weight: 3
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+  field_text:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+hidden:
+  created: true
+  uid: true
