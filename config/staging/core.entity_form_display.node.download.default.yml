@@ -37,7 +37,7 @@ content:
     settings:
       title: Paragraph
       title_plural: Paragraphs
-      edit_mode: closed
+      edit_mode: open
       add_mode: button
       form_display_mode: default
       default_paragraph_type: download_resource
