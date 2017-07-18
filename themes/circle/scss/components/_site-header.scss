@@ -71,9 +71,17 @@
     }
 
     a {
-      padding: 0 0.8rem;
+      padding: 0 0.3rem;
       &:hover {
         color: $gray-lighter;
+      }
+
+      @include media-breakpoint-up(xl) {
+        padding: 0 0.8rem;
+      }
+
+      @include media-breakpoint-down(md) {
+        padding: 0 0.2rem;
       }
     }
   }
