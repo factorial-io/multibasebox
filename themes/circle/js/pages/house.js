@@ -56,7 +56,7 @@ if ($('.page-node-type-rental-house')[0]) {
   $('[id^=H]').on('mouseover', (e) => {
     cleanFlags()
     const id = $(e.currentTarget).data('node-id')
-    $('#house-overlay g').not(e.currentTarget).addClass('inactive')
+    //$('#house-overlay g').not(e.currentTarget).addClass('inactive')
   
     if (id) {
       const title = $(`[data-drupal-link-system-path="node/${id}"]`).text()
@@ -64,7 +64,7 @@ if ($('.page-node-type-rental-house')[0]) {
     }
   }).on('mouseout', () => {
     cleanFlags()
-    $('#house-overlay g').removeClass('inactive')
+    //$('#house-overlay g').removeClass('inactive')
   }).on('mousemove', (e) => {
     if ($('.flag')[0]) {
       const offset = $('.floor-images__wrapper').offset()
