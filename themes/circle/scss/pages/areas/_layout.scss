@@ -10,6 +10,7 @@
     position: absolute;
     right: 0;
     text-align: center;
+    z-index: 100;
 
     @include media-breakpoint-up(lg) {
       left: 48%;
