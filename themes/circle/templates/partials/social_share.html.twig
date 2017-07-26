@@ -1,0 +1,17 @@
+<div class="news-article__social-share">
+  <span class="news-article__share-text">{{ share_headline }}</span>
+    <ul class="news-article__share-icons">
+      <li>
+        <a class="icon-email" href="mailto:?subject={{ label }}&body={{ url }}"></a>
+      </li>
+      <li>
+        <a data-popup-link class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ url|url_encode }}"></a>
+      </li>
+      <li>
+        <a data-popup-link class="icon-twitter" href="https://twitter.com/share?url={{ url|url_encode }}"></a>
+      </li>
+      <li>
+        <a data-popup-link class="icon-linkedin" href="https://www.linkedin.com/shareArticle?url={{ url|url_encode }}&mini=true"></a>
+      </li>
+    </ul>
+</div>

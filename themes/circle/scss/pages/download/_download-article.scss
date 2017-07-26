@@ -1,0 +1,165 @@
+.page-node-type-download {
+  .page-content-wrapper {
+    width: 100%;
+    display: block;
+  }
+}
+
+.download-article {
+  @extend .mt-6;
+  padding: 0 percentage(1/$grid-columns);
+  position: relative;
+
+  &__back {
+    margin-bottom: $spacer * 3;
+
+    @include media-breakpoint-up(md) {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    a {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &__back-btn {
+    @extend .btn;
+    @extend .btn-primary;
+    padding: 1.2rem 1.5rem;
+
+    span {
+      @extend %icon;
+      @extend .icon-arrow-left;
+    }
+  }
+
+  &__back-text {
+    @extend .ml-2;
+    text-transform: uppercase;
+    letter-spacing: $letterspacing-narrow;
+    color: $black;
+
+    @include media-breakpoint-only(md) {
+      max-width: 100px;
+    }
+  }
+
+  &__row {
+    @extend .row;
+  }
+
+  &__col {
+    @extend .col;
+    @extend .col-md-6;
+    @extend .offset-md-3;
+  }
+
+  &__header {
+    @extend .mb-4;
+  }
+
+  &__label {
+    font-size: $fontsize-subtitle;
+    letter-spacing: $letterspacing-narrow;
+    margin-top: $headings-margin-bottom;
+  }
+
+  &__body {
+    font-family: $headings-font-family;
+  }
+
+  &__content {
+    img {
+      max-width: 100%;
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  &__text {
+    @extend .mt-3;
+    @extend .mb-6;
+  }
+
+  &__footer {
+    @extend .row;
+  }
+
+  &__download {
+    @extend .col;
+    @extend .col-md-3;
+    text-transform: uppercase;
+
+    .icon-file-pdf {
+      font-size: $fontsize-subtitle;
+      position: relative;
+      top: 4px;
+      left: 6px;
+    }
+  }
+
+  &__social-share {
+    @extend .col;
+    @extend .col-md-9;
+    text-align: right;
+    margin-left: auto;
+  }
+
+  &__share-text {
+    text-transform: uppercase;
+    margin-right: 10px;
+  }
+
+  &__share-icons {
+    @extend .list-inline;
+    display: inline-block;
+    position: relative;
+    top: 5px;
+
+    li {
+      @extend .list-inline-item;
+      font-size: $fontsize-subtitle;
+    }
+  }
+  
+  .slidershow-container {
+    box-shadow: 0 0 40px #ccc;
+    margin-bottom: 1.25rem;
+  }
+
+  .slidershow-button {
+    top: 35%;
+  }
+
+  .download-resource {
+    position: relative;
+
+    &__text {
+      @extend .mt-3;
+      padding: 0 1.25rem;
+    }
+
+    &__downloads {
+      margin-top: $headings-margin-bottom;
+      display: flex;
+      padding: 0 1.25rem;
+
+      a {
+        margin-bottom: $headings-margin-bottom;
+        width: 100%;
+        display: flex;
+      }
+
+      @include media-breakpoint-down(md) {
+        display: block;
+
+        a {
+          display: block;
+        }
+      }
+    }
+  }
+}

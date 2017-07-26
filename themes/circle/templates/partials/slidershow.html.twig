@@ -1,0 +1,16 @@
+<div class="slidershow-container" data-slides-per-view="1" data-space="5">
+  <div class="slidershow-wrapper">
+    {% for slide in slides %}
+      <div class="slidershow-slide">{{ slide|raw }}</div>
+    {% endfor %}
+  </div>
+  {% if has_buttons == true %}
+  <div class="slidershow-buttons">
+    <div class="slidershow-button slidershow-button--prev"><span class="icon-arrow-left"></span></div>
+    <div class="slidershow-button slidershow-button--next"><span class="icon-arrow-right"></span></div>
+  </div>
+  {% endif %}
+  {% if has_pagination == true %}
+  <div class="slidershow-pagination"></div>
+  {% endif %}
+</div>

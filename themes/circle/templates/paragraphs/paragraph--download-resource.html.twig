@@ -1,0 +1,17 @@
+{% set download_fields = {
+    field_high_res_image_download: 'High-Res (Print)'|t,
+    field_rgb_image_download: 'High-Res (Digital)'|t,
+    field_pdf: 'Download PDF'|t
+} %}
+
+<div class="download-resource">
+  {{ content.field_image }}
+  <div class="download-resource__downloads">
+    {% for field, label in download_fields %}
+      {% if content[field]['#items'].entity.uri.value is not empty %}
+      <a class="download-resource__download_link" target="_blank" href="{{ file_url(content[field]['#items'].entity.uri.value) }}"><span class="icon-download"></span>{{ label }}</a>
+      {% endif %}
+    {% endfor %}
+  </div>
+  <div class="download-resource__text">{{ content.field_text }}</div>
+</div>

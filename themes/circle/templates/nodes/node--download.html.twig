@@ -1,0 +1,29 @@
+<article class="download-article">
+
+  <div class="download-article__back">
+    <a href="{{ path('view.download.page_1') }}">
+      <div class="download-article__back-btn"><span></span></div>
+      <div class="download-article__back-text">{{'Back to all Downloads'|t}}</div>
+    </a>
+  </div>
+
+  <div class="download-article__row">
+    <div class="download-article__col">
+      <header class="download-article__header">
+        <h2 class="download-article__label">{{ label }}</h2>
+        <div class="download-article__body">{{ content.body }}</div>
+      </header>
+      <div class="download-article__content download-slidershow">
+        {{ content.field_download_resource }}
+      </div>
+      <footer class="download-article__footer">
+        {% include "@circle/partials/social_share.html.twig" with {
+          "share_headline": 'Download teilen'|t,
+          "label": node.label,
+          "url": url('<current>')['#markup']
+        }%}
+      </footer>
+    </div>
+  </div>
+
+</article>

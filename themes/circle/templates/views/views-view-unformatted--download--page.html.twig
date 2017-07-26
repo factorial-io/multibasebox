@@ -1,0 +1,15 @@
+<div class="download-teaser">
+  <div class="grid">
+  {% for row in rows %}
+    <div class="grid__element">
+      {{ row.content }}
+    </div>
+  {% endfor %}
+  </div>
+  <div data-load-more class="load-more">
+      <p>{{'Show more Downloads'|t}}</p>
+      <a href="#">
+        <span class="icon-plus"></span>
+      </a>
+    </div>
+</div>

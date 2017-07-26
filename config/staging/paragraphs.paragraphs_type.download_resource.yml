@@ -1,0 +1,7 @@
+uuid: 236ea5c3-3b2e-4ab7-827e-799635c23a89
+langcode: en
+status: true
+dependencies: {  }
+id: download_resource
+label: 'Download Resource'
+behavior_plugins: {  }

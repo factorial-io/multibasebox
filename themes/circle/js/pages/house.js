@@ -1,6 +1,7 @@
 import Snap from 'snapsvg'
 import lazyload from '../utils/lazyload'
 import $ from 'jquery'
+import Mustache from '../utils/mustache'
 
 const syncFilterLinks = () => {
   $('[data-module-id]').each((index, el) => {
@@ -46,5 +47,28 @@ if ($('.page-node-type-rental-house')[0]) {
         }
       })
     })
+  })
+
+  const cleanFlags = () => {
+    $('.flag').remove()
+  }
+
+  $('[id^=H]').on('mouseover', (e) => {
+    cleanFlags()
+    const id = $(e.currentTarget).data('node-id')
+    //$('#house-overlay g').not(e.currentTarget).addClass('inactive')
+  
+    if (id) {
+      const title = $(`[data-drupal-link-system-path="node/${id}"]`).text()
+      $('.floor-images__wrapper').append(Mustache.render($('#house-flag').html(), {title: title}))
+    }
+  }).on('mouseout', () => {
+    cleanFlags()
+    //$('#house-overlay g').removeClass('inactive')
+  }).on('mousemove', (e) => {
+    if ($('.flag')[0]) {
+      const offset = $('.floor-images__wrapper').offset()
+      TweenLite.set($('.flag')[0], {x: e.pageX - offset.left, y: e.pageY - offset.top})
+    }
   })
 }

@@ -1,0 +1,16 @@
+uuid: f7dec3f7-9cdd-42c3-9f22-8c2afcc6869d
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.download
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+id: node.download
+target_entity_type_id: node
+target_bundle: download
+default_langcode: current_interface
+language_alterable: true
