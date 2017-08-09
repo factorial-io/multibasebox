@@ -2,6 +2,14 @@
   @extend .mt-6;
   padding: 0 percentage(1/$grid-columns);
 
+  @include media-breakpoint-down(xs) {
+    margin-top: 50px !important;
+  }
+
+  .form-actions {
+    display: none;
+  }
+
   h2 {
     text-align: center;
 
@@ -24,6 +32,12 @@
         border: 1px solid $gray-lighter;
         background-color: $white;
         font-family: $headings-font-family;
+
+        @include media-breakpoint-down(xs) {
+          margin-bottom: get-spacer(5);
+          padding: $font-size-base*0.8;
+          font-size: $font-size-base*0.8;
+        }
       }
 
       &.bef-link-active,
