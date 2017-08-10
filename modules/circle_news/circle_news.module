@@ -1,6 +1,4 @@
 <?php
-use Drupal\views\Views;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Implements hook_form_FORM_ID_alter().
