@@ -1,0 +1,6 @@
+uuid: fc5b55e2-3540-48a0-b2f5-ea0e18b4d8e8
+langcode: en
+status: true
+dependencies: {  }
+id: area_circle_layer
+label: 'Area Circle Layer'

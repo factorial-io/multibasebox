@@ -1,0 +1,92 @@
+uuid: 4827d7e0-c1ad-4638-9232-04193450c39e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.vision_page.field_blocks_below
+    - field.field.node.vision_page.field_blocks_middle
+    - field.field.node.vision_page.field_image
+    - field.field.node.vision_page.field_other_modules
+    - field.field.node.vision_page.field_text_blocks
+    - image.style.max_650x650
+    - node.type.vision_page
+  module:
+    - image
+    - paragraphs
+    - path
+id: node.vision_page.default
+targetEntityType: node
+bundle: vision_page
+mode: default
+content:
+  field_blocks_below:
+    type: entity_reference_paragraphs
+    weight: 7
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: closed
+      add_mode: dropdown
+      form_display_mode: default
+    third_party_settings: {  }
+  field_blocks_middle:
+    type: entity_reference_paragraphs
+    weight: 6
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: closed
+      add_mode: dropdown
+      form_display_mode: default
+    third_party_settings: {  }
+  field_image:
+    weight: 4
+    settings:
+      preview_image_style: max_650x650
+      progress_indicator: throbber
+    third_party_settings: {  }
+    type: image_image
+  field_other_modules:
+    weight: 8
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+  field_text_blocks:
+    weight: 5
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: closed
+      add_mode: dropdown
+      form_display_mode: default
+    third_party_settings: {  }
+    type: entity_reference_paragraphs
+  langcode:
+    type: language_select
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  translation:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  promote: true
+  sticky: true
+  uid: true

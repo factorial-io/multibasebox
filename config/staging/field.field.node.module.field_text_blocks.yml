@@ -1,0 +1,124 @@
+uuid: 56a05459-5be7-446b-b983-63d1e258823e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_text_blocks
+    - node.type.module
+    - paragraphs.paragraphs_type.chart
+    - paragraphs.paragraphs_type.image_mosaic
+    - paragraphs.paragraphs_type.image_with_text
+    - paragraphs.paragraphs_type.image_with_text_and_image
+    - paragraphs.paragraphs_type.module_contact
+    - paragraphs.paragraphs_type.panorama_view
+    - paragraphs.paragraphs_type.quote
+    - paragraphs.paragraphs_type.single_image
+    - paragraphs.paragraphs_type.single_vimeo_video
+    - paragraphs.paragraphs_type.slider
+    - paragraphs.paragraphs_type.text_module
+    - paragraphs.paragraphs_type.video_stage
+  module:
+    - entity_reference_revisions
+id: node.module.field_text_blocks
+field_name: field_text_blocks
+entity_type: node
+bundle: module
+label: 'Content Blocks'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      slider: slider
+      image_with_text: image_with_text
+      video_stage: video_stage
+      image_with_text_and_image: image_with_text_and_image
+      text_module: text_module
+      panorama_view: panorama_view
+      module_contact: module_contact
+      chart: chart
+      single_vimeo_video: single_vimeo_video
+      single_image: single_image
+      image_mosaic: image_mosaic
+      quote: quote
+    target_bundles_drag_drop:
+      hotspot:
+        weight: 8
+        enabled: false
+      hotspot_image:
+        weight: 9
+        enabled: false
+      slider:
+        enabled: true
+        weight: 10
+      image_slider:
+        weight: 10
+        enabled: false
+      image_with_text:
+        enabled: true
+        weight: 11
+      video_stage:
+        enabled: true
+        weight: 12
+      image_with_text_discover:
+        weight: 12
+        enabled: false
+      image_with_text_and_image:
+        enabled: true
+        weight: 13
+      text_module:
+        enabled: true
+        weight: 13
+      video_loop_with_text:
+        weight: 14
+        enabled: false
+      panorama_view:
+        enabled: true
+        weight: 16
+      module_contact:
+        enabled: true
+        weight: 18
+      chart:
+        enabled: true
+        weight: 19
+      chart_data:
+        weight: 20
+        enabled: false
+      circles_slider:
+        weight: 21
+        enabled: false
+      single_vimeo_video:
+        enabled: true
+        weight: 22
+      vimeo_video:
+        weight: 22
+        enabled: false
+      area_circle_layer:
+        weight: 23
+        enabled: false
+      image_mosaic_part:
+        weight: 24
+        enabled: false
+      area_floor_data:
+        weight: 24
+        enabled: false
+      area_house_floor_row:
+        weight: 25
+        enabled: false
+      single_image:
+        enabled: true
+        weight: 26
+      placeholder:
+        weight: 29
+        enabled: false
+      image_mosaic:
+        enabled: true
+        weight: 33
+      quote:
+        enabled: true
+        weight: 44
+field_type: entity_reference_revisions

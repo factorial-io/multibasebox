@@ -1,0 +1,4 @@
+label: 'Auf der Startseite'
+settings:
+  on_label: An
+  off_label: Aus

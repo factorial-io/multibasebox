@@ -1,0 +1,33 @@
+uuid: 09dff66a-0c13-44b5-96fb-ca400f867018
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_label_position
+field_name: field_label_position
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: top-left
+      label: 'Top Left'
+    -
+      value: top-right
+      label: 'Top Right'
+    -
+      value: bottom-left
+      label: 'Bottom Left'
+    -
+      value: bottom-right
+      label: 'Bottom Right'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

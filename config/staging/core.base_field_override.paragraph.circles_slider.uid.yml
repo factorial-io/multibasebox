@@ -1,0 +1,20 @@
+uuid: 7f5d012f-1e47-4ffd-9fb9-17ecac1421bd
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.circles_slider
+id: paragraph.circles_slider.uid
+field_name: uid
+entity_type: paragraph
+bundle: circles_slider
+label: 'Authored by'
+description: 'The user ID of the paragraphs author.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: 'Drupal\paragraphs\Entity\Paragraph::getCurrentUserId'
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

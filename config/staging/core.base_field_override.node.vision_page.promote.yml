@@ -1,0 +1,22 @@
+uuid: 7a1fddf7-9b83-40ae-8781-e730180ea8ad
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.vision_page
+id: node.vision_page.promote
+field_name: promote
+entity_type: node
+bundle: vision_page
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,25 @@
+uuid: 5bf0e321-009b-4b2e-8bfa-2ac9089f5187
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.image_mosaic.field_mosaic_parts
+    - paragraphs.paragraphs_type.image_mosaic
+  module:
+    - entity_reference_revisions
+id: paragraph.image_mosaic.default
+targetEntityType: paragraph
+bundle: image_mosaic
+mode: default
+content:
+  field_mosaic_parts:
+    type: entity_reference_revisions_entity_view
+    weight: 0
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  uid: true

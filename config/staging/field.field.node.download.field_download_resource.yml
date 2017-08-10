@@ -1,0 +1,105 @@
+uuid: 6d5c8eca-4f05-465f-bc27-26c924eec147
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_download_resource
+    - node.type.download
+    - paragraphs.paragraphs_type.download_resource
+  module:
+    - entity_reference_revisions
+id: node.download.field_download_resource
+field_name: field_download_resource
+entity_type: node
+bundle: download
+label: 'Download Resource'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      download_resource: download_resource
+    target_bundles_drag_drop:
+      area_circle_layer:
+        weight: 27
+        enabled: false
+      area_floor_data:
+        weight: 28
+        enabled: false
+      area_house_floor_row:
+        weight: 29
+        enabled: false
+      chart:
+        weight: 30
+        enabled: false
+      chart_data:
+        weight: 31
+        enabled: false
+      circles_slider:
+        weight: 32
+        enabled: false
+      download_resource:
+        enabled: true
+        weight: 33
+      hotspot:
+        weight: 34
+        enabled: false
+      hotspot_image:
+        weight: 35
+        enabled: false
+      image_mosaic:
+        weight: 36
+        enabled: false
+      image_mosaic_part:
+        weight: 37
+        enabled: false
+      image_slider:
+        weight: 38
+        enabled: false
+      image_with_text:
+        weight: 39
+        enabled: false
+      image_with_text_and_image:
+        weight: 40
+        enabled: false
+      image_with_text_discover:
+        weight: 41
+        enabled: false
+      module_contact:
+        weight: 42
+        enabled: false
+      panorama_view:
+        weight: 43
+        enabled: false
+      placeholder:
+        weight: 44
+        enabled: false
+      quote:
+        weight: 45
+        enabled: false
+      single_image:
+        weight: 46
+        enabled: false
+      single_vimeo_video:
+        weight: 47
+        enabled: false
+      slider:
+        weight: 48
+        enabled: false
+      text_module:
+        weight: 49
+        enabled: false
+      video_loop_with_text:
+        weight: 50
+        enabled: false
+      video_stage:
+        weight: 51
+        enabled: false
+      vimeo_video:
+        weight: 52
+        enabled: false
+field_type: entity_reference_revisions

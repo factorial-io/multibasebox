@@ -1,0 +1,16 @@
+uuid: fc71107f-648f-4a69-947d-20d2a0978c96
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.video_stage
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+id: paragraph.video_stage
+target_entity_type_id: paragraph
+target_bundle: video_stage
+default_langcode: site_default
+language_alterable: true

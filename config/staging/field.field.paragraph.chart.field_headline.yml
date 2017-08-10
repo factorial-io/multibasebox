@@ -1,0 +1,21 @@
+uuid: bc4d5c24-e5a0-438e-b5bd-64a6a2942386
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_headline
+    - paragraphs.paragraphs_type.chart
+  module:
+    - text
+id: paragraph.chart.field_headline
+field_name: field_headline
+entity_type: paragraph
+bundle: chart
+label: Headline
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

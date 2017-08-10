@@ -1,0 +1,10 @@
+uuid: a243cfe0-22eb-43cc-bbfa-2cab9dd247f2
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.area_eye_circle
+label: 'Area Eye Circle'
+targetEntityType: node
+cache: true

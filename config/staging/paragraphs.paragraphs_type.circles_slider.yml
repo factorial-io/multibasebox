@@ -1,0 +1,6 @@
+uuid: 6b5a13c6-a048-457a-9f1b-1979baace992
+langcode: en
+status: true
+dependencies: {  }
+id: circles_slider
+label: 'Circles Slider'

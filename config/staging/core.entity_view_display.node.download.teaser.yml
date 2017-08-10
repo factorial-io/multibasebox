@@ -1,0 +1,39 @@
+uuid: 3ff4c0f6-0588-4d4f-88e3-45b316bb626e
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.download.body
+    - field.field.node.download.field_download_resource
+    - field.field.node.download.field_image
+    - node.type.download
+    - responsive_image.styles.narrow
+  module:
+    - responsive_image
+    - text
+    - user
+id: node.download.teaser
+targetEntityType: node
+bundle: download
+mode: teaser
+content:
+  body:
+    type: text_trimmed
+    weight: 1
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+  field_image:
+    type: responsive_image
+    weight: 0
+    label: hidden
+    settings:
+      responsive_image_style: narrow
+      image_link: content
+    third_party_settings: {  }
+hidden:
+  field_download_resource: true
+  langcode: true
+  links: true

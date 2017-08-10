@@ -1,0 +1,22 @@
+uuid: f5df3bed-f808-445e-9537-24d8d4a2e614
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.circles_slider
+id: paragraph.circles_slider.status
+field_name: status
+entity_type: paragraph
+bundle: circles_slider
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

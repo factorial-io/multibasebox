@@ -1,0 +1,62 @@
+uuid: d8f0a251-0702-46b4-b5f4-6c51187c7be5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.area_house_floor_row.field_floor_no
+    - field.field.paragraph.area_house_floor_row.field_floor_state
+    - field.field.paragraph.area_house_floor_row.field_link_to_floor
+    - field.field.paragraph.area_house_floor_row.field_not_rentable_text
+    - field.field.paragraph.area_house_floor_row.field_office_space
+    - field.field.paragraph.area_house_floor_row.field_space_count
+    - paragraphs.paragraphs_type.area_house_floor_row
+id: paragraph.area_house_floor_row.default
+targetEntityType: paragraph
+bundle: area_house_floor_row
+mode: default
+content:
+  field_floor_no:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_floor_state:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+  field_link_to_floor:
+    weight: 5
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+  field_not_rentable_text:
+    weight: 4
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_office_space:
+    weight: 6
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_space_count:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+hidden:
+  created: true
+  status: true
+  uid: true

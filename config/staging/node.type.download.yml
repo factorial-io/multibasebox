@@ -1,0 +1,17 @@
+uuid: 744ccdc7-21c4-4079-9fd1-936d29ef6669
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: Download
+type: download
+description: ''
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: false

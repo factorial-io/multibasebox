@@ -1,0 +1,59 @@
+uuid: 156fb3d0-2dd4-42af-ac00-5a41ce613e47
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hotspot_image.field_headline
+    - field.field.paragraph.hotspot_image.field_hotspot
+    - field.field.paragraph.hotspot_image.field_image
+    - field.field.paragraph.hotspot_image.field_label_position
+    - field.field.paragraph.hotspot_image.field_text
+    - paragraphs.paragraphs_type.hotspot_image
+    - responsive_image.styles.wide
+  module:
+    - entity_reference_revisions
+    - options
+    - responsive_image
+    - text
+id: paragraph.hotspot_image.default
+targetEntityType: paragraph
+bundle: hotspot_image
+mode: default
+content:
+  field_headline:
+    weight: 2
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+  field_hotspot:
+    type: entity_reference_revisions_entity_view
+    weight: 1
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+  field_image:
+    weight: 0
+    label: hidden
+    settings:
+      responsive_image_style: wide
+      image_link: ''
+    third_party_settings: {  }
+    type: responsive_image
+  field_label_position:
+    weight: 3
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+  field_text:
+    weight: 4
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+hidden:
+  created: true
+  uid: true

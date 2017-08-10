@@ -1,0 +1,6 @@
+uuid: eb1ec389-6fcd-4821-8116-798156087c48
+langcode: en
+status: true
+dependencies: {  }
+id: area_floor_data
+label: 'Area Floor Data'

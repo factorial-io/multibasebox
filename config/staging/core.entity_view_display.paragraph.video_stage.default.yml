@@ -1,0 +1,25 @@
+uuid: 8a4f122c-ffa9-439f-8bf9-9915108e0cb3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.video_stage.field_videos
+    - paragraphs.paragraphs_type.video_stage
+  module:
+    - entity_reference_revisions
+id: paragraph.video_stage.default
+targetEntityType: paragraph
+bundle: video_stage
+mode: default
+content:
+  field_videos:
+    type: entity_reference_revisions_entity_view
+    weight: 0
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  uid: true

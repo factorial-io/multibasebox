@@ -1,0 +1,22 @@
+uuid: ad6c8b6e-7d28-45bb-bcea-e6aaece1a680
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.hotspot
+id: paragraph.hotspot.status
+field_name: status
+entity_type: paragraph
+bundle: hotspot
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

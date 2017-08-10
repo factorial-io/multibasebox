@@ -1,3 +1,21 @@
 .area-navigation {
   @extend #block-mainmenu;
+  background: none #fff;
+  
+  &.fixed {
+    position: fixed;
+    top: 0px;
+    z-index: 100;
+    width: 100%;
+    animation: smoothScroll 0.5s forwards;
+  }
+}
+
+@keyframes smoothScroll {
+  0% {
+    transform: translateY(-40px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }

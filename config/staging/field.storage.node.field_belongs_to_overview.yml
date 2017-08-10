@@ -1,0 +1,19 @@
+uuid: 135f67a1-fd8d-4f35-8323-f6ecc9499a43
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_belongs_to_overview
+field_name: field_belongs_to_overview
+entity_type: node
+type: entity_reference
+settings:
+  target_type: node
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,21 @@
+uuid: c5b63042-07ac-4cb3-ae05-f6e7b27f84cc
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.square_medium
+    - image.style.square_small
+id: narrow_square
+label: 'Narrow Square'
+image_style_mappings:
+  -
+    breakpoint_id: responsive_image.viewport_sizing
+    multiplier: 1x
+    image_mapping_type: sizes
+    image_mapping:
+      sizes: '(max-width:960px) 480px, 100vw'
+      sizes_image_styles:
+        - square_medium
+        - square_small
+breakpoint_group: responsive_image
+fallback_image_style: square_small

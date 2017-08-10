@@ -1,0 +1,6 @@
+uuid: 752406eb-cd16-40e8-89d0-4e5215c61785
+langcode: en
+status: true
+dependencies: {  }
+id: area_house_floor_row
+label: 'Area House Floor Row'

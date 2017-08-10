@@ -1,0 +1,22 @@
+uuid: d8613bcd-ec42-4c24-9c69-c77282fd088b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.rental_house
+  module:
+    - text
+id: node.rental_house.body
+field_name: body
+entity_type: node
+bundle: rental_house
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+field_type: text_with_summary

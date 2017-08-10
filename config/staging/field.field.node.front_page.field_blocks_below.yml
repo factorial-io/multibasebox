@@ -1,0 +1,112 @@
+uuid: 2c0b1a2c-88c7-4465-8a49-3a934a2dd751
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_blocks_below
+    - node.type.front_page
+    - paragraphs.paragraphs_type.chart
+    - paragraphs.paragraphs_type.circles_slider
+    - paragraphs.paragraphs_type.image_with_text
+    - paragraphs.paragraphs_type.quote
+    - paragraphs.paragraphs_type.single_image
+    - paragraphs.paragraphs_type.text_module
+  module:
+    - entity_reference_revisions
+id: node.front_page.field_blocks_below
+field_name: field_blocks_below
+entity_type: node
+bundle: front_page
+label: 'Blocks below'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      single_image: single_image
+      chart: chart
+      circles_slider: circles_slider
+      image_with_text: image_with_text
+      text_module: text_module
+      quote: quote
+    target_bundles_drag_drop:
+      area_circle_layer:
+        weight: 24
+        enabled: false
+      area_floor_data:
+        weight: 25
+        enabled: false
+      single_image:
+        enabled: true
+        weight: 26
+      area_house_floor_row:
+        weight: 26
+        enabled: false
+      chart:
+        enabled: true
+        weight: 27
+      chart_data:
+        weight: 28
+        enabled: false
+      circles_slider:
+        enabled: true
+        weight: 29
+      hotspot:
+        weight: 30
+        enabled: false
+      hotspot_image:
+        weight: 31
+        enabled: false
+      image_mosaic:
+        weight: 32
+        enabled: false
+      image_mosaic_part:
+        weight: 33
+        enabled: false
+      image_slider:
+        weight: 34
+        enabled: false
+      image_with_text:
+        enabled: true
+        weight: 35
+      image_with_text_and_image:
+        weight: 36
+        enabled: false
+      image_with_text_discover:
+        weight: 37
+        enabled: false
+      module_contact:
+        weight: 38
+        enabled: false
+      panorama_view:
+        weight: 39
+        enabled: false
+      placeholder:
+        weight: 40
+        enabled: false
+      single_vimeo_video:
+        weight: 41
+        enabled: false
+      slider:
+        weight: 42
+        enabled: false
+      text_module:
+        enabled: true
+        weight: 43
+      video_loop_with_text:
+        weight: 44
+        enabled: false
+      quote:
+        enabled: true
+        weight: 44
+      video_stage:
+        weight: 45
+        enabled: false
+      vimeo_video:
+        weight: 46
+        enabled: false
+field_type: entity_reference_revisions

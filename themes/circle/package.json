@@ -38,6 +38,7 @@
     "mustache": "^2.3.0",
     "pannellum": "https://github.com/mpetroff/pannellum/tarball/master",
     "snapsvg": "^0.5.1",
+    "swiper": "^3.4.2",
     "tether": "^1.4.0"
   },
   "browserify": {

@@ -1,0 +1,6 @@
+uuid: ec81119b-2300-4447-b855-f21a4ffd1d4a
+langcode: en
+status: true
+dependencies: {  }
+id: video_stage
+label: 'Video Stage'

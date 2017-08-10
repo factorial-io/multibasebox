@@ -1,0 +1,22 @@
+uuid: a0549286-e1df-43b7-92e1-9961ec905e83
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - circle
+_core:
+  default_config_hash: 9EoWV2Lot6FVSr50t4hoKgiz1LIXYWNG-IIPYsWxBqo
+id: circle_content
+theme: circle
+region: content
+weight: 0
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  provider: system
+  label_display: '0'
+visibility: {  }

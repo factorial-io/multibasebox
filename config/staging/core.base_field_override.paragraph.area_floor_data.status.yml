@@ -1,0 +1,22 @@
+uuid: 36b2228a-421f-4a5c-be10-f9aa50a0b44d
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.area_floor_data
+id: paragraph.area_floor_data.status
+field_name: status
+entity_type: paragraph
+bundle: area_floor_data
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

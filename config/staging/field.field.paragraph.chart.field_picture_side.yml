@@ -1,0 +1,23 @@
+uuid: 943ade0b-761a-4030-a0c0-1d52af4aa574
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_picture_side
+    - paragraphs.paragraphs_type.chart
+  module:
+    - options
+id: paragraph.chart.field_picture_side
+field_name: field_picture_side
+entity_type: paragraph
+bundle: chart
+label: 'Chart Side'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: left
+default_value_callback: ''
+settings: {  }
+field_type: list_string

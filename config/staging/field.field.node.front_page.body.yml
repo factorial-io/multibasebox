@@ -1,0 +1,22 @@
+uuid: ed85d96d-d0c0-4fd1-8d0e-82eeca944f9b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.front_page
+  module:
+    - text
+id: node.front_page.body
+field_name: body
+entity_type: node
+bundle: front_page
+label: 'Hero Body'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+field_type: text_with_summary

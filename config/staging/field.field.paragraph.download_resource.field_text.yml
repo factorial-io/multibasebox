@@ -1,0 +1,21 @@
+uuid: 7e2105c3-3209-4714-a18b-fbc990be5a9c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_text
+    - paragraphs.paragraphs_type.download_resource
+  module:
+    - text
+id: paragraph.download_resource.field_text
+field_name: field_text
+entity_type: paragraph
+bundle: download_resource
+label: Text
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

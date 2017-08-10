@@ -1,0 +1,6 @@
+uuid: 72bcd78b-f5bd-453c-acc7-5ad78d6f5762
+langcode: en
+status: true
+dependencies: {  }
+id: hotspot_image
+label: 'Hotspot Block Discover'

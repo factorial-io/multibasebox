@@ -1,0 +1,6 @@
+name: circle deploy
+type: module
+description: "Helper module to centralize all deploy-related actions"
+core: 8.x
+package: The Circle
+

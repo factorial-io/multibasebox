@@ -1,0 +1,8 @@
+uuid: 23ba2ee1-8e3b-4880-9445-40de628f8a47
+langcode: de
+status: true
+dependencies: {  }
+id: node__module
+label: 'Inhalt: Module'
+tags:
+  og_image: '[node:field_image:large:url]'

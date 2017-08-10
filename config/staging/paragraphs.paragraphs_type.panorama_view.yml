@@ -1,0 +1,6 @@
+uuid: 51d88922-73b3-4741-b64f-a876f21d69e8
+langcode: en
+status: true
+dependencies: {  }
+id: panorama_view
+label: 'Panorama View'

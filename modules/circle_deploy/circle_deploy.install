@@ -1,0 +1,33 @@
+<?php
+
+/**
+ * @file
+ * Install hooks.
+ */
+
+use Drupal\menu_link_content\Entity\MenuLinkContent;
+
+/**
+ * Implements hook_install().
+ */
+function circle_deploy_install() {
+  _circle_deploy_create_meta_downloads_menu();
+}
+
+/**
+ * Create meta downloads menu item
+ */
+function _circle_deploy_create_meta_downloads_menu() {
+  $menu_item = MenuLinkContent::create([
+    'bundle' => 'menu_link_content',
+    'langcode' => 'en',
+    'title' => 'Downloads',
+    'menu_name' => 'header-meta',
+    'link' => [['uri' => 'internal:/downloads']],
+    'weight' => 1,
+  ]);
+  $menu_item->save();
+  $menu_item_de = $menu_item->addTranslation('de');
+  $menu_item_de->title = 'Downloads';
+  $menu_item_de->save();
+}

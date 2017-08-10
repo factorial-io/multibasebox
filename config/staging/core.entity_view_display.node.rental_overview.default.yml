@@ -1,0 +1,65 @@
+uuid: 6825e864-59d0-42b2-aa1c-a4c9848f24fc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.rental_overview.body
+    - field.field.node.rental_overview.field_color
+    - field.field.node.rental_overview.field_image
+    - field.field.node.rental_overview.field_layer
+    - field.field.node.rental_overview.field_overlay_image
+    - node.type.rental_overview
+    - responsive_image.styles.wide
+  module:
+    - entity_reference_revisions
+    - options
+    - responsive_image
+    - text
+    - user
+id: node.rental_overview.default
+targetEntityType: node
+bundle: rental_overview
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+  field_color:
+    weight: 102
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+  field_image:
+    weight: 104
+    label: above
+    settings:
+      responsive_image_style: wide
+      image_link: ''
+    third_party_settings: {  }
+    type: responsive_image
+  field_layer:
+    weight: 103
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+  field_overlay_image:
+    weight: 105
+    label: above
+    settings:
+      responsive_image_style: wide
+      image_link: ''
+    third_party_settings: {  }
+    type: responsive_image
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  langcode: true

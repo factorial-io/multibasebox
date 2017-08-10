@@ -1,0 +1,16 @@
+uuid: 1bdcbd38-3b65-4892-9035-69ecea9574d7
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.image_with_text_and_image
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+id: paragraph.image_with_text_and_image
+target_entity_type_id: paragraph
+target_bundle: image_with_text_and_image
+default_langcode: site_default
+language_alterable: true

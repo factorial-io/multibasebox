@@ -1,0 +1,21 @@
+uuid: 6c662c1a-27bb-4d54-9ecc-5d98a4bcc69c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_headline
+    - paragraphs.paragraphs_type.image_mosaic_part
+  module:
+    - text
+id: paragraph.image_mosaic_part.field_headline
+field_name: field_headline
+entity_type: paragraph
+bundle: image_mosaic_part
+label: Headline
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

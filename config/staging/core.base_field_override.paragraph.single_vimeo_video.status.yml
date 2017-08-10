@@ -1,0 +1,22 @@
+uuid: 07428a1d-daaa-441a-83d4-a8ab235d91d0
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.single_vimeo_video
+id: paragraph.single_vimeo_video.status
+field_name: status
+entity_type: paragraph
+bundle: single_vimeo_video
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

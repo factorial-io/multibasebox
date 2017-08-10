@@ -1,0 +1,23 @@
+uuid: ce6123b2-f2ff-4aa9-b4be-7823aada7383
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_label_position
+    - paragraphs.paragraphs_type.image_with_text_discover
+  module:
+    - options
+id: paragraph.image_with_text_discover.field_label_position
+field_name: field_label_position
+entity_type: paragraph
+bundle: image_with_text_discover
+label: 'Label Position'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: top-left
+default_value_callback: ''
+settings: {  }
+field_type: list_string

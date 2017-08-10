@@ -1,0 +1,63 @@
+uuid: 54511b6a-bdab-49e6-97de-651ad0e5dc43
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.area_house_floor_row.field_floor_no
+    - field.field.paragraph.area_house_floor_row.field_floor_state
+    - field.field.paragraph.area_house_floor_row.field_link_to_floor
+    - field.field.paragraph.area_house_floor_row.field_not_rentable_text
+    - field.field.paragraph.area_house_floor_row.field_office_space
+    - field.field.paragraph.area_house_floor_row.field_space_count
+    - paragraphs.paragraphs_type.area_house_floor_row
+  module:
+    - options
+id: paragraph.area_house_floor_row.default
+targetEntityType: paragraph
+bundle: area_house_floor_row
+mode: default
+content:
+  field_floor_no:
+    weight: 0
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_floor_state:
+    weight: 3
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_key
+  field_link_to_floor:
+    weight: 5
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_not_rentable_text:
+    weight: 4
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_office_space:
+    weight: 6
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_space_count:
+    weight: 2
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+hidden:
+  created: true
+  uid: true

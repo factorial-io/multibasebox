@@ -1,0 +1,30 @@
+<div data-download-view class="download-view">
+
+  {% if header %}
+    <header>
+      {{ header }}
+    </header>
+  {% endif %}
+  <div class="download-teaser">
+    <h2>{{ 'Downloads'|trans }}</h2>
+    {{ exposed }}
+  </div>
+  {{ attachment_before }}
+
+  {{ rows }}
+  {{ empty }}
+  <div data-pager class="sr-only">
+    {{ pager }}
+  </div>
+
+  {{ attachment_after }}
+  {{ more }}
+
+  {% if footer %}
+    <footer>
+      {{ footer }}
+    </footer>
+  {% endif %}
+
+  {{ feed_icons }}
+</div>
