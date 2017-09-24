@@ -17,7 +17,7 @@ If you want to recreate the haproxy-configuraion just touch `/tmp/haproxy`, the 
 
 ## Installation
 
-1. Clone this repository, 
+1. Clone this repository,
 2. Clone the submodules via `git submodule update --init`
 3. Make sure you have ansible installed.
 4. Install needed plugins:
@@ -32,14 +32,14 @@ If you want to recreate the haproxy-configuraion just touch `/tmp/haproxy`, the 
 7. Install vagrant-dns with `vagrant dns --install`
 8. Run `vagrant up` (if you are using vmware, append `--provider=vmware_fusion`)
 9. Wait
-10. Visit `http://multibasebox.dev:1936` This will show you the haproxy status page.
+10. Visit `http://multibasebox.test:1936` This will show you the haproxy status page.
 
 ## Linux-specific remarks
 
 `vagrant-dns` is not supported on Linux, you'll need to add your hosts to `/etc/hosts` manually:
 
 ```
-33.33.33.33 multibasebox.dev <your-other-hosts.dev>
+33.33.33.33 multibasebox.test <your-other-hosts.test>
 ```
 
 
@@ -86,13 +86,13 @@ For scaffolding new projects have a look at our generator [jaMann](https://githu
 
 ## Status
 
-You can see the status of haproxy at [http://multibasebox.dev:1936/](http://multibasebox.dev:1936/)
+You can see the status of haproxy at [http://multibasebox.test:1936/](http://multibasebox.test:1936/)
 
 ## Troubleshooting
 
-#### I can't connect to `http://mutibasebox.dev`
+#### I can't connect to `http://mutibasebox.test`
 
-Check if vagrant-dns is running. On a mac try `dscacheutil -q host -a name multibasebox.dev`. If the result is not `33.33.33.33`try reinstalling vagrant-dns via `vagrant dns --install`.
+Check if vagrant-dns is running. On a mac try `dscacheutil -q host -a name multibasebox.test`. If the result is not `33.33.33.33`try reinstalling vagrant-dns via `vagrant dns --install`.
 
 
 
