@@ -8,7 +8,7 @@ Vagrant.require_version ">= 1.6"
 
 path = "#{File.dirname(__FILE__)}"
 ip_address = "33.33.33.33"
-sitename = "multibasebox.dev"
+sitename = "multibasebox.test"
 
 # Check required plugins
 REQUIRED_PLUGINS = %w(vagrant-dns vagrant-fabric)
@@ -39,8 +39,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network :private_network, ip: ip_address
   config.vm.hostname = sitename
 
-  config.dns.tld = "dev"
-  config.dns.patterns = [/^.*.dev$/]
+  config.dns.tld = "test"
+  config.dns.patterns = [/^.*.test$/]
 
   config.ssh.forward_agent = true
 
