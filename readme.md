@@ -43,6 +43,14 @@ If you want to recreate the haproxy-configuraion just touch `/tmp/haproxy`, the 
 ```
 
 
+## Accessing multibasebox from windows VM
+
+1. set network adapter to NAT
+2. edit your hosts file,  (33.33.33.33 multibasebox.dev <your-other-hosts.dev>)
+3. open IE and access your-other-hosts.dev
+
+
+
 ## Local modifications
 
 The `Vagrantfile` includes `Vagrant.local` if the file exists. This is suitable to change the configuration to your needs without committing the changes back to a repository.
