@@ -39,8 +39,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network :private_network, ip: ip_address
   config.vm.hostname = sitename
 
-  config.dns.tld = "test"
-  config.dns.patterns = [/^.*.test$/]
+  config.dns.tlds = ["dev", "test", "docker.amazee.io"]
+  config.dns.patterns = [/^.*.dev$/, /^.*.test$/, /^.*.docker\.amazee\.io$/]
 
   config.ssh.forward_agent = true
 
