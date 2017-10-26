@@ -128,6 +128,15 @@
   .slidershow-button {
     border-radius: 0;
     top: 45%;
+    background-color: $white;
+    border-color: $gray-lighter;
+    color: $black;
+
+    &:hover {
+      background-color: $black;
+      border-color: $black;
+      color: $white;
+    }
 
     @include media-breakpoint-down(md) {
       width: 50px;
