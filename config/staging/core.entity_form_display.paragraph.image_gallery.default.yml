@@ -1,0 +1,47 @@
+uuid: f74355a1-4ce0-4f86-859c-395164207a5f
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.image_gallery.field_ig_headline
+    - field.field.paragraph.image_gallery.field_ig_image
+    - field.field.paragraph.image_gallery.field_ig_subline
+    - image.style.thumbnail
+    - paragraphs.paragraphs_type.image_gallery
+  module:
+    - image
+    - text
+id: paragraph.image_gallery.default
+targetEntityType: paragraph
+bundle: image_gallery
+mode: default
+content:
+  field_ig_headline:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_ig_image:
+    weight: 1
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+  field_ig_subline:
+    weight: 2
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+  translation:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true

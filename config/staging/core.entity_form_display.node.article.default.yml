@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.article.body
     - field.field.node.article.field_category
+    - field.field.node.article.field_gallery_image
     - field.field.node.article.field_image
     - field.field.node.article.field_pdf
     - field.field.node.article.field_tags
@@ -13,6 +14,7 @@ dependencies:
   module:
     - file
     - image
+    - paragraphs
     - path
     - text
 _core:
@@ -32,7 +34,7 @@ content:
     third_party_settings: {  }
   created:
     type: datetime_timestamp
-    weight: 7
+    weight: 8
     settings: {  }
     third_party_settings: {  }
   field_category:
@@ -40,6 +42,17 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: options_select
+  field_gallery_image:
+    type: entity_reference_paragraphs
+    weight: 6
+    settings:
+      title: Absatz
+      title_plural: Paragraphs
+      edit_mode: preview
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: image_gallery
+    third_party_settings: {  }
   field_image:
     type: image_image
     weight: 5
@@ -48,7 +61,7 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
   field_pdf:
-    weight: 12
+    weight: 13
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
@@ -68,20 +81,20 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 11
+    weight: 12
     settings: {  }
     third_party_settings: {  }
   promote:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 9
+    weight: 10
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 10
+    weight: 11
     third_party_settings: {  }
   title:
     type: string_textfield
@@ -91,12 +104,12 @@ content:
       placeholder: ''
     third_party_settings: {  }
   translation:
-    weight: 8
+    weight: 9
     settings: {  }
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 6
+    weight: 7
     settings:
       match_operator: CONTAINS
       size: 60

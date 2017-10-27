@@ -1,0 +1,19 @@
+uuid: 0808f2df-4cfa-4244-8ed4-e5da84c00346
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_ig_headline
+    - paragraphs.paragraphs_type.image_gallery
+id: paragraph.image_gallery.field_ig_headline
+field_name: field_ig_headline
+entity_type: paragraph
+bundle: image_gallery
+label: Headline
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

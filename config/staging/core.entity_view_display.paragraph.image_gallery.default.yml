@@ -1,0 +1,40 @@
+uuid: 1c95e547-b7e0-4856-9051-c1980ccfc9e1
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.image_gallery.field_ig_headline
+    - field.field.paragraph.image_gallery.field_ig_image
+    - field.field.paragraph.image_gallery.field_ig_subline
+    - image.style.content_gallery
+    - paragraphs.paragraphs_type.image_gallery
+  module:
+    - image
+    - text
+id: paragraph.image_gallery.default
+targetEntityType: paragraph
+bundle: image_gallery
+mode: default
+content:
+  field_ig_headline:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_ig_image:
+    weight: 1
+    label: hidden
+    settings:
+      image_style: content_gallery
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+  field_ig_subline:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+hidden: {  }
