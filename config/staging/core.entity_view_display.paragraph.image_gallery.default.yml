@@ -5,12 +5,10 @@ dependencies:
   config:
     - field.field.paragraph.image_gallery.field_ig_headline
     - field.field.paragraph.image_gallery.field_ig_image
-    - field.field.paragraph.image_gallery.field_ig_subline
     - image.style.content_gallery
     - paragraphs.paragraphs_type.image_gallery
   module:
     - image
-    - text
 id: paragraph.image_gallery.default
 targetEntityType: paragraph
 bundle: image_gallery
@@ -31,10 +29,4 @@ content:
       image_link: ''
     third_party_settings: {  }
     type: image
-  field_ig_subline:
-    weight: 2
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    type: text_default
 hidden: {  }

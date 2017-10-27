@@ -127,7 +127,7 @@
 .news-article__gallery {
   .slidershow-button {
     border-radius: 0;
-    top: 45%;
+    top: 52%;
     background-color: $white;
     border-color: $gray-lighter;
     color: $black;
@@ -138,23 +138,28 @@
       color: $white;
     }
 
-    @include media-breakpoint-down(md) {
-      width: 50px;
-      height: 50px;
-      line-height: 50px;
-    }
-
     &.slidershow-button--prev {
-      left: 0;
+      left: 2px;
     }
 
     &.slidershow-button--next {
-      right: 0;
+      right: 2px;
     }
   }
 }
 .image-gallery-item {
   text-align: center;
+
+  &__headline {
+    margin-bottom: 0;
+    font-size: 2rem;
+    height: 2rem;
+    overflow-y: hidden;
+    letter-spacing: 0.1rem;
+    @include media-breakpoint-down(sm) {
+      font-size: 1.5rem;
+    }
+  }
 
   &__image {
     margin: 2rem 0 2.5rem;
