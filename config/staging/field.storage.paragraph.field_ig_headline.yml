@@ -1,0 +1,21 @@
+uuid: fba982ec-0e1a-4cde-a72d-554912a8eb72
+langcode: de
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_ig_headline
+field_name: field_ig_headline
+entity_type: paragraph
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

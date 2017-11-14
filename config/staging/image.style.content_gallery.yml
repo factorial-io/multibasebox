@@ -1,0 +1,15 @@
+uuid: 8dba4e0f-58cb-4403-8dd2-384f26d166d6
+langcode: de
+status: true
+dependencies: {  }
+name: content_gallery
+label: 'Content Gallery'
+effects:
+  ca3bd51f-371c-42f7-b22c-6f78b234ed81:
+    uuid: ca3bd51f-371c-42f7-b22c-6f78b234ed81
+    id: image_scale
+    weight: 1
+    data:
+      width: 680
+      height: null
+      upscale: false
