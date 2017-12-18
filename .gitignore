@@ -1,3 +1,4 @@
 .vagrant
 projects/*
 Vagrant.local
+/fabfile.local.yaml
