@@ -1,4 +1,4 @@
-host: multibasebox.dev
+host: multibasebox.test
 requires: 2.0.1
 port: 22
 user: vagrant
@@ -8,14 +8,14 @@ environment:
   ROOT_FOLDER: "%dockerHost.rootFolder%/%host.docker.projectFolder%"
 blueprint:
   inheritsFrom: mbb
-  configName: '%project-slug%-%slug.with-hyphens.without-feature%.dev'
+  configName: '%project-slug%-%slug.with-hyphens.without-feature%.test'
   branch: '%identifier%'
-  host: '%project-slug%-%slug.with-hyphens.without-feature%.dev'
+  host: '%project-slug%-%slug.with-hyphens.without-feature%.test'
   database:
     name: '%slug.without-feature%_mysql'
   docker:
     projectFolder: '%project-slug%--%slug.with-hyphens.without-feature%'
-    vhost: '%project-slug%-%slug.with-hyphens.without-feature%.dev'
+    vhost: '%project-slug%-%slug.with-hyphens.without-feature%.test'
     name: '%project-slug%%slug.without-feature%_web_1'
 
 tasks:
