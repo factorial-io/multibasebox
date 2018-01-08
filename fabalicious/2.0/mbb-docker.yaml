@@ -66,3 +66,17 @@ tasks:
     - execute(docker, waitForServices)
 
 
+
+  runSelenium:
+    - docker run -d -p 4444:4444 --link %host.docker.name%:%host.docker.name% --name selenium-hub selenium/hub:2.45.0
+    - docker run -d --link selenium-hub:hub --link %host.docker.name%:%host.host% --name selenium-chrome selenium/node-chrome:2.45.0
+
+  runSeleniumDebug:
+    - docker run -d -p 4444:4444 --name selenium-hub selenium/hub:2.45.0
+    - docker run -d -P --link selenium-hub:hub --link %host.docker.name%:%host.host% --name selenium-chrome  selenium/node-chrome-debug:2.45.0
+
+  stopSelenium:
+    - docker stop selenium-chrome
+    - docker stop selenium-hub
+    - docker rm selenium-chrome
+    - docker rm selenium-hub
