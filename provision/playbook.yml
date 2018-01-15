@@ -76,7 +76,7 @@
       become: true
     - name: "Install docker-compose"
       become: true
-      shell: "curl -L https://github.com/docker/compose/releases/download/1.13.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose"
+      shell: "curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose"
     - name: "Setup docker-compose"
       shell: "chmod +x /usr/local/bin/docker-compose"
       become: true
