@@ -22,6 +22,7 @@ docker stop haproxy || true && docker rm haproxy || true
 docker run -d \
   -p 80:80 \
   -p 443:443 \
+  -p 1936:1936 \
   --restart always \
   --volume=/var/run/docker.sock:/var/run/docker.sock \
   --name=haproxy \
