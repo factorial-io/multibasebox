@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.rental_overview.field_image
     - field.field.node.rental_overview.field_layer
     - field.field.node.rental_overview.field_overlay_image
+    - field.field.node.rental_overview.field_plan_image
     - image.style.thumbnail
     - node.type.rental_overview
   module:
@@ -57,6 +58,13 @@ content:
     type: entity_reference_paragraphs
   field_overlay_image:
     weight: 35
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+  field_plan_image:
+    weight: 36
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
