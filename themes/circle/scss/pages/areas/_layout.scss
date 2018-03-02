@@ -61,14 +61,6 @@
       }
     }
 
-    .area-plan {
-      padding: 0;
-      img {
-        width: 100%;
-        height: auto;
-      }
-    }
-
     @include media-breakpoint-down(md) {
       &__top {
         order: 2;
@@ -81,6 +73,13 @@
     h1 {
       font-size: $fontsize-title;
     }
+  }
 
+  .area-plan {
+    padding: 0;
+    img {
+      width: 100%;
+      height: auto;
+    }
   }
 }
