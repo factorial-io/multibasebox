@@ -73,6 +73,13 @@
     h1 {
       font-size: $fontsize-title;
     }
+  }
 
+  .area-plan {
+    padding: 0;
+    img {
+      width: 100%;
+      height: auto;
+    }
   }
 }

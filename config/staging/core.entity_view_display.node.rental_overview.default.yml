@@ -8,10 +8,12 @@ dependencies:
     - field.field.node.rental_overview.field_image
     - field.field.node.rental_overview.field_layer
     - field.field.node.rental_overview.field_overlay_image
+    - field.field.node.rental_overview.field_plan_image
     - node.type.rental_overview
     - responsive_image.styles.wide
   module:
     - entity_reference_revisions
+    - image
     - options
     - responsive_image
     - text
@@ -57,6 +59,14 @@ content:
       image_link: ''
     third_party_settings: {  }
     type: responsive_image
+  field_plan_image:
+    weight: 106
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
   links:
     weight: 100
     settings: {  }

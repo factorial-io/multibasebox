@@ -84,7 +84,7 @@ dockerHosts:
 
 hosts:
   mbb:
-    host: the-circle.dev
+    host: the-circle.test
     user: root
     password: root
     port: 8751
