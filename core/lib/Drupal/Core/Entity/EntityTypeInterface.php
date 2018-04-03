@@ -48,22 +48,6 @@ interface EntityTypeInterface extends PluginDefinitionInterface {
   public function set($property, $value);
 
   /**
-   * Gets the unique identifier of the entity type.
-   *
-   * @return string
-   *   The unique identifier of the entity type.
-   */
-  public function id();
-
-  /**
-   * Gets the name of the provider of this entity type.
-   *
-   * @return string
-   *   The name of the provider of this entity type.
-   */
-  public function getProvider();
-
-  /**
    * Gets the name of the original entity type class.
    *
    * In case the class name was changed with setClass(), this will return
@@ -352,6 +336,17 @@ interface EntityTypeInterface extends PluginDefinitionInterface {
   public function setAccessClass($class);
 
   /**
+   * Indicates if the entity type class implements the given interface.
+   *
+   * @param string $interface
+   *   The class or interface to check.
+   *
+   * @return bool
+   *   TRUE if the entity type class implements the given interface.
+   */
+  public function entityClassImplements($interface);
+
+  /**
    * Indicates if the entity type is a subclass of the given class or interface.
    *
    * @param string $class
@@ -359,6 +354,10 @@ interface EntityTypeInterface extends PluginDefinitionInterface {
    *
    * @return bool
    *   TRUE if the entity type is a subclass of the class or interface.
+   *
+   * @deprecated in Drupal 8.3.0 and will be removed before Drupal 9.0.0.
+   *   Use Drupal\Core\Entity\EntityTypeInterface::entityClassImplements()
+   *   instead.
    */
   public function isSubclassOf($class);
 
@@ -548,8 +547,8 @@ interface EntityTypeInterface extends PluginDefinitionInterface {
   /**
    * Gets the label for the bundle.
    *
-   * @return string|null
-   *   The bundle label, or NULL if none exists.
+   * @return string
+   *   The bundle label.
    */
   public function getBundleLabel();
 
@@ -564,6 +563,24 @@ interface EntityTypeInterface extends PluginDefinitionInterface {
   public function getBaseTable();
 
   /**
+   * Indicates whether the entity data is internal.
+   *
+   * This can be used in a scenario when it is not desirable to expose data of
+   * this entity type to an external system.
+   *
+   * The implications of this method are left to the discretion of the caller.
+   * For example, a module providing an HTTP API may not expose entities of
+   * this type or a custom entity reference field settings form may deprioritize
+   * entities of this type in a select list.
+   *
+   * @return bool
+   *   TRUE if the entity data is internal, FALSE otherwise.
+   *
+   * @see \Drupal\Core\TypedData\DataDefinitionInterface::isInternal()
+   */
+  public function isInternal();
+
+  /**
    * Indicates whether entities of this type have multilingual support.
    *
    * At an entity level, this indicates language support and at a bundle level
@@ -572,6 +589,14 @@ interface EntityTypeInterface extends PluginDefinitionInterface {
    * @return bool
    */
   public function isTranslatable();
+
+  /**
+   * Indicates whether the revision form fields should be added to the form.
+   *
+   * @return bool
+   *   TRUE if the form field should be added, FALSE otherwise.
+   */
+  public function showRevisionUi();
 
   /**
    * Indicates whether entities of this type have revision support.
@@ -614,6 +639,9 @@ interface EntityTypeInterface extends PluginDefinitionInterface {
   /**
    * Gets the human-readable name of the entity type.
    *
+   * This label should be used to present a human-readable name of the
+   * entity type.
+   *
    * @return string
    *   The human-readable name of the entity type.
    */
@@ -624,11 +652,31 @@ interface EntityTypeInterface extends PluginDefinitionInterface {
    *
    * @return string
    *   The lowercase form of the human-readable entity type name.
+   *
+   * @see \Drupal\Core\Entity\EntityTypeInterface::getLabel()
    */
   public function getLowercaseLabel();
 
   /**
-   * Gets the singular label of the entity type.
+   * Gets the uppercase plural form of the name of the entity type.
+   *
+   * This should return a human-readable version of the name that can refer
+   * to all the entities of the given type, collectively. An example usage of
+   * this is the page title of a page devoted to a collection of entities such
+   * as "Workflows" (instead of "Workflow entities").
+   *
+   * @return string
+   *   The collection label.
+   */
+  public function getCollectionLabel();
+
+  /**
+   * Gets the indefinite singular form of the name of the entity type.
+   *
+   * This should return the human-readable name for a single instance of
+   * the entity type. For example: "opportunity" (with the plural as
+   * "opportunities"), "child" (with the plural as "children"), or "content
+   * item" (with the plural as "content items").
    *
    * @return string
    *   The singular label.
@@ -636,7 +684,12 @@ interface EntityTypeInterface extends PluginDefinitionInterface {
   public function getSingularLabel();
 
   /**
-   * Gets the plural label of the entity type.
+   * Gets the indefinite plural form of the name of the entity type.
+   *
+   * This should return the human-readable name for more than one instance of
+   * the entity type. For example: "opportunities" (with the singular as
+   * "opportunity"), "children" (with the singular as "child"), or "content
+   * items" (with the singular as "content item").
    *
    * @return string
    *   The plural label.
@@ -644,7 +697,12 @@ interface EntityTypeInterface extends PluginDefinitionInterface {
   public function getPluralLabel();
 
   /**
-   * Gets the count label of the entity type
+   * Gets the label's definite article form for use with a count of entities.
+   *
+   * This label should be used when the quantity of entities is provided. The
+   * name should be returned in a form usable with a count of the
+   * entities. For example: "1 opportunity", "5 opportunities", "1 child",
+   * "6 children", "1 content item", "25 content items".
    *
    * @param int $count
    *   The item count to display if the plural form was requested.

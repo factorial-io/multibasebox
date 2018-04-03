@@ -2,7 +2,6 @@
 
 namespace Drupal\system\Tests\System;
 
-
 use Drupal\simpletest\WebTestBase;
 
 /**
@@ -24,7 +23,7 @@ class UncaughtExceptionTest extends WebTestBase {
    *
    * @var array
    */
-  public static $modules = array('error_service_test');
+  public static $modules = ['error_service_test'];
 
   /**
    * {@inheritdoc}
@@ -200,7 +199,6 @@ class UncaughtExceptionTest extends WebTestBase {
     $this->drupalGet('');
     $this->assertResponse(500);
 
-
     $this->assertRaw('The website encountered an unexpected error');
     $this->assertRaw($this->expectedExceptionMessage);
     $this->assertErrorLogged($this->expectedExceptionMessage);
@@ -224,20 +222,20 @@ class UncaughtExceptionTest extends WebTestBase {
 
     // We simulate a broken database connection by rewrite settings.php to no
     // longer have the proper data.
-    $settings['databases']['default']['default']['username'] = (object) array(
+    $settings['databases']['default']['default']['username'] = (object) [
       'value' => $incorrect_username,
       'required' => TRUE,
-    );
-    $settings['databases']['default']['default']['passowrd'] = (object) array(
+    ];
+    $settings['databases']['default']['default']['password'] = (object) [
       'value' => $this->randomMachineName(16),
       'required' => TRUE,
-    );
+    ];
 
     $this->writeSettings($settings);
 
     $this->drupalGet('');
     $this->assertResponse(500);
-    $this->assertRaw('PDOException');
+    $this->assertRaw('DatabaseAccessDeniedException');
     $this->assertErrorLogged($this->expectedExceptionMessage);
   }
 

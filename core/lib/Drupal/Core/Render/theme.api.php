@@ -31,7 +31,7 @@
  * 8 themes.
  *
  * For further information on theming in Drupal 8 see
- * https://www.drupal.org/theme-guide/8
+ * https://www.drupal.org/docs/8/theming
  *
  * For further Twig documentation see
  * http://twig.sensiolabs.org/doc/templates.html
@@ -223,14 +223,9 @@
  * same, which gives users fewer user interface patterns to learn.
  *
  * For further information on the Theme and Render APIs, see:
- * - https://www.drupal.org/documentation/theme
+ * - https://www.drupal.org/docs/8/theming
  * - https://www.drupal.org/developing/api/8/render
- * - https://www.drupal.org/node/722174
- * - https://www.drupal.org/node/933976
- * - https://www.drupal.org/node/930760
- *
- * @todo Check these links. Some are for Drupal 7, and might need updates for
- *   Drupal 8.
+ * - @link themeable Theme system overview @endlink.
  *
  * @section arrays Render arrays
  * The core structure of the Render API is the render array, which is a
@@ -369,7 +364,7 @@
  *   '#cache' => [
  *     'keys' => ['entity_view', 'node', $node->id()],
  *     'contexts' => ['languages'],
- *     'tags' => ['node:' . $node->id()],
+ *     'tags' => $node->getCacheTags(),
  *     'max-age' => Cache::PERMANENT,
  *   ],
  * @endcode
@@ -528,12 +523,12 @@
  */
 function hook_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
   // Add a checkbox to toggle the breadcrumb trail.
-  $form['toggle_breadcrumb'] = array(
+  $form['toggle_breadcrumb'] = [
     '#type' => 'checkbox',
     '#title' => t('Display the breadcrumb'),
     '#default_value' => theme_get_setting('features.breadcrumb'),
     '#description'   => t('Show a trail of links from the homepage to the current page.'),
-  );
+  ];
 }
 
 /**
@@ -603,7 +598,7 @@ function hook_preprocess(&$variables, $hook) {
 function hook_preprocess_HOOK(&$variables) {
   // This example is from rdf_preprocess_image(). It adds an RDF attribute
   // to the image hook's variables.
-  $variables['attributes']['typeof'] = array('foaf:Image');
+  $variables['attributes']['typeof'] = ['foaf:Image'];
 }
 
 /**
@@ -618,6 +613,10 @@ function hook_preprocess_HOOK(&$variables) {
  * hook called (in this case 'node__article') is available in
  * $variables['theme_hook_original'].
  *
+ * Implementations of this hook must be placed in *.module or *.theme files, or
+ * must otherwise make sure that the hook implementation is available at
+ * any given time.
+ *
  * @todo Add @code sample.
  *
  * @param array $variables
@@ -630,9 +629,9 @@ function hook_preprocess_HOOK(&$variables) {
  * @see hook_theme_suggestions_HOOK_alter()
  */
 function hook_theme_suggestions_HOOK(array $variables) {
-  $suggestions = array();
+  $suggestions = [];
 
-  $suggestions[] = 'node__' . $variables['elements']['#langcode'];
+  $suggestions[] = 'hookname__' . $variables['elements']['#langcode'];
 
   return $suggestions;
 }
@@ -699,6 +698,10 @@ function hook_theme_suggestions_alter(array &$suggestions, array $variables, $ho
  * hook called (in this case 'node__article') is available in
  * $variables['theme_hook_original'].
  *
+ * Implementations of this hook must be placed in *.module or *.theme files, or
+ * must otherwise make sure that the hook implementation is available at
+ * any given time.
+ *
  * @todo Add @code sample.
  *
  * @param array $suggestions
@@ -733,7 +736,7 @@ function hook_themes_installed($theme_list) {
 /**
  * Respond to themes being uninstalled.
  *
- * @param array $theme_list
+ * @param array $themes
  *   Array containing the names of the themes being uninstalled.
  *
  * @see \Drupal\Core\Extension\ThemeHandler::uninstall()
@@ -962,10 +965,10 @@ function hook_library_info_alter(&$libraries, $extension) {
       // relative to the original extension, specify an absolute path (relative
       // to DRUPAL_ROOT / base_path()) to the new location.
       $new_path = '/' . drupal_get_path('module', 'farbtastic_update') . '/js';
-      $new_js = array();
-      $replacements = array(
+      $new_js = [];
+      $replacements = [
         $old_path . '/farbtastic.js' => $new_path . '/farbtastic-2.0.js',
-      );
+      ];
       foreach ($libraries['jquery.farbtastic']['js'] as $source => $options) {
         if (isset($replacements[$source])) {
           $new_js[$replacements[$source]] = $options;
@@ -1138,7 +1141,7 @@ function hook_page_bottom(array &$page_bottom) {
  *     Instead of this suggestion's implementation being used directly, the base
  *     hook will be invoked with this implementation as its first suggestion.
  *     The base hook's files will be included and the base hook's preprocess
- *     functions will be called in place of any suggestion's preprocess
+ *     functions will be called in addition to any suggestion's preprocess
  *     functions. If an implementation of hook_theme_suggestions_HOOK() (where
  *     HOOK is the base hook) changes the suggestion order, a different
  *     suggestion may be used in place of this suggestion. If after
@@ -1178,21 +1181,21 @@ function hook_page_bottom(array &$page_bottom) {
  * @see hook_theme_registry_alter()
  */
 function hook_theme($existing, $type, $theme, $path) {
-  return array(
-    'forum_display' => array(
-      'variables' => array('forums' => NULL, 'topics' => NULL, 'parents' => NULL, 'tid' => NULL, 'sortby' => NULL, 'forum_per_page' => NULL),
-    ),
-    'forum_list' => array(
-      'variables' => array('forums' => NULL, 'parents' => NULL, 'tid' => NULL),
-    ),
-    'forum_icon' => array(
-      'variables' => array('new_posts' => NULL, 'num_posts' => 0, 'comment_mode' => 0, 'sticky' => 0),
-    ),
-    'status_report' => array(
+  return [
+    'forum_display' => [
+      'variables' => ['forums' => NULL, 'topics' => NULL, 'parents' => NULL, 'tid' => NULL, 'sortby' => NULL, 'forum_per_page' => NULL],
+    ],
+    'forum_list' => [
+      'variables' => ['forums' => NULL, 'parents' => NULL, 'tid' => NULL],
+    ],
+    'forum_icon' => [
+      'variables' => ['new_posts' => NULL, 'num_posts' => 0, 'comment_mode' => 0, 'sticky' => 0],
+    ],
+    'status_report' => [
       'render element' => 'requirements',
       'file' => 'system.admin.inc',
-    ),
-  );
+    ],
+  ];
 }
 
 /**

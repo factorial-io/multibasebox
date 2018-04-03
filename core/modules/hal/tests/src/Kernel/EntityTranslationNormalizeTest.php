@@ -3,6 +3,7 @@
 namespace Drupal\Tests\hal\Kernel;
 
 use Drupal\node\Entity\Node;
+use Drupal\node\NodeInterface;
 use Drupal\user\Entity\User;
 use Drupal\node\Entity\NodeType;
 
@@ -18,14 +19,14 @@ class EntityTranslationNormalizeTest extends NormalizerTestBase {
    *
    * @var array
    */
-  public static $modules = array('node', 'content_translation');
+  public static $modules = ['node', 'content_translation'];
 
   /**
    * {@inheritdoc}
    */
   protected function setUp() {
     parent::setUp();
-    $this->installSchema('system', array('sequences'));
+    $this->installSchema('system', ['sequences']);
     $this->installConfig(['node', 'content_translation']);
   }
 
@@ -42,9 +43,9 @@ class EntityTranslationNormalizeTest extends NormalizerTestBase {
 
     $node = Node::create([
       'title' => $this->randomMachineName(),
-      'uid' => $user->id(),
+      'uid' => (int) $user->id(),
       'type' => $node_type->id(),
-      'status' => NODE_PUBLISHED,
+      'status' => NodeInterface::PUBLISHED,
       'langcode' => 'en',
       'promote' => 1,
       'sticky' => 0,
@@ -82,6 +83,8 @@ class EntityTranslationNormalizeTest extends NormalizerTestBase {
     $this->assertSame($node->getTitle(), $denormalized_node->getTitle());
     $this->assertSame($translation->getTitle(), $denormalized_node->getTranslation('de')->getTitle());
 
+    $original_values['revision_default'] = [];
+    $original_translation_values['revision_default'] = [];
     $this->assertEquals($original_values, $denormalized_node->toArray(), 'Node values are restored after normalizing and denormalizing.');
     $this->assertEquals($original_translation_values, $denormalized_node->getTranslation('en')->toArray(), 'Node values are restored after normalizing and denormalizing.');
   }

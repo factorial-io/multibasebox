@@ -106,7 +106,7 @@ interface MigrateDestinationInterface extends PluginInspectionInterface {
    * @return mixed
    *   The entity ID or an indication of success.
    */
-  public function import(Row $row, array $old_destination_id_values = array());
+  public function import(Row $row, array $old_destination_id_values = []);
 
   /**
    * Delete the specified destination object from the target Drupal.
@@ -132,5 +132,13 @@ interface MigrateDestinationInterface extends PluginInspectionInterface {
    *   item should be handled on rollback.
    */
   public function rollbackAction();
+
+  /**
+   * Gets the destination module handling the destination data.
+   *
+   * @return string|null
+   *   The destination module or NULL if not found.
+   */
+  public function getDestinationModule();
 
 }

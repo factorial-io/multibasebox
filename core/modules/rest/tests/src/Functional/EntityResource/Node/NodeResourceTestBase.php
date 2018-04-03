@@ -4,15 +4,19 @@ namespace Drupal\Tests\rest\Functional\EntityResource\Node;
 
 use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
+use Drupal\Tests\rest\Functional\BcTimestampNormalizerUnixTestTrait;
 use Drupal\Tests\rest\Functional\EntityResource\EntityResourceTestBase;
 use Drupal\user\Entity\User;
+use GuzzleHttp\RequestOptions;
 
 abstract class NodeResourceTestBase extends EntityResourceTestBase {
+
+  use BcTimestampNormalizerUnixTestTrait;
 
   /**
    * {@inheritdoc}
    */
-  public static $modules = ['node'];
+  public static $modules = ['node', 'path'];
 
   /**
    * {@inheritdoc}
@@ -23,13 +27,13 @@ abstract class NodeResourceTestBase extends EntityResourceTestBase {
    * {@inheritdoc}
    */
   protected static $patchProtectedFieldNames = [
-    'uid',
+    'revision_timestamp',
+    'revision_uid',
     'created',
     'changed',
     'promote',
     'sticky',
-    'revision_timestamp',
-    'revision_uid',
+    'path',
   ];
 
   /**
@@ -49,6 +53,10 @@ abstract class NodeResourceTestBase extends EntityResourceTestBase {
         $this->grantPermissionsToTestedRole(['access content', 'create camelids content']);
         break;
       case 'PATCH':
+        // Do not grant the 'create url aliases' permission to test the case
+        // when the path field is protected/not accessible, see
+        // \Drupal\Tests\rest\Functional\EntityResource\Term\TermResourceTestBase
+        // for a positive test.
         $this->grantPermissionsToTestedRole(['access content', 'edit any camelids content']);
         break;
       case 'DELETE':
@@ -77,6 +85,7 @@ abstract class NodeResourceTestBase extends EntityResourceTestBase {
       ->setCreatedTime(123456789)
       ->setChangedTime(123456789)
       ->setRevisionCreationTime(123456789)
+      ->set('path', '/llama')
       ->save();
 
     return $node;
@@ -116,33 +125,27 @@ abstract class NodeResourceTestBase extends EntityResourceTestBase {
       ],
       'status' => [
         [
-          'value' => 1,
+          'value' => TRUE,
         ],
       ],
       'created' => [
-        [
-          'value' => '123456789',
-        ],
+        $this->formatExpectedTimestampItemValues(123456789),
       ],
       'changed' => [
-        [
-          'value' => '123456789',
-        ],
+        $this->formatExpectedTimestampItemValues($this->entity->getChangedTime()),
       ],
       'promote' => [
         [
-          'value' => 1,
+          'value' => TRUE,
         ],
       ],
       'sticky' => [
         [
-          'value' => '0',
+          'value' => FALSE,
         ],
       ],
       'revision_timestamp' => [
-        [
-          'value' => '123456789',
-        ],
+        $this->formatExpectedTimestampItemValues(123456789),
       ],
       'revision_translation_affected' => [
         [
@@ -156,7 +159,7 @@ abstract class NodeResourceTestBase extends EntityResourceTestBase {
       ],
       'uid' => [
         [
-          'target_id' => $author->id(),
+          'target_id' => (int) $author->id(),
           'target_type' => 'user',
           'target_uuid' => $author->uuid(),
           'url' => base_path() . 'user/' . $author->id(),
@@ -164,13 +167,19 @@ abstract class NodeResourceTestBase extends EntityResourceTestBase {
       ],
       'revision_uid' => [
         [
-          'target_id' => $author->id(),
+          'target_id' => (int) $author->id(),
           'target_type' => 'user',
           'target_uuid' => $author->uuid(),
           'url' => base_path() . 'user/' . $author->id(),
         ],
       ],
-      'revision_log' => [
+      'revision_log' => [],
+      'path' => [
+        [
+          'alias' => '/llama',
+          'pid' => 1,
+          'langcode' => 'en',
+        ],
       ],
     ];
   }
@@ -191,6 +200,65 @@ abstract class NodeResourceTestBase extends EntityResourceTestBase {
         ],
       ],
     ];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function getExpectedUnauthorizedAccessMessage($method) {
+    if ($this->config('rest.settings')->get('bc_entity_resource_permissions')) {
+      return parent::getExpectedUnauthorizedAccessMessage($method);
+    }
+
+    if ($method === 'GET' || $method == 'PATCH' || $method == 'DELETE') {
+      return "The 'access content' permission is required.";
+    }
+    return parent::getExpectedUnauthorizedAccessMessage($method);
+  }
+
+  /**
+   * Tests PATCHing a node's path with and without 'create url aliases'.
+   *
+   * For a positive test, see the similar test coverage for Term.
+   *
+   * @see \Drupal\Tests\rest\Functional\EntityResource\Term\TermResourceTestBase::testPatchPath()
+   */
+  public function testPatchPath() {
+    $this->initAuthentication();
+    $this->provisionEntityResource();
+    $this->setUpAuthorization('GET');
+    $this->setUpAuthorization('PATCH');
+
+    $url = $this->getEntityResourceUrl()->setOption('query', ['_format' => static::$format]);
+
+    // GET node's current normalization.
+    $response = $this->request('GET', $url, $this->getAuthenticationRequestOptions('GET'));
+    $normalization = $this->serializer->decode((string) $response->getBody(), static::$format);
+
+    // Change node's path alias.
+    $normalization['path'][0]['alias'] .= 's-rule-the-world';
+
+    // Create node PATCH request.
+    $request_options = [];
+    $request_options[RequestOptions::HEADERS]['Content-Type'] = static::$mimeType;
+    $request_options = array_merge_recursive($request_options, $this->getAuthenticationRequestOptions('PATCH'));
+    $request_options[RequestOptions::BODY] = $this->serializer->encode($normalization, static::$format);
+
+    // PATCH request: 403 when creating URL aliases unauthorized. Before
+    // asserting the 403 response, assert that the stored path alias remains
+    // unchanged.
+    $response = $this->request('PATCH', $url, $request_options);
+    $this->assertSame('/llama', $this->entityStorage->loadUnchanged($this->entity->id())->get('path')->alias);
+    $this->assertResourceErrorResponse(403, "Access denied on updating field 'path'.", $response);
+
+    // Grant permission to create URL aliases.
+    $this->grantPermissionsToTestedRole(['create url aliases']);
+
+    // Repeat PATCH request: 200.
+    $response = $this->request('PATCH', $url, $request_options);
+    $this->assertResourceResponse(200, FALSE, $response);
+    $updated_normalization = $this->serializer->decode((string) $response->getBody(), static::$format);
+    $this->assertSame($normalization['path'], $updated_normalization['path']);
   }
 
 }

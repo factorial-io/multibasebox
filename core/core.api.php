@@ -606,6 +606,30 @@
  *  $settings['cache']['default'] = 'cache.custom';
  * @endcode
  *
+ * For cache bins that are stored in the database, the number of rows is limited
+ * to 5000 by default. This can be changed for all database cache bins. For
+ * example, to instead limit the number of rows to 50000:
+ * @code
+ * $settings['database_cache_max_rows']['default'] = 50000;
+ * @endcode
+ *
+ * Or per bin (in this example we allow infinite entries):
+ * @code
+ * $settings['database_cache_max_rows']['bins']['dynamic_page_cache'] = -1;
+ * @endcode
+ *
+ * For monitoring reasons it might be useful to figure out the amount of data
+ * stored in tables. The following SQL snippet can be used for that:
+ * @code
+ * SELECT table_name AS `Table`, table_rows AS 'Num. of Rows',
+ * ROUND(((data_length + index_length) / 1024 / 1024), 2) `Size in MB` FROM
+ * information_schema.TABLES WHERE table_schema = '***DATABASE_NAME***' AND
+ * table_name LIKE 'cache_%'  ORDER BY (data_length + index_length) DESC
+ * LIMIT 10;
+ * @endcode
+ *
+ * @see \Drupal\Core\Cache\DatabaseBackend
+ *
  * Finally, you can chain multiple cache backends together, see
  * \Drupal\Core\Cache\ChainedFastBackend and \Drupal\Core\Cache\BackendChain.
  *
@@ -1197,10 +1221,6 @@
  * verified with standard control structures at all times, not just checked in
  * development environments with assert() statements on.
  *
- * When runtime assertions fail in PHP 7 an \AssertionError is thrown.
- * Drupal uses an assertion callback to do the same in PHP 5.x so that unit
- * tests involving runtime assertions will work uniformly across both versions.
- *
  * The Drupal project primarily uses runtime assertions to enforce the
  * expectations of the API by failing when incorrect calls are made by code
  * under development. While PHP type hinting does this for objects and arrays,
@@ -1208,21 +1228,12 @@
  * complex data structures such as cache and render arrays. They ensure that
  * methods' return values are the documented datatypes. They also verify that
  * objects have been properly configured and set up by the service container.
- * Runtime assertions are checked throughout development. They supplement unit
- * tests by checking scenarios that do not have unit tests written for them,
- * and by testing the API calls made by all the code in the system.
+ * They supplement unit tests by checking scenarios that do not have unit tests
+ * written for them.
  *
- * When using assert() keep the following in mind:
- * - Runtime assertions are disabled by default in production and enabled in
- *   development, so they can't be used as control structures. Use exceptions
- *   for errors that can occur in production no matter how unlikely they are.
- * - Assert() functions in a buggy manner prior to PHP 7. If you do not use a
- *   string for the first argument of the statement but instead use a function
- *   call or expression then that code will be evaluated even when runtime
- *   assertions are turned off. To avoid this you must use a string as the
- *   first argument, and assert will pass this string to the eval() statement.
- * - Since runtime assertion strings are parsed by eval() use caution when
- *   using them to work with data that may be unsanitized.
+ * There are two php settings which affect runtime assertions. The first,
+ * assert.exception, should always be set to 1. The second is zend.assertions.
+ * Set this to -1 in production and 1 in development.
  *
  * See https://www.drupal.org/node/2492225 for more information on runtime
  * assertions.
@@ -1272,7 +1283,7 @@
  *   site; CSS files, which alter the styling applied to the HTML; and
  *   JavaScript, Flash, images, and other files. For more information, see the
  *   @link theme_render Theme system and render API topic @endlink and
- *   https://www.drupal.org/theme-guide/8
+ *   https://www.drupal.org/docs/8/theming
  * - Modules: Modules add to or alter the behavior and functionality of Drupal,
  *   by using one or more of the methods listed below. For more information
  *   about creating modules, see https://www.drupal.org/developing/modules/8
@@ -1560,7 +1571,7 @@
  * Introduction to namespaces
  *
  * PHP classes, interfaces, and traits in Drupal are
- * @link http://php.net/manual/en/language.namespaces.rationale.php namespaced. @endlink
+ * @link http://php.net/manual/language.namespaces.rationale.php namespaced. @endlink
  * See the
  * @link oo_conventions Objected-oriented programming conventions @endlink
  * for more information.
@@ -1768,8 +1779,8 @@
  * processing state.
  *
  * The argument to \Drupal::formBuilder()->getForm() is the name of a class that
- * implements FormBuilderInterface. Any additional arguments passed to the
- * getForm() method will be passed along as additional arguments to the
+ * implements FormInterface. Any additional arguments passed to the getForm()
+ * method will be passed along as additional arguments to the
  * ExampleForm::buildForm() method.
  *
  * For example:
@@ -2103,39 +2114,39 @@ function hook_mail_alter(&$message) {
 function hook_mail($key, &$message, $params) {
   $account = $params['account'];
   $context = $params['context'];
-  $variables = array(
+  $variables = [
     '%site_name' => \Drupal::config('system.site')->get('name'),
     '%username' => $account->getDisplayName(),
-  );
+  ];
   if ($context['hook'] == 'taxonomy') {
     $entity = $params['entity'];
     $vocabulary = Vocabulary::load($entity->id());
-    $variables += array(
+    $variables += [
       '%term_name' => $entity->name,
       '%term_description' => $entity->description,
       '%term_id' => $entity->id(),
       '%vocabulary_name' => $vocabulary->label(),
       '%vocabulary_description' => $vocabulary->getDescription(),
       '%vocabulary_id' => $vocabulary->id(),
-    );
+    ];
   }
 
   // Node-based variable translation is only available if we have a node.
   if (isset($params['node'])) {
     /** @var \Drupal\node\NodeInterface $node */
     $node = $params['node'];
-    $variables += array(
+    $variables += [
       '%uid' => $node->getOwnerId(),
-      '%url' => $node->url('canonical', array('absolute' => TRUE)),
+      '%url' => $node->url('canonical', ['absolute' => TRUE]),
       '%node_type' => node_get_type_label($node),
       '%title' => $node->getTitle(),
       '%teaser' => $node->teaser,
       '%body' => $node->body,
-    );
+    ];
   }
   $subject = strtr($context['subject'], $variables);
   $body = strtr($context['message'], $variables);
-  $message['subject'] .= str_replace(array("\r", "\n"), '', $subject);
+  $message['subject'] .= str_replace(["\r", "\n"], '', $subject);
   $message['body'][] = MailFormatHelper::htmlToText($body);
 }
 
@@ -2176,6 +2187,17 @@ function hook_countries_alter(&$countries) {
  */
 function hook_display_variant_plugin_alter(array &$definitions) {
   $definitions['full_page']['admin_label'] = t('Block layout');
+}
+
+/**
+ * Allow modules to alter layout plugin definitions.
+ *
+ * @param \Drupal\Core\Layout\LayoutDefinition[] $definitions
+ *   The array of layout definitions, keyed by plugin ID.
+ */
+function hook_layout_alter(&$definitions) {
+  // Remove a layout.
+  unset($definitions['twocol']);
 }
 
 /**
@@ -2519,8 +2541,8 @@ function hook_validation_constraint_alter(array &$definitions) {
  *
  * @section sec_dispatch Dispatching events
  * To dispatch an event, call the
- * \Symfony\Component\EventDispatcher\EventDispatchInterface::dispatch() method
- * on the 'event_dispatcher' service (see the
+ * \Symfony\Component\EventDispatcher\EventDispatcherInterface::dispatch()
+ * method on the 'event_dispatcher' service (see the
  * @link container Services topic @endlink for more information about how to
  * interact with services). The first argument is the unique event name, which
  * you should normally define as a constant in a separate static class (see

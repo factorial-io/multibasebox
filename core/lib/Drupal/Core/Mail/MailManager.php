@@ -3,6 +3,7 @@
 namespace Drupal\Core\Mail;
 
 use Drupal\Component\Render\PlainTextOutput;
+use Drupal\Component\Utility\Unicode;
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use Drupal\Core\Plugin\DefaultPluginManager;
 use Drupal\Core\Cache\CacheBackendInterface;
@@ -50,7 +51,7 @@ class MailManager extends DefaultPluginManager implements MailManagerInterface {
    *
    * @var array
    */
-  protected $instances = array();
+  protected $instances = [];
 
   /**
    * Constructs the MailManager object.
@@ -163,13 +164,13 @@ class MailManager extends DefaultPluginManager implements MailManagerInterface {
   /**
    * {@inheritdoc}
    */
-  public function mail($module, $key, $to, $langcode, $params = array(), $reply = NULL, $send = TRUE) {
+  public function mail($module, $key, $to, $langcode, $params = [], $reply = NULL, $send = TRUE) {
     // Mailing can invoke rendering (e.g., generating URLs, replacing tokens),
     // but e-mails are not HTTP responses: they're not cached, they don't have
     // attachments. Therefore we perform mailing inside its own render context,
     // to ensure it doesn't leak into the render context for the HTTP response
     // to the current request.
-    return $this->renderer->executeInRenderContext(new RenderContext(), function() use ($module, $key, $to, $langcode, $params, $reply, $send) {
+    return $this->renderer->executeInRenderContext(new RenderContext(), function () use ($module, $key, $to, $langcode, $params, $reply, $send) {
       return $this->doMail($module, $key, $to, $langcode, $params, $reply, $send);
     });
   }
@@ -215,7 +216,7 @@ class MailManager extends DefaultPluginManager implements MailManagerInterface {
    *
    * @see \Drupal\Core\Mail\MailManagerInterface::mail()
    */
-  public function doMail($module, $key, $to, $langcode, $params = array(), $reply = NULL, $send = TRUE) {
+  public function doMail($module, $key, $to, $langcode, $params = [], $reply = NULL, $send = TRUE) {
     $site_config = $this->configFactory->get('system.site');
     $site_mail = $site_config->get('mail');
     if (empty($site_mail)) {
@@ -223,7 +224,7 @@ class MailManager extends DefaultPluginManager implements MailManagerInterface {
     }
 
     // Bundle up the variables into a structured array for altering.
-    $message = array(
+    $message = [
       'id' => $module . '_' . $key,
       'module' => $module,
       'key' => $key,
@@ -234,21 +235,26 @@ class MailManager extends DefaultPluginManager implements MailManagerInterface {
       'params' => $params,
       'send' => TRUE,
       'subject' => '',
-      'body' => array(),
-    );
+      'body' => [],
+    ];
 
     // Build the default headers.
-    $headers = array(
+    $headers = [
       'MIME-Version' => '1.0',
       'Content-Type' => 'text/plain; charset=UTF-8; format=flowed; delsp=yes',
       'Content-Transfer-Encoding' => '8Bit',
       'X-Mailer' => 'Drupal',
-    );
+    ];
     // To prevent email from looking like spam, the addresses in the Sender and
     // Return-Path headers should have a domain authorized to use the
     // originating SMTP server.
     $headers['Sender'] = $headers['Return-Path'] = $site_mail;
-    $headers['From'] = $site_config->get('name') . ' <' . $site_mail . '>';
+    // Headers are usually encoded in the mail plugin that implements
+    // \Drupal\Core\Mail\MailInterface::mail(), for example,
+    // \Drupal\Core\Mail\Plugin\Mail\PhpMail::mail(). The site name must be
+    // encoded here to prevent mail plugins from encoding the email address,
+    // which would break the header.
+    $headers['From'] = Unicode::mimeHeaderEncode($site_config->get('name'), TRUE) . ' <' . $site_mail . '>';
     if ($reply) {
       $headers['Reply-to'] = $reply;
     }
@@ -267,7 +273,7 @@ class MailManager extends DefaultPluginManager implements MailManagerInterface {
     $this->moduleHandler->alter('mail', $message);
 
     // Retrieve the responsible implementation for this message.
-    $system = $this->getInstance(array('module' => $module, 'key' => $key));
+    $system = $this->getInstance(['module' => $module, 'key' => $key]);
 
     // Format the message body.
     $message = $system->format($message);
@@ -292,11 +298,11 @@ class MailManager extends DefaultPluginManager implements MailManagerInterface {
         // Log errors.
         if (!$message['result']) {
           $this->loggerFactory->get('mail')
-            ->error('Error sending email (from %from to %to with reply-to %reply).', array(
+            ->error('Error sending email (from %from to %to with reply-to %reply).', [
             '%from' => $message['from'],
             '%to' => $message['to'],
             '%reply' => $message['reply-to'] ? $message['reply-to'] : $this->t('not set'),
-          ));
+          ]);
           drupal_set_message($this->t('Unable to send email. Contact the site administrator if the problem persists.'), 'error');
         }
       }

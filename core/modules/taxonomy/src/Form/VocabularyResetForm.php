@@ -9,6 +9,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Provides confirmation form for resetting a vocabulary to alphabetical order.
+ *
+ * @internal
  */
 class VocabularyResetForm extends EntityConfirmFormBase {
 
@@ -49,7 +51,7 @@ class VocabularyResetForm extends EntityConfirmFormBase {
    * {@inheritdoc}
    */
   public function getQuestion() {
-    return $this->t('Are you sure you want to reset the vocabulary %title to alphabetical order?', array('%title' => $this->entity->label()));
+    return $this->t('Are you sure you want to reset the vocabulary %title to alphabetical order?', ['%title' => $this->entity->label()]);
   }
 
   /**
@@ -80,8 +82,8 @@ class VocabularyResetForm extends EntityConfirmFormBase {
     parent::submitForm($form, $form_state);
     $this->termStorage->resetWeights($this->entity->id());
 
-    drupal_set_message($this->t('Reset vocabulary %name to alphabetical order.', array('%name' => $this->entity->label())));
-    $this->logger('taxonomy')->notice('Reset vocabulary %name to alphabetical order.', array('%name' => $this->entity->label()));
+    drupal_set_message($this->t('Reset vocabulary %name to alphabetical order.', ['%name' => $this->entity->label()]));
+    $this->logger('taxonomy')->notice('Reset vocabulary %name to alphabetical order.', ['%name' => $this->entity->label()]);
     $form_state->setRedirectUrl($this->getCancelUrl());
   }
 

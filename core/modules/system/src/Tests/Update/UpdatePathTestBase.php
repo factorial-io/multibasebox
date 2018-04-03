@@ -2,8 +2,10 @@
 
 namespace Drupal\system\Tests\Update;
 
+@trigger_error(__NAMESPACE__ . '\UpdatePathTestBase is deprecated in Drupal 8.4.0 and will be removed before Drupal 9.0.0. Use \Drupal\FunctionalTests\Update\UpdatePathTestBase instead. See https://www.drupal.org/node/2896640.', E_USER_DEPRECATED);
+
 use Drupal\Component\Utility\Crypt;
-use Drupal\config\Tests\SchemaCheckTestTrait;
+use Drupal\Tests\SchemaCheckTestTrait;
 use Drupal\Core\Database\Database;
 use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\Core\Language\Language;
@@ -33,6 +35,10 @@ use Symfony\Component\HttpFoundation\Request;
  *   UpdatePathTestBaseFilledTest for an example.
  *
  * @ingroup update_api
+ *
+ * @deprecated in Drupal 8.4.0 and will be removed before Drupal 9.0.0.
+ *   Use \Drupal\FunctionalTests\Update\UpdatePathTestBase.
+ * @see https://www.drupal.org/node/2896640
  *
  * @see hook_update_N()
  */
@@ -132,7 +138,7 @@ abstract class UpdatePathTestBase extends WebTestBase {
    *   (optional) The ID of the test. Tests with the same id are reported
    *   together.
    */
-  function __construct($test_id = NULL) {
+  public function __construct($test_id = NULL) {
     parent::__construct($test_id);
     $this->zlibInstalled = function_exists('gzopen');
   }
@@ -237,10 +243,14 @@ abstract class UpdatePathTestBase extends WebTestBase {
     }
     // The site might be broken at the time so logging in using the UI might
     // not work, so we use the API itself.
-    drupal_rewrite_settings(['settings' => ['update_free_access' => (object) [
-      'value' => TRUE,
-      'required' => TRUE,
-    ]]]);
+    drupal_rewrite_settings([
+      'settings' => [
+        'update_free_access' => (object) [
+          'value' => TRUE,
+          'required' => TRUE,
+        ],
+      ],
+    ]);
 
     $this->drupalGet($this->updateUrl);
     $this->clickLink(t('Continue'));
@@ -292,7 +302,7 @@ abstract class UpdatePathTestBase extends WebTestBase {
       $this->assertFalse($needs_updates, 'After all updates ran, entity schema is up to date.');
       if ($needs_updates) {
         foreach (\Drupal::entityDefinitionUpdateManager()
-                   ->getChangeSummary() as $entity_type_id => $summary) {
+          ->getChangeSummary() as $entity_type_id => $summary) {
           foreach ($summary as $message) {
             $this->fail($message);
           }

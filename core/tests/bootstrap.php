@@ -8,6 +8,8 @@
  */
 
 use Drupal\Component\Assertion\Handle;
+use Drupal\Core\Composer\Composer;
+use PHPUnit\Runner\Version;
 
 /**
  * Finds all valid extension directories recursively within a given directory.
@@ -19,7 +21,7 @@ use Drupal\Component\Assertion\Handle;
  *   directory, keyed by extension name.
  */
 function drupal_phpunit_find_extension_directories($scan_directory) {
-  $extensions = array();
+  $extensions = [];
   $dirs = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($scan_directory, \RecursiveDirectoryIterator::FOLLOW_SYMLINKS));
   foreach ($dirs as $dir) {
     if (strpos($dir->getPathname(), '.info.yml') !== FALSE) {
@@ -46,13 +48,13 @@ function drupal_phpunit_contrib_extension_directory_roots($root = NULL) {
   if ($root === NULL) {
     $root = dirname(dirname(__DIR__));
   }
-  $paths = array(
+  $paths = [
     $root . '/core/modules',
     $root . '/core/profiles',
     $root . '/modules',
     $root . '/profiles',
     $root . '/themes',
-  );
+  ];
   $sites_path = $root . '/sites';
   // Note this also checks sites/../modules and sites/../profiles.
   foreach (scandir($sites_path) as $site) {
@@ -77,15 +79,28 @@ function drupal_phpunit_contrib_extension_directory_roots($root = NULL) {
  *   An associative array of extension directories, keyed by their namespace.
  */
 function drupal_phpunit_get_extension_namespaces($dirs) {
-  $namespaces = array();
+  $suite_names = ['Unit', 'Kernel', 'Functional', 'FunctionalJavascript'];
+  $namespaces = [];
   foreach ($dirs as $extension => $dir) {
     if (is_dir($dir . '/src')) {
       // Register the PSR-4 directory for module-provided classes.
       $namespaces['Drupal\\' . $extension . '\\'][] = $dir . '/src';
     }
-    if (is_dir($dir . '/tests/src')) {
-      // Register the PSR-4 directory for PHPUnit test classes.
-      $namespaces['Drupal\\Tests\\' . $extension . '\\'][] = $dir . '/tests/src';
+    $test_dir = $dir . '/tests/src';
+    if (is_dir($test_dir)) {
+      foreach ($suite_names as $suite_name) {
+        $suite_dir = $test_dir . '/' . $suite_name;
+        if (is_dir($suite_dir)) {
+          // Register the PSR-4 directory for PHPUnit-based suites.
+          $namespaces['Drupal\\Tests\\' . $extension . '\\' . $suite_name . '\\'][] = $suite_dir;
+        }
+      }
+      // Extensions can have a \Drupal\extension\Traits namespace for
+      // cross-suite trait code.
+      $trait_dir = $test_dir . '/Traits';
+      if (is_dir($trait_dir)) {
+        $namespaces['Drupal\\Tests\\' . $extension . '\\Traits\\'][] = $trait_dir;
+      }
     }
   }
   return $namespaces;
@@ -123,7 +138,7 @@ function drupal_phpunit_populate_class_loader() {
     $extension_roots = drupal_phpunit_contrib_extension_directory_roots();
 
     $dirs = array_map('drupal_phpunit_find_extension_directories', $extension_roots);
-    $dirs = array_reduce($dirs, 'array_merge', array());
+    $dirs = array_reduce($dirs, 'array_merge', []);
     $GLOBALS['namespaces'] = drupal_phpunit_get_extension_namespaces($dirs);
   }
   foreach ($GLOBALS['namespaces'] as $prefix => $paths) {
@@ -135,6 +150,19 @@ function drupal_phpunit_populate_class_loader() {
 
 // Do class loader population.
 drupal_phpunit_populate_class_loader();
+
+// Ensure we have the correct PHPUnit version for the version of PHP.
+if (class_exists('\PHPUnit_Runner_Version')) {
+  $phpunit_version = \PHPUnit_Runner_Version::id();
+}
+else {
+  $phpunit_version = Version::id();
+}
+if (!Composer::upgradePHPUnitCheck($phpunit_version)) {
+  $message = "PHPUnit testing framework version 6 or greater is required when running on PHP 7.2 or greater. Run the command 'composer run-script drupal-phpunit-upgrade' in order to fix this.";
+  echo "\033[31m" . $message . "\n\033[0m";
+  exit(1);
+}
 
 // Set sane locale settings, to ensure consistent string, dates, times and
 // numbers handling.
@@ -153,3 +181,19 @@ date_default_timezone_set('Australia/Sydney');
 // make PHP 5 and 7 handle assertion failures the same way, but this call does
 // not turn runtime assertions on if they weren't on already.
 Handle::register();
+
+// PHPUnit 4 to PHPUnit 6 bridge. Tests written for PHPUnit 4 need to work on
+// PHPUnit 6 with a minimum of fuss.
+if (version_compare($phpunit_version, '6.1', '>=')) {
+  class_alias('\PHPUnit\Framework\AssertionFailedError', '\PHPUnit_Framework_AssertionFailedError');
+  class_alias('\PHPUnit\Framework\Constraint\Count', '\PHPUnit_Framework_Constraint_Count');
+  class_alias('\PHPUnit\Framework\Error\Error', '\PHPUnit_Framework_Error');
+  class_alias('\PHPUnit\Framework\Error\Warning', '\PHPUnit_Framework_Error_Warning');
+  class_alias('\PHPUnit\Framework\ExpectationFailedException', '\PHPUnit_Framework_ExpectationFailedException');
+  class_alias('\PHPUnit\Framework\Exception', '\PHPUnit_Framework_Exception');
+  class_alias('\PHPUnit\Framework\MockObject\Matcher\InvokedRecorder', '\PHPUnit_Framework_MockObject_Matcher_InvokedRecorder');
+  class_alias('\PHPUnit\Framework\SkippedTestError', '\PHPUnit_Framework_SkippedTestError');
+  class_alias('\PHPUnit\Framework\TestCase', '\PHPUnit_Framework_TestCase');
+  class_alias('\PHPUnit\Util\Test', '\PHPUnit_Util_Test');
+  class_alias('\PHPUnit\Util\XML', '\PHPUnit_Util_XML');
+}

@@ -2,7 +2,6 @@
 
 namespace Drupal\Tests\hal\Functional\EntityResource\Term;
 
-use Drupal\Core\Cache\Cache;
 use Drupal\Tests\hal\Functional\EntityResource\HalEntityNormalizationTrait;
 use Drupal\Tests\rest\Functional\AnonResourceTestTrait;
 use Drupal\Tests\rest\Functional\EntityResource\Term\TermResourceTestBase;
@@ -33,11 +32,6 @@ class TermHalJsonAnonTest extends TermResourceTestBase {
   /**
    * {@inheritdoc}
    */
-  protected static $expectedErrorMimeType = 'application/json';
-
-  /**
-   * {@inheritdoc}
-   */
   protected function getExpectedNormalizedEntity() {
     $default_normalization = parent::getExpectedNormalizedEntity();
 
@@ -46,7 +40,7 @@ class TermHalJsonAnonTest extends TermResourceTestBase {
     return $normalization + [
       '_links' => [
         'self' => [
-          'href' => $this->baseUrl . '/taxonomy/term/1?_format=hal_json',
+          'href' => $this->baseUrl . '/llama?_format=hal_json',
         ],
         'type' => [
           'href' => $this->baseUrl . '/rest/type/taxonomy_term/camelids',
@@ -66,14 +60,6 @@ class TermHalJsonAnonTest extends TermResourceTestBase {
         ],
       ],
     ];
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function getExpectedCacheContexts() {
-    // The 'url.site' cache context is added for '_links' in the response.
-    return Cache::mergeContexts(parent::getExpectedCacheContexts(), ['url.site']);
   }
 
 }

@@ -106,9 +106,9 @@ class ModuleHandler implements ModuleHandlerInterface {
    * @see \Drupal\Core\DrupalKernel
    * @see \Drupal\Core\CoreServiceProvider
    */
-  public function __construct($root, array $module_list = array(), CacheBackendInterface $cache_backend) {
+  public function __construct($root, array $module_list, CacheBackendInterface $cache_backend) {
     $this->root = $root;
-    $this->moduleList = array();
+    $this->moduleList = [];
     foreach ($module_list as $name => $module) {
       $this->moduleList[$name] = new Extension($this->root, $module['type'], $module['pathname'], $module['filename']);
     }
@@ -178,7 +178,7 @@ class ModuleHandler implements ModuleHandlerInterface {
   /**
    * {@inheritdoc}
    */
-  public function setModuleList(array $module_list = array()) {
+  public function setModuleList(array $module_list = []) {
     $this->moduleList = $module_list;
     // Reset the implementations, so a new call triggers a reloading of the
     // available hooks.
@@ -221,7 +221,7 @@ class ModuleHandler implements ModuleHandlerInterface {
    */
   public function buildModuleDependencies(array $modules) {
     foreach ($modules as $module) {
-      $graph[$module->getName()]['edges'] = array();
+      $graph[$module->getName()]['edges'] = [];
       if (isset($module->info['dependencies']) && is_array($module->info['dependencies'])) {
         foreach ($module->info['dependencies'] as $dependency) {
           $dependency_data = static::parseDependency($dependency);
@@ -232,8 +232,8 @@ class ModuleHandler implements ModuleHandlerInterface {
     $graph_object = new Graph($graph);
     $graph = $graph_object->searchAndSort();
     foreach ($graph as $module_name => $data) {
-      $modules[$module_name]->required_by = isset($data['reverse_paths']) ? $data['reverse_paths'] : array();
-      $modules[$module_name]->requires = isset($data['paths']) ? $data['paths'] : array();
+      $modules[$module_name]->required_by = isset($data['reverse_paths']) ? $data['reverse_paths'] : [];
+      $modules[$module_name]->requires = isset($data['paths']) ? $data['paths'] : [];
       $modules[$module_name]->sort = $data['weight'];
     }
     return $modules;
@@ -305,7 +305,7 @@ class ModuleHandler implements ModuleHandlerInterface {
    * @see \Drupal\Core\Extension\ModuleHandler::getHookInfo()
    */
   protected function buildHookInfo() {
-    $this->hookInfo = array();
+    $this->hookInfo = [];
     // Make sure that the modules are loaded before checking.
     $this->reload();
     // $this->invokeAll() would cause an infinite recursion.
@@ -356,7 +356,7 @@ class ModuleHandler implements ModuleHandlerInterface {
     // invoked, since this can quickly lead to
     // \Drupal::moduleHandler()->implementsHook() being called several thousand
     // times per request.
-    $this->cacheBackend->set('module_implements', array());
+    $this->cacheBackend->set('module_implements', []);
     $this->cacheBackend->delete('hook_info');
   }
 
@@ -383,7 +383,7 @@ class ModuleHandler implements ModuleHandlerInterface {
   /**
    * {@inheritdoc}
    */
-  public function invoke($module, $hook, array $args = array()) {
+  public function invoke($module, $hook, array $args = []) {
     if (!$this->implementsHook($module, $hook)) {
       return;
     }
@@ -394,8 +394,8 @@ class ModuleHandler implements ModuleHandlerInterface {
   /**
    * {@inheritdoc}
    */
-  public function invokeAll($hook, array $args = array()) {
-    $return = array();
+  public function invokeAll($hook, array $args = []) {
+    $return = [];
     $implementations = $this->getImplementations($hook);
     foreach ($implementations as $module) {
       $function = $module . '_' . $hook;
@@ -409,6 +409,44 @@ class ModuleHandler implements ModuleHandlerInterface {
     }
 
     return $return;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function invokeDeprecated($description, $module, $hook, array $args = []) {
+    $result = $this->invoke($module, $hook, $args);
+    $this->triggerDeprecationError($description, $hook);
+    return $result;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function invokeAllDeprecated($description, $hook, array $args = []) {
+    $result = $this->invokeAll($hook, $args);
+    $this->triggerDeprecationError($description, $hook);
+    return $result;
+  }
+
+
+  /**
+   * Triggers an E_USER_DEPRECATED error if any module implements the hook.
+   *
+   * @param string $description
+   *   Helpful text describing what to do instead of implementing this hook.
+   * @param string $hook
+   *   The name of the hook.
+   */
+  private function triggerDeprecationError($description, $hook) {
+    $modules = array_keys($this->getImplementationInfo($hook));
+    if (!empty($modules)) {
+      $message = 'The deprecated hook hook_' . $hook . '() is implemented in these functions: ';
+      $implementations = array_map(function ($module) use ($hook) {
+        return $module . '_' . $hook . '()';
+      }, $modules);
+      @trigger_error($message . implode(', ', $implementations) . '. ' . $description, E_USER_DEPRECATED);
+    }
   }
 
   /**
@@ -438,7 +476,7 @@ class ModuleHandler implements ModuleHandlerInterface {
     // list of functions to call, and on subsequent calls, iterate through them
     // quickly.
     if (!isset($this->alterFunctions[$cid])) {
-      $this->alterFunctions[$cid] = array();
+      $this->alterFunctions[$cid] = [];
       $hook = $type . '_alter';
       $modules = $this->getImplementations($hook);
       if (!isset($extra_types)) {
@@ -452,7 +490,7 @@ class ModuleHandler implements ModuleHandlerInterface {
       else {
         // For multiple hooks, we need $modules to contain every module that
         // implements at least one of them.
-        $extra_modules = array();
+        $extra_modules = [];
         foreach ($extra_types as $extra_type) {
           $extra_modules = array_merge($extra_modules, $this->getImplementations($extra_type . '_alter'));
         }
@@ -503,6 +541,28 @@ class ModuleHandler implements ModuleHandlerInterface {
   }
 
   /**
+   * {@inheritdoc}
+   */
+  public function alterDeprecated($description, $type, &$data, &$context1 = NULL, &$context2 = NULL) {
+    // Invoke the alter hook. This has the side effect of populating
+    // $this->alterFunctions.
+    $this->alter($type, $data, $context1, $context2);
+    // The $type parameter can be an array. alter() will deal with this
+    // internally, but we have to extract the proper $cid in order to discover
+    // implementations.
+    $cid = $type;
+    if (is_array($type)) {
+      $cid = implode(',', $type);
+      $extra_types = $type;
+      $type = array_shift($extra_types);
+    }
+    if (!empty($this->alterFunctions[$cid])) {
+      $message = 'The deprecated alter hook hook_' . $type . '_alter() is implemented in these functions: ' . implode(', ', $this->alterFunctions[$cid]) . '.';
+      @trigger_error($message . ' ' . $description, E_USER_DEPRECATED);
+    }
+  }
+
+  /**
    * Provides information about modules' implementations of a hook.
    *
    * @param string $hook
@@ -516,8 +576,8 @@ class ModuleHandler implements ModuleHandlerInterface {
    */
   protected function getImplementationInfo($hook) {
     if (!isset($this->implementations)) {
-      $this->implementations = array();
-      $this->verified = array();
+      $this->implementations = [];
+      $this->verified = [];
       if ($cache = $this->cacheBackend->get('module_implements')) {
         $this->implementations = $cache->data;
       }
@@ -561,7 +621,7 @@ class ModuleHandler implements ModuleHandlerInterface {
    * @see \Drupal\Core\Extension\ModuleHandler::getImplementationInfo()
    */
   protected function buildImplementationInfo($hook) {
-    $implementations = array();
+    $implementations = [];
     $hook_info = $this->getHookInfo();
     foreach ($this->moduleList as $module => $extension) {
       $include_file = isset($hook_info[$hook]['group']) && $this->loadInclude($module, 'inc', $module . '.' . $hook_info[$hook]['group']);
@@ -658,7 +718,7 @@ class ModuleHandler implements ModuleHandlerInterface {
    * @see drupal_check_incompatibility()
    */
   public static function parseDependency($dependency) {
-    $value = array();
+    $value = [];
     // Split out the optional project name.
     if (strpos($dependency, ':') !== FALSE) {
       list($project_name, $dependency) = explode(':', $dependency);
@@ -691,11 +751,11 @@ class ModuleHandler implements ModuleHandlerInterface {
             }
             // Equivalence can be checked by adding two restrictions.
             if ($op == '=' || $op == '==') {
-              $value['versions'][] = array('op' => '<', 'version' => ($matches['major'] + 1) . '.x');
+              $value['versions'][] = ['op' => '<', 'version' => ($matches['major'] + 1) . '.x'];
               $op = '>=';
             }
           }
-          $value['versions'][] = array('op' => $op, 'version' => $matches['major'] . '.' . $matches['minor']);
+          $value['versions'][] = ['op' => $op, 'version' => $matches['major'] . '.' . $matches['minor']];
         }
       }
     }
@@ -706,7 +766,7 @@ class ModuleHandler implements ModuleHandlerInterface {
    * {@inheritdoc}
    */
   public function getModuleDirectories() {
-    $dirs = array();
+    $dirs = [];
     foreach ($this->getModuleList() as $name => $module) {
       $dirs[$name] = $this->root . '/' . $module->getPath();
     }

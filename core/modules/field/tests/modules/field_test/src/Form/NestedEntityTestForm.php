@@ -10,6 +10,8 @@ use Drupal\Core\Entity\Entity\EntityFormDisplay;
 
 /**
  * Provides a form for field_test routes.
+ *
+ * @internal
  */
 class NestedEntityTestForm extends FormBase {
 
@@ -54,11 +56,11 @@ class NestedEntityTestForm extends FormBase {
       ];
     }
 
-    $form['save'] = array(
+    $form['save'] = [
       '#type' => 'submit',
       '#value' => t('Save'),
       '#weight' => 100,
-    );
+    ];
 
     return $form;
   }
@@ -101,7 +103,7 @@ class NestedEntityTestForm extends FormBase {
     $entity_2 = $form_state->get('entity_2');
     $entity_2->save();
 
-    drupal_set_message($this->t('test_entities @id_1 and @id_2 have been updated.', array('@id_1' => $entity_1->id(), '@id_2' => $entity_2->id())));
+    drupal_set_message($this->t('test_entities @id_1 and @id_2 have been updated.', ['@id_1' => $entity_1->id(), '@id_2' => $entity_2->id()]));
   }
 
 }

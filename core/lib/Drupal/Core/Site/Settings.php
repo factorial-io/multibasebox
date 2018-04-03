@@ -17,14 +17,14 @@ final class Settings {
    *
    * @var array
    */
-  private $storage = array();
+  private $storage = [];
 
   /**
    * Singleton instance.
    *
    * @var \Drupal\Core\Site\Settings
    */
-  private static $instance;
+  private static $instance = NULL;
 
   /**
    * Constructor.
@@ -44,8 +44,14 @@ final class Settings {
    * available.
    *
    * @return \Drupal\Core\Site\Settings
+   *
+   * @throws \BadMethodCallException
+   *   Thrown when the settings instance has not been initialized yet.
    */
   public static function getInstance() {
+    if (self::$instance === NULL) {
+      throw new \BadMethodCallException('Settings::$instance is not initialized yet. Whatever you are trying to do, it might be too early for that. You could call Settings::initialize(), but it is probably better to wait until it is called in the regular way. Also check for recursions.');
+    }
     return self::$instance;
   }
 
@@ -108,9 +114,9 @@ final class Settings {
   public static function initialize($app_root, $site_path, &$class_loader) {
     // Export these settings.php variables to the global namespace.
     global $config_directories, $config;
-    $settings = array();
-    $config = array();
-    $databases = array();
+    $settings = [];
+    $config = [];
+    $databases = [];
 
     if (is_readable($app_root . '/' . $site_path . '/settings.php')) {
       require $app_root . '/' . $site_path . '/settings.php';
@@ -150,8 +156,8 @@ final class Settings {
    * cache. By default, this method will produce a unique prefix per site using
    * the hash salt. If the setting 'apcu_ensure_unique_prefix' is set to FALSE
    * then if the caller does not provide a $site_path only the Drupal root will
-   * be used. This allows WebTestBase to use the same prefix ensuring that the
-   * number of APCu items created during a full test run is kept to a minimum.
+   * be used. This allows tests to use the same prefix ensuring that the number
+   * of APCu items created during a full test run is kept to a minimum.
    * Additionally, if a multi site implementation does not use site specific
    * module directories setting apcu_ensure_unique_prefix would allow the sites
    * to share APCu cache items.
@@ -162,6 +168,8 @@ final class Settings {
    *
    * @return string
    *   The prefix for APCu user cache keys.
+   *
+   * @see https://www.drupal.org/project/drupal/issues/2926309
    */
   public static function getApcuPrefix($identifier, $root, $site_path = '') {
     if (static::get('apcu_ensure_unique_prefix', TRUE)) {

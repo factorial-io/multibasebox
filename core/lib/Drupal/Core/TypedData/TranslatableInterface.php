@@ -71,7 +71,7 @@ interface TranslatableInterface {
   public function getUntranslated();
 
   /**
-   * Returns TRUE there is a translation for the given language code.
+   * Checks there is a translation for the given language code.
    *
    * @param string $langcode
    *   The language code identifying the translation.
@@ -95,7 +95,7 @@ interface TranslatableInterface {
    * @throws \InvalidArgumentException
    *   If an invalid or existing translation language is specified.
    */
-  public function addTranslation($langcode, array $values = array());
+  public function addTranslation($langcode, array $values = []);
 
   /**
    * Removes the translation identified by the given language code.

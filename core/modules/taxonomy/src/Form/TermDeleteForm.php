@@ -8,6 +8,8 @@ use Drupal\Core\Url;
 
 /**
  * Provides a deletion confirmation form for taxonomy term.
+ *
+ * @internal
  */
 class TermDeleteForm extends ContentEntityDeleteForm {
 
@@ -38,7 +40,7 @@ class TermDeleteForm extends ContentEntityDeleteForm {
    * {@inheritdoc}
    */
   protected function getDeletionMessage() {
-    return $this->t('Deleted term %name.', array('%name' => $this->entity->label()));
+    return $this->t('Deleted term %name.', ['%name' => $this->entity->label()]);
   }
 
   /**
@@ -54,7 +56,7 @@ class TermDeleteForm extends ContentEntityDeleteForm {
       $vocabulary = $storage->load($this->entity->bundle());
 
       // @todo Move to storage http://drupal.org/node/1988712
-      taxonomy_check_vocabulary_hierarchy($vocabulary, array('tid' => $term->id()));
+      taxonomy_check_vocabulary_hierarchy($vocabulary, ['tid' => $term->id()]);
     }
   }
 

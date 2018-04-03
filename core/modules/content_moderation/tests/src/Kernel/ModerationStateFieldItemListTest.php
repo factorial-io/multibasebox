@@ -5,6 +5,7 @@ namespace Drupal\Tests\content_moderation\Kernel;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
+use Drupal\workflows\Entity\Workflow;
 
 /**
  * @coversDefaultClass \Drupal\content_moderation\Plugin\Field\ModerationStateFieldItemList
@@ -22,6 +23,7 @@ class ModerationStateFieldItemListTest extends KernelTestBase {
     'user',
     'system',
     'language',
+    'workflows',
   ];
 
   /**
@@ -41,13 +43,18 @@ class ModerationStateFieldItemListTest extends KernelTestBase {
     $this->installEntitySchema('content_moderation_state');
     $this->installConfig('content_moderation');
 
+    NodeType::create([
+      'type' => 'unmoderated',
+    ])->save();
+
     $node_type = NodeType::create([
       'type' => 'example',
     ]);
-    $node_type->setThirdPartySetting('content_moderation', 'enabled', TRUE);
-    $node_type->setThirdPartySetting('content_moderation', 'allowed_moderation_states', ['draft']);
-    $node_type->setThirdPartySetting('content_moderation', 'default_moderation_state', 'draft');
     $node_type->save();
+    $workflow = Workflow::load('editorial');
+    $workflow->getTypePlugin()->addEntityTypeAndBundle('node', 'example');
+    $workflow->save();
+
     $this->testNode = Node::create([
       'type' => 'example',
       'title' => 'Test title',
@@ -61,7 +68,8 @@ class ModerationStateFieldItemListTest extends KernelTestBase {
    * Test the field item list when accessing an index.
    */
   public function testArrayIndex() {
-    $this->assertEquals('draft', $this->testNode->moderation_state[0]->entity->id());
+    $this->assertFalse($this->testNode->isPublished());
+    $this->assertEquals('draft', $this->testNode->moderation_state[0]->value);
   }
 
   /**
@@ -70,9 +78,110 @@ class ModerationStateFieldItemListTest extends KernelTestBase {
   public function testArrayIteration() {
     $states = [];
     foreach ($this->testNode->moderation_state as $item) {
-      $states[] = $item->entity->id();
+      $states[] = $item->value;
     }
     $this->assertEquals(['draft'], $states);
+  }
+
+  /**
+   * @covers ::getValue
+   */
+  public function testGetValue() {
+    $this->assertEquals([['value' => 'draft']], $this->testNode->moderation_state->getValue());
+  }
+
+  /**
+   * @covers ::get
+   */
+  public function testGet() {
+    $this->assertEquals('draft', $this->testNode->moderation_state->get(0)->value);
+    $this->setExpectedException(\InvalidArgumentException::class);
+    $this->testNode->moderation_state->get(2);
+  }
+
+  /**
+   * Tests the computed field when it is unset or set to an empty value.
+   */
+  public function testSetEmptyState() {
+    $this->testNode->moderation_state->value = '';
+    $this->assertEquals('draft', $this->testNode->moderation_state->value);
+
+    $this->testNode->moderation_state = '';
+    $this->assertEquals('draft', $this->testNode->moderation_state->value);
+
+    unset($this->testNode->moderation_state);
+    $this->assertEquals('draft', $this->testNode->moderation_state->value);
+  }
+
+  /**
+   * Test the list class with a non moderated entity.
+   */
+  public function testNonModeratedEntity() {
+    $unmoderated_node = Node::create([
+      'type' => 'unmoderated',
+      'title' => 'Test title',
+    ]);
+    $unmoderated_node->save();
+    $this->assertEquals(0, $unmoderated_node->moderation_state->count());
+
+    $unmoderated_node->moderation_state = NULL;
+    $this->assertEquals(0, $unmoderated_node->moderation_state->count());
+  }
+
+  /**
+   * Tests that moderation state changes also change the related entity state.
+   */
+  public function testModerationStateChanges() {
+    // Change the moderation state and check that the entity's
+    // 'isDefaultRevision' flag and the publishing status have also been
+    // updated.
+    $this->testNode->moderation_state->value = 'published';
+
+    $this->assertTrue($this->testNode->isPublished());
+    $this->assertTrue($this->testNode->isDefaultRevision());
+
+    $this->testNode->save();
+
+    // Repeat the checks using an 'unpublished' state.
+    $this->testNode->moderation_state->value = 'draft';
+    $this->assertFalse($this->testNode->isPublished());
+    $this->assertFalse($this->testNode->isDefaultRevision());
+  }
+
+  /**
+   * Test updating the state for an entity without a workflow.
+   */
+  public function testEntityWithNoWorkflow() {
+    $node_type = NodeType::create([
+      'type' => 'example_no_workflow',
+    ]);
+    $node_type->save();
+    $test_node = Node::create([
+      'type' => 'example_no_workflow',
+      'title' => 'Test node with no workflow',
+    ]);
+    $test_node->save();
+
+    /** @var \Drupal\content_moderation\ModerationInformationInterface $content_moderation_info */
+    $content_moderation_info = \Drupal::service('content_moderation.moderation_information');
+    $workflow = $content_moderation_info->getWorkflowForEntity($test_node);
+    $this->assertNull($workflow);
+
+    $this->assertTrue($test_node->isPublished());
+    $test_node->moderation_state->setValue('draft');
+    // The entity is still published because there is not a workflow.
+    $this->assertTrue($test_node->isPublished());
+  }
+
+  /**
+   * Test the moderation_state field after an entity has been serialized.
+   */
+  public function testEntityUnserialize() {
+    $this->testNode->moderation_state->value = 'draft';
+    $unserialized = unserialize(serialize($this->testNode));
+
+    $this->assertEquals('Test title', $unserialized->title->value);
+    $this->assertEquals('draft', $unserialized->moderation_state->value);
   }
 
 }

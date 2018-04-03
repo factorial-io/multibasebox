@@ -2,6 +2,7 @@
 
 namespace Drupal\Tests\rest\Functional;
 
+use Behat\Mink\Driver\BrowserKitDriver;
 use Drupal\Core\Url;
 use Drupal\rest\RestResourceConfigInterface;
 use Drupal\Tests\BrowserTestBase;
@@ -47,17 +48,6 @@ abstract class ResourceTestBase extends BrowserTestBase {
   protected static $mimeType = 'application/json';
 
   /**
-   * The expected MIME type in case of 4xx error responses.
-   *
-   * (Can be different, when $mimeType for example encodes a particular
-   * normalization, such as 'application/hal+json': its error response MIME
-   * type is 'application/json'.)
-   *
-   * @var string
-   */
-  protected static $expectedErrorMimeType = 'application/json';
-
-  /**
    * The authentication mechanism to use in this test.
    *
    * (The default is 'cookie' because that doesn't depend on any module.)
@@ -65,6 +55,17 @@ abstract class ResourceTestBase extends BrowserTestBase {
    * @var string
    */
   protected static $auth = FALSE;
+
+  /**
+   * The REST Resource Config entity ID under test (i.e. a resource type).
+   *
+   * The REST Resource plugin ID can be calculated from this.
+   *
+   * @var string
+   *
+   * @see \Drupal\rest\Entity\RestResourceConfig::__construct()
+   */
+  protected static $resourceConfigId = NULL;
 
   /**
    * The account to use for authentication, if any.
@@ -100,13 +101,15 @@ abstract class ResourceTestBase extends BrowserTestBase {
   public function setUp() {
     parent::setUp();
 
+    $this->serializer = $this->container->get('serializer');
+
     // Ensure the anonymous user role has no permissions at all.
     $user_role = Role::load(RoleInterface::ANONYMOUS_ID);
     foreach ($user_role->getPermissions() as $permission) {
       $user_role->revokePermission($permission);
     }
     $user_role->save();
-    assert('[] === $user_role->getPermissions()', 'The anonymous user role has no permissions at all.');
+    assert([] === $user_role->getPermissions(), 'The anonymous user role has no permissions at all.');
 
     if (static::$auth !== FALSE) {
       // Ensure the authenticated user role has no permissions at all.
@@ -115,7 +118,7 @@ abstract class ResourceTestBase extends BrowserTestBase {
         $user_role->revokePermission($permission);
       }
       $user_role->save();
-      assert('[] === $user_role->getPermissions()', 'The authenticated user role has no permissions at all.');
+      assert([] === $user_role->getPermissions(), 'The authenticated user role has no permissions at all.');
 
       // Create an account.
       $this->account = $this->createUser();
@@ -130,30 +133,62 @@ abstract class ResourceTestBase extends BrowserTestBase {
 
     // Ensure there's a clean slate: delete all REST resource config entities.
     $this->resourceConfigStorage->delete($this->resourceConfigStorage->loadMultiple());
+    $this->refreshTestStateAfterRestConfigChange();
   }
 
   /**
-   * Provisions a REST resource.
+   * Provisions the REST resource under test.
    *
-   * @param string $resource_type
-   *   The resource type (REST resource plugin ID).
    * @param string[] $formats
    *   The allowed formats for this resource.
    * @param string[] $authentication
    *   The allowed authentication providers for this resource.
    */
-  protected function provisionResource($resource_type, $formats = [], $authentication = []) {
+  protected function provisionResource($formats = [], $authentication = []) {
     $this->resourceConfigStorage->create([
-      'id' => $resource_type,
+      'id' => static::$resourceConfigId,
       'granularity' => RestResourceConfigInterface::RESOURCE_GRANULARITY,
       'configuration' => [
         'methods' => ['GET', 'POST', 'PATCH', 'DELETE'],
         'formats' => $formats,
         'authentication' => $authentication,
-      ]
+      ],
+      'status' => TRUE,
     ])->save();
-    // @todo Remove this in https://www.drupal.org/node/2815845.
-    drupal_flush_all_caches();
+    $this->refreshTestStateAfterRestConfigChange();
+  }
+
+  /**
+   * Refreshes the state of the tester to be in sync with the testee.
+   *
+   * Should be called after every change made to:
+   * - RestResourceConfig entities
+   * - the 'rest.settings' simple configuration
+   */
+  protected function refreshTestStateAfterRestConfigChange() {
+    // Ensure that the cache tags invalidator has its internal values reset.
+    // Otherwise the http_response cache tag invalidation won't work.
+    $this->refreshVariables();
+
+    // Tests using this base class may trigger route rebuilds due to changes to
+    // RestResourceConfig entities or 'rest.settings'. Ensure the test generates
+    // routes using an up-to-date router.
+    \Drupal::service('router.builder')->rebuildIfNeeded();
+  }
+
+  /**
+   * Return the expected error message.
+   *
+   * @param string $method
+   *   The HTTP method (GET, POST, PATCH, DELETE).
+   *
+   * @return string
+   *   The error string.
+   */
+  protected function getExpectedUnauthorizedAccessMessage($method) {
+    $resource_plugin_id = str_replace('.', ':', static::$resourceConfigId);
+    $permission = 'restful ' . strtolower($method) . ' ' . $resource_plugin_id;
+    return "The '$permission' permission is required.";
   }
 
   /**
@@ -179,8 +214,13 @@ abstract class ResourceTestBase extends BrowserTestBase {
 
   /**
    * Verifies the error response in case of missing authentication.
+   *
+   * @param string $method
+   *   HTTP method.
+   * @param \Psr\Http\Message\ResponseInterface $response
+   *   The response to assert.
    */
-  abstract protected function assertResponseWhenMissingAuthentication(ResponseInterface $response);
+  abstract protected function assertResponseWhenMissingAuthentication($method, ResponseInterface $response);
 
   /**
    * Asserts normalization-specific edge cases.
@@ -213,6 +253,14 @@ abstract class ResourceTestBase extends BrowserTestBase {
    *   Request options to apply.
    */
   abstract protected function assertAuthenticationEdgeCases($method, Url $url, array $request_options);
+
+  /**
+   * Returns the expected cacheability of an unauthorized access response.
+   *
+   * @return \Drupal\Core\Cache\RefinableCacheableDependencyInterface
+   *   The expected cacheability.
+   */
+  abstract protected function getExpectedUnauthorizedAccessCacheability();
 
   /**
    * Initializes authentication.
@@ -282,6 +330,9 @@ abstract class ResourceTestBase extends BrowserTestBase {
    * 'http_errors = FALSE' request option, nor do we want them to have to
    * convert Drupal Url objects to strings.
    *
+   * We also don't want to follow redirects automatically, to ensure these tests
+   * are able to detect when redirects are added or removed.
+   *
    * @see \GuzzleHttp\ClientInterface::request()
    *
    * @param string $method
@@ -295,15 +346,14 @@ abstract class ResourceTestBase extends BrowserTestBase {
    */
   protected function request($method, Url $url, array $request_options) {
     $request_options[RequestOptions::HTTP_ERRORS] = FALSE;
-    return $this->httpClient->request($method, $url->toString(), $request_options);
+    $request_options[RequestOptions::ALLOW_REDIRECTS] = FALSE;
+    $request_options = $this->decorateWithXdebugCookie($request_options);
+    $client = $this->getSession()->getDriver()->getClient()->getClient();
+    return $client->request($method, $url->setAbsolute(TRUE)->toString(), $request_options);
   }
 
   /**
    * Asserts that a resource response has the given status code and body.
-   *
-   * (Also asserts that the expected error MIME type is present, but this is
-   * defined globally for the test via static::$expectedErrorMimeType, because
-   * all error responses should use the same MIME type.)
    *
    * @param int $expected_status_code
    *   The expected response status.
@@ -311,26 +361,72 @@ abstract class ResourceTestBase extends BrowserTestBase {
    *   The expected response body. FALSE in case this should not be asserted.
    * @param \Psr\Http\Message\ResponseInterface $response
    *   The response to assert.
+   * @param string[]|false $expected_cache_tags
+   *   (optional) The expected cache tags in the X-Drupal-Cache-Tags response
+   *   header, or FALSE if that header should be absent. Defaults to FALSE.
+   * @param string[]|false $expected_cache_contexts
+   *   (optional) The expected cache contexts in the X-Drupal-Cache-Contexts
+   *   response header, or FALSE if that header should be absent. Defaults to
+   *   FALSE.
+   * @param string|false $expected_page_cache_header_value
+   *   (optional) The expected X-Drupal-Cache response header value, or FALSE if
+   *   that header should be absent. Possible strings: 'MISS', 'HIT'. Defaults
+   *   to FALSE.
+   * @param string|false $expected_dynamic_page_cache_header_value
+   *   (optional) The expected X-Drupal-Dynamic-Cache response header value, or
+   *   FALSE if that header should be absent. Possible strings: 'MISS', 'HIT'.
+   *   Defaults to FALSE.
    */
-  protected function assertResourceResponse($expected_status_code, $expected_body, ResponseInterface $response) {
+  protected function assertResourceResponse($expected_status_code, $expected_body, ResponseInterface $response, $expected_cache_tags = FALSE, $expected_cache_contexts = FALSE, $expected_page_cache_header_value = FALSE, $expected_dynamic_page_cache_header_value = FALSE) {
     $this->assertSame($expected_status_code, $response->getStatusCode());
-    if ($expected_status_code < 400) {
-      $this->assertSame([static::$mimeType], $response->getHeader('Content-Type'));
+    if ($expected_status_code === 204) {
+      // DELETE responses should not include a Content-Type header. But Apache
+      // sets it to 'text/html' by default. We also cannot detect the presence
+      // of Apache either here in the CLI. For now having this documented here
+      // is all we can do.
+      // $this->assertSame(FALSE, $response->hasHeader('Content-Type'));
+      $this->assertSame('', (string) $response->getBody());
     }
     else {
-      $this->assertSame([static::$expectedErrorMimeType], $response->getHeader('Content-Type'));
+      $this->assertSame([static::$mimeType], $response->getHeader('Content-Type'));
+      if ($expected_body !== FALSE) {
+        $this->assertSame($expected_body, (string) $response->getBody());
+      }
     }
-    if ($expected_body !== FALSE) {
-      $this->assertSame($expected_body, (string) $response->getBody());
+
+    // Expected cache tags: X-Drupal-Cache-Tags header.
+    $this->assertSame($expected_cache_tags !== FALSE, $response->hasHeader('X-Drupal-Cache-Tags'));
+    if (is_array($expected_cache_tags)) {
+      $this->assertSame($expected_cache_tags, explode(' ', $response->getHeader('X-Drupal-Cache-Tags')[0]));
+    }
+
+    // Expected cache contexts: X-Drupal-Cache-Contexts header.
+    $this->assertSame($expected_cache_contexts !== FALSE, $response->hasHeader('X-Drupal-Cache-Contexts'));
+    if (is_array($expected_cache_contexts)) {
+      $this->assertSame($expected_cache_contexts, explode(' ', $response->getHeader('X-Drupal-Cache-Contexts')[0]));
+    }
+
+    // Expected Page Cache header value: X-Drupal-Cache header.
+    if ($expected_page_cache_header_value !== FALSE) {
+      $this->assertTrue($response->hasHeader('X-Drupal-Cache'));
+      $this->assertSame($expected_page_cache_header_value, $response->getHeader('X-Drupal-Cache')[0]);
+    }
+    else {
+      $this->assertFalse($response->hasHeader('X-Drupal-Cache'));
+    }
+
+    // Expected Dynamic Page Cache header value: X-Drupal-Dynamic-Cache header.
+    if ($expected_dynamic_page_cache_header_value !== FALSE) {
+      $this->assertTrue($response->hasHeader('X-Drupal-Dynamic-Cache'));
+      $this->assertSame($expected_dynamic_page_cache_header_value, $response->getHeader('X-Drupal-Dynamic-Cache')[0]);
+    }
+    else {
+      $this->assertFalse($response->hasHeader('X-Drupal-Dynamic-Cache'));
     }
   }
 
   /**
    * Asserts that a resource error response has the given message.
-   *
-   * (Also asserts that the expected error MIME type is present, but this is
-   * defined globally for the test via static::$expectedErrorMimeType, because
-   * all error responses should use the same MIME type.)
    *
    * @param int $expected_status_code
    *   The expected response status.
@@ -338,12 +434,51 @@ abstract class ResourceTestBase extends BrowserTestBase {
    *   The expected error message.
    * @param \Psr\Http\Message\ResponseInterface $response
    *   The error response to assert.
+   * @param string[]|false $expected_cache_tags
+   *   (optional) The expected cache tags in the X-Drupal-Cache-Tags response
+   *   header, or FALSE if that header should be absent. Defaults to FALSE.
+   * @param string[]|false $expected_cache_contexts
+   *   (optional) The expected cache contexts in the X-Drupal-Cache-Contexts
+   *   response header, or FALSE if that header should be absent. Defaults to
+   *   FALSE.
+   * @param string|false $expected_page_cache_header_value
+   *   (optional) The expected X-Drupal-Cache response header value, or FALSE if
+   *   that header should be absent. Possible strings: 'MISS', 'HIT'. Defaults
+   *   to FALSE.
+   * @param string|false $expected_dynamic_page_cache_header_value
+   *   (optional) The expected X-Drupal-Dynamic-Cache response header value, or
+   *   FALSE if that header should be absent. Possible strings: 'MISS', 'HIT'.
+   *   Defaults to FALSE.
    */
-  protected function assertResourceErrorResponse($expected_status_code, $expected_message, ResponseInterface $response) {
-    // @todo Fix this in https://www.drupal.org/node/2813755.
-    $encode_options = ['json_encode_options' => JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT];
-    $expected_body = $this->serializer->encode(['message' => $expected_message], static::$format, $encode_options);
-    $this->assertResourceResponse($expected_status_code, $expected_body, $response);
+  protected function assertResourceErrorResponse($expected_status_code, $expected_message, ResponseInterface $response, $expected_cache_tags = FALSE, $expected_cache_contexts = FALSE, $expected_page_cache_header_value = FALSE, $expected_dynamic_page_cache_header_value = FALSE) {
+    $expected_body = ($expected_message !== FALSE) ? $this->serializer->encode(['message' => $expected_message], static::$format) : FALSE;
+    $this->assertResourceResponse($expected_status_code, $expected_body, $response, $expected_cache_tags, $expected_cache_contexts, $expected_page_cache_header_value, $expected_dynamic_page_cache_header_value);
+  }
+
+  /**
+   * Adds the Xdebug cookie to the request options.
+   *
+   * @param array $request_options
+   *   The request options.
+   *
+   * @return array
+   *   Request options updated with the Xdebug cookie if present.
+   */
+  protected function decorateWithXdebugCookie(array $request_options) {
+    $session = $this->getSession();
+    $driver = $session->getDriver();
+    if ($driver instanceof BrowserKitDriver) {
+      $client = $driver->getClient();
+      foreach ($client->getCookieJar()->all() as $cookie) {
+        if (isset($request_options[RequestOptions::HEADERS]['Cookie'])) {
+          $request_options[RequestOptions::HEADERS]['Cookie'] .= '; ' . $cookie->getName() . '=' . $cookie->getValue();
+        }
+        else {
+          $request_options[RequestOptions::HEADERS]['Cookie'] = $cookie->getName() . '=' . $cookie->getValue();
+        }
+      }
+    }
+    return $request_options;
   }
 
 }

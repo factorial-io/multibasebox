@@ -5,7 +5,6 @@ namespace Drupal\system\Plugin\Block;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Menu\MenuActiveTrailInterface;
 use Drupal\Core\Menu\MenuLinkTreeInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -17,7 +16,10 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   id = "system_menu_block",
  *   admin_label = @Translation("Menu"),
  *   category = @Translation("Menus"),
- *   deriver = "Drupal\system\Plugin\Derivative\SystemMenuBlock"
+ *   deriver = "Drupal\system\Plugin\Derivative\SystemMenuBlock",
+ *   forms = {
+ *     "settings_tray" = "\Drupal\system\Form\SystemMenuOffCanvasForm",
+ *   },
  * )
  */
 class SystemMenuBlock extends BlockBase implements ContainerFactoryPluginInterface {
@@ -30,13 +32,6 @@ class SystemMenuBlock extends BlockBase implements ContainerFactoryPluginInterfa
   protected $menuTree;
 
   /**
-   * The active menu trail service.
-   *
-   * @var \Drupal\Core\Menu\MenuActiveTrailInterface
-   */
-  protected $menuActiveTrail;
-
-  /**
    * Constructs a new SystemMenuBlock.
    *
    * @param array $configuration
@@ -47,13 +42,10 @@ class SystemMenuBlock extends BlockBase implements ContainerFactoryPluginInterfa
    *   The plugin implementation definition.
    * @param \Drupal\Core\Menu\MenuLinkTreeInterface $menu_tree
    *   The menu tree service.
-   * @param \Drupal\Core\Menu\MenuActiveTrailInterface $menu_active_trail
-   *   The active menu trail service.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, MenuLinkTreeInterface $menu_tree, MenuActiveTrailInterface $menu_active_trail) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, MenuLinkTreeInterface $menu_tree) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->menuTree = $menu_tree;
-    $this->menuActiveTrail = $menu_active_trail;
   }
 
   /**
@@ -64,8 +56,7 @@ class SystemMenuBlock extends BlockBase implements ContainerFactoryPluginInterfa
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('menu.link_tree'),
-      $container->get('menu.active_trail')
+      $container->get('menu.link_tree')
     );
   }
 
@@ -76,36 +67,36 @@ class SystemMenuBlock extends BlockBase implements ContainerFactoryPluginInterfa
     $config = $this->configuration;
 
     $defaults = $this->defaultConfiguration();
-    $form['menu_levels'] = array(
+    $form['menu_levels'] = [
       '#type' => 'details',
       '#title' => $this->t('Menu levels'),
       // Open if not set to defaults.
       '#open' => $defaults['level'] !== $config['level'] || $defaults['depth'] !== $config['depth'],
       '#process' => [[get_class(), 'processMenuLevelParents']],
-    );
+    ];
 
     $options = range(0, $this->menuTree->maxDepth());
     unset($options[0]);
 
-    $form['menu_levels']['level'] = array(
+    $form['menu_levels']['level'] = [
       '#type' => 'select',
-      '#title' => $this->t('Initial menu level'),
+      '#title' => $this->t('Initial visibility level'),
       '#default_value' => $config['level'],
       '#options' => $options,
-      '#description' => $this->t('The menu will only be visible if the menu item for the current page is at or below the selected starting level. Select level 1 to always keep this menu visible.'),
+      '#description' => $this->t('The menu is only visible if the menu item for the current page is at this level or below it. Use level 1 to always display this menu.'),
       '#required' => TRUE,
-    );
+    ];
 
     $options[0] = $this->t('Unlimited');
 
-    $form['menu_levels']['depth'] = array(
+    $form['menu_levels']['depth'] = [
       '#type' => 'select',
-      '#title' => $this->t('Maximum number of menu levels to display'),
+      '#title' => $this->t('Number of levels to display'),
       '#default_value' => $config['depth'],
       '#options' => $options,
-      '#description' => $this->t('The maximum number of menu levels to show, starting from the initial menu level. For example: with an initial level 2 and a maximum number of 3, menu levels 2, 3 and 4 can be displayed.'),
+      '#description' => $this->t('This maximum number includes the initial level.'),
       '#required' => TRUE,
-    );
+    ];
 
     return $form;
   }
@@ -147,11 +138,30 @@ class SystemMenuBlock extends BlockBase implements ContainerFactoryPluginInterfa
       $parameters->setMaxDepth(min($level + $depth - 1, $this->menuTree->maxDepth()));
     }
 
+    // For menu blocks with start level greater than 1, only show menu items
+    // from the current active trail. Adjust the root according to the current
+    // position in the menu in order to determine if we can show the subtree.
+    if ($level > 1) {
+      if (count($parameters->activeTrail) >= $level) {
+        // Active trail array is child-first. Reverse it, and pull the new menu
+        // root based on the parent of the configured start level.
+        $menu_trail_ids = array_reverse(array_values($parameters->activeTrail));
+        $menu_root = $menu_trail_ids[$level - 1];
+        $parameters->setRoot($menu_root)->setMinDepth(1);
+        if ($depth > 0) {
+          $parameters->setMaxDepth(min($level - 1 + $depth - 1, $this->menuTree->maxDepth()));
+        }
+      }
+      else {
+        return [];
+      }
+    }
+
     $tree = $this->menuTree->load($menu_name, $parameters);
-    $manipulators = array(
-      array('callable' => 'menu.default_tree_manipulators:checkAccess'),
-      array('callable' => 'menu.default_tree_manipulators:generateIndexAndSort'),
-    );
+    $manipulators = [
+      ['callable' => 'menu.default_tree_manipulators:checkAccess'],
+      ['callable' => 'menu.default_tree_manipulators:generateIndexAndSort'],
+    ];
     $tree = $this->menuTree->transform($tree, $manipulators);
     return $this->menuTree->build($tree);
   }

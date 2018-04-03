@@ -5,6 +5,7 @@ namespace Drupal\system_test\Controller;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Cache\CacheableResponse;
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\Session\AccountInterface;
@@ -49,6 +50,13 @@ class SystemTestController extends ControllerBase {
   protected $renderer;
 
   /**
+   * The messenger service.
+   *
+   * @var \Drupal\Core\Messenger\MessengerInterface
+   */
+  protected $messenger;
+
+  /**
    * Constructs the SystemTestController.
    *
    * @param \Drupal\Core\Lock\LockBackendInterface $lock
@@ -59,12 +67,15 @@ class SystemTestController extends ControllerBase {
    *   The current user.
    * @param \Drupal\Core\Render\RendererInterface $renderer
    *   The renderer.
+   * @param \Drupal\Core\Messenger\MessengerInterface $messenger
+   *   The messenger service.
    */
-  public function __construct(LockBackendInterface $lock, LockBackendInterface $persistent_lock, AccountInterface $current_user, RendererInterface $renderer) {
+  public function __construct(LockBackendInterface $lock, LockBackendInterface $persistent_lock, AccountInterface $current_user, RendererInterface $renderer, MessengerInterface $messenger) {
     $this->lock = $lock;
     $this->persistentLock = $persistent_lock;
     $this->currentUser = $current_user;
     $this->renderer = $renderer;
+    $this->messenger = $messenger;
   }
 
   /**
@@ -75,7 +86,8 @@ class SystemTestController extends ControllerBase {
       $container->get('lock'),
       $container->get('lock.persistent'),
       $container->get('current_user'),
-      $container->get('renderer')
+      $container->get('renderer'),
+      $container->get('messenger')
     );
   }
 
@@ -99,9 +111,13 @@ class SystemTestController extends ControllerBase {
     // Set two messages.
     drupal_set_message('First message (removed).');
     drupal_set_message(t('Second message with <em>markup!</em> (not removed).'));
-
+    $messages = $this->messenger->deleteByType('status');
     // Remove the first.
-    unset($_SESSION['messages']['status'][0]);
+    unset($messages[0]);
+
+    foreach ($messages as $message) {
+      $this->messenger->addStatus($message);
+    }
 
     // Duplicate message check.
     drupal_set_message('Non Duplicated message', 'status', FALSE);
@@ -206,15 +222,15 @@ class SystemTestController extends ControllerBase {
    * Set cache tag on on the returned render array.
    */
   public function system_test_cache_tags_page() {
-    $build['main'] = array(
-      '#cache' => array('tags' => array('system_test_cache_tags_page')),
-      '#pre_render' => array(
+    $build['main'] = [
+      '#cache' => ['tags' => ['system_test_cache_tags_page']],
+      '#pre_render' => [
         '\Drupal\system_test\Controller\SystemTestController::preRenderCacheTags',
-      ),
-      'message' => array(
+      ],
+      'message' => [
         '#markup' => 'Cache tags page example',
-      ),
-    );
+      ],
+    ];
     return $build;
   }
 
@@ -222,12 +238,12 @@ class SystemTestController extends ControllerBase {
    * Set cache max-age on the returned render array.
    */
   public function system_test_cache_maxage_page() {
-    $build['main'] = array(
-      '#cache' => array('max-age' => 90),
-      'message' => array(
+    $build['main'] = [
+      '#cache' => ['max-age' => 90],
+      'message' => [
         '#markup' => 'Cache max-age page example',
-      ),
-    );
+      ],
+    ];
     return $build;
   }
 
@@ -245,8 +261,8 @@ class SystemTestController extends ControllerBase {
    * @see system_authorized_init()
    */
   public function authorizeInit($page_title) {
-    $authorize_url = Url::fromUri('base:core/authorize.php', array('absolute' => TRUE))->toString();
-    system_authorized_init('system_test_authorize_run', __DIR__ . '/../../system_test.module', array(), $page_title);
+    $authorize_url = Url::fromUri('base:core/authorize.php', ['absolute' => TRUE])->toString();
+    system_authorized_init('system_test_authorize_run', __DIR__ . '/../../system_test.module', [], $page_title);
     return new RedirectResponse($authorize_url);
   }
 
@@ -258,7 +274,7 @@ class SystemTestController extends ControllerBase {
     $response = new CacheableResponse();
     $response->headers->set($query['name'], $query['value']);
     $response->getCacheableMetadata()->addCacheContexts(['url.query_args:name', 'url.query_args:value']);
-    $response->setContent($this->t('The following header was set: %name: %value', array('%name' => $query['name'], '%value' => $query['value'])));
+    $response->setContent($this->t('The following header was set: %name: %value', ['%name' => $query['name'], '%value' => $query['value']]));
 
     return $response;
   }
@@ -313,6 +329,21 @@ class SystemTestController extends ControllerBase {
   }
 
   /**
+   * Simple argument echo.
+   *
+   * @param string $text
+   *   Any string for the {text} slug.
+   *
+   * @return array
+   *   A render array.
+   */
+  public function simpleEcho($text) {
+    return [
+      '#plain_text' => $text,
+    ];
+  }
+
+  /**
    * Shows permission-dependent content.
    *
    * @return array
@@ -339,7 +370,7 @@ class SystemTestController extends ControllerBase {
   /**
    * Returns the current date.
    *
-   * @return \Symfony\Component\HttpFoundation\Response $response
+   * @return \Symfony\Component\HttpFoundation\Response
    *   A Response object containing the current date.
    */
   public function getCurrentDate() {
@@ -351,13 +382,20 @@ class SystemTestController extends ControllerBase {
   /**
    * Returns a response with a test header set from the request.
    *
-   * @return \Symfony\Component\HttpFoundation\Response $response
+   * @return \Symfony\Component\HttpFoundation\Response
    *   A Response object containing the test header.
    */
   public function getTestHeader(Request $request) {
     $response = new Response();
     $response->headers->set('Test-Header', $request->headers->get('Test-Header'));
     return $response;
+  }
+
+  /**
+   * Returns a cacheable response with a custom cache control.
+   */
+  public function getCacheableResponseWithCustomCacheControl() {
+    return new CacheableResponse('Foo', 200, ['Cache-Control' => 'bar']);
   }
 
 }

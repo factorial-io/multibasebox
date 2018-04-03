@@ -6,16 +6,19 @@
     "require": {
         "composer/installers": "^1.0.21",
         "wikimedia/composer-merge-plugin": "~1.3",
-        "factorial-io/fabalicious": "dev-develop"
+        "factorial-io/fabalicious": "dev-develop",
+        "drupal/core": "8.5.*"
     },
     "replace": {
-        "drupal/core": "~8.2"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
         "preferred-install": "dist",
-        "autoloader-suffix": "Drupal8"
+        "autoloader-suffix": "Drupal8",
+        "platform": {
+            "php": "5.6.30"
+        }
     },
     "extra": {
         "_readme": [
@@ -45,5 +48,11 @@
           "ln -sf _tools/fabalicious/fabfile.py fabfile.py"
         ]
 
+    },
+    "repositories": {
+        "drupal": {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        }
     }
 }

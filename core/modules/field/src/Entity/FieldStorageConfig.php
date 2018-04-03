@@ -6,6 +6,7 @@ use Drupal\Component\Utility\Unicode;
 use Drupal\Core\Config\Entity\ConfigEntityBase;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
+use Drupal\Core\Entity\FieldableEntityStorageInterface;
 use Drupal\Core\Field\FieldException;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\TypedData\OptionsProviderInterface;
@@ -18,6 +19,7 @@ use Drupal\field\FieldStorageConfigInterface;
  *   id = "field_storage_config",
  *   label = @Translation("Field storage"),
  *   handlers = {
+ *     "access" = "Drupal\field\FieldStorageConfigAccessControlHandler",
  *     "storage" = "Drupal\field\FieldStorageConfigStorage"
  *   },
  *   config_prefix = "storage",
@@ -370,7 +372,7 @@ class FieldStorageConfig extends ConfigEntityBase implements FieldStorageConfigI
 
     // See if any module forbids the update by throwing an exception. This
     // invokes hook_field_storage_config_update_forbid().
-    $module_handler->invokeAll('field_storage_config_update_forbid', array($this, $this->original));
+    $module_handler->invokeAll('field_storage_config_update_forbid', [$this, $this->original]);
 
     // Notify the entity manager. A listener can reject the definition
     // update as invalid by raising an exception, which stops execution before
@@ -396,7 +398,8 @@ class FieldStorageConfig extends ConfigEntityBase implements FieldStorageConfigI
    * {@inheritdoc}
    */
   public static function preDelete(EntityStorageInterface $storage, array $field_storages) {
-    $state = \Drupal::state();
+    /** @var \Drupal\Core\Field\DeletedFieldsRepositoryInterface $deleted_fields_repository */
+    $deleted_fields_repository = \Drupal::service('entity_field.deleted_fields_repository');
 
     // Set the static flag so that we don't delete field storages whilst
     // deleting fields.
@@ -405,19 +408,19 @@ class FieldStorageConfig extends ConfigEntityBase implements FieldStorageConfigI
     // Delete or fix any configuration that is dependent, for example, fields.
     parent::preDelete($storage, $field_storages);
 
-    // Keep the field definitions in the state storage so we can use them later
-    // during field_purge_batch().
-    $deleted_storages = $state->get('field.storage.deleted') ?: array();
+    // Keep the field storage definitions in the deleted fields repository so we
+    // can use them later during field_purge_batch().
+    /** @var \Drupal\field\FieldStorageConfigInterface $field_storage */
     foreach ($field_storages as $field_storage) {
-      if (!$field_storage->deleted) {
-        $config = $field_storage->toArray();
-        $config['deleted'] = TRUE;
-        $config['bundles'] = $field_storage->getBundles();
-        $deleted_storages[$field_storage->uuid()] = $config;
+      // Only mark a field for purging if there is data. Otherwise, just remove
+      // it.
+      $target_entity_storage = \Drupal::entityTypeManager()->getStorage($field_storage->getTargetEntityTypeId());
+      if (!$field_storage->deleted && $target_entity_storage instanceof FieldableEntityStorageInterface && $target_entity_storage->countFieldData($field_storage, TRUE)) {
+        $storage_definition = clone $field_storage;
+        $storage_definition->deleted = TRUE;
+        $deleted_fields_repository->addFieldStorageDefinition($storage_definition);
       }
     }
-
-    $state->set('field.storage.deleted', $deleted_storages);
   }
 
   /**
@@ -444,12 +447,12 @@ class FieldStorageConfig extends ConfigEntityBase implements FieldStorageConfigI
       $class = $this->getFieldItemClass();
       $schema = $class::schema($this);
       // Fill in default values for optional entries.
-      $schema += array(
-        'columns' => array(),
-        'unique keys' => array(),
-        'indexes' => array(),
-        'foreign keys' => array(),
-      );
+      $schema += [
+        'columns' => [],
+        'unique keys' => [],
+        'indexes' => [],
+        'foreign keys' => [],
+      ];
 
       // Merge custom indexes with those specified by the field type. Custom
       // indexes prevail.
@@ -499,7 +502,7 @@ class FieldStorageConfig extends ConfigEntityBase implements FieldStorageConfigI
         return $map[$this->getTargetEntityTypeId()][$this->getName()]['bundles'];
       }
     }
-    return array();
+    return [];
   }
 
   /**
@@ -627,7 +630,17 @@ class FieldStorageConfig extends ConfigEntityBase implements FieldStorageConfigI
    * {@inheritdoc}
    */
   public function getCardinality() {
-    return $this->cardinality;
+    /** @var \Drupal\Core\Field\FieldTypePluginManager $field_type_manager */
+    $field_type_manager = \Drupal::service('plugin.manager.field.field_type');
+    $definition = $field_type_manager->getDefinition($this->getType());
+    $enforced_cardinality = isset($definition['cardinality']) ? $definition['cardinality'] : NULL;
+
+    // Enforced cardinality is a positive integer or -1.
+    if ($enforced_cardinality !== NULL && $enforced_cardinality < 1 && $enforced_cardinality !== FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED) {
+      throw new FieldException("Invalid enforced cardinality '$enforced_cardinality'. Allowed values: a positive integer or -1.");
+    }
+
+    return $enforced_cardinality ?: $this->cardinality;
   }
 
   /**
@@ -719,7 +732,7 @@ class FieldStorageConfig extends ConfigEntityBase implements FieldStorageConfigI
    * {@inheritdoc}
    */
   public function getConstraints() {
-    return array();
+    return [];
   }
 
   /**

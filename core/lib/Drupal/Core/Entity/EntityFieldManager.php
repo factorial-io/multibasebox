@@ -60,7 +60,7 @@ class EntityFieldManager implements EntityFieldManagerInterface {
    *   - type: The field type.
    *   - bundles: The bundles in which the field appears.
    *
-   * @return array
+   * @var array
    */
   protected $fieldMap = [];
 
@@ -190,12 +190,14 @@ class EntityFieldManager implements EntityFieldManagerInterface {
    *   flagged as translatable.
    */
   protected function buildBaseFieldDefinitions($entity_type_id) {
+    /** @var \Drupal\Core\Entity\ContentEntityTypeInterface $entity_type */
     $entity_type = $this->entityTypeManager->getDefinition($entity_type_id);
     $class = $entity_type->getClass();
+    /** @var string[] $keys */
     $keys = array_filter($entity_type->getKeys());
 
     // Fail with an exception for non-fieldable entity types.
-    if (!$entity_type->isSubclassOf(FieldableEntityInterface::class)) {
+    if (!$entity_type->entityClassImplements(FieldableEntityInterface::class)) {
       throw new \LogicException("Getting the base fields is not supported for entity type {$entity_type->getLabel()}.");
     }
 
@@ -218,6 +220,35 @@ class EntityFieldManager implements EntityFieldManagerInterface {
           ->setRevisionable(TRUE)
           ->setDefaultValue(TRUE);
       }
+    }
+
+    // Make sure that revisionable entity types are correctly defined.
+    if ($entity_type->isRevisionable()) {
+      // Disable the BC layer to prevent a recursion, this only needs the
+      // revision_default key that is always set.
+      $field_name = $entity_type->getRevisionMetadataKeys(FALSE)['revision_default'];
+      $base_field_definitions[$field_name] = BaseFieldDefinition::create('boolean')
+        ->setLabel($this->t('Default revision'))
+        ->setDescription($this->t('A flag indicating whether this was a default revision when it was saved.'))
+        ->setStorageRequired(TRUE)
+        ->setInternal(TRUE)
+        ->setTranslatable(FALSE)
+        ->setRevisionable(TRUE);
+    }
+
+    // Make sure that revisionable and translatable entity types are correctly
+    // defined.
+    if ($entity_type->isRevisionable() && $entity_type->isTranslatable()) {
+      // The 'revision_translation_affected' field should always be defined.
+      // This field has been added unconditionally in Drupal 8.4.0 and it is
+      // overriding any pre-existing definition on purpose so that any
+      // differences are immediately available in the status report.
+      $base_field_definitions[$keys['revision_translation_affected']] = BaseFieldDefinition::create('boolean')
+        ->setLabel($this->t('Revision translation affected'))
+        ->setDescription($this->t('Indicates if the last edit of a translation belongs to current revision.'))
+        ->setReadOnly(TRUE)
+        ->setRevisionable(TRUE)
+        ->setTranslatable(TRUE);
     }
 
     // Assign base field definitions the entity type provider.
@@ -332,7 +363,7 @@ class EntityFieldManager implements EntityFieldManagerInterface {
 
     // Load base field overrides from configuration. These take precedence over
     // base field overrides returned above.
-    $base_field_override_ids = array_map(function($field_name) use ($entity_type_id, $bundle) {
+    $base_field_override_ids = array_map(function ($field_name) use ($entity_type_id, $bundle) {
       return $entity_type_id . '.' . $bundle . '.' . $field_name;
     }, array_keys($base_field_definitions));
     $base_field_overrides = $this->entityTypeManager->getStorage('base_field_override')->loadMultiple($base_field_override_ids);
@@ -435,7 +466,7 @@ class EntityFieldManager implements EntityFieldManagerInterface {
         // bundles, and we do not expect to have so many different entity
         // types for this to become a bottleneck.
         foreach ($this->entityTypeManager->getDefinitions() as $entity_type_id => $entity_type) {
-          if ($entity_type->isSubclassOf(FieldableEntityInterface::class)) {
+          if ($entity_type->entityClassImplements(FieldableEntityInterface::class)) {
             $bundles = array_keys($this->entityTypeBundleInfo->getBundleInfo($entity_type_id));
             foreach ($this->getBaseFieldDefinitions($entity_type_id) as $field_name => $base_field_definition) {
               $this->fieldMap[$entity_type_id][$field_name] = [

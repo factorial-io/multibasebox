@@ -9,6 +9,7 @@ use Drupal\Core\Routing\RedirectDestinationTrait;
 use Drupal\Core\Routing\UrlGeneratorTrait;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Core\Messenger\MessengerTrait;
 
 /**
  * Utility base class for thin controllers.
@@ -19,8 +20,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * difficult to unit test. Therefore this base class should only be used by
  * controller classes that contain only trivial glue code.  Controllers that
  * contain sufficiently complex logic that it's worth testing should not use
- * this base class but use ContainerInjectionInterface instead, or even better be
- * refactored to be trivial glue code.
+ * this base class but use ContainerInjectionInterface instead, or even
+ * better be refactored to be trivial glue code.
  *
  * The services exposed here are those that it is reasonable for a well-behaved
  * controller to leverage. A controller that needs other services may
@@ -35,6 +36,7 @@ abstract class ControllerBase implements ContainerInjectionInterface {
 
   use LinkGeneratorTrait;
   use LoggerChannelTrait;
+  use MessengerTrait;
   use RedirectDestinationTrait;
   use StringTranslationTrait;
   use UrlGeneratorTrait;
@@ -70,7 +72,7 @@ abstract class ControllerBase implements ContainerInjectionInterface {
   /**
    * The configuration factory.
    *
-   * @var \Drupal\Core\Config\Config
+   * @var \Drupal\Core\Config\ConfigFactoryInterface
    */
   protected $configFactory;
 
@@ -287,7 +289,7 @@ abstract class ControllerBase implements ContainerInjectionInterface {
    * \Drupal\Core\DependencyInjection\ContainerInjectionInterface should be used
    * for injecting services.
    *
-   * @return \Symfony\Component\DependencyInjection\ContainerInterface $container
+   * @return \Symfony\Component\DependencyInjection\ContainerInterface
    *   The service container.
    */
   private function container() {

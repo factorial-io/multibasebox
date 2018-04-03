@@ -1,8 +1,8 @@
 name: Standard
 type: profile
 description: 'Install with commonly used features pre-configured.'
-# version: VERSION
-# core: 8.x
+version: VERSION
+core: 8.x
 dependencies:
   - node
   - history
@@ -26,6 +26,7 @@ dependencies:
   - path
   - page_cache
   - dynamic_page_cache
+  - big_pipe
   - taxonomy
   - dblog
   - search
@@ -41,9 +42,3 @@ dependencies:
 themes:
   - bartik
   - seven
-
-# Information added by Drupal.org packaging script on 2017-02-01
-version: '8.2.6'
-core: '8.x'
-project: 'drupal'
-datestamp: 1485975642

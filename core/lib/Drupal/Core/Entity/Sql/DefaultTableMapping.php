@@ -22,7 +22,7 @@ class DefaultTableMapping implements TableMappingInterface {
    *
    * @var \Drupal\Core\Field\FieldStorageDefinitionInterface[]
    */
-  protected $fieldStorageDefinitions = array();
+  protected $fieldStorageDefinitions = [];
 
   /**
    * A list of field names per table.
@@ -33,7 +33,7 @@ class DefaultTableMapping implements TableMappingInterface {
    *
    * @var array[]
    */
-  protected $fieldNames = array();
+  protected $fieldNames = [];
 
   /**
    * A list of database columns which store denormalized data per table.
@@ -44,7 +44,7 @@ class DefaultTableMapping implements TableMappingInterface {
    *
    * @var array[]
    */
-  protected $extraColumns = array();
+  protected $extraColumns = [];
 
   /**
    * A mapping of column names per field name.
@@ -58,7 +58,7 @@ class DefaultTableMapping implements TableMappingInterface {
    *
    * @var array[]
    */
-  protected $columnMapping = array();
+  protected $columnMapping = [];
 
   /**
    * A list of all database columns per table.
@@ -73,7 +73,7 @@ class DefaultTableMapping implements TableMappingInterface {
    *
    * @var array[]
    */
-  protected $allColumns = array();
+  protected $allColumns = [];
 
   /**
    * Constructs a DefaultTableMapping.
@@ -101,7 +101,7 @@ class DefaultTableMapping implements TableMappingInterface {
    */
   public function getAllColumns($table_name) {
     if (!isset($this->allColumns[$table_name])) {
-      $this->allColumns[$table_name] = array();
+      $this->allColumns[$table_name] = [];
 
       foreach ($this->getFieldNames($table_name) as $field_name) {
         $this->allColumns[$table_name] = array_merge($this->allColumns[$table_name], array_values($this->getColumnNames($field_name)));
@@ -128,7 +128,7 @@ class DefaultTableMapping implements TableMappingInterface {
     if (isset($this->fieldNames[$table_name])) {
       return $this->fieldNames[$table_name];
     }
-    return array();
+    return [];
   }
 
   /**
@@ -148,15 +148,15 @@ class DefaultTableMapping implements TableMappingInterface {
       /** @var \Drupal\Core\Entity\Sql\SqlContentEntityStorage $storage */
       $storage = \Drupal::entityManager()->getStorage($this->entityType->id());
       $storage_definition = $this->fieldStorageDefinitions[$field_name];
-      $table_names = array(
+      $table_names = [
         $storage->getDataTable(),
         $storage->getBaseTable(),
         $storage->getRevisionTable(),
         $this->getDedicatedDataTableName($storage_definition),
-      );
+      ];
 
       // Collect field columns.
-      $field_columns = array();
+      $field_columns = [];
       foreach (array_keys($storage_definition->getColumns()) as $property_name) {
         $field_columns[] = $this->getFieldColumnName($storage_definition, $property_name);
       }
@@ -184,7 +184,7 @@ class DefaultTableMapping implements TableMappingInterface {
    */
   public function getColumnNames($field_name) {
     if (!isset($this->columnMapping[$field_name])) {
-      $this->columnMapping[$field_name] = array();
+      $this->columnMapping[$field_name] = [];
       if (isset($this->fieldStorageDefinitions[$field_name]) && !$this->fieldStorageDefinitions[$field_name]->hasCustomStorage()) {
         foreach (array_keys($this->fieldStorageDefinitions[$field_name]->getColumns()) as $property_name) {
           $this->columnMapping[$field_name][$property_name] = $this->getFieldColumnName($this->fieldStorageDefinitions[$field_name], $property_name);
@@ -242,7 +242,7 @@ class DefaultTableMapping implements TableMappingInterface {
     if (isset($this->extraColumns[$table_name])) {
       return $this->extraColumns[$table_name];
     }
-    return array();
+    return [];
   }
 
   /**
@@ -272,7 +272,7 @@ class DefaultTableMapping implements TableMappingInterface {
    *   TRUE if the field can be stored in a dedicated table, FALSE otherwise.
    */
   public function allowsSharedTableStorage(FieldStorageDefinitionInterface $storage_definition) {
-    return !$storage_definition->hasCustomStorage() && $storage_definition->isBaseField() && !$storage_definition->isMultiple();
+    return !$storage_definition->hasCustomStorage() && $storage_definition->isBaseField() && !$storage_definition->isMultiple() && !$storage_definition->isDeleted();
   }
 
   /**
@@ -296,9 +296,15 @@ class DefaultTableMapping implements TableMappingInterface {
    */
   public function getDedicatedTableNames() {
     $table_mapping = $this;
-    $definitions = array_filter($this->fieldStorageDefinitions, function($definition) use ($table_mapping) { return $table_mapping->requiresDedicatedTableStorage($definition); });
-    $data_tables = array_map(function($definition) use ($table_mapping) { return $table_mapping->getDedicatedDataTableName($definition); }, $definitions);
-    $revision_tables = array_map(function($definition) use ($table_mapping) { return $table_mapping->getDedicatedRevisionTableName($definition); }, $definitions);
+    $definitions = array_filter($this->fieldStorageDefinitions, function ($definition) use ($table_mapping) {
+      return $table_mapping->requiresDedicatedTableStorage($definition);
+    });
+    $data_tables = array_map(function ($definition) use ($table_mapping) {
+      return $table_mapping->getDedicatedDataTableName($definition);
+    }, $definitions);
+    $revision_tables = array_map(function ($definition) use ($table_mapping) {
+      return $table_mapping->getDedicatedRevisionTableName($definition);
+    }, $definitions);
     $dedicated_tables = array_merge(array_values($data_tables), array_values($revision_tables));
     return $dedicated_tables;
   }
@@ -307,7 +313,7 @@ class DefaultTableMapping implements TableMappingInterface {
    * {@inheritdoc}
    */
   public function getReservedColumns() {
-    return array('deleted');
+    return ['deleted'];
   }
 
   /**
@@ -325,8 +331,8 @@ class DefaultTableMapping implements TableMappingInterface {
   public function getDedicatedDataTableName(FieldStorageDefinitionInterface $storage_definition, $is_deleted = FALSE) {
     if ($is_deleted) {
       // When a field is a deleted, the table is renamed to
-      // {field_deleted_data_FIELD_UUID}. To make sure we don't end up with
-      // table names longer than 64 characters, we hash the unique storage
+      // {field_deleted_data_UNIQUE_STORAGE_ID}. To make sure we don't end up
+      // with table names longer than 64 characters, we hash the unique storage
       // identifier and return the first 10 characters so we end up with a short
       // unique ID.
       return "field_deleted_data_" . substr(hash('sha256', $storage_definition->getUniqueStorageIdentifier()), 0, 10);
@@ -351,10 +357,10 @@ class DefaultTableMapping implements TableMappingInterface {
   public function getDedicatedRevisionTableName(FieldStorageDefinitionInterface $storage_definition, $is_deleted = FALSE) {
     if ($is_deleted) {
       // When a field is a deleted, the table is renamed to
-      // {field_deleted_revision_FIELD_UUID}. To make sure we don't end up with
-      // table names longer than 64 characters, we hash the unique storage
-      // identifier and return the first 10 characters so we end up with a short
-      // unique ID.
+      // {field_deleted_revision_UNIQUE_STORAGE_ID}. To make sure we don't end
+      // up with table names longer than 64 characters, we hash the unique
+      // storage identifier and return the first 10 characters so we end up with
+      // a short unique ID.
       return "field_deleted_revision_" . substr(hash('sha256', $storage_definition->getUniqueStorageIdentifier()), 0, 10);
     }
     else {
@@ -383,7 +389,7 @@ class DefaultTableMapping implements TableMappingInterface {
     // prefixes.
     if (strlen($table_name) > 48) {
       // Use a shorter separator, a truncated entity_type, and a hash of the
-      // field UUID.
+      // field storage unique identifier.
       $separator = $revision ? '_r__' : '__';
       // Truncate to the same length for the current and revision tables.
       $entity_type = substr($storage_definition->getTargetEntityTypeId(), 0, 34);

@@ -2,15 +2,20 @@
 
 namespace Drupal\taxonomy\Form;
 
+use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Entity\EntityManagerInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\RendererInterface;
+use Drupal\Core\Url;
 use Drupal\taxonomy\VocabularyInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Provides terms overview form for a taxonomy vocabulary.
+ *
+ * @internal
  */
 class OverviewTerms extends FormBase {
 
@@ -22,11 +27,32 @@ class OverviewTerms extends FormBase {
   protected $moduleHandler;
 
   /**
+   * The entity manager.
+   *
+   * @var \Drupal\Core\Entity\EntityManagerInterface
+   */
+  protected $entityManager;
+
+  /**
    * The term storage handler.
    *
    * @var \Drupal\taxonomy\TermStorageInterface
    */
   protected $storageController;
+
+  /**
+   * The term list builder.
+   *
+   * @var \Drupal\Core\Entity\EntityListBuilderInterface
+   */
+  protected $termListBuilder;
+
+  /**
+   * The renderer service.
+   *
+   * @var \Drupal\Core\Render\RendererInterface
+   */
+  protected $renderer;
 
   /**
    * Constructs an OverviewTerms object.
@@ -35,10 +61,15 @@ class OverviewTerms extends FormBase {
    *   The module handler service.
    * @param \Drupal\Core\Entity\EntityManagerInterface $entity_manager
    *   The entity manager service.
+   * @param \Drupal\Core\Render\RendererInterface $renderer
+   *   The renderer service.
    */
-  public function __construct(ModuleHandlerInterface $module_handler, EntityManagerInterface $entity_manager) {
+  public function __construct(ModuleHandlerInterface $module_handler, EntityManagerInterface $entity_manager, RendererInterface $renderer = NULL) {
     $this->moduleHandler = $module_handler;
+    $this->entityManager = $entity_manager;
     $this->storageController = $entity_manager->getStorage('taxonomy_term');
+    $this->termListBuilder = $entity_manager->getListBuilder('taxonomy_term');
+    $this->renderer = $renderer ?: \Drupal::service('renderer');
   }
 
   /**
@@ -47,7 +78,8 @@ class OverviewTerms extends FormBase {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('module_handler'),
-      $container->get('entity.manager')
+      $container->get('entity.manager'),
+      $container->get('renderer')
     );
   }
 
@@ -101,10 +133,10 @@ class OverviewTerms extends FormBase {
     $forward_step = 0;
 
     // An array of the terms to be displayed on this page.
-    $current_page = array();
+    $current_page = [];
 
     $delta = 0;
-    $term_deltas = array();
+    $term_deltas = [];
     $tree = $this->storageController->loadTree($taxonomy_vocabulary->id(), 0, NULL, TRUE);
     $tree_index = 0;
     do {
@@ -196,96 +228,95 @@ class OverviewTerms extends FormBase {
     }
 
     $errors = $form_state->getErrors();
-    $destination = $this->getDestinationArray();
     $row_position = 0;
     // Build the actual form.
-    $form['terms'] = array(
+    $access_control_handler = $this->entityManager->getAccessControlHandler('taxonomy_term');
+    $create_access = $access_control_handler->createAccess($taxonomy_vocabulary->id(), NULL, [], TRUE);
+    if ($create_access->isAllowed()) {
+      $empty = $this->t('No terms available. <a href=":link">Add term</a>.', [':link' => Url::fromRoute('entity.taxonomy_term.add_form', ['taxonomy_vocabulary' => $taxonomy_vocabulary->id()])->toString()]);
+    }
+    else {
+      $empty = $this->t('No terms available.');
+    }
+    $form['terms'] = [
       '#type' => 'table',
-      '#header' => array($this->t('Name'), $this->t('Weight'), $this->t('Operations')),
-      '#empty' => $this->t('No terms available. <a href=":link">Add term</a>.', array(':link' => $this->url('entity.taxonomy_term.add_form', array('taxonomy_vocabulary' => $taxonomy_vocabulary->id())))),
-      '#attributes' => array(
+      '#empty' => $empty,
+      '#attributes' => [
         'id' => 'taxonomy',
-      ),
-    );
+      ],
+    ];
+    $this->renderer->addCacheableDependency($form['terms'], $create_access);
+
+    // Only allow access to changing weights if the user has update access for
+    // all terms.
+    $change_weight_access = AccessResult::allowed();
     foreach ($current_page as $key => $term) {
       /** @var $term \Drupal\Core\Entity\EntityInterface */
+      $term = $this->entityManager->getTranslationFromContext($term);
       $form['terms'][$key]['#term'] = $term;
-      $indentation = array();
+      $indentation = [];
       if (isset($term->depth) && $term->depth > 0) {
-        $indentation = array(
+        $indentation = [
           '#theme' => 'indentation',
           '#size' => $term->depth,
-        );
+        ];
       }
-      $form['terms'][$key]['term'] = array(
-        '#prefix' => !empty($indentation) ? drupal_render($indentation) : '',
+      $form['terms'][$key]['term'] = [
+        '#prefix' => !empty($indentation) ? \Drupal::service('renderer')->render($indentation) : '',
         '#type' => 'link',
         '#title' => $term->getName(),
         '#url' => $term->urlInfo(),
-      );
+      ];
       if ($taxonomy_vocabulary->getHierarchy() != VocabularyInterface::HIERARCHY_MULTIPLE && count($tree) > 1) {
         $parent_fields = TRUE;
-        $form['terms'][$key]['term']['tid'] = array(
+        $form['terms'][$key]['term']['tid'] = [
           '#type' => 'hidden',
           '#value' => $term->id(),
-          '#attributes' => array(
-            'class' => array('term-id'),
-          ),
-        );
-        $form['terms'][$key]['term']['parent'] = array(
+          '#attributes' => [
+            'class' => ['term-id'],
+          ],
+        ];
+        $form['terms'][$key]['term']['parent'] = [
           '#type' => 'hidden',
           // Yes, default_value on a hidden. It needs to be changeable by the
           // javascript.
           '#default_value' => $term->parents[0],
-          '#attributes' => array(
-            'class' => array('term-parent'),
-          ),
-        );
-        $form['terms'][$key]['term']['depth'] = array(
+          '#attributes' => [
+            'class' => ['term-parent'],
+          ],
+        ];
+        $form['terms'][$key]['term']['depth'] = [
           '#type' => 'hidden',
           // Same as above, the depth is modified by javascript, so it's a
           // default_value.
           '#default_value' => $term->depth,
-          '#attributes' => array(
-            'class' => array('term-depth'),
-          ),
-        );
+          '#attributes' => [
+            'class' => ['term-depth'],
+          ],
+        ];
       }
-      $form['terms'][$key]['weight'] = array(
-        '#type' => 'weight',
-        '#delta' => $delta,
-        '#title' => $this->t('Weight for added term'),
-        '#title_display' => 'invisible',
-        '#default_value' => $term->getWeight(),
-        '#attributes' => array(
-          'class' => array('term-weight'),
-        ),
-      );
-      $operations = array(
-        'edit' => array(
-          'title' => $this->t('Edit'),
-          'query' => $destination,
-          'url' => $term->urlInfo('edit-form'),
-        ),
-        'delete' => array(
-          'title' => $this->t('Delete'),
-          'query' => $destination,
-          'url' => $term->urlInfo('delete-form'),
-        ),
-      );
-      if ($this->moduleHandler->moduleExists('content_translation') && content_translation_translate_access($term)->isAllowed()) {
-        $operations['translate'] = array(
-          'title' => $this->t('Translate'),
-          'query' => $destination,
-          'url' => $term->urlInfo('drupal:content-translation-overview'),
-        );
-      }
-      $form['terms'][$key]['operations'] = array(
-        '#type' => 'operations',
-        '#links' => $operations,
-      );
+      $update_access = $term->access('update', NULL, TRUE);
+      $change_weight_access = $change_weight_access->andIf($update_access);
 
-      $form['terms'][$key]['#attributes']['class'] = array();
+      if ($update_access->isAllowed()) {
+        $form['terms'][$key]['weight'] = [
+          '#type' => 'weight',
+          '#delta' => $delta,
+          '#title' => $this->t('Weight for added term'),
+          '#title_display' => 'invisible',
+          '#default_value' => $term->getWeight(),
+          '#attributes' => ['class' => ['term-weight']],
+        ];
+      }
+
+      if ($operations = $this->termListBuilder->getOperations($term)) {
+        $form['terms'][$key]['operations'] = [
+          '#type' => 'operations',
+          '#links' => $operations,
+        ];
+      }
+
+      $form['terms'][$key]['#attributes']['class'] = [];
       if ($parent_fields) {
         $form['terms'][$key]['#attributes']['class'][] = 'draggable';
       }
@@ -313,45 +344,53 @@ class OverviewTerms extends FormBase {
       $row_position++;
     }
 
-    if ($parent_fields) {
-      $form['terms']['#tabledrag'][] = array(
-        'action' => 'match',
-        'relationship' => 'parent',
-        'group' => 'term-parent',
-        'subgroup' => 'term-parent',
-        'source' => 'term-id',
-        'hidden' => FALSE,
-      );
-      $form['terms']['#tabledrag'][] = array(
-        'action' => 'depth',
-        'relationship' => 'group',
-        'group' => 'term-depth',
-        'hidden' => FALSE,
-      );
-      $form['terms']['#attached']['library'][] = 'taxonomy/drupal.taxonomy';
-      $form['terms']['#attached']['drupalSettings']['taxonomy'] = [
-        'backStep' => $back_step,
-        'forwardStep' => $forward_step,
+    $form['terms']['#header'] = [$this->t('Name')];
+
+    $this->renderer->addCacheableDependency($form['terms'], $change_weight_access);
+    if ($change_weight_access->isAllowed()) {
+      $form['terms']['#header'][] = $this->t('Weight');
+      if ($parent_fields) {
+        $form['terms']['#tabledrag'][] = [
+          'action' => 'match',
+          'relationship' => 'parent',
+          'group' => 'term-parent',
+          'subgroup' => 'term-parent',
+          'source' => 'term-id',
+          'hidden' => FALSE,
+        ];
+        $form['terms']['#tabledrag'][] = [
+          'action' => 'depth',
+          'relationship' => 'group',
+          'group' => 'term-depth',
+          'hidden' => FALSE,
+        ];
+        $form['terms']['#attached']['library'][] = 'taxonomy/drupal.taxonomy';
+        $form['terms']['#attached']['drupalSettings']['taxonomy'] = [
+          'backStep' => $back_step,
+          'forwardStep' => $forward_step,
+        ];
+      }
+      $form['terms']['#tabledrag'][] = [
+        'action' => 'order',
+        'relationship' => 'sibling',
+        'group' => 'term-weight',
       ];
     }
-    $form['terms']['#tabledrag'][] = array(
-      'action' => 'order',
-      'relationship' => 'sibling',
-      'group' => 'term-weight',
-    );
 
-    if ($taxonomy_vocabulary->getHierarchy() != VocabularyInterface::HIERARCHY_MULTIPLE && count($tree) > 1) {
-      $form['actions'] = array('#type' => 'actions', '#tree' => FALSE);
-      $form['actions']['submit'] = array(
+    $form['terms']['#header'][] = $this->t('Operations');
+
+    if (($taxonomy_vocabulary->getHierarchy() !== VocabularyInterface::HIERARCHY_MULTIPLE && count($tree) > 1) && $change_weight_access->isAllowed()) {
+      $form['actions'] = ['#type' => 'actions', '#tree' => FALSE];
+      $form['actions']['submit'] = [
         '#type' => 'submit',
         '#value' => $this->t('Save'),
         '#button_type' => 'primary',
-      );
-      $form['actions']['reset_alphabetical'] = array(
+      ];
+      $form['actions']['reset_alphabetical'] = [
         '#type' => 'submit',
-        '#submit' => array('::submitReset'),
+        '#submit' => ['::submitReset'],
         '#value' => $this->t('Reset to alphabetical'),
-      );
+      ];
     }
 
     $form['pager_pager'] = ['#type' => 'pager'];
@@ -378,13 +417,13 @@ class OverviewTerms extends FormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     // Sort term order based on weight.
-    uasort($form_state->getValue('terms'), array('Drupal\Component\Utility\SortArray', 'sortByWeightElement'));
+    uasort($form_state->getValue('terms'), ['Drupal\Component\Utility\SortArray', 'sortByWeightElement']);
 
     $vocabulary = $form_state->get(['taxonomy', 'vocabulary']);
     // Update the current hierarchy type as we go.
     $hierarchy = VocabularyInterface::HIERARCHY_DISABLED;
 
-    $changed_terms = array();
+    $changed_terms = [];
     $tree = $this->storageController->loadTree($vocabulary->id(), 0, NULL, TRUE);
 
     if (empty($tree)) {
@@ -405,7 +444,7 @@ class OverviewTerms extends FormBase {
     }
 
     // Renumber the current page weights and assign any new parents.
-    $level_weights = array();
+    $level_weights = [];
     foreach ($form_state->getValue('terms') as $tid => $values) {
       if (isset($form['terms'][$tid]['#term'])) {
         $term = $form['terms'][$tid]['#term'];

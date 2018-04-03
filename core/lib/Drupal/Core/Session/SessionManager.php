@@ -83,7 +83,7 @@ class SessionManager extends NativeSessionStorage implements SessionManagerInter
    *   @see \Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage::setSaveHandler()
    */
   public function __construct(RequestStack $request_stack, Connection $connection, MetadataBag $metadata_bag, SessionConfigurationInterface $session_configuration, $handler = NULL) {
-    $options = array();
+    $options = [];
     $this->sessionConfiguration = $session_configuration;
     $this->requestStack = $request_stack;
     $this->connection = $connection;
@@ -96,7 +96,7 @@ class SessionManager extends NativeSessionStorage implements SessionManagerInter
     //   https://www.drupal.org/node/2229145, when we will be using the Symfony
     //   session object (which registers an attribute bag with the
     //   manager upon instantiation).
-    $this->bags = array();
+    $this->bags = [];
   }
 
   /**
@@ -120,8 +120,9 @@ class SessionManager extends NativeSessionStorage implements SessionManagerInter
 
     if (empty($result)) {
       // Randomly generate a session identifier for this request. This is
-      // necessary because \Drupal\user\SharedTempStoreFactory::get() wants to
-      // know the future session ID of a lazily started session in advance.
+      // necessary because \Drupal\Core\TempStore\SharedTempStoreFactory::get()
+      // wants to know the future session ID of a lazily started session in
+      // advance.
       //
       // @todo: With current versions of PHP there is little reason to generate
       //   the session id from within application code. Consider using the
@@ -130,7 +131,7 @@ class SessionManager extends NativeSessionStorage implements SessionManagerInter
       $this->setId(Crypt::randomBytesBase64());
 
       // Initialize the session global and attach the Symfony session bags.
-      $_SESSION = array();
+      $_SESSION = [];
       $this->loadSession();
 
       // NativeSessionStorage::loadSession() sets started to TRUE, reset it to
@@ -305,7 +306,7 @@ class SessionManager extends NativeSessionStorage implements SessionManagerInter
    */
   protected function getSessionDataMask() {
     if (empty($_SESSION)) {
-      return array();
+      return [];
     }
 
     // Start out with a completely filled mask.
@@ -330,7 +331,7 @@ class SessionManager extends NativeSessionStorage implements SessionManagerInter
    *   The old session ID. The new session ID is $this->getId().
    */
   protected function migrateStoredSession($old_session_id) {
-    $fields = array('sid' => Crypt::hashBase64($this->getId()));
+    $fields = ['sid' => Crypt::hashBase64($this->getId())];
     $this->connection->update('sessions')
       ->fields($fields)
       ->condition('sid', Crypt::hashBase64($old_session_id))

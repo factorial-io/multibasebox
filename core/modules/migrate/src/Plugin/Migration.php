@@ -155,6 +155,17 @@ class Migration extends PluginBase implements MigrationInterface, RequirementsIn
   protected $migration_tags = [];
 
   /**
+   * Whether the migration is auditable.
+   *
+   * If set to TRUE, the migration's IDs will be audited. This means that, if
+   * the highest destination ID is greater than the highest source ID, a warning
+   * will be displayed that entities might be overwritten.
+   *
+   * @var bool
+   */
+  protected $audit = FALSE;
+
+  /**
    * These migrations, if run, must be executed before this migration.
    *
    * These are different from the configuration dependencies. Migration
@@ -312,6 +323,8 @@ class Migration extends PluginBase implements MigrationInterface, RequirementsIn
    *
    * @deprecated in Drupal 8.1.x, will be removed before Drupal 9.0.x. Use
    *   more specific getters instead.
+   *
+   * @see https://www.drupal.org/node/2873795
    */
   public function get($property) {
     return isset($this->$property) ? $this->$property : NULL;
@@ -346,9 +359,9 @@ class Migration extends PluginBase implements MigrationInterface, RequirementsIn
     }
     $index = serialize($process);
     if (!isset($this->processPlugins[$index])) {
-      $this->processPlugins[$index] = array();
+      $this->processPlugins[$index] = [];
       foreach ($this->getProcessNormalized($process) as $property => $configurations) {
-        $this->processPlugins[$index][$property] = array();
+        $this->processPlugins[$index][$property] = [];
         foreach ($configurations as $configuration) {
           if (isset($configuration['source'])) {
             $this->processPlugins[$index][$property][] = $this->processPluginManager->createInstance('get', $configuration, $this);
@@ -376,16 +389,16 @@ class Migration extends PluginBase implements MigrationInterface, RequirementsIn
    *   The normalized process configuration.
    */
   protected function getProcessNormalized(array $process) {
-    $normalized_configurations = array();
+    $normalized_configurations = [];
     foreach ($process as $destination => $configuration) {
       if (is_string($configuration)) {
-        $configuration = array(
+        $configuration = [
           'plugin' => 'get',
           'source' => $configuration,
-        );
+        ];
       }
       if (isset($configuration['plugin'])) {
-        $configuration = array($configuration);
+        $configuration = [$configuration];
       }
       $normalized_configurations[$destination] = $configuration;
     }
@@ -570,7 +583,7 @@ class Migration extends PluginBase implements MigrationInterface, RequirementsIn
    */
   public function mergeProcessOfProperty($property, array $process_of_property) {
     // If we already have a process value then merge the incoming process array
-    //otherwise simply set it.
+    // otherwise simply set it.
     $current_process = $this->getProcess();
     if (isset($current_process[$property])) {
       $this->process = NestedArray::mergeDeepArray([$current_process, $this->getProcessNormalized([$property => $process_of_property])], TRUE);
@@ -619,7 +632,7 @@ class Migration extends PluginBase implements MigrationInterface, RequirementsIn
         if ($plugin_configuration['plugin'] == 'migration') {
           $return = array_merge($return, (array) $plugin_configuration['migration']);
         }
-        if ($plugin_configuration['plugin'] == 'iterator') {
+        if ($plugin_configuration['plugin'] == 'sub_process') {
           $return = array_merge($return, $this->findMigrationDependencies($plugin_configuration['process']));
         }
       }
@@ -673,6 +686,13 @@ class Migration extends PluginBase implements MigrationInterface, RequirementsIn
    */
   public function getMigrationTags() {
     return $this->migration_tags;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function isAuditable() {
+    return (bool) $this->audit;
   }
 
 }

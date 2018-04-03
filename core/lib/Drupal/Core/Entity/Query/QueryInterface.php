@@ -114,7 +114,7 @@ interface QueryInterface extends AlterableInterface {
   /**
    * Queries for an empty field.
    *
-   * @param $field.
+   * @param $field
    *   Name of a field.
    * @param $langcode
    *   Language code (optional).
@@ -253,6 +253,17 @@ interface QueryInterface extends AlterableInterface {
    * @return $this
    */
   public function currentRevision();
+
+  /**
+   * Queries the latest revision.
+   *
+   * The latest revision is the most recent revision of an entity. This will be
+   * either the default revision, or a pending revision if one exists and it is
+   * newer than the default.
+   *
+   * @return $this
+   */
+  public function latestRevision();
 
   /**
    * Queries all the revisions.

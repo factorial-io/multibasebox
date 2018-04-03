@@ -17,8 +17,11 @@ class FieldInstanceSettings extends ProcessPluginBase {
    * {@inheritdoc}
    */
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
-    list($instance_settings, $widget_settings, $field_settings) = $value;
+    list($instance_settings, $widget_settings, $field_definition) = $value;
     $widget_type = $widget_settings['type'];
+
+    $field_data = unserialize($field_definition['data']);
+    $field_settings = $field_data['settings'];
 
     // Get entityreference handler settings from source field configuration.
     if ($row->getSourceProperty('type') == "entityreference") {
@@ -52,13 +55,13 @@ class FieldInstanceSettings extends ProcessPluginBase {
     switch ($widget_type) {
       case 'image_image':
         $settings = $instance_settings;
-        $settings['default_image'] = array(
+        $settings['default_image'] = [
           'alt' => '',
           'title' => '',
           'width' => NULL,
           'height' => NULL,
           'uuid' => '',
-        );
+        ];
         break;
 
       default:

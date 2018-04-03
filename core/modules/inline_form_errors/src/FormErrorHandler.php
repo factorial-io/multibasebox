@@ -47,12 +47,27 @@ class FormErrorHandler extends CoreFormErrorHandler {
   /**
    * Loops through and displays all form errors.
    *
+   * To disable inline form errors for an entire form set the
+   * #disable_inline_form_errors property to TRUE on the top level of the $form
+   * array:
+   * @code
+   * $form['#disable_inline_form_errors'] = TRUE;
+   * @endcode
+   * This should only be done when another appropriate accessibility strategy is
+   * in place.
+   *
    * @param array $form
    *   An associative array containing the structure of the form.
    * @param \Drupal\Core\Form\FormStateInterface $form_state
    *   The current state of the form.
    */
   protected function displayErrorMessages(array $form, FormStateInterface $form_state) {
+    // Skip generating inline form errors when opted out.
+    if (!empty($form['#disable_inline_form_errors'])) {
+      parent::displayErrorMessages($form, $form_state);
+      return;
+    }
+
     $error_links = [];
     $errors = $form_state->getErrors();
     // Loop through all form errors and check if we need to display a link.

@@ -2,6 +2,7 @@
  * @file
  * Maintenance theming.
  */
+
 .maintenance-page {
   background-color: #e0e0d8;
   background-image: -webkit-radial-gradient(hsl(203, 2%, 90%), hsl(203, 2%, 95%));
@@ -51,7 +52,6 @@
   .task-list {
     margin-left: 0; /* LTR */
     list-style-type: none;
-    list-style-image: none;
     padding-left: 0; /* LTR */
     padding-bottom: 1em;
   }
@@ -76,14 +76,14 @@
     border: solid transparent;
     border-color: rgba(235, 234, 228, 0);
     border-left-color: #ebeae4; /* LTR */
-    border-width: 1.35em;
+    border-width: 1.269em;
     content: " ";
     height: 0;
     width: 0;
     position: absolute;
     pointer-events: none;
     top: 50%;
-    margin-top: -1.32em;
+    margin-top: -1.269em;
   }
   [dir="rtl"] .task-list .is-active:after {
     left: auto;
@@ -110,6 +110,7 @@
   display: table;
   clear: both;
 }
+
 @media all and (max-width: 48em) { /* 768px */
   .layout-container {
     margin: 1.25em;
@@ -135,15 +136,17 @@
     padding: 1em 0;
     vertical-align: middle;
   }
-  html, .install-page, .maintenance-page {
+  html,
+  .install-page,
+  .maintenance-page {
     margin: 0;
     width: 100%;
     height: 100%;
   }
   .layout-container {
     margin: 0 auto;
-    max-width: 770px;
     width: 75%;
+    max-width: 770px;
     border-radius: 5px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
     padding: 20px 0 40px 0;
@@ -180,4 +183,22 @@
   .page-title {
     margin: 0.75em 1.9em;
   }
+}
+
+/**
+ * Status report customization for install and update page.
+ */
+.system-status-report__status-title {
+  float: none;
+  width: 100%;
+}
+.system-status-report__entry__value {
+  float: none;
+  width: 100%;
+  padding-left: 3em; /* LTR */
+  padding-top: 0;
+}
+[dir="rtl"] .system-status-report__entry__value {
+  padding-left: 1em;
+  padding-right: 3em;
 }

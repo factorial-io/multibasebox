@@ -6,6 +6,8 @@
  */
 
 use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Database\Query\AlterableInterface;
+use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
@@ -53,7 +55,7 @@ const ENTITY_TEST_TYPES_ROUTING = 3;
  *   List with entity_types.
  */
 function entity_test_entity_types($filter = NULL) {
-  $types = array();
+  $types = [];
   if ($filter === NULL || $filter === ENTITY_TEST_TYPES_ROUTING) {
     $types[] = 'entity_test';
   }
@@ -92,26 +94,12 @@ function entity_test_entity_type_alter(array &$entity_types) {
     }
   }
 
-  // Allow entity_test_update tests to override the entity type definition.
-  $entity_types['entity_test_update'] = $state->get('entity_test_update.entity_type', $entity_types['entity_test_update']);
-
-  // Allow entity_test_with_bundle tests to override the entity type definition.
-  $entity_types['entity_test_with_bundle'] = $state->get('entity_test_with_bundle.entity_type', $entity_types['entity_test_with_bundle']);
+  // Allow entity_test_rev tests to override the entity type definition.
+  $entity_types['entity_test_rev'] = $state->get('entity_test_rev.entity_type', $entity_types['entity_test_rev']);
 
   // Enable the entity_test_new only when needed.
   if (!$state->get('entity_test_new')) {
     unset($entity_types['entity_test_new']);
-  }
-}
-
-/**
- * Implements hook_module_implements_alter().
- */
-function entity_test_module_implements_alter(&$implementations, $hook) {
-  // Move our hook_entity_type_alter() implementation to the beginning of the
-  // list in order to run before content_moderation_entity_type_alter().
-  if ($hook === 'entity_type_alter') {
-    $implementations = ['entity_test' => $implementations['entity_test']] + $implementations;
   }
 }
 
@@ -121,6 +109,28 @@ function entity_test_module_implements_alter(&$implementations, $hook) {
 function entity_test_entity_base_field_info(EntityTypeInterface $entity_type) {
   $fields = [];
 
+  if ($entity_type->id() === 'entity_test' && \Drupal::state()->get('entity_test.internal_field')) {
+    $fields['internal_string_field'] = BaseFieldDefinition::create('string')
+      ->setLabel('Internal field')
+      ->setInternal(TRUE);
+  }
+  if ($entity_type->id() === 'entity_test_mul' && \Drupal::state()->get('entity_test.required_default_field')) {
+    $fields['required_default_field'] = BaseFieldDefinition::create('string')
+      ->setLabel('Required field with default value')
+      ->setRequired(TRUE)
+      ->setDefaultValue('this is a default value');
+  }
+  if ($entity_type->id() === 'entity_test_mul' && \Drupal::state()->get('entity_test.required_multi_default_field')) {
+    $fields['required_multi_default_field'] = BaseFieldDefinition::create('string')
+      ->setLabel('Required field with default value')
+      ->setRequired(TRUE)
+      ->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED)
+      ->setDefaultValue([
+        ['value' => 'this is the first default field item'],
+        ['value' => 'this is the second default value'],
+        ['value' => 'you get the idea...'],
+      ]);
+  }
   if ($entity_type->id() == 'entity_test_mulrev' && \Drupal::state()->get('entity_test.field_test_item')) {
     $fields['field_test_item'] = BaseFieldDefinition::create('field_test')
       ->setLabel(t('Field test'))
@@ -163,15 +173,6 @@ function entity_test_entity_base_field_info_alter(&$fields, EntityTypeInterface 
 }
 
 /**
- * Implements hook_entity_field_storage_info().
- */
-function entity_test_entity_field_storage_info(EntityTypeInterface $entity_type) {
-  if ($entity_type->id() == 'entity_test_update') {
-    return \Drupal::state()->get('entity_test_update.additional_field_storage_definitions', array());
-  }
-}
-
-/**
  * Creates a new bundle for entity_test entities.
  *
  * @param string $bundle
@@ -184,8 +185,8 @@ function entity_test_entity_field_storage_info(EntityTypeInterface $entity_type)
  *   'entity_test'.
  */
 function entity_test_create_bundle($bundle, $text = NULL, $entity_type = 'entity_test') {
-  $bundles = \Drupal::state()->get($entity_type . '.bundles') ?: array($entity_type => array('label' => 'Entity Test Bundle'));
-  $bundles += array($bundle => array('label' => $text ? $text : $bundle));
+  $bundles = \Drupal::state()->get($entity_type . '.bundles') ?: [$entity_type => ['label' => 'Entity Test Bundle']];
+  $bundles += [$bundle => ['label' => $text ? $text : $bundle]];
   \Drupal::state()->set($entity_type . '.bundles', $bundles);
 
   \Drupal::entityManager()->onBundleCreate($bundle, $entity_type);
@@ -201,7 +202,7 @@ function entity_test_create_bundle($bundle, $text = NULL, $entity_type = 'entity
  *   'entity_test'.
  */
 function entity_test_delete_bundle($bundle, $entity_type = 'entity_test') {
-  $bundles = \Drupal::state()->get($entity_type . '.bundles') ?: array($entity_type => array('label' => 'Entity Test Bundle'));
+  $bundles = \Drupal::state()->get($entity_type . '.bundles') ?: [$entity_type => ['label' => 'Entity Test Bundle']];
   unset($bundles[$bundle]);
   \Drupal::state()->set($entity_type . '.bundles', $bundles);
 
@@ -212,14 +213,34 @@ function entity_test_delete_bundle($bundle, $entity_type = 'entity_test') {
  * Implements hook_entity_bundle_info().
  */
 function entity_test_entity_bundle_info() {
-  $bundles = array();
+  $bundles = [];
   $entity_types = \Drupal::entityManager()->getDefinitions();
   foreach ($entity_types as $entity_type_id => $entity_type) {
     if ($entity_type->getProvider() == 'entity_test' && $entity_type_id != 'entity_test_with_bundle') {
-      $bundles[$entity_type_id] = \Drupal::state()->get($entity_type_id . '.bundles') ?: array($entity_type_id => array('label' => 'Entity Test Bundle'));
+      $bundles[$entity_type_id] = \Drupal::state()->get($entity_type_id . '.bundles') ?: [$entity_type_id => ['label' => 'Entity Test Bundle']];
     }
   }
   return $bundles;
+}
+
+/**
+ * Implements hook_entity_bundle_info_alter().
+ */
+function entity_test_entity_bundle_info_alter(&$bundles) {
+  $entity_info = \Drupal::entityTypeManager()->getDefinitions();
+  $state = \Drupal::state();
+  foreach ($bundles as $entity_type_id => &$all_bundle_info) {
+    if ($entity_info[$entity_type_id]->getProvider() == 'entity_test') {
+      if ($state->get('entity_test.translation')) {
+        foreach ($all_bundle_info as $bundle_name => &$bundle_info) {
+          $bundle_info['translatable'] = TRUE;
+          if ($state->get('entity_test.untranslatable_fields.default_translation_affected')) {
+            $bundle_info['untranslatable_fields.default_translation_affected'] = TRUE;
+          }
+        }
+      }
+    }
+  }
 }
 
 /**
@@ -229,18 +250,18 @@ function entity_test_entity_view_mode_info_alter(&$view_modes) {
   $entity_info = \Drupal::entityManager()->getDefinitions();
   foreach ($entity_info as $entity_type => $info) {
     if ($entity_info[$entity_type]->getProvider() == 'entity_test' && !isset($view_modes[$entity_type])) {
-      $view_modes[$entity_type] = array(
-        'full' => array(
+      $view_modes[$entity_type] = [
+        'full' => [
           'label' => t('Full object'),
           'status' => TRUE,
           'cache' => TRUE,
-        ),
-        'teaser' => array(
+        ],
+        'teaser' => [
           'label' => t('Teaser'),
           'status' => TRUE,
           'cache' => TRUE,
-        ),
-      );
+        ],
+      ];
     }
   }
 }
@@ -252,12 +273,12 @@ function entity_test_entity_form_mode_info_alter(&$form_modes) {
   $entity_info = \Drupal::entityManager()->getDefinitions();
   foreach ($entity_info as $entity_type => $info) {
     if ($entity_info[$entity_type]->getProvider() == 'entity_test') {
-      $form_modes[$entity_type] = array(
-        'compact' => array(
+      $form_modes[$entity_type] = [
+        'compact' => [
           'label' => t('Compact version'),
           'status' => TRUE,
-        ),
-      );
+        ],
+      ];
     }
   }
 }
@@ -266,24 +287,24 @@ function entity_test_entity_form_mode_info_alter(&$form_modes) {
  * Implements hook_entity_extra_field_info().
  */
 function entity_test_entity_extra_field_info() {
-  $extra['entity_test']['bundle_with_extra_fields'] = array(
-    'display' => array(
+  $extra['entity_test']['bundle_with_extra_fields'] = [
+    'display' => [
       // Note: those extra fields do not currently display anything, they are
       // just used in \Drupal\Tests\field_ui\Kernel\EntityDisplayTest to test
       // the behavior of entity display objects.
-      'display_extra_field' => array(
+      'display_extra_field' => [
         'label' => t('Display extra field'),
         'description' => t('An extra field on the display side.'),
         'weight' => 5,
         'visible' => TRUE,
-      ),
-      'display_extra_field_hidden' => array(
+      ],
+      'display_extra_field_hidden' => [
         'label' => t('Display extra field (hidden)'),
         'description' => t('An extra field on the display side, hidden by default.'),
         'visible' => FALSE,
-      ),
-    )
-  );
+      ],
+    ]
+  ];
 
   return $extra;
 }
@@ -409,6 +430,25 @@ function entity_test_mulrev_load($id, $reset = FALSE) {
 function entity_test_entity_test_insert($entity) {
   if ($entity->name->value == 'fail_insert') {
     throw new Exception("Test exception rollback.");
+  }
+}
+
+/**
+ * Implements hook_entity_insert().
+ */
+function entity_test_entity_insert(EntityInterface $entity) {
+  if ($entity->getEntityTypeId() == 'entity_test_mulrev' && $entity->label() == 'EntityLoadedRevisionTest') {
+    $entity->setNewRevision(FALSE);
+    $entity->save();
+  }
+}
+
+/**
+ * Implements hook_entity_update().
+ */
+function entity_test_entity_update(EntityInterface $entity) {
+  if ($entity instanceof ContentEntityInterface) {
+    \Drupal::state()->set('entity_test.loadedRevisionId', $entity->getLoadedRevisionId());
   }
 }
 
@@ -656,16 +696,16 @@ function entity_test_field_default_value(FieldableEntityInterface $entity, Field
   // that they are correctly passed.
   $string = $definition->getName() . '_' . $entity->language()->getId();
   // Return a "default value" with multiple items.
-  return array(
-    array(
+  return [
+    [
       'shape' => "shape:0:$string",
       'color' => "color:0:$string",
-    ),
-    array(
+    ],
+    [
       'shape' => "shape:1:$string",
       'color' => "color:1:$string",
-    ),
-  );
+    ],
+  ];
 }
 
 /**
@@ -695,7 +735,7 @@ function entity_test_entity_prepare_view($entity_type, array $entities, array $d
       // Add a dummy field item attribute on field_test_text if it exists.
       if ($entity->hasField('field_test_text') && $displays[$entity->bundle()]->getComponent('field_test_text')) {
         foreach ($entity->get('field_test_text') as $item) {
-          $item->_attributes += array('data-field-item-attr' => 'foobar');
+          $item->_attributes += ['data-field-item-attr' => 'foobar'];
         }
       }
 
@@ -704,7 +744,7 @@ function entity_test_entity_prepare_view($entity_type, array $entities, array $d
       foreach ($fields as $field) {
         if ($field->getType() === 'daterange') {
           $item = $entity->get($field->getName());
-          $item->_attributes += array('data-field-item-attr' => 'foobar');
+          $item->_attributes += ['data-field-item-attr' => 'foobar'];
         }
       }
     }
@@ -737,6 +777,16 @@ function entity_test_entity_access(EntityInterface $entity, $operation, AccountI
   // \Drupal\entity_test\EntityTestAccessControlHandler::checkAccess().
   if ($entity->label() == 'forbid_access') {
     return AccessResult::allowed();
+  }
+
+  // Create specific labels to allow or deny access based on certain test
+  // conditions.
+  // @see \Drupal\KernelTests\Core\Entity\EntityAccessControlHandlerTest
+  if ($entity->label() == 'Accessible') {
+    return AccessResult::allowed();
+  }
+  if ($entity->label() == 'Inaccessible') {
+    return AccessResult::forbidden();
   }
 
   // Uncacheable because the access result depends on a State key-value pair and
@@ -774,4 +824,18 @@ function entity_test_entity_test_create_access(AccountInterface $account, $conte
 
   // No opinion.
   return AccessResult::neutral();
+}
+
+/**
+ * Implements hook_query_entity_test_access_alter().
+ */
+function entity_test_query_entity_test_access_alter(AlterableInterface $query) {
+  if (!\Drupal::state()->get('entity_test_query_access')) {
+    return;
+  }
+
+  /** @var \Drupal\Core\Database\Query\Select|\Drupal\Core\Database\Query\AlterableInterface $query */
+  if (!\Drupal::currentUser()->hasPermission('view all entity_test_query_access entities')) {
+    $query->condition('entity_test_query_access.name', 'published entity');
+  }
 }

@@ -30,18 +30,18 @@ class DistributionProfileTranslationQueryTest extends InstallerTestBase {
    * {@inheritdoc}
    */
   protected function setUp() {
-    $this->info = array(
+    $this->info = [
       'type' => 'profile',
       'core' => \Drupal::CORE_COMPATIBILITY,
       'name' => 'Distribution profile',
-      'distribution' => array(
+      'distribution' => [
         'name' => 'My Distribution',
         'langcode' => $this->langcode,
-        'install' => array(
+        'install' => [
           'theme' => 'bartik',
-        ),
-      ),
-    );
+        ],
+      ],
+    ];
     // File API functions are not available yet.
     $path = $this->siteDirectory . '/profiles/mydistro';
     mkdir($path, 0777, TRUE);
@@ -64,6 +64,27 @@ class DistributionProfileTranslationQueryTest extends InstallerTestBase {
     // The unrouted URL assembler does not exist at this point, so we build the
     // URL ourselves.
     $this->drupalGet($GLOBALS['base_url'] . '/core/install.php' . '?langcode=fr');
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function setUpLanguage() {
+    // This step is skipped, because the distribution profile uses a fixed
+    // language.
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function setUpProfile() {
+    // This step is skipped, because there is a distribution profile.
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function setUpSettings() {
     // The language should have been automatically detected, all following
     // screens should be translated already.
     $elements = $this->xpath('//input[@type="submit"]/@value');
@@ -80,21 +101,8 @@ class DistributionProfileTranslationQueryTest extends InstallerTestBase {
     $this->assertRaw($this->info['distribution']['install']['theme']);
     // Verify that the "Choose profile" step does not appear.
     $this->assertNoText('profile');
-  }
 
-  /**
-   * {@inheritdoc}
-   */
-  protected function setUpLanguage() {
-    // This step is skipped, because the distribution profile uses a fixed
-    // language.
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function setUpProfile() {
-    // This step is skipped, because there is a distribution profile.
+    parent::setUpSettings();
   }
 
   /**

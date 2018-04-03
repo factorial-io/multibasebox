@@ -79,22 +79,22 @@ class ModuleInstaller implements ModuleInstallerInterface {
     if ($enable_dependencies) {
       // Get all module data so we can find dependencies and sort.
       $module_data = system_rebuild_module_data();
-      $module_list = $module_list ? array_combine($module_list, $module_list) : array();
+      $module_list = $module_list ? array_combine($module_list, $module_list) : [];
       if ($missing_modules = array_diff_key($module_list, $module_data)) {
         // One or more of the given modules doesn't exist.
         throw new MissingDependencyException(sprintf('Unable to install modules %s due to missing modules %s.', implode(', ', $module_list), implode(', ', $missing_modules)));
       }
 
       // Only process currently uninstalled modules.
-      $installed_modules = $extension_config->get('module') ?: array();
+      $installed_modules = $extension_config->get('module') ?: [];
       if (!$module_list = array_diff_key($module_list, $installed_modules)) {
         // Nothing to do. All modules already installed.
         return TRUE;
       }
 
       // Add dependencies to the list. The new modules will be processed as
-      // the while loop continues.
-      while (list($module) = each($module_list)) {
+      // the foreach loop continues.
+      foreach ($module_list as $module => $value) {
         foreach (array_keys($module_data[$module]->requires) as $dependency) {
           if (!isset($module_data[$dependency])) {
             // The dependency does not exist.
@@ -127,7 +127,7 @@ class ModuleInstaller implements ModuleInstallerInterface {
     if ($sync_status) {
       $source_storage = $config_installer->getSourceStorage();
     }
-    $modules_installed = array();
+    $modules_installed = [];
     foreach ($module_list as $module) {
       $enabled = $extension_config->get("module.$module") !== NULL;
       if (!$enabled) {
@@ -135,6 +135,10 @@ class ModuleInstaller implements ModuleInstallerInterface {
         if (strlen($module) > DRUPAL_EXTENSION_NAME_MAX_LENGTH) {
           throw new ExtensionNameLengthException("Module name '$module' is over the maximum allowed length of " . DRUPAL_EXTENSION_NAME_MAX_LENGTH . ' characters');
         }
+
+        // Load a new config object for each iteration, otherwise changes made
+        // in hook_install() are not reflected in $extension_config.
+        $extension_config = \Drupal::configFactory()->getEditable('core.extension');
 
         // Check the validity of the default configuration. This will throw
         // exceptions if the configuration is not valid.
@@ -160,7 +164,7 @@ class ModuleInstaller implements ModuleInstallerInterface {
         $current_module_filenames = $this->moduleHandler->getModuleList();
         $current_modules = array_fill_keys(array_keys($current_module_filenames), 0);
         $current_modules = module_config_sort(array_merge($current_modules, $extension_config->get('module')));
-        $module_filenames = array();
+        $module_filenames = [];
         foreach ($current_modules as $name => $weight) {
           if (isset($current_module_filenames[$name])) {
             $module_filenames[$name] = $current_module_filenames[$name];
@@ -190,8 +194,19 @@ class ModuleInstaller implements ModuleInstallerInterface {
         // Update the kernel to include it.
         $this->updateKernel($module_filenames);
 
+        // Replace the route provider service with a version that will rebuild
+        // if routes used during installation. This ensures that a module's
+        // routes are available during installation. This has to occur before
+        // any services that depend on it are instantiated otherwise those
+        // services will have the old route provider injected. Note that, since
+        // the container is rebuilt by updating the kernel, the route provider
+        // service is the regular one even though we are in a loop and might
+        // have replaced it before.
+        \Drupal::getContainer()->set('router.route_provider.old', \Drupal::service('router.route_provider'));
+        \Drupal::getContainer()->set('router.route_provider', \Drupal::service('router.route_provider.lazy_builder'));
+
         // Allow modules to react prior to the installation of a module.
-        $this->moduleHandler->invokeAll('module_preinstall', array($module));
+        $this->moduleHandler->invokeAll('module_preinstall', [$module]);
 
         // Now install the module's schema if necessary.
         drupal_install_schema($module);
@@ -218,7 +233,7 @@ class ModuleInstaller implements ModuleInstallerInterface {
           if ($entity_type->getProvider() == $module) {
             $update_manager->installEntityType($entity_type);
           }
-          elseif ($entity_type->isSubclassOf(FieldableEntityInterface::CLASS)) {
+          elseif ($entity_type->entityClassImplements(FieldableEntityInterface::CLASS)) {
             // The module being installed may be adding new fields to existing
             // entity types. Field definitions for any entity type defined by
             // the module are handled in the if branch.
@@ -279,21 +294,21 @@ class ModuleInstaller implements ModuleInstallerInterface {
         // @see https://www.drupal.org/node/2208429
         \Drupal::service('theme_handler')->refreshInfo();
 
-        // In order to make uninstalling transactional if anything uses routes.
-        \Drupal::getContainer()->set('router.route_provider.old', \Drupal::service('router.route_provider'));
-        \Drupal::getContainer()->set('router.route_provider', \Drupal::service('router.route_provider.lazy_builder'));
-
         // Allow the module to perform install tasks.
         $this->moduleHandler->invoke($module, 'install');
 
         // Record the fact that it was installed.
-        \Drupal::logger('system')->info('%module module installed.', array('%module' => $module));
+        \Drupal::logger('system')->info('%module module installed.', ['%module' => $module]);
       }
     }
 
     // If any modules were newly installed, invoke hook_modules_installed().
     if (!empty($modules_installed)) {
-      \Drupal::getContainer()->set('router.route_provider', \Drupal::service('router.route_provider.old'));
+      // If the container was rebuilt during hook_install() it might not have
+      // the 'router.route_provider.old' service.
+      if (\Drupal::hasService('router.route_provider.old')) {
+        \Drupal::getContainer()->set('router.route_provider', \Drupal::service('router.route_provider.old'));
+      }
       if (!\Drupal::service('router.route_provider.lazy_builder')->hasRebuilt()) {
         // Rebuild routes after installing module. This is done here on top of
         // \Drupal\Core\Routing\RouteBuilder::destruct to not run into errors on
@@ -302,7 +317,7 @@ class ModuleInstaller implements ModuleInstallerInterface {
         \Drupal::service('router.builder')->rebuild();
       }
 
-      $this->moduleHandler->invokeAll('modules_installed', array($modules_installed));
+      $this->moduleHandler->invokeAll('modules_installed', [$modules_installed]);
     }
 
     return TRUE;
@@ -314,14 +329,14 @@ class ModuleInstaller implements ModuleInstallerInterface {
   public function uninstall(array $module_list, $uninstall_dependents = TRUE) {
     // Get all module data so we can find dependencies and sort.
     $module_data = system_rebuild_module_data();
-    $module_list = $module_list ? array_combine($module_list, $module_list) : array();
+    $module_list = $module_list ? array_combine($module_list, $module_list) : [];
     if (array_diff_key($module_list, $module_data)) {
       // One or more of the given modules doesn't exist.
       return FALSE;
     }
 
     $extension_config = \Drupal::configFactory()->getEditable('core.extension');
-    $installed_modules = $extension_config->get('module') ?: array();
+    $installed_modules = $extension_config->get('module') ?: [];
     if (!$module_list = array_intersect_key($module_list, $installed_modules)) {
       // Nothing to do. All modules already uninstalled.
       return TRUE;
@@ -329,9 +344,9 @@ class ModuleInstaller implements ModuleInstallerInterface {
 
     if ($uninstall_dependents) {
       // Add dependent modules to the list. The new modules will be processed as
-      // the while loop continues.
+      // the foreach loop continues.
       $profile = drupal_get_profile();
-      while (list($module) = each($module_list)) {
+      foreach ($module_list as $module => $value) {
         foreach (array_keys($module_data[$module]->required_by) as $dependent) {
           if (!isset($module_data[$dependent])) {
             // The dependent module does not exist.
@@ -381,7 +396,7 @@ class ModuleInstaller implements ModuleInstallerInterface {
       }
 
       // Allow modules to react prior to the uninstallation of a module.
-      $this->moduleHandler->invokeAll('module_preuninstall', array($module));
+      $this->moduleHandler->invokeAll('module_preuninstall', [$module]);
 
       // Uninstall the module.
       module_load_install($module);
@@ -403,17 +418,12 @@ class ModuleInstaller implements ModuleInstallerInterface {
         if ($entity_type->getProvider() == $module) {
           $update_manager->uninstallEntityType($entity_type);
         }
-        elseif ($entity_type->isSubclassOf(FieldableEntityInterface::CLASS)) {
-          // The module being installed may be adding new fields to existing
-          // entity types. Field definitions for any entity type defined by
-          // the module are handled in the if branch.
-          $entity_type_id = $entity_type->id();
-          /** @var \Drupal\Core\Entity\FieldableEntityStorageInterface $storage */
-          $storage = $entity_manager->getStorage($entity_type_id);
-          foreach ($entity_manager->getFieldStorageDefinitions($entity_type_id) as $storage_definition) {
-            // @todo We need to trigger field purging here.
-            //   See https://www.drupal.org/node/2282119.
-            if ($storage_definition->getProvider() == $module && !$storage->countFieldData($storage_definition, TRUE)) {
+        elseif ($entity_type->entityClassImplements(FieldableEntityInterface::CLASS)) {
+          // The module being uninstalled might have added new fields to
+          // existing entity types. This will add them to the deleted fields
+          // repository so their data will be purged on cron.
+          foreach ($entity_manager->getFieldStorageDefinitions($entity_type->id()) as $storage_definition) {
+            if ($storage_definition->getProvider() == $module) {
               $update_manager->uninstallFieldStorageDefinition($storage_definition);
             }
           }
@@ -457,7 +467,7 @@ class ModuleInstaller implements ModuleInstallerInterface {
       // @see https://www.drupal.org/node/2208429
       \Drupal::service('theme_handler')->refreshInfo();
 
-      \Drupal::logger('system')->info('%module module uninstalled.', array('%module' => $module));
+      \Drupal::logger('system')->info('%module module uninstalled.', ['%module' => $module]);
 
       $schema_store = \Drupal::keyValue('system.schema');
       $schema_store->delete($module);
@@ -474,7 +484,7 @@ class ModuleInstaller implements ModuleInstallerInterface {
     drupal_get_installed_schema_version(NULL, TRUE);
 
     // Let other modules react.
-    $this->moduleHandler->invokeAll('modules_uninstalled', array($module_list));
+    $this->moduleHandler->invokeAll('modules_uninstalled', [$module_list]);
 
     // Flush all persistent caches.
     // Any cache entry might implicitly depend on the uninstalled modules,
@@ -494,34 +504,30 @@ class ModuleInstaller implements ModuleInstallerInterface {
    *   The name of the module for which to remove all registered cache bins.
    */
   protected function removeCacheBins($module) {
-    // Remove any cache bins defined by a module.
     $service_yaml_file = drupal_get_path('module', $module) . "/$module.services.yml";
-    if (file_exists($service_yaml_file)) {
-      $definitions = Yaml::decode(file_get_contents($service_yaml_file));
-      if (isset($definitions['services'])) {
-        foreach ($definitions['services'] as $id => $definition) {
-          if (isset($definition['tags'])) {
-            foreach ($definition['tags'] as $tag) {
-              // This works for the default cache registration and even in some
-              // cases when a non-default "super" factory is used. That should
-              // be extremely rare.
-              if ($tag['name'] == 'cache.bin' && isset($definition['factory_service']) && isset($definition['factory_method']) && !empty($definition['arguments'])) {
-                try {
-                  $factory = \Drupal::service($definition['factory_service']);
-                  if (method_exists($factory, $definition['factory_method'])) {
-                    $backend = call_user_func_array(array($factory, $definition['factory_method']), $definition['arguments']);
-                    if ($backend instanceof CacheBackendInterface) {
-                      $backend->removeBin();
-                    }
-                  }
-                }
-                catch (\Exception $e) {
-                  watchdog_exception('system', $e, 'Failed to remove cache bin defined by the service %id.', array('%id' => $id));
-                }
-              }
-            }
+    if (!file_exists($service_yaml_file)) {
+      return;
+    }
+
+    $definitions = Yaml::decode(file_get_contents($service_yaml_file));
+
+    $cache_bin_services = array_filter(
+      isset($definitions['services']) ? $definitions['services'] : [],
+      function ($definition) {
+        $tags = isset($definition['tags']) ? $definition['tags'] : [];
+        foreach ($tags as $tag) {
+          if (isset($tag['name']) && ($tag['name'] == 'cache.bin')) {
+            return TRUE;
           }
         }
+        return FALSE;
+      }
+    );
+
+    foreach (array_keys($cache_bin_services) as $service_id) {
+      $backend = $this->kernel->getContainer()->get($service_id);
+      if ($backend instanceof CacheBackendInterface) {
+        $backend->removeBin();
       }
     }
   }
@@ -548,13 +554,13 @@ class ModuleInstaller implements ModuleInstallerInterface {
    * {@inheritdoc}
    */
   public function validateUninstall(array $module_list) {
-    $reasons = array();
+    $reasons = [];
     foreach ($module_list as $module) {
       foreach ($this->uninstallValidators as $validator) {
         $validation_reasons = $validator->validate($module);
         if (!empty($validation_reasons)) {
           if (!isset($reasons[$module])) {
-            $reasons[$module] = array();
+            $reasons[$module] = [];
           }
           $reasons[$module] = array_merge($reasons[$module], $validation_reasons);
         }

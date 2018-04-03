@@ -23,7 +23,7 @@ abstract class InstallerTestBase extends WebTestBase {
    *   An array of settings to write out, in the format expected by
    *   drupal_rewrite_settings().
    */
-  protected $settings = array();
+  protected $settings = [];
 
   /**
    * The language code in which to install Drupal.
@@ -46,7 +46,7 @@ abstract class InstallerTestBase extends WebTestBase {
    *
    * @var array
    */
-  protected $parameters = array();
+  protected $parameters = [];
 
   /**
    * A string translation map used for translated installer screens.
@@ -55,9 +55,9 @@ abstract class InstallerTestBase extends WebTestBase {
    *
    * @var array
    */
-  protected $translations = array(
+  protected $translations = [
     'Save and continue' => 'Save and continue',
-  );
+  ];
 
   /**
    * Whether the installer has completed.
@@ -73,12 +73,12 @@ abstract class InstallerTestBase extends WebTestBase {
     $this->isInstalled = FALSE;
 
     // Define information about the user 1 account.
-    $this->rootUser = new UserSession(array(
+    $this->rootUser = new UserSession([
       'uid' => 1,
       'name' => 'admin',
       'mail' => 'admin@example.com',
       'pass_raw' => $this->randomMachineName(),
-    ));
+    ]);
 
     // If any $settings are defined for this test, copy and prepare an actual
     // settings.php, so as to resemble a regular installation.
@@ -121,6 +121,9 @@ abstract class InstallerTestBase extends WebTestBase {
 
     // Select profile.
     $this->setUpProfile();
+
+    // Address the requirements problem screen, if any.
+    $this->setUpRequirementsProblem();
 
     // Configure settings.
     $this->setUpSettings();
@@ -171,9 +174,9 @@ abstract class InstallerTestBase extends WebTestBase {
    * Installer step: Select language.
    */
   protected function setUpLanguage() {
-    $edit = array(
+    $edit = [
       'langcode' => $this->langcode,
-    );
+    ];
     $this->drupalPostForm(NULL, $edit, $this->translations['Save and continue']);
   }
 
@@ -181,9 +184,9 @@ abstract class InstallerTestBase extends WebTestBase {
    * Installer step: Select installation profile.
    */
   protected function setUpProfile() {
-    $edit = array(
+    $edit = [
       'profile' => $this->profile,
-    );
+    ];
     $this->drupalPostForm(NULL, $edit, $this->translations['Save and continue']);
   }
 
@@ -193,6 +196,23 @@ abstract class InstallerTestBase extends WebTestBase {
   protected function setUpSettings() {
     $edit = $this->translatePostValues($this->parameters['forms']['install_settings_form']);
     $this->drupalPostForm(NULL, $edit, $this->translations['Save and continue']);
+  }
+
+  /**
+   * Installer step: Requirements problem.
+   *
+   * Override this method to test specific requirements warnings or errors
+   * during the installer.
+   *
+   * @see system_requirements()
+   */
+  protected function setUpRequirementsProblem() {
+    // By default, skip the "recommended PHP version" warning on older test
+    // environments. This allows the installer to be tested consistently on
+    // both recommended PHP versions and older (but still supported) versions.
+    if (version_compare(phpversion(), '7.0') < 0) {
+      $this->continueOnExpectedWarnings(['PHP']);
+    }
   }
 
   /**
@@ -216,6 +236,46 @@ abstract class InstallerTestBase extends WebTestBase {
     if ($this->isInstalled) {
       parent::refreshVariables();
     }
+  }
+
+  /**
+   * Continues installation when an expected warning is found.
+   *
+   * @param string[] $expected_warnings
+   *   A list of warning summaries to expect on the requirements screen (e.g.
+   *   'PHP', 'PHP OPcode caching', etc.). If only the expected warnings
+   *   are found, the test will click the "continue anyway" link to go to the
+   *   next screen of the installer. If an expected warning is not found, or if
+   *   a warning not in the list is present, a fail is raised.
+   */
+  protected function continueOnExpectedWarnings($expected_warnings = []) {
+    // Don't try to continue if there are errors.
+    if (strpos($this->getTextContent(), 'Errors found') !== FALSE) {
+      return;
+    }
+    // Allow only details elements that are directly after the warning header
+    // or each other. There is no guaranteed wrapper we can rely on across
+    // distributions. When there are multiple warnings, the selectors will be:
+    // - h3#warning+details summary
+    // - h3#warning+details+details summary
+    // - etc.
+    // We add one more selector than expected warnings to confirm that there
+    // isn't any other warning before clicking the link.
+    // @todo Make this more reliable in
+    //   https://www.drupal.org/project/drupal/issues/2927345.
+    $selectors = [];
+    for ($i = 0; $i <= count($expected_warnings); $i++) {
+      $selectors[] = 'h3#warning' . implode('', array_fill(0, $i + 1, '+details')) . ' summary';
+    }
+    $warning_elements = $this->cssSelect(implode(', ', $selectors));
+
+    // Confirm that there are only the expected warnings.
+    $warnings = [];
+    foreach ($warning_elements as $warning) {
+      $warnings[] = trim((string) $warning);
+    }
+    $this->assertEqual($expected_warnings, $warnings);
+    $this->clickLink('continue anyway');
   }
 
 }

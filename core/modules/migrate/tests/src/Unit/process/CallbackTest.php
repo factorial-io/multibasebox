@@ -30,16 +30,16 @@ class CallbackTest extends MigrateProcessTestCase {
   public function testCallbackWithFunction() {
     $this->plugin->setCallable('strtolower');
     $value = $this->plugin->transform('FooBar', $this->migrateExecutable, $this->row, 'destinationproperty');
-    $this->assertSame($value, 'foobar');
+    $this->assertSame('foobar', $value);
   }
 
   /**
    * Test callback with a class method as callable.
    */
   public function testCallbackWithClassMethod() {
-    $this->plugin->setCallable(array('\Drupal\Component\Utility\Unicode', 'strtolower'));
+    $this->plugin->setCallable(['\Drupal\Component\Utility\Unicode', 'strtolower']);
     $value = $this->plugin->transform('FooBar', $this->migrateExecutable, $this->row, 'destinationproperty');
-    $this->assertSame($value, 'foobar');
+    $this->assertSame('foobar', $value);
   }
 
 }

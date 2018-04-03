@@ -2,8 +2,6 @@
 
 namespace Drupal\Core\Entity;
 
-use Drupal\Core\TypedData\TranslatableInterface;
-
 /**
  * Defines a common interface for all content entity objects.
  *
@@ -20,37 +18,27 @@ use Drupal\Core\TypedData\TranslatableInterface;
  *
  * @ingroup entity_api
  */
-interface ContentEntityInterface extends \Traversable, FieldableEntityInterface, RevisionableInterface, TranslatableInterface {
+interface ContentEntityInterface extends \Traversable, FieldableEntityInterface, TranslatableRevisionableInterface {
 
   /**
-   * Determines if the current translation of the entity has unsaved changes.
+   * Gets the loaded Revision ID of the entity.
    *
-   * If the entity is translatable only translatable fields will be checked for
-   * changes.
-   *
-   * @return bool
-   *   TRUE if the current translation of the entity has changes.
+   * @return int
+   *   The loaded Revision identifier of the entity, or NULL if the entity
+   *   does not have a revision identifier.
    */
-  public function hasTranslationChanges();
+  public function getLoadedRevisionId();
 
   /**
-   * Marks the current revision translation as affected.
+   * Updates the loaded Revision ID with the revision ID.
    *
-   * @param bool|null $affected
-   *   The flag value. A NULL value can be specified to reset the current value
-   *   and make sure a new value will be computed by the system.
+   * This method should not be used, it could unintentionally cause the original
+   * revision ID property value to be lost.
+   *
+   * @internal
    *
    * @return $this
    */
-  public function setRevisionTranslationAffected($affected);
-
-  /**
-   * Checks whether the current translation is affected by the current revision.
-   *
-   * @return bool
-   *   TRUE if the entity object is affected by the current revision, FALSE
-   *   otherwise.
-   */
-  public function isRevisionTranslationAffected();
+  public function updateLoadedRevisionId();
 
 }

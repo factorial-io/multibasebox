@@ -15,24 +15,24 @@ class StyleOpmlTest extends PluginTestBase {
    *
    * @var array
    */
-  public static $testViews = array('test_style_opml');
+  public static $testViews = ['test_style_opml'];
 
   /**
    * Modules to enable.
    *
    * @var array
    */
-  public static $modules = array('aggregator');
+  public static $modules = ['aggregator'];
 
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
-    parent::setUp();
+  protected function setUp($import_test_views = TRUE) {
+    parent::setUp($import_test_views);
 
     $this->enableViewsTestModule();
 
-    $admin_user = $this->drupalCreateUser(array('administer news feeds'));
+    $admin_user = $this->drupalCreateUser(['administer news feeds']);
     $this->drupalLogin($admin_user);
   }
 
@@ -41,11 +41,11 @@ class StyleOpmlTest extends PluginTestBase {
    */
   public function testOpmlOutput() {
     // Create a test feed.
-    $values = array(
+    $values = [
       'title' => $this->randomMachineName(10),
       'url' => 'http://example.com/rss.xml',
       'refresh' => '900',
-    );
+    ];
     $feed = $this->container->get('entity.manager')
       ->getStorage('aggregator_feed')
       ->create($values);

@@ -24,13 +24,6 @@ class TranslatableMarkup extends FormattableMarkup {
   use ToStringTrait;
 
   /**
-   * The string to be translated.
-   *
-   * @var string
-   */
-  protected $string;
-
-  /**
    * The translated markup without placeholder replacements.
    *
    * @var string
@@ -134,13 +127,12 @@ class TranslatableMarkup extends FormattableMarkup {
    *
    * @ingroup sanitization
    */
-  public function __construct($string, array $arguments = array(), array $options = array(), TranslationInterface $string_translation = NULL) {
+  public function __construct($string, array $arguments = [], array $options = [], TranslationInterface $string_translation = NULL) {
     if (!is_string($string)) {
       $message = $string instanceof TranslatableMarkup ? '$string ("' . $string->getUntranslatedString() . '") must be a string.' : '$string ("' . (string) $string . '") must be a string.';
       throw new \InvalidArgumentException($message);
     }
-    $this->string = $string;
-    $this->arguments = $arguments;
+    parent::__construct($string, $arguments);
     $this->options = $options;
     $this->stringTranslation = $string_translation;
   }
@@ -210,7 +202,7 @@ class TranslatableMarkup extends FormattableMarkup {
    * Magic __sleep() method to avoid serializing the string translator.
    */
   public function __sleep() {
-    return array('string', 'arguments', 'options');
+    return ['string', 'arguments', 'options'];
   }
 
   /**
