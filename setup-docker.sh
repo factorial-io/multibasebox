@@ -31,6 +31,7 @@ docker run -d \
   -p 1936:1936 \
   --restart always \
   --volume=/var/run/docker.sock:/var/run/docker.sock \
+  -v "$(pwd)"/certs:/etc/ssl/private \
   --name=haproxy \
   factorial/haproxy-config:develop
 
