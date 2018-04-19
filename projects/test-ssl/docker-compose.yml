@@ -1,0 +1,12 @@
+version: '2'
+services:
+  web:
+    image: nginx
+    volumes:
+      - ./public:/usr/share/nginx/html
+    environment:
+      - NGINX_PORT=80
+      - SSL=/etc/ssl/private/test_tld.pem
+      - HTTPS_ONLY=1
+      - VHOST=test-ssl.test
+    network_mode: bridge
