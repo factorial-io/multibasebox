@@ -40,7 +40,7 @@ hosts:
 
 ## Linux-specific remarks
 
-automatic dns resolution does not work on linux, only on os x. Add your hosts to `7etc/hosts` similar to
+automatic dns resolution does not work on linux, only on os x. Add your hosts to `/etc/hosts` similar to
 
 ```
 127.0.0.1 multibasebox.test <your-other-hosts.test>
