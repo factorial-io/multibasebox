@@ -1,12 +1,3 @@
 [submodule "projects/helloworld/_tools/fabalicious"]
 	path = projects/helloworld/_tools/fabalicious
 	url = https://github.com/factorial-io/fabalicious.git
-[submodule "provision/roles/php-cli-ondrej"]
-	path = provision/roles/php-cli-ondrej
-	url = https://github.com/Oefenweb/ansible-php-cli-ondrej.git
-[submodule "provision/roles/php-composer"]
-	path = provision/roles/php-composer
-	url = https://github.com/geerlingguy/ansible-role-composer.git
-[submodule "provision/roles/kbrebanov.zip"]
-	path = provision/roles/kbrebanov.zip
-	url = https://github.com/kbrebanov/ansible-zip.git
