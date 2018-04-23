@@ -68,9 +68,22 @@
     <section class="area-info">
       <div class="area-info__top">
         <h1>{{label}}</h1>
-
         {{content.body}}
       </div>
+      {% set form %}
+        {{ content.field_request_form }}
+      {% endset %}
+      {% if form|trim %}
+      <div class="area-info__middle">
+        <h3 class="area-request__headline">{{'Your area needs'|trans}}</h3>
+        <div class="area-request__form">
+          <h3 class="area-request__form__headline">{{'Enquiry'|trans}}</h3>
+          <div class="area-request__form__wrap">
+          {{ form }}
+          </div>
+        </div>
+      </div>
+      {% endif %}
       <div class="area-info__bottom">
         <h3 class="where-what">{{'Where is What'|trans}}</h3>
     

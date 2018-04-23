@@ -1,0 +1,35 @@
+/**
+ * @file
+ * Promotions styles.
+ */
+
+/**
+ * Drupal Association.
+ */
+.messages.messages--promotion_drupal_association {
+  color: #333;
+  background: #e0e0d8 url(../images/promotions/drupal-association-logo.png) 10px 10px no-repeat;
+  border-color: #a6a6a6 #a6a6a6 #a6a6a6 transparent;  /* LTR */
+  box-shadow: -8px 0 0 #a6a6a6; /* LTR */
+  padding-left: 120px; /* LTR */
+  min-height: 20px;
+}
+
+[dir="rtl"] .messages.messages--promotion_drupal_association {
+  border-color: #333 transparent #333 #333;
+  box-shadow: 8px 0 0 #333;
+  margin-left: 0;
+  padding-right: 45px;
+}
+
+
+@media screen and (max-width: 600px) {
+  .messages.messages--promotion_drupal_association .button {
+    display: block;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 10px;
+    padding-bottom: 6px;
+    width: 100%;
+  }
+}

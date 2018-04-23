@@ -1,0 +1,52 @@
+.area-request {
+  &__headline {
+    text-align: center;
+    font-size: 1rem;
+  }
+
+  &__form {
+    position: relative;
+    padding-bottom: 100px;
+
+    &.active {
+
+    }
+
+    &__headline {
+      background: $black;
+      color: $white;
+      font-size: 1rem;
+      text-align: center;
+      padding: $spacer;
+      margin: 0;
+      letter-spacing: $letterspacing-wide;
+      cursor: pointer;
+    }
+
+    &__wrap {
+      position: absolute;
+      top: 50px;
+      left: 0;
+      width: 101%;
+      padding: 20px 0;
+      background: none $circle-egg;
+      display: none;
+
+      input.form-text {
+        width: 84%;
+        margin-bottom: 5px;
+      }
+
+      input.form-submit {
+        background: $black;
+        color: $white;
+        font-size: 1rem;
+        text-align: center;
+        padding: .8rem 0;
+        margin-top: 10px;
+        width: 100%;
+        letter-spacing: $letterspacing-wide;
+      }
+    }
+  }
+}

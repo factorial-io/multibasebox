@@ -1,0 +1,11 @@
+/**
+ * @file
+ * Composite element styles.
+ */
+
+/**
+ * Remove extra margin are composite element which already contain form elements with margins
+ */
+.form-composite {
+  margin: 0;
+}

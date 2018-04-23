@@ -12,5 +12,6 @@ import '../components/totop'
 import '../components/video'
 import '../components/contact'
 import '../components/slidershow'
+import '../components/rentalRequest'
 
 import '../utils/ieFixes'

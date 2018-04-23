@@ -1,0 +1,13 @@
+name: 'Webform Image Select Test'
+type: module
+description: 'Support module for webform that provides image select element working examples.'
+package: Testing
+# core: 8.x
+dependencies:
+  - 'webform_image_select:webform_image_select'
+
+# Information added by Drupal.org packaging script on 2018-04-20
+version: '8.x-5.0-rc11'
+core: '8.x'
+project: 'webform'
+datestamp: 1524229413

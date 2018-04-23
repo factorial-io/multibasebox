@@ -1,0 +1,13 @@
+name: 'Webform module config performance tests'
+type: module
+description: 'Test webform config performance by generating a 1000 webforms containing 100 elements.'
+package: Testing
+# core: 8.x
+dependencies:
+  - 'webform:webform'
+
+# Information added by Drupal.org packaging script on 2018-04-20
+version: '8.x-5.0-rc11'
+core: '8.x'
+project: 'webform'
+datestamp: 1524229413
