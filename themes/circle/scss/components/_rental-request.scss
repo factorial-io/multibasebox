@@ -27,13 +27,14 @@
       position: absolute;
       top: 50px;
       left: 0;
-      width: 101%;
-      padding: 20px 0;
+      width: 100%;
+      padding: 20px 10%;
       background: none $circle-egg;
       display: none;
 
-      input.form-text {
-        width: 84%;
+      input.form-text, input.form-email, textarea {
+        width: 100%;
+        padding: 5px;
         margin-bottom: 5px;
       }
 
