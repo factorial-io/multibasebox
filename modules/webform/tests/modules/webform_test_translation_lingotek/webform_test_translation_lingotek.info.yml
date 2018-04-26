@@ -1,0 +1,17 @@
+name: 'Webform module translation lingotek tests'
+type: module
+description: 'Support module for Webform module translatation using Lingotek.'
+package: Testing
+# core: 8.x
+dependencies:
+  - 'drupal:config_translation'
+  - 'drupal:language'
+  - 'drupal:locale'
+  - 'lingotek:lingotek'
+  - 'webform:webform'
+
+# Information added by Drupal.org packaging script on 2018-04-20
+version: '8.x-5.0-rc11'
+core: '8.x'
+project: 'webform'
+datestamp: 1524229413

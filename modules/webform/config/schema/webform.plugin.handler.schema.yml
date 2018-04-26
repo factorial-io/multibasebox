@@ -1,0 +1,465 @@
+webform.handler.*:
+  type: mapping
+  label: 'Handler settings'
+
+webform.handler.action:
+  type: mapping
+  label: 'Action'
+  mapping:
+    states:
+      type: sequence
+      label: 'States'
+      sequence:
+        type: string
+        label: 'State'
+    notes:
+      label: 'Notes'
+      type: text
+    sticky:
+      label: 'Flag'
+      type: boolean
+    locked:
+      label: 'Locked'
+      type: boolean
+    data:
+      label: 'Data'
+      type: text
+    message:
+      label: 'Message'
+      type: text
+    message_type:
+      label: 'Message type'
+      type: string
+    debug:
+      type: boolean
+      label: 'Enable debugging'
+
+webform.handler.log:
+  type: mapping
+  label: 'Log'
+  mapping: {  }
+
+webform.handler.email:
+  type: mapping
+  label: 'Email'
+  mapping:
+    states:
+      type: sequence
+      label: 'States'
+      sequence:
+        type: string
+        label: 'State'
+    to_mail:
+      label: 'Email to address'
+      type: email
+    to_options:
+      label: 'Email to address options'
+      type: ignore
+    bcc_mail:
+      label: 'Email BCC address'
+      type: email
+    bcc_options:
+      label: 'Email BCC address options'
+      type: ignore
+    cc_mail:
+      label: 'Email CC address'
+      type: email
+    cc_options:
+      label: 'Email CC address options'
+      type: ignore
+    from_mail:
+      label: 'Email from address'
+      type: email
+    from_options:
+      label: 'Email from address options'
+      type: ignore
+    from_name:
+      label: 'Email from name'
+      type: label
+    reply_to:
+      type: label
+      label: 'Reply to email'
+    return_path:
+      type: label
+      label: 'Return path email'
+    sender_mail:
+      type: email
+      label: 'Sender email'
+    sender_name:
+      type: label
+      label: 'Sender name'
+    subject:
+      label: 'Email subject'
+      type: label
+    body:
+      label: 'Email body'
+      type: text
+    excluded_elements:
+      type: sequence
+      label: 'Exclude elements'
+      sequence:
+        type: string
+        label: 'Element key'
+    ignore_access:
+      type: boolean
+      label: 'Always include private and restricted access elements.'
+    exclude_empty:
+      type: boolean
+      label: 'Preview exclude empty elements'
+    html:
+      type: boolean
+      label: 'HTML'
+    attachments:
+      type: boolean
+      label: 'Attachments'
+    twig:
+      type: boolean
+      label: 'Twig'
+    debug:
+      type: boolean
+      label: 'Enable debugging'
+
+webform.handler.remote_post:
+  type: mapping
+  label: 'Remote Post'
+  mapping:
+    method:
+      label: 'Method'
+      type: string
+    type:
+      label: 'Type'
+      type: string
+    excluded_data:
+      type: sequence
+      label: 'Excluded data'
+      sequence:
+        type: string
+        label: 'Data name'
+    custom_data:
+      label: 'Custom data'
+      type: string
+    custom_options:
+      label: 'Custom options'
+      type: string
+    debug:
+      type: boolean
+      label: 'Enable debugging'
+    completed_url:
+      label: 'Completed URL'
+      type: uri
+    completed_custom_data:
+      label: 'Completed custom data'
+      type: string
+    updated_url:
+      label: 'Updated URL'
+      type: uri
+    updated_custom_data:
+      label: 'Updated custom data'
+      type: string
+    deleted_url:
+      label: 'Deleted URL'
+      type: uri
+    deleted_custom_data:
+      label: 'Deleted custom data'
+      type: string
+    draft_url:
+      label: 'Draft URL'
+      type: uri
+    draft_custom_data:
+      label: 'Draft custom data'
+      type: string
+    converted_url:
+      label: 'Converted URL'
+      type: uri
+    converted_custom_data:
+      label: 'Converted custom data'
+      type: string
+    message:
+      type: text
+      label: 'Error response message'
+    messages:
+      label: 'Error response messages'
+      type: sequence
+      sequence:
+        type: mapping
+        label: 'Message'
+        mapping:
+          code:
+            type: integer
+            label: 'Response status code'
+          message:
+            type: text
+            label: 'Response message'
+
+webform.handler.settings:
+  type: mapping
+  label: 'Settings'
+  mapping:
+    debug:
+      type: string
+      label: 'Enable debugging'
+    # Below mapping is copied from: webform.webform.*
+    # @see webform.entity.webform.schema.yml
+    # NOTE: 'type: string' is changed to 'type: string
+    # NOTE: 'type: string' is changed to 'type: string
+    ajax:
+      type: string
+      label: 'Use Ajax'
+    ajax_scroll_top:
+      type: string
+      label: 'Ajax scroll top'
+    page:
+      type: string
+      label: 'Enable page'
+    page_submit_path:
+      type: string
+      label: 'Page submit URL alias'
+    page_confirm_path:
+      type: string
+      label: 'Page confirm URL alias'
+    form_submit_once:
+      type: string
+      label: 'Prevent duplicate submissions'
+    form_open_message:
+      type: text
+      label: 'Form open message'
+    form_close_message:
+      type: text
+      label: 'Form closed message'
+    form_exception_message:
+      type: text
+      label: 'Form exception message'
+    form_previous_submissions:
+      type: string
+      label: 'Form previous submissions notification'
+    form_confidential:
+      type: string
+      label: 'Form confidential'
+    form_confidential_message:
+      type: text
+      label: 'Form confidential message'
+    form_convert_anonymous:
+      type: string
+      label: 'Convert anonymous drafts and submissions to authenticated'
+    form_prepopulate:
+      type: string
+      label: 'Form prepopulate elements'
+    form_prepopulate_source_entity:
+      type: string
+      label: 'Form prepopulate source entity'
+    form_prepopulate_source_entity_required:
+      type: string
+      label: 'Form prepopulate source entity required'
+    form_prepopulate_source_entity_type:
+      type: string
+      label: 'Form prepopulate source entity type'
+    form_unsaved:
+      type: string
+      label: 'Warn users about unsaved changes'
+    form_disable_back:
+      type: string
+      label: 'Disable back button'
+    form_submit_back:
+      type: string
+      label: 'Submit previous wizard page when browser back button is clicked'
+    form_disable_autocomplete:
+      type: string
+      label: 'Disable autocompletion'
+    form_novalidate:
+      type: string
+      label: 'Disable client-side validation'
+    form_disable_inline_errors:
+      type: string
+      label: 'Disable inline form errors'
+    form_required:
+      type: string
+      label: 'Display required indicator'
+    form_autofocus:
+      type: string
+      label: 'Autofocus'
+    form_details_toggle:
+      type: string
+      label: 'Display collapse/expand all details link'
+    form_reset:
+      type: string
+      label: 'Display reset button'
+    form_login:
+      type: string
+      label: 'Redirect to login when access denied to webform'
+    form_login_message:
+      type: text
+      label: 'Login message when access denied to webform'
+    submission_label:
+      type: label
+      label: 'Default submission label'
+    submission_exception_message:
+      type: text
+      label: 'Submission exception message'
+    submission_locked_message:
+      type: text
+      label: 'Submission locked message'
+    submission_log:
+      type: string
+      label: 'Submission logging'
+    submission_user_columns:
+      type: sequence
+      label: 'Submission user columns'
+      sequence:
+        type: string
+        label: 'Column name'
+    submission_login:
+      type: string
+      label: 'Redirect to login when access denied to submission'
+    submission_login_message:
+      type: text
+      label: 'Login message when access denied to submission'
+    autofill:
+      type: string
+      label: 'Autofill with previous submission'
+    autofill_message:
+      type: text
+      label: 'Autofill with previous submission message'
+    autofill_excluded_elements:
+      type: sequence
+      label: 'Autofill excluded elements'
+      sequence:
+        type: string
+        label: 'Element key'
+    wizard_progress_bar:
+      type: string
+      label: 'Show wizard progress bar'
+    wizard_progress_pages:
+      type: string
+      label: 'Show wizard progress pages'
+    wizard_progress_percentage:
+      type: string
+      label: 'Show wizard progress pages'
+    wizard_start_label:
+      type: label
+      label: 'Wizard start label'
+    wizard_start_attributes:
+      type: ignore
+      label: 'Wizard start attributes'
+    wizard_confirmation:
+      type: string
+      label: 'Include confirmation page in progress'
+    wizard_confirmation_label:
+      type: label
+      label: 'Wizard confirmation label'
+    wizard_track:
+      type: text
+      label: 'Track wizard progress in the URL'
+    preview:
+      type: string
+      label: 'Enable preview page'
+    preview_label:
+      type: text
+      label: 'Preview label'
+    preview_title:
+      type: text
+      label: 'Preview page title'
+    preview_message:
+      type: text
+      label: 'Preview message'
+    preview_attributes:
+      type: ignore
+      label: 'Preview attributes'
+    preview_excluded_elements:
+      type: sequence
+      label: 'Preview excluded elements'
+      sequence:
+        type: string
+        label: 'Element key'
+    preview_exclude_empty:
+      type: string
+      label: 'Preview exclude empty elements'
+    draft:
+      type: string
+      label: 'Allow users to save and finish the webform later.'
+    draft_multiple:
+      type: string
+      label: 'Allow users to save multiple drafts'
+    draft_auto_save:
+      type: string
+      label: 'Automatically save as draft when previewing and when there are validation errors.'
+    draft_saved_message:
+      type: text
+      label: 'Draft saved message'
+    draft_loaded_message:
+      type: text
+      label: 'Draft loaded message'
+    confirmation_type:
+      type: string
+      label: 'Confirmation type'
+    confirmation_url:
+      type: string
+      label: 'Confirmation URL'
+    confirmation_title:
+      type: text
+      label: 'Confirmation title'
+    confirmation_message:
+      type: text
+      label: 'Confirmation message'
+    confirmation_attributes:
+      type: ignore
+      label: 'Confirmation attributes'
+    confirmation_back:
+      type: string
+      label: 'Display back to webform link.'
+    confirmation_back_label:
+      type: text
+      label: 'Confirmation back link label'
+    confirmation_back_attributes:
+      type: ignore
+      label: 'Confirmation back link attributes'
+    confirmation_exclude_query:
+      type: string
+      label: 'Exclude query string from confirmation URL'
+    confirmation_exclude_token:
+      type: string
+      label: 'Exclude token from confirmation URL'
+    limit_total:
+      type: string
+      label: 'Limit total submissions'
+    limit_total_interval:
+      type: string
+      label: 'Limit total interval'
+    limit_total_message:
+      type: text
+      label: 'Limit total message'
+    limit_user:
+      type: string
+      label: 'Limit user submissions'
+    limit_user_interval:
+      type: string
+      label: 'Limit user interval'
+    limit_user_message:
+      type: text
+      label: 'Limit user message'
+    entity_limit_total:
+      type: string
+      label: 'Entity limit total submissions'
+    entity_limit_total_interval:
+      type: string
+      label: 'Entity limit total interval'
+    entity_limit_user:
+      type: string
+      label: 'Entity limit user submissions'
+    entity_limit_user_interval:
+      type: string
+      label: 'Entity limit user interval'
+    purge:
+      type: string
+      label: 'Default purging'
+    purge_days:
+      type: string
+      label: 'Default days to retain submissions'
+    results_disabled:
+      type: string
+      label: 'Results disabled'
+    results_disabled_ignore:
+      type: string
+      label: 'Ignore disabled results warning'
+    token_update:
+      type: string
+      label: 'Allow updates using token'

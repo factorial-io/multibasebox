@@ -68,7 +68,7 @@ dockerHosts:
     environment:
       COMPOSE_FILE: docker-compose-mbb.yml
     inheritsFrom:
-      - ../../fabalicious/2.0/mbb-docker.yaml
+      - http://config.factorial.io/mbb/2.0/mbb-docker.yaml
       - http://config.factorial.io/docker/2.0/docker-compose.yaml
 
   clients.factorial.io:

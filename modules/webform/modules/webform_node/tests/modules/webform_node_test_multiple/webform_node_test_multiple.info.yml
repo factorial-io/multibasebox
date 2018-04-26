@@ -1,0 +1,20 @@
+name: 'Webform node module multiple tests'
+type: module
+description: 'Support module for webform node that provides working examples multiple webforms attached to a single node.'
+package: Testing
+# core: 8.x
+dependencies:
+  - 'drupal:field'
+  - 'drupal:menu_ui'
+  - 'drupal:node'
+  - 'drupal:path'
+  - 'drupal:text'
+  - 'drupal:user'
+  - 'webform:webform'
+  - 'webform:webform_node'
+
+# Information added by Drupal.org packaging script on 2018-04-20
+version: '8.x-5.0-rc11'
+core: '8.x'
+project: 'webform'
+datestamp: 1524229413

@@ -1,0 +1,138 @@
+.area-request {
+  &__headline {
+    text-align: center;
+    font-size: 1rem;
+    @include media-breakpoint-down(lg) {
+      margin-top: 20px;
+    }
+  }
+
+  &__form {
+    position: relative;
+    padding-bottom: 100px;
+
+    &__headline {
+      position: relative;
+      background: $black;
+      color: $white;
+      font-size: 1rem;
+      text-align: center;
+      padding: $spacer;
+      margin: 0;
+      letter-spacing: $letterspacing-wide;
+      cursor: pointer;
+      
+      &:after {
+        position: absolute;
+        content: "\e903";
+        font-family: icon;
+        font-style: normal;
+        font-weight: 400;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+        letter-spacing: 0;
+        right: 0;
+        height: 100%;
+        top: 0;
+        line-height: 50px;
+        width: 50px;
+        border-left: 1px solid;
+        @include media-breakpoint-down(lg) {
+          line-height: 48px;
+          width: 48px;
+        }
+      }
+    }
+
+    &.active {
+      .area-request__form__headline {
+        &:after {
+          display: none;
+        }
+      }
+    }
+
+    &__wrap {
+      position: absolute;
+      top: 50px;
+      left: 0;
+      width: 100%;
+      padding: 20px 0;
+      background: none $circle-egg;
+      display: none;
+
+      input.form-text, input.form-email, textarea {
+        width: 80%;
+        padding: 5px;
+        margin: 0 auto 5px;
+        display: block;
+      }
+      
+      input.error {
+        border: 1px solid #e15b12;
+      }
+
+      .form-actions {
+        margin-top: 10px;
+        position: relative;
+        &:after {
+          position: absolute;
+          z-index: 2;
+          content: "\e903";
+          font-family: icon;
+          font-style: normal;
+          font-weight: 400;
+          font-variant: normal;
+          text-transform: none;
+          line-height: 1;
+          letter-spacing: 0;
+          right: 0;
+          height: 100%;
+          top: 0;
+          line-height: 50px;
+          width: 50px;
+          border-left: 1px solid;
+          display: none;
+          color: $white;
+          text-align: center;
+          @include media-breakpoint-down(lg) {
+            line-height: 45px;
+            width: 45px;
+          }
+        }
+      }
+      input.form-submit {
+        position: relative;
+        z-index: 1;
+        background: $black;
+        color: $white;
+        font-size: 1rem;
+        text-align: center;
+        padding: .8rem 0;
+        margin-top: 0px;
+        width: 100%;
+        letter-spacing: $letterspacing-wide;
+      }
+
+      div[role="alert"], .webform-confirmation {
+        width: 80%;
+        display: block;
+        margin: 0 auto;
+      }
+      
+      div[role="alert"] {
+        color: #e15b12;
+        margin-bottom: 10px;
+      }
+    }
+    
+    &.active {
+      .area-request__form__wrap .form-actions {
+        &:after {
+          display: block;
+        }
+      }
+    }
+  }
+}
