@@ -15,6 +15,8 @@ needs:
   - git
   - files
 
+installOptions:
+  distribution: standard
 dockerKeyFile: ./_tools/ssh-keys/docker-root-key
 dockerAuthorizedKeyFile: ./_tools/ssh-keys/authorized_keys
 dockerKnownHostsFile: ./_tools/ssh-keys/known_hosts
