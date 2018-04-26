@@ -133,6 +133,7 @@ hosts:
     user: factorial
     port: 122
     type: stage
+    gitRootFolder: /var/www/develop/html
     rootFolder: /var/www/develop/html
     backupFolder: /home/factorial/backups
     needs:
