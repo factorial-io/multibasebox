@@ -21,7 +21,7 @@
       margin: 0;
       letter-spacing: $letterspacing-wide;
       cursor: pointer;
-      
+
       &:after {
         position: absolute;
         content: "\e903";
@@ -67,8 +67,14 @@
         padding: 5px;
         margin: 0 auto 5px;
         display: block;
+        font-family: $font-family-sans-serif;
       }
-      
+
+      input.button {
+        font-family: $font-family-sans-serif;
+      }
+
+
       input.error {
         border: 1px solid #e15b12;
       }
@@ -120,13 +126,13 @@
         display: block;
         margin: 0 auto;
       }
-      
+
       div[role="alert"] {
         color: #e15b12;
         margin-bottom: 10px;
       }
     }
-    
+
     &.active {
       .area-request__form__wrap .form-actions {
         &:after {
