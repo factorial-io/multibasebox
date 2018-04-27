@@ -159,6 +159,7 @@ hosts:
     user: factorial
     port: 122
     type: prod
+    gitRootFolder: /var/www/prod/html
     rootFolder: /var/www/prod/html
     backupFolder: /home/factorial/backups
     needs:
