@@ -1,7 +1,7 @@
 elements: "area:\n  '#title': 'Your area requirements'\ncompany:\n  '#title': Company\n  '#placeholder': Company\nfirstname:\n  '#title': 'First Name'\n  '#placeholder': 'First Name*'\nlastname:\n  '#title': Name\n  '#placeholder': 'Name*'\nstreet_nr:\n  '#title': 'Road Nr'\n  '#placeholder': 'Road Nr'\nzip_city:\n  '#title': 'Zip City'\n  '#placeholder': 'Zip City'\ncountry:\n  '#title': Country\n  '#placeholder': Country\nphone:\n  '#title': Phone\n  '#placeholder': Phone\nmessage:\n  '#title': Message\n  '#placeholder': Message\nactions:\n  '#submit__label': Send\n"
 title: 'Area Enquiry'
 settings:
-  confirmation_message: '<p>Thanks for your message, we will return to you shortly.</p>'
+  confirmation_message: '<p>Thank you for your inquiry, we will contact you immediately.</p>'
 handlers:
   e_mail:
     settings:
