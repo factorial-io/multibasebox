@@ -17,9 +17,10 @@ needs:
 
 installOptions:
   distribution: standard
-dockerKeyFile: ./_tools/ssh-keys/docker-root-key
-dockerAuthorizedKeyFile: ./_tools/ssh-keys/authorized_keys
-dockerKnownHostsFile: ./_tools/ssh-keys/known_hosts
+
+dockerKeyFile: ./.tools/ssh-keys/docker-root-key
+dockerAuthorizedKeyFile: https://keys.factorial.io/keys/dbe5154a-9832-4748-a32c-5a0fcf2f2e43
+dockerKnownHostsFile: ./.tools/ssh-keys/known_hosts
 
 repository: ssh://git@source.factorial.io:2222/soliddd/the-circle.git
 

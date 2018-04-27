@@ -1243,12 +1243,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/factorial-io/fabalicious.git",
-                "reference": "60d13d91ecf33b5c4e7bbbc3f897fb3d79946fe7"
+                "reference": "013ee5206c015735aec30c5e4e4a3de0aabf7682"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/factorial-io/fabalicious/zipball/60d13d91ecf33b5c4e7bbbc3f897fb3d79946fe7",
-                "reference": "60d13d91ecf33b5c4e7bbbc3f897fb3d79946fe7",
+                "url": "https://api.github.com/repos/factorial-io/fabalicious/zipball/013ee5206c015735aec30c5e4e4a3de0aabf7682",
+                "reference": "013ee5206c015735aec30c5e4e4a3de0aabf7682",
                 "shasum": ""
             },
             "require": {
@@ -1280,7 +1280,7 @@
                 }
             ],
             "description": "deployment system based on fabric",
-            "time": "2018-04-23T20:10:23+00:00"
+            "time": "2018-04-26T08:32:12+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
