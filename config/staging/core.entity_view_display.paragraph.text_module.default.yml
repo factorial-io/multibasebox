@@ -23,6 +23,7 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: list_default
+    region: content
   field_button_link:
     weight: 2
     label: hidden
@@ -34,18 +35,21 @@ content:
       target: ''
     third_party_settings: {  }
     type: link
+    region: content
   field_headline:
     weight: 0
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
+    region: content
   field_text:
     weight: 1
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
+    region: content
 hidden:
   created: true
   uid: true

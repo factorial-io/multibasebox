@@ -22,6 +22,7 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: text_default
+    region: content
   field_download_resource:
     type: entity_reference_revisions_entity_view
     weight: 2
@@ -30,6 +31,7 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
+    region: content
 hidden:
   field_image: true
   langcode: true

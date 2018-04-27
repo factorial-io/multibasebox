@@ -26,6 +26,7 @@ content:
     label: above
     settings: {  }
     third_party_settings: {  }
+    region: content
   field_image:
     type: responsive_image
     weight: 0
@@ -34,6 +35,7 @@ content:
       responsive_image_style: narrow_square
       image_link: content
     third_party_settings: {  }
+    region: content
 hidden:
   field_other_modules: true
   field_teaser_text: true

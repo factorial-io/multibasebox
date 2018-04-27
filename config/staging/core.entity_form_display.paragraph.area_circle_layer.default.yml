@@ -21,6 +21,7 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
+    region: content
   field_module_reference:
     weight: 1
     settings:
@@ -29,6 +30,10 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+    region: content
+  translation:
+    weight: 10
+    region: content
 hidden:
   created: true
   status: true

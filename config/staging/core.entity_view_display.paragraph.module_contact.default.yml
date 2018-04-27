@@ -20,6 +20,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_show_brands:
     weight: 1
     label: above
@@ -29,6 +30,7 @@ content:
       format_custom_true: ''
     third_party_settings: {  }
     type: boolean
+    region: content
   field_show_progress:
     weight: 0
     label: above
@@ -38,12 +40,14 @@ content:
       format_custom_true: ''
     third_party_settings: {  }
     type: boolean
+    region: content
   field_telephone_number:
     weight: 2
     label: above
     settings: {  }
     third_party_settings: {  }
     type: basic_string
+    region: content
 hidden:
   created: true
   uid: true

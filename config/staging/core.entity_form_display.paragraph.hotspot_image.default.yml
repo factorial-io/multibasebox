@@ -26,6 +26,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
+    region: content
   field_hotspot:
     type: entity_reference_paragraphs
     weight: 4
@@ -36,6 +37,7 @@ content:
       add_mode: dropdown
       form_display_mode: default
     third_party_settings: {  }
+    region: content
   field_image:
     weight: 3
     settings:
@@ -43,11 +45,13 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
+    region: content
   field_label_position:
     weight: 2
     settings: {  }
     third_party_settings: {  }
     type: options_select
+    region: content
   field_text:
     weight: 1
     settings:
@@ -55,10 +59,12 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
+    region: content
   translation:
     weight: 5
     settings: {  }
     third_party_settings: {  }
+    region: content
 hidden:
   created: true
   status: true

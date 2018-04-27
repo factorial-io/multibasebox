@@ -32,6 +32,7 @@ content:
     weight: 101
     settings: {  }
     third_party_settings: {  }
+    region: content
   field_belongs_to_overview:
     weight: 102
     label: above
@@ -39,6 +40,7 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
+    region: content
   field_blocks_below:
     weight: 110
     label: above
@@ -47,12 +49,14 @@ content:
       link: ''
     third_party_settings: {  }
     type: entity_reference_revisions_entity_view
+    region: content
   field_contact:
     weight: 106
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
+    region: content
   field_email:
     weight: 108
     label: above
@@ -60,6 +64,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_floors:
     type: entity_reference_revisions_entity_view
     weight: 105
@@ -68,12 +73,14 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
+    region: content
   field_house_svg:
     weight: 109
     label: above
     settings: {  }
     third_party_settings: {  }
     type: file_default
+    region: content
   field_image:
     weight: 104
     label: above
@@ -82,6 +89,7 @@ content:
       image_link: ''
     third_party_settings: {  }
     type: responsive_image
+    region: content
   field_layer:
     type: entity_reference_revisions_entity_view
     weight: 103
@@ -90,15 +98,18 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
+    region: content
   field_vcard:
     weight: 107
     label: above
     settings: {  }
     third_party_settings: {  }
     type: file_default
+    region: content
   links:
     weight: 100
     settings: {  }
     third_party_settings: {  }
+    region: content
 hidden:
   langcode: true

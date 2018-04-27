@@ -22,6 +22,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
+    region: content
   field_images:
     weight: 1
     settings:
@@ -29,6 +30,10 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
+    region: content
+  translation:
+    weight: 10
+    region: content
 hidden:
   created: true
   status: true

@@ -24,6 +24,7 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: text_default
+    region: content
   field_image:
     weight: 3
     label: above
@@ -32,6 +33,7 @@ content:
       image_link: ''
     third_party_settings: {  }
     type: image
+    region: content
   field_position_x_:
     weight: 1
     label: above
@@ -42,6 +44,7 @@ content:
       prefix_suffix: true
     third_party_settings: {  }
     type: number_decimal
+    region: content
   field_position_y_:
     weight: 2
     label: above
@@ -52,12 +55,14 @@ content:
       prefix_suffix: true
     third_party_settings: {  }
     type: number_decimal
+    region: content
   field_text:
     weight: 4
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
+    region: content
 hidden:
   created: true
   uid: true

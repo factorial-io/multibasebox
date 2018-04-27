@@ -8,7 +8,7 @@ _core:
   default_config_hash: X9I1OB0W3WlWtrK-CNcg6hNWwa8wficanpH8pYnDZDE
 id: circle_local_tasks
 theme: circle
-region: '-1'
+region: header
 weight: -2
 provider: null
 plugin: local_tasks_block

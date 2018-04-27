@@ -73,7 +73,7 @@ display:
           label: Entitätstyp
         count:
           label: 'Anzahl der Verwendung'
-          format_plural_string: "1\x03@count"
+          format_plural_string: !!binary MQNAY291bnQ=
       arguments:
         fid:
           exception:

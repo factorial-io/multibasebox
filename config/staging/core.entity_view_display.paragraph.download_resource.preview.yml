@@ -23,6 +23,7 @@ content:
       image_link: ''
     third_party_settings: {  }
     type: image
+    region: content
 hidden:
   field_high_res_image_download: true
   field_pdf: true

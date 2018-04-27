@@ -24,6 +24,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
+    region: content
   field_image:
     weight: 11
     settings:
@@ -31,14 +32,17 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
+    region: content
   field_video_file:
     weight: 1
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
     type: file_generic
+    region: content
   translation:
     weight: 10
+    region: content
 hidden:
   created: true
   status: true

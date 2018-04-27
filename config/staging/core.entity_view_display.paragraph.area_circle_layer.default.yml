@@ -22,12 +22,14 @@ content:
       image_link: ''
     third_party_settings: {  }
     type: responsive_image
+    region: content
   field_module_reference:
     weight: 1
     label: above
     settings: {  }
     third_party_settings: {  }
     type: entity_reference_entity_id
+    region: content
 hidden:
   created: true
   uid: true

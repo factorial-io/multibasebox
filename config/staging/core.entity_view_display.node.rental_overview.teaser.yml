@@ -41,5 +41,6 @@ hidden:
   field_layer: true
   field_overlay_image: true
   field_plan_image: true
+  field_request_form: true
   langcode: true
   links: true

@@ -24,6 +24,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
+    region: content
   field_image:
     weight: 2
     settings:
@@ -31,6 +32,7 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
+    region: content
   field_text:
     weight: 1
     settings:
@@ -38,6 +40,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
+    region: content
   field_vimeo_id:
     weight: 3
     settings:
@@ -45,6 +48,10 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
+  translation:
+    weight: 10
+    region: content
 hidden:
   created: true
   status: true

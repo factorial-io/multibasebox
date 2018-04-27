@@ -24,6 +24,7 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
+    region: content
   field_image:
     weight: 0
     settings:
@@ -31,12 +32,17 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
+    region: content
   field_svg:
     weight: 1
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
     type: file_generic
+    region: content
+  translation:
+    weight: 10
+    region: content
 hidden:
   created: true
   status: true

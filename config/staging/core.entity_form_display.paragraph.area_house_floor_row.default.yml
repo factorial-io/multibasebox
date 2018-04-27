@@ -22,11 +22,13 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_floor_state:
     weight: 3
     settings: {  }
     third_party_settings: {  }
     type: options_select
+    region: content
   field_link_to_floor:
     weight: 5
     settings:
@@ -35,6 +37,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+    region: content
   field_not_rentable_text:
     weight: 4
     settings:
@@ -42,6 +45,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_office_space:
     weight: 6
     settings:
@@ -49,6 +53,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_space_count:
     weight: 2
     settings:
@@ -56,6 +61,10 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
+  translation:
+    weight: 10
+    region: content
 hidden:
   created: true
   status: true

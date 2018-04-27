@@ -18,18 +18,24 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: number
+    region: content
   field_floor_office_space:
     weight: 0
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
+    region: content
   field_floor_terrace_space:
     weight: 2
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
+    region: content
+  translation:
+    weight: 10
+    region: content
 hidden:
   created: true
   status: true
