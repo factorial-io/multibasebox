@@ -21,6 +21,7 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: options_select
+    region: content
   field_button_link:
     weight: 2
     settings:
@@ -28,6 +29,7 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
+    region: content
   field_headline:
     weight: 0
     settings:
@@ -35,6 +37,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
+    region: content
   field_text:
     weight: 1
     settings:
@@ -42,10 +45,12 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
+    region: content
   translation:
     weight: 4
     settings: {  }
     third_party_settings: {  }
+    region: content
 hidden:
   created: true
   status: true

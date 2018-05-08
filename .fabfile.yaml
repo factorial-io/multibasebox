@@ -1,0 +1,182 @@
+name: the_circle
+key: SP
+uuid: e358a210-8579-4501-b413-06a8e82a6b45
+
+repository: ssh://git@source.factorial.io:2222/soliddd/the-circle.git
+
+requires: 2.0.0
+
+needs:
+  - ssh
+  - composer
+  - docker
+  - drush8
+  - drupalconsole
+  - git
+  - files
+
+installOptions:
+  distribution: standard
+
+dockerKeyFile: ./.tools/ssh-keys/docker-root-key
+dockerAuthorizedKeyFile: https://keys.factorial.io/keys/dbe5154a-9832-4748-a32c-5a0fcf2f2e43
+dockerKnownHostsFile: ./.tools/ssh-keys/known_hosts
+
+repository: ssh://git@source.factorial.io:2222/soliddd/the-circle.git
+
+excludeFiles:
+  backup:
+    - "styles"
+    - "tmp"
+  copyFrom:
+    - "tmp"
+    - "styles"
+    - "php"
+    - "js"
+    - "css"
+
+scripts:
+  xdebug:
+    - export DEBIAN_FRONTEND=noninteractive && apt-get -y -q install php5-xdebug
+    - echo xdebug.remote_autostart=1 >> /etc/php5/apache2/php.ini
+    - echo xdebug.remote_enable=1 >> /etc/php5/apache2/php.ini
+    - echo xdebug.remote_host=33.33.33.1 >> /etc/php5/apache2/php.ini
+    - echo xdebug.idekey=PHP-XDEBUG >> /etc/php5/apache2/php.ini
+    - echo xdebug.remote_mode=req >> /etc/php5/apache2/php.ini
+    - echo xdebug.remote_port=9000 >> /etc/php5/apache2/php.ini
+    - echo xdebug.max_nesting_level=1000 >> /etc/php5/apache2/php.ini
+    - echo zend_extension xdebug.so >> /etc/php5/apache2/php.ini
+    - echo xdebug.remote_autostart=1 >> /etc/php5/cli/php.ini
+    - echo xdebug.remote_enable=1 >> /etc/php5/cli/php.ini
+    - echo xdebug.remote_host=33.33.33.1 >> /etc/php5/cli/php.ini
+    - echo xdebug.idekey=PHP-XDEBUG >> /etc/php5/cli/php.ini
+    - echo xdebug.remote_mode=req >> /etc/php5/cli/php.ini
+    - echo xdebug.remote_port=9000 >> /etc/php5/cli/php.ini
+    - echo xdebug.max_nesting_level=1000 >> /etc/php5/cli/php.ini
+    - echo zend_extension xdebug.so >> /etc/php5/apache2/php.ini
+    - service apache2 graceful
+
+dockerHosts:
+  default:
+    tasks:
+      start:
+        - docker start %name%
+      stop:
+        - docker stop %name%
+      logs:
+        - docker logs %name%
+      ps:
+        - docker ps
+  mbb:
+    environment:
+      COMPOSE_FILE: docker-compose-mbb.yml
+    inheritsFrom:
+      - http://config.factorial.io/mbb/2.0/mbb-docker.yaml
+      - http://config.factorial.io/docker/2.0/docker-compose.yaml
+
+  clients.factorial.io:
+    environment:
+      VHOST: "%host.docker.vhost%"
+    inheritsFrom:
+      - http://config.factorial.io/clients.factorial.io/2.0/d8/docker.yaml
+    blueprint:
+      resetPrepare:
+        - execute(script, patternlab)
+
+
+
+hosts:
+  mbb:
+    host: the-circle.test
+    user: root
+    password: root
+    port: 8751
+    type: dev
+    rootFolder: /var/www
+    gitRootFolder: /var/www
+    siteFolder: /sites/default
+    filesFolder: /sites/default/files
+    backupFolder: /var/www/backups
+    branch: develop
+    supportsInstalls: true
+    docker:
+      name: thecircle_web_1
+      configuration: mbb
+      projectFolder: the-circle
+    database:
+      name: thecircle
+      user: root
+      pass: admin
+      host: mysql
+
+  dev.the-circle.clients.factorial.io:
+    inheritsFrom: http://config.factorial.io/clients.factorial.io/2.0/d8/host.yaml
+    port: 2323
+    # path to drupal's root folder
+    gitRootFolder: /var/www
+    branch: develop
+    rootFolder: /var/www
+    database:
+      name: thecircle
+      host: mysql
+    docker:
+      name: thecircle_web_1
+      configuration: clients.factorial.io
+      projectFolder: the-circle
+      vhost: dev.the-circle.clients.factorial.io
+      repository: ssh://git@source.factorial.io:2222/soliddd/the-circle.git
+    deployFinished:
+      - "cd %host.rootFolder%/themes/circle && npm install"
+      - "cd %host.rootFolder%/themes/circle && ./node_modules/.bin/gulp dist"
+      - "#!drush cr"
+
+
+  dev:
+    host: 207.154.218.133
+    user: factorial
+    port: 122
+    type: stage
+    gitRootFolder: /var/www/develop/html
+    rootFolder: /var/www/develop/html
+    backupFolder: /home/factorial/backups
+    needs:
+      - ssh
+      - git
+      - files
+      - drush8
+      - composer
+    siteFolder: /sites/default
+    filesFolder: /sites/default/files
+    branch: develop
+    database:
+      host: localhost
+      name: the-circle
+      user: root
+      pass: root
+
+  live:
+    host: 207.154.218.133
+    user: factorial
+    port: 122
+    type: prod
+    gitRootFolder: /var/www/prod/html
+    rootFolder: /var/www/prod/html
+    backupFolder: /home/factorial/backups
+    needs:
+      - ssh
+      - git
+      - files
+      - drush8
+      - composer
+    siteFolder: /sites/default
+    filesFolder: /sites/default/files
+    branch: master
+    database:
+      host: localhost
+      name: the-circle
+      user: root
+      pass: root
+
+
+
+

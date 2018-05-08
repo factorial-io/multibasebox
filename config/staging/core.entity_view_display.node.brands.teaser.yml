@@ -14,5 +14,9 @@ mode: teaser
 content:
   links:
     weight: 100
+    region: content
 hidden:
+  field_brands: true
+  field_sold_space: true
+  field_total_space: true
   langcode: true

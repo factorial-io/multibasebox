@@ -1,0 +1,36 @@
+uuid: 1b3b79c1-ff88-46f5-9476-8d8afa10906b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_request_form
+    - node.type.rental_overview
+    - webform.webform.rental_request
+  module:
+    - webform
+id: node.rental_overview.field_request_form
+field_name: field_request_form
+entity_type: node
+bundle: rental_overview
+label: 'Request form'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    default_data: ''
+    status: open
+    open: ''
+    close: ''
+    target_uuid: 74e43e19-d4eb-4b58-9f3d-81b56f5b9723
+default_value_callback: ''
+settings:
+  handler: 'default:webform'
+  handler_settings:
+    target_bundles: null
+    auto_create: false
+  default_data: ''
+  status: open
+  open: ''
+  close: ''
+field_type: webform

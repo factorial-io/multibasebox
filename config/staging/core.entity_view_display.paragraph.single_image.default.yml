@@ -28,6 +28,7 @@ content:
       target: ''
     third_party_settings: {  }
     type: link
+    region: content
   field_image:
     weight: 0
     label: above
@@ -36,12 +37,14 @@ content:
       image_link: ''
     third_party_settings: {  }
     type: responsive_image
+    region: content
   field_svg:
     weight: 1
     label: above
     settings: {  }
     third_party_settings: {  }
     type: file_default
+    region: content
 hidden:
   created: true
   uid: true

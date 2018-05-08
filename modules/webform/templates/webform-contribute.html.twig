@@ -1,0 +1,48 @@
+{#
+/**
+ * @file
+ * Default theme implementation for the webform contribute community info.
+ *
+ * Available variables:
+ * - account: The user or organization account profile.
+ * - membership: The user or organizations membership status.
+ * - contribution: The user or organizations contributions.
+ */
+#}
+{{ attach_library('webform/webform.contribute') }}
+
+<div class="webform-contribute-community-info">
+  <h2 class="webform-contribute-community-info__header">{{ 'Community Information'|t }}</h2>
+  <div class="webform-contribute-community-info__items">
+    <div class="webform-contribute-community-info__item">
+      <span class="webform-contribute-community-info__item-icon webform-contribute-community-info__item-icon--account" id="contribute-info-account"></span>
+      <div class="webform-contribute-community-info__item-details">
+        <h3 class="webform-contribute-community-info__item-title">{{ 'Drupal.org Account'|t }}</h3>
+        {{ account.value }}
+        {% if account.description %}
+          <br/>{{ account.description }}
+        {% endif %}
+      </div>
+    </div>
+    <div class="webform-contribute-community-info__item">
+      <span class="webform-contribute-community-info__item-icon webform-contribute-community-info__item-icon--membership" id="contribute-info-membership"></span>
+      <div class="webform-contribute-community-info__item-details">
+        <h3 class="webform-contribute-community-info__item-title">{{ 'Drupal Association Membership'|t }}</h3>
+        {{ membership.value }}
+        {% if membership.description %}
+          <br/>{{ membership.description }}
+        {% endif %}
+      </div>
+    </div>
+    <div class="webform-contribute-community-info__item">
+      <span class="webform-contribute-community-info__item-icon webform-contribute-community-info__item-icon--contribution" id="contribute-info-contribution"></span>
+      <div class="webform-contribute-community-info__item-details">
+        <h3 class="webform-contribute-community-info__item-title">{{ 'Contributions to Drupal'|t }}</h3>
+        {{ contribution.value }}
+        {% if contribution.description %}
+          <br/>{{ contribution.description }}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>

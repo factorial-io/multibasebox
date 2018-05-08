@@ -24,12 +24,14 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_floor_state:
     weight: 3
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: list_key
+    region: content
   field_link_to_floor:
     weight: 5
     label: above
@@ -37,6 +39,7 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
+    region: content
   field_not_rentable_text:
     weight: 4
     label: above
@@ -44,6 +47,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_office_space:
     weight: 6
     label: above
@@ -51,6 +55,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_space_count:
     weight: 2
     label: above
@@ -58,6 +63,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
 hidden:
   created: true
   uid: true

@@ -25,6 +25,7 @@ content:
     label: inline
     settings: {  }
     third_party_settings: {  }
+    region: content
   field_image:
     weight: 0
     label: hidden
@@ -33,22 +34,26 @@ content:
       image_link: ''
     third_party_settings: {  }
     type: image
+    region: content
   field_pdf:
     type: file_url_plain
     weight: 4
     label: inline
     settings: {  }
     third_party_settings: {  }
+    region: content
   field_rgb_image_download:
     type: file_default
     weight: 3
     label: inline
     settings: {  }
     third_party_settings: {  }
+    region: content
   field_text:
     type: text_default
     weight: 1
     label: hidden
     settings: {  }
     third_party_settings: {  }
+    region: content
 hidden: {  }

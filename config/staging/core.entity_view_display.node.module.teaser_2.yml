@@ -27,6 +27,7 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
+    region: content
   field_image:
     type: responsive_image
     weight: 2
@@ -35,16 +36,19 @@ content:
       responsive_image_style: narrow_square
       image_link: ''
     third_party_settings: {  }
+    region: content
   field_teaser_text:
     type: text_default
     weight: 1
     label: hidden
     settings: {  }
     third_party_settings: {  }
+    region: content
   links:
     weight: 0
     settings: {  }
     third_party_settings: {  }
+    region: content
 hidden:
   field_other_modules: true
   field_text_blocks: true

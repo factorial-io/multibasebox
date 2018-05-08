@@ -21,7 +21,18 @@ content:
     settings:
       trim_length: 600
     third_party_settings: {  }
+    region: content
   links:
     weight: 100
+    region: content
 hidden:
+  field_belongs_to_overview: true
+  field_blocks_below: true
+  field_contact: true
+  field_email: true
+  field_floors: true
+  field_house_svg: true
+  field_image: true
+  field_layer: true
+  field_vcard: true
   langcode: true

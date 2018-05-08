@@ -22,6 +22,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_name:
     weight: 1
     label: above
@@ -29,12 +30,14 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_svg_icon:
     weight: 3
     label: above
     settings: {  }
     third_party_settings: {  }
     type: file_default
+    region: content
   field_value:
     weight: 2
     label: above
@@ -43,6 +46,7 @@ content:
       prefix_suffix: true
     third_party_settings: {  }
     type: number_integer
+    region: content
 hidden:
   created: true
   uid: true

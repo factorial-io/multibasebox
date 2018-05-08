@@ -25,6 +25,7 @@ content:
     settings:
       trim_length: 600
     third_party_settings: {  }
+    region: content
   field_image:
     type: responsive_image
     weight: 0
@@ -33,6 +34,7 @@ content:
       responsive_image_style: narrow
       image_link: content
     third_party_settings: {  }
+    region: content
 hidden:
   field_download_resource: true
   langcode: true

@@ -1,0 +1,22 @@
+/**
+ * @file
+ * Element composite (builder) styles.
+ */
+
+.form-type-webform-element-composite table tr .form-item {
+  margin-bottom: 5px;
+}
+
+.form-type-webform-element-composite table .form-text,
+.form-type-webform-element-composite table .form-textarea,
+.form-type-webform-element-composite table .form-select {
+  width: 100%;
+}
+
+.form-type-webform-element-composite table .form-type-checkbox {
+  text-align: center;
+}
+
+.form-type-webform-element-composite .description /* Hide options description */ {
+  display: none;
+}

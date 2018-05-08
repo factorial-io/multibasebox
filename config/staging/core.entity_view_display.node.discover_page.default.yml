@@ -21,7 +21,9 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
+    region: content
   links:
     weight: 100
+    region: content
 hidden:
   langcode: true

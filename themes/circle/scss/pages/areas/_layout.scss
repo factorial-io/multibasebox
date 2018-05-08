@@ -33,20 +33,32 @@
   .area-info {
     @extend .col-xl-3;
     @extend .col-lg-4;
-    overflow: hidden;
+    overflow: visible;
     display: flex;
     flex-direction: column;
-    padding: 0 2%;
+    padding: 0;
     &__top {
       flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: center;
       text-align: center;
-      padding: $spacer 0;
+      padding: $spacer 8%;
+      position: relative;
+      z-index: 1;
+    }
+    &__middle {
+      position: relative;
+      z-index: 2;
     }
     &__bottom {
       flex: 1;
+      position: relative;
+      padding: 0;
+      z-index: 1;
+      .views-element-container {
+        padding: 0 8%;
+      }
       .item-list {
         margin-top: 2*$spacer;
         li {

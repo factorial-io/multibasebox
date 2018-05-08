@@ -28,11 +28,13 @@ content:
       add_mode: dropdown
       form_display_mode: default
     third_party_settings: {  }
+    region: content
   field_color_variation:
     weight: 4
     settings: {  }
     third_party_settings: {  }
     type: options_select
+    region: content
   field_headline:
     weight: 0
     settings:
@@ -40,11 +42,13 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
+    region: content
   field_picture_side:
     weight: 5
     settings: {  }
     third_party_settings: {  }
     type: options_select
+    region: content
   field_text:
     weight: 1
     settings:
@@ -52,11 +56,16 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
+    region: content
   field_type:
     weight: 2
     settings: {  }
     third_party_settings: {  }
     type: options_select
+    region: content
+  translation:
+    weight: 10
+    region: content
 hidden:
   created: true
   status: true

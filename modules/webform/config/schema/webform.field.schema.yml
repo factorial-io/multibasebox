@@ -1,0 +1,75 @@
+field.storage_settings.webform:
+  type: mapping
+  label: 'Webform field storage settings'
+  mapping:
+    target_type:
+      type: string
+      label: 'Type of item to reference'
+
+base_webform_field_field_settings:
+  type: mapping
+  mapping:
+    handler:
+      type: string
+      label: 'Reference method'
+    handler_settings:
+      type: entity_reference_selection.[%parent.handler]
+      label: 'Entity reference selection settings'
+
+field.field_settings.webform:
+  type: base_webform_field_field_settings
+  label: 'Webform settings'
+  mapping:
+    default_data:
+      type: string
+      label: 'Default webform submission data'
+    status:
+      type: string
+      label: 'Webform status'
+    open:
+      type: string
+      label: 'Webform open date/time'
+    close:
+      type: string
+      label: 'Webform close date/time'
+
+field.widget.settings.webform_entity_reference_autocomplete:
+  type: mapping
+  label: 'Webform autocomplete display format settings'
+  mapping:
+    match_operator:
+      type: string
+      label: 'Autocomplete matching'
+    size:
+      type: integer
+      label: 'Size of textfield'
+    placeholder:
+      type: label
+      label: 'Placeholder'
+    default_data:
+      type: boolean
+      label: 'Default submission data'
+
+field.widget.settings.webform_entity_reference_select:
+  type: mapping
+  label: 'Webform select display format settings'
+  mapping:
+    default_data:
+      type: boolean
+      label: 'Default submission data'
+
+field.formatter.settings.webform_entity_reference_entity_view:
+  type: mapping
+  label: 'Display the referenced webform with default submission data.'
+  mapping:
+    source_entity:
+      type: boolean
+      label: 'Source entity'
+
+field.formatter.settings.webform_entity_reference_link:
+  type: mapping
+  label: 'Display the referenced webform as a link.'
+  mapping:
+    label:
+      type: label
+      label: 'Link label to the referenced webform'

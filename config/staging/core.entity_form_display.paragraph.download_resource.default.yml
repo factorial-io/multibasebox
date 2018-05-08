@@ -25,6 +25,7 @@ content:
       progress_indicator: throbber
     third_party_settings: {  }
     type: file_generic
+    region: content
   field_image:
     weight: 0
     settings:
@@ -32,18 +33,21 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
+    region: content
   field_pdf:
     weight: 2
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
     type: file_generic
+    region: content
   field_rgb_image_download:
     weight: 4
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
     type: file_generic
+    region: content
   field_text:
     weight: 1
     settings:
@@ -51,10 +55,12 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
+    region: content
   translation:
     weight: 5
     settings: {  }
     third_party_settings: {  }
+    region: content
 hidden:
   created: true
   status: true

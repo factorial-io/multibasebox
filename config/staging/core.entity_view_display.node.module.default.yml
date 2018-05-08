@@ -26,12 +26,14 @@ content:
       link: false
     third_party_settings: {  }
     type: entity_reference_entity_view
+    region: content
   field_teaser_text:
     weight: 103
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
+    region: content
   field_text_blocks:
     weight: 101
     label: hidden
@@ -40,10 +42,12 @@ content:
       link: ''
     third_party_settings: {  }
     type: entity_reference_revisions_entity_view
+    region: content
   links:
     weight: 100
     settings: {  }
     third_party_settings: {  }
+    region: content
 hidden:
   field_color: true
   field_image: true

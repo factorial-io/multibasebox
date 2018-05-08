@@ -10,7 +10,7 @@ _core:
   default_config_hash: KHQIJ7Vfl25lTjzIc7qIvnuistt-Mw2O0kG4jCofmkI
 id: circle_messages
 theme: circle
-region: '-1'
+region: header
 weight: 0
 provider: null
 plugin: system_messages_block

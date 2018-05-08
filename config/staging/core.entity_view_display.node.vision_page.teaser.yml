@@ -14,5 +14,11 @@ mode: teaser
 content:
   links:
     weight: 100
+    region: content
 hidden:
+  field_blocks_below: true
+  field_blocks_middle: true
+  field_image: true
+  field_other_modules: true
+  field_text_blocks: true
   langcode: true

@@ -1,0 +1,26 @@
+<?php
+
+/**
+ * @file
+ * Provides a webform element for a selecting an image.
+ */
+
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_webform_libraries_info().
+ */
+function webform_image_select_webform_libraries_info() {
+  $libraries = [];
+  $libraries['jquery.image-picker'] = [
+    'title' => t('jQuery: Image Picker'),
+    'description' => t('A simple jQuery plugin that transforms a select element into a more user friendly graphical interface.'),
+    'notes' => t('Image Picker is used by the Image select element.'),
+    'homepage_url' => Url::fromUri('https://rvera.github.io/image-picker/'),
+    'download_url' => Url::fromUri('https://github.com/rvera/image-picker/archive/0.3.0.zip'),
+    'version' => '0.3.0',
+    'elements' => ['webform_image_select'],
+    'optional' => FALSE,
+  ];
+  return $libraries;
+}
