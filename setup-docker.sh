@@ -10,6 +10,7 @@ if [ "$(uname)" == "Darwin" ]; then
 
 
   # start dnsmasq
+  echo "== Starting dnsmasq ..."
   docker stop dnsmasq || true && docker rm dnsmasq || true
   docker run -d \
      --name dnsmasq \
@@ -19,11 +20,28 @@ if [ "$(uname)" == "Darwin" ]; then
      --cap-add NET_ADMIN \
      andyshinn/dnsmasq \
      --address=/${TLD}/127.0.0.1
+
+  # Setup NFS
+  U=`id -u`
+  G=`id -g`
+  echo "== Setting up nfs..."
+  LINE="/Users -alldirs -mapall=$U:$G localhost"
+  FILE=/etc/exports
+  sudo cp /dev/null $FILE
+  grep -qF -- "$LINE" "$FILE" || sudo echo "$LINE" | sudo tee -a $FILE > /dev/null
+
+  LINE="nfs.server.mount.require_resv_port = 0"
+  FILE=/etc/nfs.conf
+  grep -qF -- "$LINE" "$FILE" || sudo echo "$LINE" | sudo tee -a $FILE > /dev/null
+
+  echo "== Restarting nfsd..."
+  sudo nfsd restart
 else
   echo "Please add your dev hosts to /etc/hosts"
 fi
 
 # start haproxy
+echo "== Starting haproxy ..."
 docker stop haproxy || true && docker rm haproxy || true
 docker run -d \
   -p 80:80 \
