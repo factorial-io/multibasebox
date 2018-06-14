@@ -67,6 +67,12 @@ The containers are setup to restart automatically. If you encounter problems jus
 You can see the status of haproxy at [http://multibasebox.test:1936/](http://multibasebox.test:1936/)
 
 
+## Troubleshooting (Mac)
 
+### container are not reachable, Host is down messages
+
+Test if name resolution is working: `dscacheutil -q host -a name multibasebox.test` If you get an error message, try restarting mDNSResponder with `sudo killall mDNSResponder`, or reboot the machine.
+
+Still not working? Then try the `/etc/hosts`-route.
 
 
