@@ -1,4 +1,4 @@
-host: multibasebox.dev
+host: multibasebox.test
 requires: 2.0.1
 port: 22
 user: vagrant
@@ -8,14 +8,14 @@ environment:
   ROOT_FOLDER: "%dockerHost.rootFolder%/%host.docker.projectFolder%"
 blueprint:
   inheritsFrom: mbb
-  configName: '%project-slug%-%slug.with-hyphens.without-feature%.dev'
+  configName: '%project-slug%-%slug.with-hyphens.without-feature%.test'
   branch: '%identifier%'
-  host: '%project-slug%-%slug.with-hyphens.without-feature%.dev'
+  host: '%project-slug%-%slug.with-hyphens.without-feature%.test'
   database:
     name: '%slug.without-feature%_mysql'
   docker:
     projectFolder: '%project-slug%--%slug.with-hyphens.without-feature%'
-    vhost: '%project-slug%-%slug.with-hyphens.without-feature%.dev'
+    vhost: '%project-slug%-%slug.with-hyphens.without-feature%.test'
     name: '%project-slug%%slug.without-feature%_web_1'
 
 tasks:
@@ -51,17 +51,17 @@ tasks:
   reload_haproxy:
     - touch /tmp/haproxy
   check_project_folder:
-    - fail_on_missing_directory($ROOT_FOLDER, Could not find projectFolder '%host.docker.projectFolder%' -- please check your configuration 'docker.projectFolder' in '%host.config_name%'!)
+    - fail_on_missing_directory(%dockerHost.rootFolder%/%host.docker.projectFolder%, Could not find projectFolder '%host.docker.projectFolder%' -- please check your configuration 'docker.projectFolder' in '%host.config_name%'!)
   rebuild:
     - execute(docker, check_project_folder)
-    - cd $ROOT_FOLDER/_tools/docker && ./run.sh %host.docker.name% $ROOT_FOLDER --webRoot %host.rootFolder% --rebuild --ssh %host.port%  --no-install --vhost %host.host%
+    - cd %dockerHost.rootFolder%/%host.docker.projectFolder%/_tools/docker && ./run.sh %host.docker.name% %dockerHost.rootFolder%/%host.docker.projectFolder% --webRoot %host.rootFolder% --rebuild --ssh %host.port%  --no-install --vhost %host.host%
     - execute(docker, reload_haproxy)
     - execute(docker, waitForServices)
     - execute(docker, copySSHKeyToDocker)
 
   run:
     - execute(docker, check_project_folder)
-    - cd $ROOT_FOLDER/_tools/docker && ./run.sh %host.docker.name% $ROOT_FOLDER --webRoot %host.rootFolder%  --ssh %host.port%  --no-install --vhost %host.host%
+    - cd %dockerHost.rootFolder%/%host.docker.projectFolder%/_tools/docker && ./run.sh %host.docker.name% %dockerHost.rootFolder%/%host.docker.projectFolder% --webRoot %host.rootFolder%  --ssh %host.port%  --no-install --vhost %host.host%
     - execute(docker, reload_haproxy)
     - execute(docker, waitForServices)
 
