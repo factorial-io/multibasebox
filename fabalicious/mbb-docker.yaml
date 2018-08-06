@@ -1,4 +1,4 @@
-host: multibasebox.dev
+host: multibasebox.test
 requires: 0.18
 port: 22
 user: vagrant
