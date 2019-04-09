@@ -1,7 +1,10 @@
-web:
-  image: nginx
-  volumes:
-    - ./sites-enabled:/etc/nginx/sites-enabled
-    - ./site:/site
-  environment:
-    VHOST: $VHOST
+version: '2'
+services:
+  web:
+    image: nginx
+    network_mode: bridge
+    volumes:
+      - ./sites-enabled:/etc/nginx/sites-enabled
+      - ./site:/site
+    environment:
+      VHOST: $VHOST
