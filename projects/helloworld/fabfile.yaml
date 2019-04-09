@@ -8,11 +8,12 @@ needs:
 
 dockerHosts:
   mbb:
-    inheritsFrom: 
-      - ../../fabalicious/2.0/mbb-docker.yaml 
+    inheritsFrom:
+      - ../../fabalicious/2.0/mbb-docker.yaml
     environment:
       VHOST: "%host.host%"
       ROOT_FOLDER: "%dockerHost.rootFolder%/%host.docker.projectFolder%"
+      COMPOSE_FILE: "docker-compose.yml"
 
     tasks:
       logs:
@@ -21,19 +22,18 @@ dockerHosts:
       stop:
         - cd $ROOT_FOLDER; docker-compose stop
       rm:
+        - cd $ROOT_FOLDER; docker-compose rm -f
         - execute(docker, stop)
-        - cd $ROOT_FOLDER; docker-compose rm -f 
 
       rebuild:
         - cd $ROOT_FOLDER; docker-compose pull
-        
+
       run:
         - cd $ROOT_FOLDER; docker-compose up -d
-        - execute(docker, reload_haproxy)
 
 hosts:
   mbb:
-    host: helloworld.dev
+    host: helloworld.test
     user: vagrant
     password: vagrant
     rootFolder: /var/www
