@@ -14,9 +14,8 @@ haproxy is listening on port 80 ond 443 and will forward all requests to a speci
 ## Installation
 
 1. Clone this repository,
-2. Clone the submodules via `git submodule update --init`
-3. Run `bash ./setup-docker.sh`
-4. Visit `http://multibasebox.test:1936` This will show you the haproxy status page.
+2. Run `bash ./setup-docker.sh`
+3. Visit `http://multibasebox.test:1936` This will show you the haproxy status page.
 
 ## Fabalicious setup
 
