@@ -17,7 +17,7 @@ haproxy is listening on port 80 ond 443 and will forward all requests to a speci
 2. Run `bash ./setup-docker.sh`
 3. Visit `http://multibasebox.test:1936` This will show you the haproxy status page.
 
-## Fabalicious setup
+## (Ph|F)abalicious setup
 
 Most likely you'll need a specialized `fabfile.local.yaml` if you are using fabalicious. Here's a short example, adpat it to your setup and it should work:
 
@@ -39,11 +39,32 @@ hosts:
 
 ## Linux-specific remarks
 
-automatic dns resolution does not work on linux, only on os x. Add your hosts to `/etc/hosts` similar to
+The script won't run the dnsmasq-container for linux, but there are some workarounds:
+
+### Fedora
+
+1. Create `/etc/NetworkManager/conf.d/00-use-dnsmaq.conf` with the following content
+
+      ```
+      dns=dnsmasq
+      ```
+2. Create `/etc/NetworkManager/dnsmasq.d/test.conf` with 
+
+      ```
+      local=/test/
+      address=/.test/127.0.0.1
+      addn-hosts=/etc/hosts
+      ```
+3. Restart the NetworkManager with `sudo systemctl restart NetworkManager`
+      
+### Other distributions
+
+Add your hosts to `/etc/hosts` similar to
 
 ```
 127.0.0.1 multibasebox.test <your-other-hosts.test>
 ```
+
 
 ## Setup a new project
 
