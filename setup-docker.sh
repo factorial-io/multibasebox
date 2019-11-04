@@ -25,7 +25,7 @@ if [ "$(uname)" == "Darwin" ]; then
   U=`id -u`
   G=`id -g`
   echo "== Setting up nfs..."
-  LINE="/Users -alldirs -mapall=$U:$G localhost"
+  LINE="/System/Volumes/Data -alldirs -mapall=$U:$G localhost"
   FILE=/etc/exports
   sudo cp /dev/null $FILE
   grep -qF -- "$LINE" "$FILE" || sudo echo "$LINE" | sudo tee -a $FILE > /dev/null
