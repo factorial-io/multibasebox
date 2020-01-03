@@ -1,3 +1,4 @@
+.phab-scaffold-tokens
 .vagrant
 projects/*
 Vagrant.local
