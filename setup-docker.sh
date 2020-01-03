@@ -40,6 +40,8 @@ else
   echo "Please add your dev hosts to /etc/hosts"
 fi
 
+echo "== Building multibasebox image ..."
+docker build -t factorial/multibasebox .
 # start haproxy
 echo "== Starting haproxy ..."
 docker stop haproxy || true && docker rm haproxy || true
@@ -49,7 +51,6 @@ docker run -d \
   -p 1936:1936 \
   --restart always \
   --volume=/var/run/docker.sock:/var/run/docker.sock \
-  -v "$(pwd)"/certs:/etc/ssl/private \
   --name=haproxy \
-  factorial/haproxy-config:develop
+  factorial/multibasebox
 
