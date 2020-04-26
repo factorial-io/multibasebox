@@ -3,3 +3,4 @@
 projects/*
 Vagrant.local
 /fabfile.local.yaml
+fabfile.local.override.yaml
