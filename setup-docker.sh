@@ -50,6 +50,7 @@ docker run -d \
   -p 80:80 \
   -p 443:443 \
   -p 1936:1936 \
+  --privileged \
   --restart always \
   --volume=/var/run/docker.sock:/var/run/docker.sock \
   --name=haproxy \
