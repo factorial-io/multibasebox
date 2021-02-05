@@ -41,7 +41,7 @@ else
 fi
 
 echo "== Building multibasebox image ..."
-docker pull factorial/haproxy-config:develop
+docker pull factorial/haproxy-config:latest
 docker build -t factorial/multibasebox .
 # start haproxy
 echo "== Starting haproxy ..."
