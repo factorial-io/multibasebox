@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
+
+HAPROXY_CONFIG_VERSION=2.0.0
 TLD=test
+
 if [ "$(uname)" == "Darwin" ]; then
   DNSPORT=5300
   sudo mkdir -p /etc/resolver
@@ -41,8 +44,8 @@ else
 fi
 
 echo "== Building multibasebox image ..."
-docker pull factorial/haproxy-config:develop
-docker build -t factorial/multibasebox .
+docker pull factorial/haproxy-config:${HAPROXY_CONFIG_VERSION}
+docker build --build-arg HAPROXY_CONFIG_VERSION=$HAPROXY_CONFIG_VERSION -t factorial/multibasebox:${HAPROXY_CONFIG_VERSION}  .
 # start haproxy
 echo "== Starting haproxy ..."
 docker stop haproxy || true && docker rm haproxy || true
@@ -53,5 +56,5 @@ docker run -d \
   --restart always \
   --volume=/var/run/docker.sock:/var/run/docker.sock \
   --name=haproxy \
-  factorial/multibasebox
+  factorial/multibasebox:${HAPROXY_CONFIG_VERSION}
 
