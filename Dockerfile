@@ -1,3 +1,5 @@
-FROM factorial/haproxy-config:latest
+ARG HAPROXY_CONFIG_VERSION
+FROM factorial/haproxy-config:$HAPROXY_CONFIG_VERSION
 ENV PROVIDE_DEFAULT_BACKEND=1
+ENV SSL_MODE=custom
 ADD ./certs /etc/ssl/private
